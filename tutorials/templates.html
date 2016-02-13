@@ -1,0 +1,320 @@
+<h1>Templates</h1>
+
+<p>ChocolateChip-UI provides its own template module. Templates are essential for efficiently creating markup in your app with dynamic content. There are many template engines out there. They are not all equal. In fact, some of the more famous and popular ones are down right slow. ChocolateChip-UI is not the fastest, but it's faster than most. And it's small and part of the framework. However, if you prefer a different template engine, you may certainly use it. This is just an option, not mandatory.</p>
+
+<p>There are several ways you can create a template. You can define it as a string assigned to a variable. You can assign it to the <code>$.templates</code> object. You can define it inside a script tag. You could even store your templates as an external file that you import as a script tag, or though an Ajax request. Do what makes sense for you.</p>
+
+<p>Creating and rendering a template is a three stage process. First you write the template. Then you must parse it. This turns the string template into a function that can output markup matched up with data passed to it. And finally you execute that parsed template function with data and output the result to the page:</p>
+
+<pre class="prettyprint"><code>// This assumes that masterData is an array
+// of people's first and last names.
+
+// Define the template:
+var masterTemplate = 
+'&lt;li&gt;[[= data.firstName ]] [[= data.lastName ]]&lt;/li&gt;';
+// Prase the template:
+var myTmpl8 = $.template(masterTemplate);
+// Loop through the data and output the template:
+masterData.forEach(function(ctx) {
+  // Pass the current chunk of data
+  // and output the result to the document:
+  $('.master ul').append(myTmpl8(ctx));
+});
+</code></pre>
+
+<p>ChocolateChip uses paris of square brackets as delimiters: <code>[[ ... ]]</code>. These allow you to include executable JavaScript in your templates. The following template would do nothing but launch an alert when the variable name is present:</p>
+
+<pre class="prettyprint"><code>var template1 = '[[ if (data.name) { ]]\
+[[ alert('You have a name!) ]]\
+[[ } ]]';
+</code></pre>
+
+<p>To output a variable into your template's markup you use an equals sign after the opening square brackets pair: <code>[[= ... ]]</code>.</p>
+
+<h2>Creating Templates</h2>
+
+<p>The most straightforward way to create a template is to define it as a string. If the template will be more than one line, you will need to put a back space on each line, except for the last. Because of the way the parsing is done, to refer to a data variable in the template, you need to use a name as the base. The default is <code>data</code>. You can use any other name that makes sense for the data you are using and pass that name to the parse function as the last parameter.</p>
+
+<pre class="prettyprint"><code>// Expected data: { "firstName" : "Joe", "lastName" : "Bodoni"}
+// Define a template and assign it to the variable 'myTemplate':
+var myTemplate = '&lt;li&gt;&lt;h3&gt;[[= data.lastName ]], [[= data.firstName ]]&lt;/h3&gt;&lt;/li&gt;';
+
+var parsedTemplate = $.template(myTemplate);
+</code></pre>
+
+<p>You could also just assign it to ChocolateChip's $.template object and access it from there:</p>
+
+<pre class="prettyprint"><code>$.template.myTemplate = '&lt;li&gt;&lt;h3&gt;[[= data.lastName ]], [[=data.firstName ]]&lt;/h3&gt;&lt;/li&gt;';
+
+var parsedTemplate = $.template($.templates.myTemplate);
+</code></pre>
+
+
+<p>You could also use the $.template object as a cache for you parsed templates. You would do this during load time. The advantage is that they are globally available and ready to use at any time:</p>
+
+<pre class="prettyprint"><code>// Define the temlpate:
+var myTemplate = '&lt;li&gt;&lt;h3&gt;[[= data.lastName ]], [[= data.firstName ]]&lt;/h3&gt;&lt;/li&gt;';
+// Parse it and cache it in $.templates:
+$.templates.parseTempate = $.template(myTemplate);
+</code></pre>
+
+<h2>Custom Data Names</h2>
+
+<p>When parsing a template, you can also define a custom name for the data in your template. You would also need to use that custom name in your template or it will generate and error:</p>
+
+<pre class="prettyprint"><code>// Use 'user' instead of 'data':
+var myTemplate = '&lt;li&gt;&lt;h3&gt;[[= user.lastName ]], [[= user.firstName ]]&lt;/h3&gt;&lt;/li&gt;';
+// Provide 'user' as custom name when parsing:
+var parsedTemplate = $.template(myTemplate, 'user');
+</code></pre>
+
+<p>Presuming we had a JSON object for students like this, we can easily put together a template to output it:</p>
+
+<pre class="prettyprint"><code>var studentObj = {
+   "students": [
+      { 
+         "firstName":"Joe",
+         "lastName": "Bodoni",
+         "major":"Physics" 
+       }, 
+       { 
+         "firstName":"Suzy",
+         "lastName": "Que",
+         "major":"Chemistry" }, 
+       { 
+         "firstName":"John",
+         "lastName": "Doe",
+         "major":"Mathematics" 
+       }
+   ],
+   "university" : "Palo Alto",
+   "year": "1950"
+}
+
+// 'student' will represent each iteration of the "Students" array above:
+var studentsTpl = '&lt;li&gt;&lt;h3&gt;[[= student.lastName]], [[= student.firstName ]]&lt;/ h3&gt;&lt;h4&gt;[[= student.major ]]&lt;/h4&gt;&lt;/li&gt;';
+var parsedStudentTmp = $.template(studentsTpl, 'student');
+
+var list = $('#studentList');
+// Iterated over the Students array:
+studentObj.students.forEach(function(ctx) {
+   // Append template with data:
+   list.append(parsedStudentTmp(ctx));
+});
+</code></pre>
+
+<h2>Using a Script Tag as a template</h2>
+
+<p>As mentioned earlier, you can store you template in a script tag. To get the template, you use a selector to get the tag and then grab its text content as the template. Remember to give the tag a custom type. This will prevent the browser from showing the contents of the script tag in the document. Browsers ignore the contents of script tags with an unknown type. We recommend using 'text/x-template', but you can use whatever you want, as long as it is not a know type. In the example below we gave the script and id so we can easily get it.</p>
+
+<pre class="prettyprint"><code>&lt;script id='studentTemplate' type='text/x-template'&gt;
+   &lt;li&gt;&lt;h3&gt;[[= student.lastName]], [[= student.firstName ]]&lt;/h3&gt;&lt;h4&gt;[[= student.major ]]&lt;/h4&gt;&lt;/li&gt;
+&lt;/script&gt;   
+
+var studentTemplate = $('#studentTemplate').text();
+var parsedStudents = $.template(studentTemplate, 'student');
+var list = $('#studentList');
+// Iterated over the Students array:
+studentObj.students.forEach(function(ctx) {
+    // Append template with data:
+    list.append(parsedStudentTmp(ctx));
+});
+</code></pre>
+
+<h2>JavaScript in Templates</h2>
+
+<p>ChocolateChip allows you to execute JavaScript code inside your template while it is being rendered. You could use this for some type of boolean check:</p>
+
+<p>// Supposing the following data structure:
+songs = [
+   {
+      title: 'whatever',
+      artist: 'whoever',
+      album: 'something',
+      description: 'blah blah',
+      genre: 'pop'
+   },
+   etc.
+];</p>
+
+<pre class="prettyprint"><code>var songs = "&lt;li&gt;\
+[[ if (song.genre === 'pop') { ]]\
+   &lt;li&gt;\
+      &lt;h3&gt;[[= song.title ]]&lt;/h3&gt;\
+      &lt;h4&gt;[[= song.artist ]]&lt;/h4&gt;\
+      &lt;p&gt;[[= song.detail ]]&lt;/h4&gt;\
+   &lt;/li&gt;\
+[[ } else { ]]\
+   &lt;li&gt;\
+      &lt;h3&gt;No Match&lt;/h3&gt;\
+   &lt;/li&gt;\
+[[ } ]]";
+</code></pre>
+
+<p>Or, as a script template:</p>
+
+<pre class="prettyprint"><code>&lt;script id='songTemplate' type='text'/x-template'&gt;
+   &lt;li&gt;
+   [[ if (song.genre === 'pop') { ]]
+      &lt;li&gt;
+         &lt;h3&gt;[[= song.title ]]&lt;/h3&gt;
+         &lt;h4&gt;[[= song.artist ]]&lt;/h4&gt;
+         &lt;p&gt;[[= song.detail ]]&lt;/h4&gt;
+      &lt;/li&gt;
+   [[ } else { ]]
+      &lt;li&gt;
+         &lt;h3&gt;No Match&lt;/h3&gt;\
+      &lt;/li&gt;
+   [[ } ]]
+&lt;/script&gt;
+</code></pre>
+
+<h3>Example</h3>
+<p>You can try out this live example of templates on <a target='_blank' href="http://codepen.io/rbiggs/pen/JaLHx">Codepen.</a></p>
+
+
+<h2><a name="cc-template-repeater" class='anchor' href='#template_repeater' aria-hidden="true"><span class="octicon octicon-link"></span></a>$.template.repeater</h2>
+
+<p>This method enables you to output a template repeatedly based on the value of an array of data. This method can take two types of arrays: simple or consisting of objects. Using other data types will throw and error. You could use either of the following types of arrays:</p>
+
+<pre class="prettyprint"><code>var simpleArray = ["one", "two", "three", "four", "five"];
+var arrayOfObjects = [
+  {firstName: "John, lastName: "Doe", age: 22},
+  {firstName: "Suzy", lastName: "Que", age: 21},
+  {firstName: "Joe", lastName: "Bodoni", age: 30}
+];
+</code></pre>
+
+<p><code>$.template.repeater</code> takes three arguments:</p>
+
+<ul>
+  <li>element: the target in which the result will go</li>
+  <li>template: the template to repeat</li>
+  <li>data: an array of repeatable data</li>
+</ul>
+
+<p>Below are two examples of how to use <code>$.template.repeater</code>:</p>
+
+<pre class="prettyprint"><code>&lt;body&gt;
+  &lt;ol id='arrayList'&gt;
+  &lt;/ol&gt;
+  &lt;ul id="objectArrayList"&gt;&lt;/ul&gt;
+&lt;/body&gt;
+
+
+/* The JavaScript: */
+$(function() {
+  // Output a simple array of data:
+  var simpleArray = ['One','Two', 'Three', 'Four', 'Five'];
+  var repeaterTmplate1 = '&lt;li&gt;[[= data ]]&lt;/li&gt;';
+  $.template.repeater($('#arrayList'), repeaterTmplate1, simpleArray);
+
+  // Output an array of objects:
+  var arrayOfObjects = [
+    {firstName: "Albert", lastName: "Einstein"},
+    {firstName: "Steven", lastName: "Hawking"},
+    {firstName: "Neil", lastName: "deGrasse Tyson"}
+  ];
+  var repeaterTmplate2 = '&lt;li&gt;[[= data.firstName ]], [[= data.lastName]]&lt;/li&gt;';
+  $.template.repeater($('#objectArrayList'), repeaterTmplate2, arrayOfObjects);
+});
+</code></pre>
+
+<p>This will produce the following:</p>
+
+<pre class="prettyprint"><code>&lt;ol id="arrayList"&gt;
+  &lt;li&gt;One&lt;/li&gt;
+  &lt;li&gt;Two&lt;/li&gt;
+  &lt;li&gt;Three&lt;/li&gt;
+  &lt;li&gt;Four&lt;/li&gt;
+  &lt;li&gt;Five&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul id="objectArrayList"&gt;
+  &lt;li&gt;Albert, Einstein&lt;/li&gt;
+  &lt;li&gt;Steven, Hawking&lt;/li&gt;
+  &lt;li&gt;Neil, deGrasse Tyson&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p><strong>Behavior:</strong> By default, $.template.repeater appends its results to the target element. If you want it to replace the contents, then simple use <code>$(selector).empty()</code> before executing <code>$.template.repeater()</code></p>
+
+
+
+<h2><a name="cc-declarative-repeater" class='anchor' href='#declarative_repeater' aria-hidden="true"><span class="octicon octicon-link"></span></a>Declarative Template Repeater</h2>
+
+<p>ChocolateChip-UI also provides a way to use declarative repeater templates. You do this by putting the attribute <code>data-repeat</code> with its value being the name of a variable of the array of data you want it to render with. Because of the way JavaScript scopes work, you need to expose the data to the template engine so that it can parse the template with it. You do this by assigning it to <code>$.template.data</code>:</p>
+
+<pre class="prettyprint"><code>// Define some data:
+var renaissanceLuminaries = { persons: 
+  [
+    {firstName: "Albert", lastName: "Einstein"},
+    {firstName: "Steven", lastName: "Hawking"},
+    {firstName: "Neil", lastName: "deGrasse Tyson"},
+    {firstName: "Leonardo", lastName: "Da Vinci"},
+    {firstName: "Nicholas", lastName: "Copernicus"}  
+  ]
+};
+// Expose the data to the $.template.data object:
+$.template.data['luminaries'] = renaissanceLuminaries.persons;
+</code></pre>
+
+<p>Don't worry about this duplicating your data and taking up memory. After the template gets rendered, ChocolateChip-UI will delete the data object so that its memory gets garbage collected.</p>
+
+<p>Setting up a declarative template repeater is simple:</p>
+<pre class="prettyprint"><code>&lt;ul id="repeater" data-repeater="luminaries" class='cloak'&gt;
+  &lt;li&gt;[[= data.firstName ]], [[= data.lastName]]&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>With the template defined and our data assigned to the <code>$.template.data</code> object, we can invoke the repeater method. We do without passing any parameters. Every time you do so, it will search your document for declarative repeaters, so be careful to only do it when all templates have their data ready for render, because after rendering, that data gets deleted from the template data object.</p>
+<pre class="prettyprint"><code>// Parse any declarative repeaters:
+$.template.repeater();
+</code></pre>
+
+<p><strong>Note:</strong> You can keep the unrendered template of the declarative repeater from showing by putting the class "cloak" on it. You can see that class on the repeat above. This class hides the child elements of the repeater. When ChocolateChip-UI renders the repeater, it takes this class off before injecting the repetitive content into it.</p>
+
+
+<h2><a name="cc-template-index" class='anchor' href='#template_index' aria-hidden="true"><span class="octicon octicon-link"></span></a>$.template.index</h2>
+
+<p>When using a repeater, you may need to know what iteration your own, say, to output a numberic value. ChocolateChip-UI templates provides a way for you to do this using <code>$.template.index</code>. Like other JavaScript loop processes, it starts with 0 and increases after that. So, if you want to output numbers, you'll need to increase them by 1. Here's an example:</p>
+
+<pre class="prettyprint"><code>&lt;ul id="repeater" data-repeater="luminaries" class='cloak'&gt;
+  &lt;li&gt;[[= $.template.index + 1 ]]: [[= data.firstName ]], [[= data.lastName]]&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>This would create the following markup:</p>
+
+<pre class="prettyprint"><code>&lt;ul id="luminaries"&gt;
+  &lt;li&gt;1: Albert, Einstein&lt;/li&gt;
+  &lt;li&gt;2: Steven, Hawking&lt;/li&gt;
+  &lt;li&gt;3: Neil, deGrasse Tyson&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<h3>Images</h3>
+<p>If you want to have images in a declarative repeater, you need to use a special attribute for the source. At load time the browser will see the declarative template in the markup and try to parse the image's source. If the path of the image is based on dynamic data, this will result in an error being logged in the browser's console. You can avoid this by using <code>data-src</code> instead of <code>src</code>:</p>
+<pre class="prettyprint"><code>&lt;ul id="repeater" data-repeater="luminaries" class='cloak'&gt;
+  &lt;li&gt;
+     &lt;img data-src="[[= data.image ]]"&gt; 
+     &lt;span&gt;[[= data.firstName ]], [[= data.lastName]]&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>At parse time, ChocolateChip-UI will convert the <code>data-src</code> attribute into a <code>src</code> attribute.</p>
+
+
+<p><strong>Note:</strong> One last thing to bear in mind. Because template variables are actually JavaScript variables, you can perform any appropriate JavaScript operations directly on them. We are already doing that by increase the value of the <code>$.template.index</code> by 1 in each loop in the template above. Or you might want to do something such as capitalizing the last name using <code>String.toUpperCase()</code>:</p>
+
+<pre class="prettyprint"><code>&lt;ul id="repeater" data-repeater="luminaries" class='cloak'&gt;
+  &lt;li&gt;[[= $.template.index + 1 ]]: [[= data.firstName ]], [[= data.lastName.toUpperCase() ]]&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<script>
+   $(function() {
+      $('body').scrollTop(0);
+      prettyPrint();
+      $('#documentation').trigger('click');
+      $('#platformspecifics').addClass('selected');
+   });
+</script>

@@ -1,0 +1,83 @@
+  <h3>Latest News</h3>
+
+  <h4><strong>June 24, 2015</strong></h4>
+  <p>TypeScript declaration files for both ChocolateChipJS and ChUI are now available on <a target='_blank' href="http://definitelytyped.org">Definitely Typed</a>. This means you can download the declaration files to your project using the NPM module <a href="https://www.npmjs.com/package/tsd" target='_blank'>tsd</a>. Please read the documentation for <code>tsd</code> to learn how to install ChUI's TypeScript declaration files into your project. Why these? By including them in your project and using a TypeScript plugin with your editor, you get code completion, hits and other features while typing the code for ChUI. The following editors support this: Visual Studio Code, Sublime Text, Atom, Webstorm, etc.</p>
+  <p>You can learn more about using <a target='_blank' href="http://chocolatechip-ui.com/documentation.html#/typescript">TypeScript declaration files with ChUI</a>.</p>
+
+  <h4><strong>May 28, 2015</strong></h4>
+  <p>We're proud to annouce the launch of <code>chui</code>, an NPM module to create ChocolateChip-UI apps. Find out more on <a target='_blank' href="https://www.npmjs.com/package/chui">NPM</a>. After installing, you can build a project where you want with the features you want. No need to download from Github and run a Gulp build task. Just run <code>chui</code> in your terminal with the arguments you want. This gives you the setup you need to get going quickly on building your app.</p>
+
+  <h4><strong>May 26, 2015</strong></h4>
+  <p>We just updated both ChocolateChipJS and ChocolateChip-UI by add TypeScript declaration files. What these do is enable tooling, such as intellisense and code completions, in text editors that support it. This includes Sublime Text, Atom, Webstorm, Eclipse and the Visual Studio family of editors. See the <a target='_blank' href='http://chocolatechip-ui.com/documentation.html#/typescript'>documentation</a> for TypeScript for more information about using it.</p>
+
+  <h4><strong>April 22, 2015</strong></h4>
+  <p>We've published an NPM package to enable the creation of hybrid Android apps. The command-line tool is called <code>chui-android</code>. You can <a href='https://www.npmjs.com/package/chui-android' target='_blank'>learn more about it</a> on the NPM site and in our <a href='http://chocolatechip-ui.com/tutorials.html#/hybridapps' traget='_blank'>tutorial</a> about making hybrid apps.</p>
+
+  <h4><strong>April 15, 2015</strong></h4>
+  <p>We've added the ability to have repeaters in ChocolateChip-UI's templates. There's two ways: through code or as declarative markup. You can read more about it in <a target="_blank" href="http://chocolatechip-ui.com/tutorials.html#/templates">tutorials</a>. Template repeaters let you do things such as:</p>
+
+  <pre class='prettyprint'><code>// Our data as an array of objects:
+var data = [{firstName: "Albert", lastName: "Einstein"},
+  {firstName: "Steven", lastName: "Hawking"},
+  {firstName: "Neil", lastName: "deGrasse Tyson"}
+];
+// Define our template:
+var listTemplate = '&lt;li&gt;[[= data.firstname ]] [[= data.lastname ]]&lt;/li&gt;';
+
+// Render the template to the page using the repeater:
+$.template.repeater($('#listOfPeople'), listTemplate, data);
+</pre></code>
+  <p>This will create the following markup:</p>
+  <pre class="prettyprint"><code>&lt;ul id="listOfPeople"&gt;
+  &lt;li&gt;Albert, Einstein&lt;/li&gt;
+  &lt;li&gt;Steven, Hawking&lt;/li&gt;
+  &lt;li&gt;Neil, deGrasse Tyson&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+  <p>Declarative repeaters use the attribute <code>data-repeater</code>. Its value is the data that it will iterate for output. You use a temporary data assignment to bind the data:</p>
+  <pre class='prettyprint'><code>
+  &lt;ul data-repeat="people"&gt;
+    &lt;li&gt;[[= data.firstName ]] [[= data.lastName ]]&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;script&gt;
+    // Assign the data to the $.template.data object:
+    $.template.data["people"] = [{firstName: "Albert", lastName: "Einstein"},
+      {firstName: "Steven", lastName: "Hawking"},
+      {firstName: "Neil", lastName: "deGrasse Tyson"}
+    ];
+    // Render the template:
+    $.template.repeater();
+  &lt;/script&gt;
+  </code></pre>
+
+  <h3>Latest News</h3>
+  <h4><strong>April 3, 2015</strong></h4>
+  <p>We are launching a new Android theme based on Google's design direction with Material Design which is implmented in Android 5.x (Lollipop). Google choose to use shadows and transparency extensively in this version of Android. Although Lollipop is fairly efficient on most devices, this is not the case with Android's mobile browsers. As such you may see better performance while testing on desktop Chrome than when running in an Android browser. Functionality will still be there, but the mobile browsers, depending on the device, may simpply not render some animations.</p>
+
+
+  <h4><strong>March 16, 2015</strong></h4>
+  <p>We have launched an NPM (Node Package Module) command-line tool, <a target="_blank" href="https://www.npmjs.com/package/chui-ios">chui-ios</a>, to enable creating hybrid apps for iOS. Just run it from the terminal, provide a project name, username, and drag your ChocolateChip-UI app onto the terminal and hit return. The tool will turn your Web app into an Xcode project wrapping your app in a Web view. Double click and run or deploy to a tetthered iOS device for testing. Please note that because iOS apps require Apple's Xcode IDE to run, this tool only works on Mac OS X. Running this on Windows will not create a viable project for deployment to iOS.</p>
+  <p>This tool is easy to install. just run:</p>
+  <pre class="prettyprint">
+    sudo npm  install -g chui-ios</pre>
+  <p>Running this will require your password, since it installs it globally. This allows you to invoke it at any time from the command-line.</p>
+  <p>We are currently working on an Android version as well.</p>
+
+
+  <h4><strong>March 10, 2015</strong></h4>
+  <p><figcaption>New Theme Roller</figcaption><img src="./images/news/theme-roller.png" alt=""></p>
+  <p>We've update the website to make it easier for you to get to what you need. We've added a new feature, a <a href='./community.html#/themes'>theme roller</a>. Using the theme roller, you can easily customize the colors for a consistent theme. You can choose to just color text and controls, or to also color the navigation bars and toolbars. When you're done you can copy the resulting stylesheet and add it to your project.</p>
+
+  <p>The theme roller uses the YIQ color space to determine readability of text on background colors. This is used when you choose to colorize the navigation bars and toolbars. We pass the red, green and blue channel values to the following formula to determine if we need to change the color of text on such a background:</p>
+
+  <pre class='prettyprint'>brightness  =  sqrt( .200 R2 + .587 G2 + .114 B2 )</pre>
+
+  <p>This means you just have to pay attention to the colors you want. The theme roller will handle giving you text with the appropriate contrast for a background color. However, if you are not colorizing the navigation bars, on iOS and Android you must be careful to not choose a color that is too light. That's your choice. The theme roller shows you your chosen Operating Systems UI with your color choice in real time so you can see if you choices work or not.</p>
+
+  <p>You can read more about <a href="http://bit.ly/17cS7iR" target='_blank'>how we came up with our contrast formula</a> on our Tumblr blog.</p>
+
+<script>
+  (function() {
+    prettyPrint();
+  })();
+</script>

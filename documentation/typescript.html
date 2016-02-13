@@ -1,0 +1,60 @@
+<h1>TypeScript</h1>
+
+<p>ChocolateChip-UI includes TypeScript declaration files. These can be identified by their endings: "d.ts". We are including these to enable support for intellisense and code completion in a wide range of text editors: Sublime Text, Atom, Visual Studio Code, Webstorm, etc. These use various plugins to enable TypeScript:</p>
+
+<p>For Sublime Text, open the package manager, type install, then type "Best TypeScript" and hit Return. This package is created and maintained by Microsoft.</p>
+
+<p>For Atom, use the <code>amp</code> command line tool to install:</p>
+
+<pre class='prettyprint'><code>apm install atom-typescript
+</code></pre>
+
+<p>For Visual Studio Code, TypeScript support is built in. For most editors you will need to put a reference to the TypeScript declaration files in your JavaScript. You do this by placing a referene comment at the top of your script. Notice the three slashes. These are required:</p>
+
+<pre class="prettyprint"><code>/// &lt;reference path="typings/jquery/jquery.d.ts" /&gt;
+/// &lt;reference path="typings/chui/chui.d.ts" /&gt;
+</code></pre>
+
+<p>If you're using ChocolateChipJS instead of jQuery, then use the following:</p>
+
+<pre class="prettyprint"><code>/// &lt;reference path="typings/chocolatechip/chocolatechip.d.ts" /&gt;
+/// &lt;reference path="typings/chui/chui.d.ts" /&gt;
+</code></pre>
+
+<p>If you change the path to where your typings are stored, you'll need to update the path in the reference comments to reflect this.</p>
+
+<p>Inside the typings folder there's a file called <code>tsd.d.ts</code>. This hold a reference to all the various TypeScript declaration files. You can there just reference it instead of putting a reference for each TypeScript declaration file:</p>
+
+<pre class="prettyprint"><code>/// &lt;reference path="typings/tsd.d.ts" /&gt;
+</code></pre>
+
+<h3>Features</h3>
+<p>Some of the features these editors offer is popup information about methods and the arguments they use, type checking as you enter arguments for methods, code completion. Please consult the documentation for the package you're using for your code editor to find out all the supported features and keyboard shortcuts.</p>
+
+<p><strong>Please note</strong>, you do not need to write your code in typescript to take advantage of many of these features.</p>
+
+<h2>TSD</h2>
+<p>You can also use the NPM module, <a href="https://www.npmjs.com/package/tsd">tsd</a> to install ChocolateChip-UI's TypeScript declaration files in your project. These files are now available from <a href="http://definitelytyped.org">Definitely Typed</a>. But you can simply install <code>tsd</code> and execute it from your terminal any time your want any type of declaration file. Installing <code>tsd</code> is easy:</p>
+
+<pre class="prettyprint"><code>// Mac:
+sudo npm install -g tsd
+// Windows:
+npm install -g tsd
+</code></pre>
+
+<p>After that you can use the terminal to <code>cd</code> to your project's folder and then run the following command:</p>
+<pre class="prettyprint"><code>tsd init // This creates a tsd.config file and typings folder.
+tsd install chui --save  // This install ChUI and saves its reference in the tsd.d.ts file
+// Install either jQuery or ChocolateChipJs:
+tsd install jquery --save //or tsd install chocolatechipjs --save
+</code></pre>
+
+
+<script>
+   $(function() {
+      $('body').scrollTop(0);
+      prettyPrint();
+      $('#documentation').trigger('click');
+      $('#platformspecifics').addClass('selected');
+   });
+</script>
