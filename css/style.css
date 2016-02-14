@@ -39,11 +39,11 @@ menu > div > ul > li > a {
 #Logo {
   cursor: pointer;
   font-size: 0 !important;
-  background-image: url(../images/CCUI-Logo-On-Dark.svg);
-  background-position: left top;
-  background-size: auto 100%;
+  background-image: url(../images/ChocolateChip-Title.svg);
+  background-position: left center;
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  width: 300px;
+  width: 200px;
   margin: 0 !important;
   height: 30px;
   position: absolute;
@@ -298,7 +298,7 @@ menu.submenu li.selected a {
   width: 60px;
   background-image: url(../images/CCUI-UI-Only-On-Light.svg);
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: 90% auto;
   background-position: center;
   margin: 0 auto 20px;
 }
@@ -486,6 +486,7 @@ body > article > section {
     background-image: url(../images/CCUI-UI-Only-On-Dark.svg);
     width: 40px;
     height: 40px;
+    background-size: 70% auto;
     margin-top: -4px !important;
   }
   .menu li a {
