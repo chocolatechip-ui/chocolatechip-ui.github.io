@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5 {
   font-family: HelveticaNeue, "Helvetica Neue", "Segoe UI", sans-serif;
 }
 body > nav:first-child {
-  background-color: #57534E;
+  background-color: #594A38;
   height: 50px;
   padding: 0 20px;
   position: fixed;
@@ -134,11 +134,11 @@ menu  ul > li {
 }
 menu  ul > li:hover a,
 menu  ul > li.selected a {
-  background-color: #57534E;
+  background-color: #594A38;
   color: #fff;
 }
 menu.submenu li a {
-  color: #57534E;
+  color: #594A38;
   text-decoration: none;
   font-size: 16px;
   line-height: 20px;
@@ -323,7 +323,7 @@ menu.submenu li.selected a {
   text-align: justify;
 }
 footer {
-  background-color: #57534E;
+  background-color: #594A38;
   padding: 60px 40px;
   color: #fff;
 }
