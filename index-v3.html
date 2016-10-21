@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChocolateChip-UI</title>
+  <meta name="fragment" content="#" />
+  <meta name="description" content="ChocolateChip-UI, an open source framework, helps you make great mobile Web apps with the native look of iOS, Android, and Windows Phone using HTML5, CSS and JavaScript.">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="canonical" href="http://chocolatechip-ui.com/">
+  <link rel="canonical" href="http://chocolatechip-ui.com/">
+  <link rel="apple-touch-icon" sizes="76x76" href="v4/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="v4/images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="v4/images/favicon-16x16.png" sizes="16x16">
+  <link rel="mask-icon" href="v4/images/safari-pinned-tab.svg" color="#333333">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="stylesheet" href="./v3/css/style.css">
+  <script type='text/javascript' src='./v3/scripts/jquery-2.1.3.js'></script>
+  <script>
+    $(function() {
+
+      // Setup to cache images:
+      var emptyArray = [];
+      var carouselImages = ["./v3/images/carousel/ios/navigation.png","./v3/images/carousel/ios/navigation-back.png","./v3/images/carousel/ios/segment.png","./v3/images/carousel/ios/composite-counters.png","./v3/images/carousel/ios/switched.png","./v3/images/carousel/ios/composite-time.png","./v3/images/carousel/ios/select.png","./v3/images/carousel/ios/switch.png","./v3/images/carousel/ios/range.png","./v3/images/carousel/ios/composite-icons.png","./v3/images/carousel/ios/popup.png","./v3/images/carousel/ios/popover.png","./v3/images/carousel/ios/tabbar.png","./v3/images/carousel/ios/editable.png","./v3/images/carousel/ios/carousel.png","./v3/images/carousel/ios/sheet.png","./v3/images/carousel/android/navigation-back.png","./v3/images/carousel/android/segment.png","./v3/images/carousel/android/composite-counters.png","./v3/images/carousel/android/switched.png","./v3/images/carousel/android/composite-time.png","./v3/images/carousel/android/select.png","./v3/images/carousel/android/switch.png","./v3/images/carousel/android/range.png","./v3/images/carousel/android/composite-icons.png","./v3/images/carousel/android/popup.png","./v3/images/carousel/android/popover.png","./v3/images/carousel/android/tabbar.png","./v3/images/carousel/android/editable.png","./v3/images/carousel/android/carousel.png","./v3/images/carousel/android/sheet.png","./v3/images/carousel/windows/navigation.png","./v3/images/carousel/windows/navigation-back.png","./v3/images/carousel/windows/segment.png","./v3/images/carousel/windows/composite-counters.png","./v3/images/carousel/windows/switched.png","./v3/images/carousel/windows/composite-time.png","./v3/images/carousel/windows/select.png","./v3/images/carousel/windows/switch.png","./v3/images/carousel/windows/range.png","./v3/images/carousel/windows/composite-icons.png","./v3/images/carousel/windows/popup.png","./v3/images/carousel/windows/popover.png","./v3/images/carousel/windows/tabbar.png","./v3/images/carousel/windows/editable.png","./v3/images/carousel/windows/carousel.png","./v3/images/carousel/windows/sheet.png"];
+
+      // Load the images:
+      carouselImages.forEach(function(ctx, idx) {
+        emptyArray[idx] = new Image();
+        emptyArray[idx].src = ctx;
+      });
+
+      // Templates for image carousel:
+      var iosUI = '<li><img src="./v3/images/carousel/ios/navigation.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/navigation-back.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/segment.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/composite-counters.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/switched.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/composite-time.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/select.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/switch.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/range.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/composite-icons.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/popup.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/popover.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/tabbar.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/editable.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/carousel.png" alt=""></li>\
+<li><img src="./v3/images/carousel/ios/sheet.png" alt=""></li>';
+      var androidUI = '<li><img src="./v3/images/carousel/android/navigation.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/navigation-back.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/segment.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/composite-counters.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/switched.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/composite-time.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/select.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/switch.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/range.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/composite-icons.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/popup.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/popover.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/tabbar.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/editable.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/carousel.png" alt=""></li>\
+<li><img src="./v3/images/carousel/android/sheet.png" alt=""></li>';
+      var windowsUI = 
+      '<li><img src="./v3/images/carousel/windows/navigation.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/navigation-back.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/segment.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/composite-counters.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/switched.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/composite-time.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/select.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/switch.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/range.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/composite-icons.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/popup.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/popover.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/tabbar.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/editable.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/carousel.png" alt=""></li>\
+<li><img src="./v3/images/carousel/windows/sheet.png" alt=""></li>';
+
+      // Handle switch carousel images based on OS:
+      $('#osMenu').on('click', 'li', function() {
+          var $this = $(this);
+          if (/iOS/i.test(this.className)) {
+            $('#carousel ul').html(iosUI);
+            $this.siblings().removeClass('selected');
+            $this.addClass('selected');
+          } else if (/Android/i.test(this.className)) {
+            $('#carousel ul').html(androidUI)
+            $this.siblings().removeClass('selected');
+            $this.addClass('selected');
+          } else if (/Windows/i.test(this.className)) {
+            $('#carousel ul').html(windowsUI)
+            $this.siblings().removeClass('selected');
+            $this.addClass('selected');
+          }
+      });
+    });
+  </script>
+</head>
+<body id='landingPage'>
+  <nav>
+    <ul class="menu">
+      <li>
+        <a href="./v3/tutorials.html#/layouts">
+          <span>Tutorials</span>
+          <span>Tuts</span>
+        </a>
+      </li>
+      <li>
+        <a href="./v3/documentation.html#/building">
+          <span>Documentation</span>
+          <span>Docs</span>
+        </a>
+      </li>
+      <li id='themesLink'>
+        <a href="./v3/themes.html">Themes</a>
+      </li>
+      <li>
+        <a href="./v3/community.html#/news">Community</a>
+      </li>
+      <li id='downloadTab'>
+        <a target='_blank' href="https://github.com/chocolatechip-ui/chocolatechipui">Download</a>
+      </li>
+    </ul>
+    <h1 id='Logo'>ChocolateChip-UI</h1>
+  </nav>
+  <article>
+    <section class='header'>
+      <h2>Create Mobile Apps
+with Native Look &amp; Feel
+For Web or Hybrid</h2>
+      <h3>Light, Fast, Customizable, Standards-based</h3>
+      <p id='linkToVersion4'>
+        <a href="index.html">
+          <svg width="43px" height="40px" viewBox="0 0 43 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Logo2">
+                      <ellipse id="Oval" fill="#FFFFFF" cx="21.1482971" cy="19.9753366" rx="21.1071582" ry="19.9364793"></ellipse>
+                      <ellipse id="Oval" fill="#333333" cx="21.2609338" cy="19.7971974" rx="3.72110348" ry="3.51471771"></ellipse>
+                      <path d="M32.9492436,25.9738802 C32.553916,27.2768221 29.372685,32.3289523 21.6069843,32.6205746 C14.0371622,32.9048199 7.81439043,26.9505492 7.81439043,19.794928 C7.81439043,12.6393067 13.9675403,6.64397789 21.5407989,6.82983546 C25.4818907,6.92653701 28.6558024,11.0128739 32.6500032,13.2573705 C34.536668,14.3175891 31.8277058,15.9543074 30.3324857,15.4507763 C27.8411812,14.6117827 25.3699154,10.2552799 21.5265621,9.6657966 C15.8021226,8.78781044 11.0187394,14.1130572 11.0187394,19.5908177 C11.0187394,25.0685781 15.7273683,29.4657596 21.5265621,29.5158387 C25.3581332,29.5488875 28.761708,26.8877395 30.0290055,24.6679874 C30.5193939,23.8091392 33.4077664,24.4626968 32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 Z" id="Shape" stroke="#333333" stroke-width="5" fill="#333333"></path>
+                  </g>
+              </g>
+          </svg> version 4 is now available.</a></p>
+    </section>
+    <section class='platforms'>
+      <h2>Write Once, Support 3 Platforms:
+iOS, Android and Windows Phone</h2>
+      <h3><img src="./v3/images/iphones.png" alt="">ChocolateChip-UI is just HTML, CSS &amp JavaScript.
+CSS themes implement each platform.
+Easy to customize LESS styles.
+Use alone or with Phonegap.
+Theme Roller for Custom Colors.</h3>
+    </section>
+    <section class='features'>
+      <h2>Everything You Need to Make Great Apps</h2>
+      <ul id='osMenu'>
+        <li class='iOS selected'>iOS</li>
+        <li class='Android'>Android</li>
+        <li class='Windows'>Windows</li>
+      </ul>
+      <div id="carousel">
+        <div>
+          <ul>
+            <li><img src="./v3/images/carousel/ios/navigation.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/navigation-back.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/segment.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/composite-counters.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/switched.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/composite-time.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/select.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/switch.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/range.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/composite-icons.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/popup.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/popover.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/tabbar.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/editable.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/carousel.png" alt=""></li>
+            <li><img src="./v3/images/carousel/ios/sheet.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+      <p id='seeAll'><a href="./v3/features.html">See more</a></p>
+    </section>
+    <section class='audience'>
+      <h2>Attention: Web Developers!</h2>
+      <h3>ChocolateChip-UI uses standard Web technologies.
+It’s built on top of the popular &amp; familiar jQuery library.
+You can continue using the coding tools you already
+know and enjoy. ChocolateChip-UI provides you with a
+powerful and easy to customize view for your backend.
+ChocolateChip-UI makes no assumptions about what
+your backend is. Use whatever library or framework
+you want. Just output the results in the format
+ChocolateChip-UI expects and everything 
+will render beautifully. </h3>
+      <span class="logo"></span>
+    </section>
+    <section class="opensource">
+      <h2>Open Source
+MIT License 
+Available on Github<img src="./v3/images/open-source.png" alt=""></h2>
+      <h3>You can use ChocolateChip-UI to build an app and give it away for free, because you’re cool with that. Or make a commercial offering and charge for it. The MIT license gives you the flexibility to create and distribute your app the way you want. So, what do you have to do to comply? The license is already in the source files. Just include them as is in your app. How much does this cost? Nothing. Open source means it’s free to use. Same as jQuery. Understand?</h3>
+      <h3>The fastest way to get going with ChocolateChip-UI is to install the NPM module chui. This will allow you to quickly create the type of ChocolateChip-UI project you want. Please visit <a target='_blank' href='https://www.npmjs.com/package/chui'>NPM</a> for directions on how to use it</h3>
+    </section>
+    <footer>
+      <h2>Get ChocolateChip-UI and Start
+Making Your App Now</h2>
+    <a id='download' target='_blank' href='https://github.com/chocolatechipui/chocolatechip-ui'>Download</a>
+    </footer>
+  </article>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39615688-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>  
+</body>
+</html>

@@ -1,0 +1,505 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Open Sans', Consolas, 'Gill Sans', Arial, Sans-serif;
+	height: 100%;
+	-webkit-font-smoothing: subpixel-antialiased;
+	background-color: #fafafa;
+}
+#chui-logo {
+	display: block;
+	height: 80px;
+	width: 80px;
+	margin: 0 auto 10px auto;
+	background-position: left center;
+}
+#v3x {
+	display: inline-block;
+	width: 140px;
+	height: 80px;
+	float: right !important;
+	color: #111;
+	margin-top: 24px;
+	text-align: center;
+	text-decoration: none
+}
+#v3x:hover > div {
+	text-decoration: underline;
+}
+#v3x > div {
+	height: 40px;
+	width: 130px;
+	margin-top: -30px;
+	display: inline-block;
+	font-size: 12pt;
+}
+nav {
+	height: 90px;
+	background-color: #333;
+	border-bottom: solid 1px #111;
+}
+nav > div {
+	height: 100%;
+	padding: 1px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	display: flex;
+	align-items: center;
+}
+nav > div > h1 a > svg,
+nav > div > h1 > svg {
+	margin-top:  5px;
+}
+nav > div > h1 a {
+	color: transparent;
+	height: 50px;
+	display: inline-block;
+	width: 300px;
+	margin: 0;
+	text-decoration: none;
+	color: transparent;
+}
+nav > div > h1 {
+	color: transparent;
+	background: none;
+	height: 50px;
+	display: inline-block;
+	width: auto;
+}
+nav > div > h1 a > span,
+nav > div > h1 > span {
+	display: none;
+}
+menu {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	margin: 0;
+	float: right;
+}
+menu > a {
+	height: 38px;
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	width: auto;
+	margin-left: 40px;
+	margin-top: 28px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
+	font-weight: 600;
+	border-bottom: solid 6px transparent;
+	padding-bottom: 18px;
+	transition: all .33s ease-out;
+}
+menu > a#v3 {
+	font-size: 20px;
+	padding-top: 33px;
+	margin: 0 -50px -20px 10px;
+}
+menu > a:hover,
+menu > a.selected {
+	border-color: #fff;
+}
+header {
+	background-color: #FF9F00;
+	border-bottom: solid 1px #e57205;
+	box-shadow: inset 0 3px 6px #333;
+	box-sizing: border-box;
+	padding: 1px 42px;
+	color: #111;
+}
+header div {
+	box-sizing: border-box;
+	margin: 0 auto;
+	display: block;
+	width: 960px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+header h2 {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, San-serif;
+	display: inline-block;
+	font-size: 36px;
+	font-weight: 600;
+	margin-right: 40px;
+}
+header h3 {
+	display: inline-block;
+	font-weight: 100;
+	font-size: 24px;
+}
+article > section {
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+	min-height: 400px;
+	background-color: #fff;
+}
+article > section + section {
+	box-shadow: none;
+}
+footer {
+	background-color: #333;
+	height: 90px;
+	color: #fff;
+}
+footer > div {
+	height: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 1px 0 1px 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+footer > div > aside {
+	margin-top: 20px;
+}
+footer menu {
+	justify-content: flex-start;
+	margin: 0 !important;
+	height: auto;
+	float: left;
+	-webkit-padding-start: 0 !important;
+}
+footer img {
+	float: left;
+}
+footer menu a {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
+	font-size: 20px;
+	text-transform: none;
+	margin-top: 0;
+	padding-bottom: 6px;
+	border-width: 1px;
+	font-weight: 200;
+}
+footer p {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
+	font-size: 12px;
+	float: right;
+	font-weight: 200;
+}
+.mainLink {
+	display: inline-block;
+	width: auto;
+	border: solid 2px #3A8BDC;
+	color: #3A8BDC;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	margin: 20px 0 0 0;
+	text-align: center;
+	transition: all .33s ease-out;
+}
+.mainLink:hover {
+	color: #fff;
+	background-color: #3A8BDC;
+	border-color: #3A8BDC;
+}
+code {
+	font-size: 16px;
+}
+footer > div > menu a#chuiLogoLink {
+	margin: 0 !important;
+	border: none !important;
+}
+#chuiLogoLink:hover {
+	border: none !important;
+}
+#mainFooterMenu {
+	display: flex;
+	align-items: flex-end;
+	padding: 1px;
+	margin-top: 20px !important;
+}
+#mainFooterMenu > a {
+	display: inline-block;
+	height: 40px;
+	padding: 0 !important;
+	line-height: 1.6em;
+}
+#social-links > a {
+	margin-left: 20px;
+}
+#social-links {
+	float: right;
+}
+#social-links > a:hover {
+	border-color: transparent !important;
+}
+#facebook {
+	height: 25px;
+	width: 25px;
+} 
+#twitter {
+	height: 25px;
+	width: 35px;
+}
+#facebook > svg, 
+#twitter > svg {
+	height: 25px;
+}
+/* Media Queries */
+@media only screen and (max-width: 1024px) {
+
+	nav > div {
+		width: 90%;
+	}
+	menu > a {
+		font-size: 20px;
+		margin-left: 30px;
+	}
+	header div {
+		width: 90% !important;
+	}
+	header > div > #chui-logo {
+		width: 120px !important;
+	}
+	footer > div {
+		width: 90% !important;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	menu  {
+		margin-left: -1em !important;
+	}
+	menu > a:first-child {
+		margin-left: 0 !important;
+	}
+	#mainFooterMenu  { 
+		margin-top: 20px !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	nav > div:first-child {
+		display: flex !important;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	nav > div > h1,
+	nav > div > h1 a {
+		background-size: auto 30px !important;
+	}
+	menu {
+		flex: none;
+		float: left;
+		padding: 0 !important;
+		margin-left: 0 !important;
+	}
+	menu > a {
+		font-size: 12px;
+		margin-left: 10px;
+		margin-top: 0;
+		height: auto;
+		border-bottom-width: 2px;
+	}
+	#v3x {
+		display: none !important;
+	}
+	#chui-logo {
+		display: none !important;
+	}
+	header h2 {
+		font-size: 18px !important;
+		margin-right: 14px;
+	}
+	section {
+		height: auto !important;
+	}
+	section > div {
+		padding: 1px 10px;
+	}
+	#build {
+		padding: 1px 10px;
+	}
+	#build > div {
+		max-width: none;
+		width: 300px;
+		margin: 0;
+	}
+	#build > div h2 {
+		font-size: 18px !important;
+	}
+	#build img {
+		height: 100px;
+	}
+	#build > div > aside {
+		margin-left: 120px;
+	}
+	#code {
+		padding: 1px 10px;
+		border: solid 1px transparent;
+	}
+	#code img {
+		margin-bottom: 20px;
+	}
+	#code h2,
+	#opensource h2 {
+		font-size: 18px !important;
+	}
+	#opensource img {
+		display: none;
+	}
+	#opensource aside {
+		margin: 0 !important;
+	}
+	#view-lifecycle {
+		width: 300px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	nav > div > h1 > svg, 
+	nav > div > h1 > a > svg {
+		height: 30px !important;
+		width: 200px !important;
+	}
+	.mainLink {
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+	#code .mainLink,
+	#build .mainLink {
+		margin-bottom: 20px !important;
+	}
+	#chuiLogoLink {
+		display: none !important;
+	}
+	#mainFooterMenu > a {
+		font-size: 14px;
+		line-height: 3em !important;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	nav > div > h1 > svg, 
+	nav > div > h1 > a > svg {
+		height: 25px !important;
+		width: 170px !important;
+		margin-top: 10px;
+	}
+	#mainFooterMenu {
+		margin-top: 0 !important;
+	}
+}
+@media only screen and (max-width: 442px) {
+	header {
+		padding: 1px 20px !important;
+		height: 90px !important;
+	}
+	header > div {
+		padding: 5px 1px 1px 1px !important;
+	}
+	header > div:first-child {
+		width: 100% !important;
+		display: block;
+	}
+	header > div > h2 {
+		font-size: 14px !important;
+		display: block !important;
+	}
+	header > div > h3 {
+		font-size: 14px !important;
+		display: block !important;
+	}
+	footer {
+		padding-top: 20px;
+	}
+	#social-links {
+		margin-top: -10px !important;
+	}
+}
+@media only screen and (max-width: 340px) {
+	nav {
+		height: 80px !important;
+	}
+	nav > div > h1,
+	nav > div > h1 a {
+		background-size: auto 25px !important;
+	}
+	nav > div {
+		position: relative;
+	}
+	menu {
+		padding-left: 0 !important;
+		float: left;
+	}
+	section {
+		min-height: 200px !important;
+	}
+	header h2 {
+		font-size: 14px !important;
+	}
+	#build > div h2 {
+		font-size: 14px !important;
+	}
+	#build img {
+		height: 70px;
+	}
+	#build > div > aside {
+		margin-left: 85px !important;
+	}
+	#build > div > aside h3,
+	#code > div > aside h3,
+	#opensource > div > aside h3 {
+		font-size: 12px !important;
+	}
+	#code {
+		padding: 40px 10px !important;
+	}
+	#code > div > img {
+		-webkit-transform: scale(.75);
+		transform: scale(.75);
+		display: inline-block;
+		float: none !important;
+		margin: 0 !important;
+		position: relative;
+		left: -30px;
+	}
+	#opensource {
+		padding: 30px 10px 30px !important;
+	}
+	#chuiLogoLink {
+		display: none;
+	}
+	#mainFooterMenu > a {
+		height: 20px;
+	}
+	#social-links {
+		margin-top: 0 !important;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	footer {
+		padding-top: 20px;
+	}
+	#mainFooterMenu {
+		margin-top: 10px !important;
+	}
+	#facebook {
+		height: 15px !important;
+		width: 15px;
+	} 
+	#twitter {
+		height: 15px !important;
+		width: 20px;
+	}
+	#facebook > svg {
+		height: 15px !important;
+		width: 15px;
+	} 
+	#twitter > svg {
+		height: 15px !important;
+		width: 20px;
+	}
+}
