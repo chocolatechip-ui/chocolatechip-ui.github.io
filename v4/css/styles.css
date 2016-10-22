@@ -34,7 +34,7 @@ html, body {
 	font-size: 12pt;
 }
 nav {
-	height: 90px;
+	height: 70px;
 	background-color: #333;
 	border-bottom: solid 1px #111;
 	position: fixed;
@@ -84,7 +84,7 @@ menu {
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
-	margin: 0;
+	margin: 0 0 2px 0;
 	float: right;
 }
 menu > a {
@@ -100,7 +100,7 @@ menu > a {
 	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
 	font-weight: 600;
 	border-bottom: solid 6px transparent;
-	padding-bottom: 18px;
+	/*padding-bottom: 1px;*/
 	transition: all .33s ease-out;
 }
 menu > a#v3 {
@@ -142,7 +142,7 @@ header h3 {
 	font-size: 24px;
 }
 article {
-	padding-top: 90px;
+	padding-top: 70px;
 	background-color: #333;
 }
 article > section {
