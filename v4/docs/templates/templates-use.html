@@ -294,13 +294,14 @@ SimpleView.render(fruits);
 
           <h3>Escaping Markup or Not</h3>
 
-          <p>By default ChocolateChip-UI escapes any markup in the data that it renders in a template. This helps prevent the possibility of a malicious script insertion. This also means that tags for bold and italic with come through escaped as well. If you want to be able to render a view that uses data with markup in it for formating purposes, you can use the <code>safeHTML</code> flag in your view. Set it to true:</p>
+          <p>By default ChocolateChip-UI escapes any markup in the data that it renders in a template. This helps prevent the possibility of a malicious script insertion. This also means that tags for bold and italic will come through escaped as well. If you want to be able to render a view that uses data with markup in it for formating purposes, you can use the <code>safeHTML</code> flag in your view. Set it to true:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#myList', 
   safeHTML: true
   }]
 });</pre>
+          <p>Please be aware that using this attribute on your views does increase the vulnerability of your app. You never know when a malicious hacker will compromise a data source.</p>
 
         </div>
         
