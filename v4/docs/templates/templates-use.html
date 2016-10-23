@@ -292,6 +292,16 @@ SimpleView.render(fruits);
 
           <p>Regardless of which approach you take to implementing templates, when ChocolateChipJS parses the template, it converts the template into JavaScript. In the end, the template will be a JavaScript function that evaluates the template values, evaluates any inline JavaScript and returns the markup as DOM nodes.</p>
 
+          <h3>Escaping Markup or Not</h3>
+
+          <p>By default ChocolateChip-UI escapes any markup in the data that it renders in a template. This helps prevent the possibility of a malicious script insertion. This also means that tags for bold and italic with come through escaped as well. If you want to be able to render a view that uses data with markup in it for formating purposes, you can use the <code>safeHTML</code> flag in your view. Set it to true:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#myList', 
+  safeHTML: true
+  }]
+});</pre>
+
         </div>
         
         <div id="menu">
