@@ -16,6 +16,9 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/styles-docs.css">
+  <link rel="stylesheet" href="../../prettify/obsidian.css">
+  <script type='text/javascript' src='../../prettify/prettify.js'></script>
+  <script type='text/javascript' src='../../prettify/lang-css.js'></script>
 </head>
 <body>
   <article>
@@ -70,7 +73,29 @@
           <h2>Hybrids</h2>
           <h3>Use</h3>
           
-          <p>We are currently working on an NPM module to convert ChocolateChipJS apps into Android and iOS hybrid apps. In the mean time, you can use our older plugins. For Android, use <a target='_blank' href="https://www.npmjs.com/package/chui-android">chui-android</a>. For iOS, you can use <a href="https://www.npmjs.com/package/chui-ios" target='_blank'>chui-ios</a></p>
+          <p>The goal of ChocolateChip-UI is to enable the easy creation of hybrid apps. But it is just the framework to create the app. The hybrid part requires using our NPM command line tool: <a target='_blank' href="https://www.npmjs.com/package/chui">chui</a>. If you haven't installed it yet, open your terminal and run:</p>
+
+          <pre class="prettyprint linenums">npm install -g chui</pre>
+
+          <p>When that finishes, you're ready to turn your web app into a hybrid. Actually, <code>chui</code> can turn any web app into a hybrd. It does not have to be built with ChocolateChip-UI, it just needs to be HTML, CSS and JavaScript launched from and <code>index.html</code> file.</p>
+
+          <p>To create a hybrid app there are a couple of arguments you use. First off you need to use the <code>-h</code> flag to tell <code>chui</code> that you want to create a hybrid app. Next you need to provide a name for your project using the <code>-n</code> flag. Make sure you leave a space between the flag and the project name. Next you need to tell <code>chui</code> which platform you want to target using the <code>-o</code> flag. You have two choices: <code>android</code> or <code>ios</code>. Make sure you have a space between the flag and the name. You can also provide the path to your web app with the <code>-w</code> flag. You can type <code>-w</code> followed by a space and then just drag your web app's project folder onto the terminal and the path will be added automatically. If you don't provide a path for your web project, it will still create a hybrid app with a default webpage. You can replace this later.</p>
+
+          <pre class="prettyprint linenums">chui -h -n myApp -o android
+chui -h -n myApp -o ios
+chui -h -n myApp -o android -w path/to/my/app</pre>
+
+          <p>When <code>chui</code> finishes creating your project, you will find it on your desktop. If you chose Android as your target, you will find an Android Studio project. You can start up Android Studio and then open the project. I will probably as you to update the gradle code and might as you to install sdk support depending on how you have Android Studio set up. Once the updates are done you can build and see your app running in the Android emulator on on a tethered device.</p>
+          <p>If you didn't provide the path to your web app when you created the your Android project, you can add it by copying and pasting it into the following folder in your Android project: <code>app/src/main/assets</code>. The assets folder already has a default <code>index.html</code>. Replace the contents of this folder with your web app. Make sure your app is also named <code>index.html</code>.</p>
+
+          <p>If you chose to make and iOS app, after running <code>chui</code> you will find an Xcode project with your project's name on your desktop. Open it and double click the file with the <code>xcodeproj</code> extension. That will open your project in Xcode. You should be able to build and see your hybrid app running on the iOS simulator or on a tethered device.</p>
+
+          <p>When you create a hybrid app, it provides default icons for your Android and iOS app. If you already have icons, etc., you can provide the path to them when you create your app with the <code>-i</code> flag:</p>
+          <pre class="prettyprint linenums">chui -h -n myApp -o android
+chui -h -n myApp -o ios -i path/to/app/icons</pre>
+
+          <p>Be aware that the dimensions and names must match those provided by <code>chui</code>. You might want to make a default hybrid app first to see what the requirements are for your icons. Or you can just add them in later by dragging them in to the projects to replace the existing ones.</p>
+
         </div>
         
         <div id="menu">
@@ -135,6 +160,10 @@
       </div>
     </footer>
   </article>
+  
+<script>
+  prettyPrint();
+</script>
   
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
