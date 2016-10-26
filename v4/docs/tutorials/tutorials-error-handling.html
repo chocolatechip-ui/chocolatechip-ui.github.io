@@ -71,83 +71,18 @@
       <div>
         <div>
           <h2>Tutorials</h2>
-          <h3>Routing</h3>
+          <h3>Error Handling</h3>
           
-          <h4>Look Ma, No URL!</h4>
-          <p>ChocolateChip-UI's router does not use a url. Huh? Yeah, we thought a lot about routing in the context of an app. Mobile apps that require constant network connection to work suffer from the one problem everyone everywhere struggles with - poor network connections or no connection. At the same time we wanted the benefits of routing to enable handling the different types of navigation in a ChocolateChip-UI app. In the end we came up with routing that does not use a url. Instead of attaching a <code>#!</code> fragment to the url or changing the <code>window.location.hash</code> value, you use ChocolateChip-UI's route dispatcher. This tells ChocolateChip-UI what route you want to load. You can also pass along a unique id or any other value that the route callback can use. Since ChocolateChip-UI's router does not use a url, the back button works as expected.</p>
+          <h4>Letting You Know When You do Something Wrong</h4>
 
-          <h4>Setting Up a Route</h4>
-          
-          <p>To set up a route, you use the <code>$.Router</code> method. This returns the route object for your app. You'll use this to add routes.</p>
+          <p>ChocolateChip-UI has its own error system. It checks the arguments or methods you invoke for views, models and events. This is great while your in development. The errors try to describe the problem as clearly as possible so that you can understand what you've done wrong. Most errors involve trying to do something with an property does not exist. For example, a view might now have an element, or template or bound model and you are trying to access them. When you do this, ChocolateChip-UI will log and error in the browser console. Whenever you do see the result you were expecting in your app, open the console and check for errors.</p>
 
-          <pre class='prettyprint linenums'>var routes = $.Router();</pre>
+          <p>When you are finished developing your app and want to move to production, you can turn the ChocolateChip-UI error messages off. To do so, just put the following assignment before any of your other code:</p>
 
-          <p>After creating your route object, you can add routes. Of course, creating a route means you want something to happen with that route is dispatched, so each route gets a callback:</p>
-
-          <pre class='prettyprint linenums'>var routes = $.Router();
-
-routes.addRoute({
-  route: 'detail',
-  callback: function() {
-    alert("You've just landed on the detail screen!");
-  }
-});</pre>
-          <p>So, now we have a ChocolateChip-UI route defined, but how do you activate one? There's no url, so links aren't going to do it. But ChocolateChip-UI apps don't use links for navigation anyway. They use element attributes to define how navigation works. For example, to make a navigation list go to a detail page, you use the attribute <code>data-goto</code> and give it the value <code>detail</code>. When the use tap's the list item with that value, ChocolateChip-UI will direct the user to that screen and it will automatically dispatch the vaue as a route. Since we have a route defined for <code>detail</code>, when the user taps the list item with <code>data-goto='detail'</code>, ChocolateChip-UI will take the user there and execute our route callback.</p>
-
-          <p>Good so far, but sometimes you want to have multiple list items leading to the same detail screen and loading different content depeding on which item the user tapped. No problem. You can include a unique id with a route. You do this by adding it to the route with a color ":"</p>
-
-          <pre class='prettyprint linenums'>&lt;ul class="list"&gt;
-  &lt;li data-goto="detail:apples"&gt;
-    &lt;h3&gt;Apples&lt;/h3&gt;
-  &lt;/li&gt;
-  &lt;li data-goto="detail:oranges"&gt;
-    &lt;h3&gt;Oranges&lt;/h3&gt;
-  &lt;/li&gt;
-  &lt;li data-goto="detail:bananas"&gt;
-    &lt;h3&gt;Bananas&lt;/h3&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-          </pre>
-
-          <p>In the above markup, notice that all list items are pointing to the same destination screen, "detail". However each one also has a unique id as a fruit. Ids can be whatever you need or suits your purpose. You could use a simple descriptor as we've done above, or a guid. When ChocolateChip-UI sees a navigation value with an ID, it extracts the id and dispatches it with the route value. You can capture that id value as the argument of your routes callback:</p>
-
-          <pre class='prettyprint linenums'>var routes = $.Router();
-          
-routes.addRoute({
-  route: 'detail',
-  callback: function(id) {
-    alert("You want to see the fruit: " + id);
-  }
-});</pre>
-
-        <p>By capturing a route's id, we can do more complex things, such as filtering out a data object from a collection so that we can render its content in a view:</p>
-
-          <pre class='prettyprint linenums'>var routes = $.Router();
-          
-routes.addRoute({
-  route: 'detail',
-  callback: function(id) {
-    // Filter the chosen fruit from the collection:
-    var chosenFruit = fruitsCollection.filter(function(fruit) {
-      return fruit.id = id;
-    });
-
-    // Rener the detail view with the fruit:
-    ChosenFruitView.render(chosenFruit);
-  }
-});</pre>
-
-        <p>This works great for navigating around an app, but routes also provide another useful feature, communicating with a remote server. If you wish to use a RESTful interface for persisting local actions to a server, you can get the current full path of a route. Use the method <code>$.Router.getFullRoute</code>. This will give you the route, including route ids, separated by slashes:</p>
-
-          <pre class='prettyprint linenums'>var currentRoute = $.Router.getFullRoute();
-// Possible value: 'main/fruits:banana'</pre>
-          <p>After getting the full path, you can post it to a server in an Ajax/Fetch request.</p>
-
-
-
-
-
-          
+          <pre class='prettyprint linenums'>$.supressErrorMessages = true;
+// You app code here.
+</pre>
+          <p>This will stop ChocolateChip-UI from logging errors about its functions. However, if you have JavaScript that is invalid, the browser will still throw and exception.</p>
 
 
         </div>
@@ -186,13 +121,13 @@ routes.addRoute({
                 <li><a href="tutorials-getting-started.html">Getting Started</a></li>
                 <li><a href="tutorials-organizing.html">Organizing Your Code</a></li>
                 <li><a href="tutorials-views.html">Views</a></li>
-                <li><a href="tutorials-models.html">Models</a></li>
+                <li><a href="../tutorials/tutorials-models.html">Models</a></li>
                 <li><a href="tutorials-mediators.html">Mediators</a></li>
-                <li><a href="tutorials-routing.html" class='selected'>Routing</a></li>
+                <li><a href="tutorials-routing.html">Routing</a></li>
                 <li><a href="tutorials-navigation-list.html">Navigation List</a></li>
                 <li><a href="es6.html">ES6</a></li>
                 <li><a href="tutorials-demos.html">Demos</a></li>
-                <li><a href="tutorials-error-handling.html">Error Handling</a></li>
+                <li><a href="tutorials-error-handling.html" class='selected'>Error Handling</a></li>
               </ul>
             </li>
           </ul>
