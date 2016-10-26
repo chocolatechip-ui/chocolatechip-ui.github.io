@@ -82,20 +82,20 @@
   {
     route: 'main',
     callback: function() {
-      // Do stuff
+      // Do stuff when entering "main"
     }
   },
   {
     route: 'detailScreen',
     callback: function() {
-
+      // Do stuff when entering "detailScreen"
     }
   }
 ]);</pre>
-        <p>When setting up your navigation lists, slide out menus and tab bars, you can provide an id value that can be captured by the route to do something specific to the id. This allows you to have, for example, a navigation list where all the list items go to the same page. The route for that page takes the provided id of each list item and renders content based on that id. So, where would you get an id from? That would be from the data collection you used to render the navigation list. You could use a unique property, an id or guid or whatever, to identify each object in the collection. And you would output that as part of the route used by the navigation list, etc. Below is an navigation list item with an id as part of its route:</p>
+        <p>When setting up your navigation lists, slide out menus and tab bars, you can provide an id value that can be captured by the route to do something specific based on that id. This allows you to have, for example, a navigation list where all the list items go to the same page. The route for that page takes the provided id of each list item and renders content based on that id. So, where would you get an id from? That would be from the data collection you used to render the navigation list. You could use a unique property, an id or uuid or whatever to identify each object in the collection. And you would output that as part of the route used by the navigation list, etc. Below is an navigation list item with an id as part of its route:</p>
         <pre class='prettyprint linenums'>&lt;li data-goto="detail:N356f953-2c3c-4a72-b4e7-5955662ec80f"&gt;
         </pre>
-        <p>Notice the semi-colon followed by a guid. You use a semi-colon to tell the router that what follows is a route id. When the user taps such a list item, the router separates it from the route and lets you capture it in your route callback as its parameter. Below is an example of how to capture a route id in the callback:</p>
+        <p>Notice the semi-colon followed by a uuid. You use a semi-colon to tell the router that what follows is a route id. When the user taps such a list item, the router separates it from the route and lets you capture it in your route's callback as its parameter. Below is an example of how to capture a route id in the callback. Notice the <code>id</code> parameter in the callback's <code>function</code>:</p>
         <pre class='prettyprint linenums'>var AppRoutes = $.Router();
 AppRoutes.addRoute([
   {
