@@ -76,12 +76,12 @@
 
         <h4>Model</h4>
         <p><code>$.Model(options)</code></p>
-        <p>This is a factor that creates a model object for you based on the options you provide. It takes two arguments, the data to encapsule in the model, and a handle to use as its identifier. The model uses the handle to inform the system when it has changed. Mediators listen for this handle and react when it is dispatched. Models can hold either an object of key-value paris, or a colleciton of objects. Depending on the contents, different methods will work. Colleciton methods will not work with an object and object methods will not work with a collection. But some methods work for both. Therefore check the explanation of each method below to see what type of data they work with.</p>
+        <p>This is a factor that creates a model object for you based on the options you provide. It takes two arguments, the data to encapsule in the model, and a handle to use as its identifier. The model uses the handle to inform the system when it has changed. Mediators listen for this handle and react when it is dispatched. Models can hold either an object of key-value paris, or a collection of objects. Depending on the contents, different methods will work. Collection methods will not work with an object and object methods will not work with a collection. But some methods work for both. Therefore check the explanation of each method below to see what type of data they work with.</p>
 
         <p>After putting your data in a model, you can dispose of it if you want to free up memory:</p>
 <pre class='prettyprint linenums'>// Create a new model:
 var MyModel = $.Model(myData, 'mydata-handle');
-// Set the data for garbage colleciton:
+// Set the data for garbage collection:
 myData = null;
 </pre>
     
