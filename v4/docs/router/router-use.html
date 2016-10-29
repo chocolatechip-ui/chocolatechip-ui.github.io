@@ -104,7 +104,7 @@ AppRoutes.addRoute([
       var model = AppViews.VIPView.getModel();
       // Filter model with id passed in route:
       var whichPerson = model.filter(function(person) {
-        return person.guid === id;
+        return person.uuid === id;
       })[0];
       // Output peron's name:
       $('#chosenPerson').text('Welcome, ' + whichPerson.firstName + '.');
