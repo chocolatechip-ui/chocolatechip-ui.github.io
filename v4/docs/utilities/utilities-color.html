@@ -19,6 +19,20 @@
   <link rel="stylesheet" href="../../prettify/obsidian.css">
   <script type='text/javascript' src='../../prettify/prettify.js'></script>
   <script type='text/javascript' src='../../prettify/lang-css.js'></script>
+  <script src="../../js/jquery-2.1.3.js"></script>
+  <link rel="stylesheet" href="../../css/spectrum.css">
+  <script src="../../js/spectrum.js"></script>
+  <script src="../../js/colorContrast.js"></script>
+  <script src="../../js/theme.js"></script>
+  <style>
+    #backgroundColorTest {
+      padding: 5px 20px;
+      text-align: center;
+      width: 200px;
+      background-color: #eee;
+      border: solid 1px #000;
+    }
+  </style>
 </head>
 <body>
   <article>
@@ -123,6 +137,14 @@ $('nav > button').css('color', textColor);
 
           <p>When using a brightness value, think of it like RGB. A value of 0 would be black and a value of 255 would be white. You need to find an intermediate value that works for you.</p>
           <p>Be aware that the color calibration of your monitor will affect how you see this working. It's always best to check color contrast using the default color profile for your monitor, since that's what most people use. Also check how your choice looks on the target device.</p>
+
+          <h4>Test Background Colors</h4>
+          <p>You can test what text will look like over a background color using the color picker below. As you adjust the color, the background color will update and the text color will be updated for legibility, either light or dark. You can also just enter a hex, rgb or color name value into the input below the color picker and hit Enter.</p>
+          <div id='backgroundColorTest'>The Title</div>
+          <p><strong>Choose a Color:</strong></p>
+          <div id="primaryColorChooser">
+            <input type="text" id='colorPicker'>
+          </div>
 
           <h3>Lighten a Color</h3>
           <p><code>$.lightenColor(colorValue, percent)</code></p>
