@@ -86,13 +86,13 @@ var myObject = {
 }
 
 // Create a model:
-var personModel = $.Model(myObject, 'person-model');
+var personModel = $.Model(myObject);
 
 // Get rid of the plain JavaScript object,
 // since we don't need it any more:
 myOjbect = undefined;
           </pre>
-          <p>To initialize the model, we gave it the object to use and a handle, which is a name ChocolateChip-UI can use to identify the model. And that's it. Since it is now a model, we can access the model with object appropriate methods. These are:</p>
+          <p>To initialize the model, we gave it the object to use. And that's it. Since it is now a model, we can access the model with object appropriate methods. These are:</p>
           <ul>
             <li>personModel.getItemProp()</li>
             <li>personModel.setItemProp()</li>
@@ -116,7 +116,7 @@ var fruits = [
   {name: "Orange", image: 'images/orange.png'},
   {name: "Mango", image: 'images/mango.png'} 
 ];
-var fruitModel = $.Model(fruits, 'fruit-model');
+var fruitModel = $.Model(fruits);
 fruits = undefined;
 
 var orange = fruits.getItemProp(2, 'name'); // returns "Orange"
