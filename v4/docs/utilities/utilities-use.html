@@ -136,7 +136,7 @@
   // do something here
 }, 1000);</pre>
   
-        <p>In the above example, regardless of how many keystrokes are executed, the callback won't fire until one second after the user stops typing. By default <code>$.debounce</code> fires on the trailing-edge of the wait period. You can force it to fire on the leading-edge by passing a truthy third argument. You might want to do this to avoid an accidental double click on a submit button:</p>
+        <p>In the above example, regardless of how many keystrokes are executed, the callback won't fire until one second after the user stops typing. By default <code>$.debounce</code> fires on the trailing-edge of the wait period. You can force it to fire on the leading-edge by passing a truthy third argument. You might want to do this to avoid an accidental double tap on a submit button:</p>
 
 <pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
   // do something here
