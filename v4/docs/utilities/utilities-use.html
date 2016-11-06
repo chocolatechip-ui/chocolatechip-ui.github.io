@@ -83,6 +83,8 @@
             <li>$.concat()</li>
             <li>$.uuid()</li>
             <li>$.unique()</li>
+            <li>$.throttle()</li>
+            <li>$.debounce()</li>
           </ul>
           <p><code>$.isEmptyObject(object)</code> tests where an object is <code>{}</code> or where it has properties. This is a boolean value.</p>
           <p><code>$.isInteger(number)</code> tests whether the number is an integer or not. This is a boolean value.</p>
@@ -94,6 +96,53 @@
           <p><code>$.uuid()</code> create a uuid. This is a string. You can use it to create a unique identifier for objects in a collection, or for ids of DOM elements. ChocolateChip-UI uses $.uuid internally for this purpose.</p>
 
           <p>$.unique() takes an array as its argument. It returns a new array free of duplicates.</p>
+
+          <h4>Throttle &amp; Debounce</h4>
+
+          <p><code>$.throttle()</code> allows you to control how often a set of events fire. If you are listening for keystokes in an input, you can capture the event a designated amount of time. This helps you avoid a flood of events. This method takes two arguments, a callback to execute and the time in milliseconds to wait before the next execution.</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.throttle(function(e) {
+  // If only a few letters, exit:
+  if (this.value.length < 2) return;
+
+  // Output current value of input:
+  console.log(this.value);
+}, 1000);</pre>
+
+        <p>You can pass <code>$.throttle</code> a third argument to control when it fires. This third argument is an object of options. By default, <code>$.throttle</code> fires on the leading-edge. You can disable this by passing the object <code>{leading: false}</code>:</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.throttle(function(e) {
+  // do something here
+}, 1000, {leading: false});</pre>
+
+        <p>By default <code>$.throttle</code> also fires on the trailing-edge. You can disable this by passing the object <code>{trailing: false}</code> as the last argument:</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.throttle(function(e) {
+  // do something here
+}, 1000, {trailing: false});</pre>
+
+<p>And of course you can combine both options together:</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.throttle(function(e) {
+  // do something here
+}, 1000, {leading: false, trailing: false});</pre>
+
+
+          <p><code>$.debounce()</code> is similar to <code>$.throttle()</code>. It differs in that it waits the designated time before firing the event. Given a stream of events. on the last will be executed.</p>
+
+          <p>Debounce takes two arguments: a callback and the amount of time in milliseconds before firing.</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
+  // do something here
+}, 1000);</pre>
+  
+        <p>In the above example, regardless of how many keystrokes are executed, the callback won't fire until one second after the user stops typing. By default <code>$.debounc</code> fires on the trailing-edge of the wait period. You can force it to fire on the leading-edge by passing a thruthy third argument. You might want to do this to avoid and accidental double click:</p>
+
+<pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
+  // do something here
+}, 1000, true);</pre>
+
+
 
 
           <h4>The Haz Helpers</h4>
