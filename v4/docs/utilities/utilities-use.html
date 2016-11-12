@@ -85,19 +85,37 @@
             <li>$.unique()</li>
             <li>$.throttle()</li>
             <li>$.debounce()</li>
+            <li>$.once()</li>
+            <li>$.before()</li>
+            <li>$.after()</li>
           </ul>
+
+          <h4>$.isEmptyObject()</h4>
           <p><code>$.isEmptyObject(object)</code> tests where an object is <code>{}</code> or where it has properties. This is a boolean value.</p>
+
+          <h4>$.isInteger()</h4>
           <p><code>$.isInteger(number)</code> tests whether the number is an integer or not. This is a boolean value.</p>
+
+          <h4>$.isFloat()</h4>
           <p><code>$.isFloat(number)</code> tests whether the number is a float or not. This is a boolean value.</p>
+
+          <h4>$.encode()</h4>
           <p><code>$.encode(data)</code> returns the value from a form element encoded.</p>
+
+          <h4>$.escapeHTML()</h4>
           <p><code>$.escapeHTML(data)</code> escapes the html tags, parenthesis, etc.</p>
+
+          <h4>$.concat()</h4>
           <p><code>$.concat(args)</code> takes a series of strings and returns one string. This is useful where you need to concatenate a lot of string pieces together</p>
           <pre class='prettyprint linenums'>var str = $.concat('This', ' ', 'is', ' ', 'a' , ' ', 'string', '.');</pre>
+
+          <h4>$.uuid()</h4>
           <p><code>$.uuid()</code> create a uuid. This is a string. You can use it to create a unique identifier for objects in a collection, or for ids of DOM elements. ChocolateChip-UI uses $.uuid internally for this purpose.</p>
 
+          <h4>$.unique()</h4>
           <p>$.unique() takes an array as its argument. It returns a new array free of duplicates.</p>
 
-          <h4>Throttle &amp; Debounce</h4>
+          <h4>$.throttle()</h4>
 
           <p><code>$.throttle()</code> allows you to control how often a set of events fire. If you are listening for keystokes in an input, you can capture the event a designated amount of time. This helps you avoid a flood of events. This method takes two arguments, a callback to execute and the time in milliseconds to wait before the next execution.</p>
 
@@ -132,6 +150,7 @@
 
           <p>Debounce takes two arguments: a callback and the amount of time in milliseconds before firing.</p>
 
+          <h4>$.debounce()</h4>
 <pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
   // do something here
 }, 1000);</pre>
@@ -141,6 +160,80 @@
 <pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
   // do something here
 }, 1000, true);</pre>
+
+        
+        <h4>$.once()</h4>
+        <p>There may be times where you only want a function to execute once, no matter how many times the user tries to run it. A submit button is a good example. Using <code>$.once()</code> you can do this. You pass it the function you want to execute, and it returns wrapped so that it will only execute once:</p>
+<pre class='prettyprint linenums'>// Execute function only once:
+var alertUser = function(message) {
+  alert(message)
+};
+var newAlert = alertUser('A message from your sponsors!');
+$('#alertButton').on('tap', $.once(newAlert);</pre>
+      
+        <p>In the above code, the callback will only execute one time, even if the user taps more times.</p>
+
+        <h5>NOTICE:</h5>
+
+        <p>You should not define your callback nor pass it any arguments inside the <code>$.once</code> method. Doing so will cause the callback to be executed as soon as the page loads. Instead take care to define your callback separately and pass it as a simple argument to <code>$.once</code> as done in the example above.</p>
+        <p>The following code will fail to work properly because we are passing an argument to the callback inside the <code>$.once</code> method:</p>
+
+<pre class='prettyprint linenums'>// Execute function only once:
+var alertUser = function(message) {
+  alert(message)
+};
+$('#alertButton').on('tap', $.once(alertUser('A message from your sponsors!'));</pre>
+
+        
+        <h4>$.before(times, callback)</h4>
+
+        <p>This function takes the number of times and wraps the callback so that it will only execute x times before the times argument is reached. For example, if you pass a times of 4, the callback will execute only the first 3 times. After that it will not execute. Use this method to limit a callback to only execute a specific number of times.</p>
+
+        <pre class='prettyprint linenums'>// Execute the callback only 3 times:
+var alertUser = function(message) {
+  alert(message)
+};
+var newAlert = alertUser('A message from your sponsors!');
+// Pass 4 so that the callback only executes 3 times:
+$('#alertButton').on('tap', $.before(4, newAlert);</pre>
+
+
+        <h5>NOTICE:</h5>
+
+        <p>You should not define your callback nor pass it any arguments inside the <code>$.before</code> method. Doing so will cause the callback to be executed as soon as the page loads. Instead take care to define your callback separately and pass it as a simple argument to <code>$.before</code> as done in the example above.</p>
+        <p>The following code will fail to work properly because we are passing an argument to the callback inside the <code>$.before</code> method:</p>
+
+<pre class='prettyprint linenums'>// Execute the callback only 3 times:
+var alertUser = function(message) {
+  alert(message)
+};
+$('#alertButton').on('tap', $.before(4, alertUser('A message from your sponsors!'));</pre>
+
+        
+        <h4>$.after(times, callback)</h4>
+
+        <p>This function takes the number of times and wraps the callback so that it will only execute on the times attempt. For example, if you pass a times of 4, the callback will not execute on the fourth attempt to execute it. After that the callback will execute on every attempt. Use this method to prevent a callback from being execute until after a specific attempts.</p>
+
+        <pre class='prettyprint linenums'>// Execute the callback only on and after 3 attempts:
+var alertUser = function(message) {
+  alert(message)
+};
+// Pass 3 so that the callback only executes on and after the third attempt:
+var newAlert = alertUser('A message from your sponsors!');
+$('#alertButton').on('tap', $.after(3, newAlert);</pre>
+
+        <h5>NOTICE:</h5>
+
+        <p>You should not define your callback nor pass it any arguments inside the <code>$.after</code> method. Doing so will cause the callback to be executed as soon as the page loads. Instead take care to define your callback separately and pass it as a simple argument to <code>$.after</code> as done in the example above.</p>
+        <p>The following code will fail to work properly because we are passing an argument to the callback inside the <code>$.after</code> method:</p>
+
+<pre class='prettyprint linenums'>// Execute the callback only on and after 3 attempts:
+var alertUser = function(message) {
+  alert(message)
+};
+$('#alertButton').on('tap', $.after(3, alertUser('A message from your sponsors!'));</pre>
+
+
 
 
 
@@ -190,13 +283,13 @@ $('li').each(function(index, li) {
           <h4>Array Extras</h4>
           <p>ChocolateChip-UI provides the following array extras. These are polyfills and will not overwrite any existing array methods.</p>
 
-          <p><code>Array.pluck(property)</code></p>
+          <h5>Array.pluck(property)</h5>
           <p>This method allows you to pluck all objects in the array with that property. It returns a new array of just those property values.</p>
           <pre class='prettyprint linenums'>// Pluck first names:
 var firstNames = people.pluck('firstName');
           </pre>
 
-          <p><code>array1.difference(array2)</code></p>
+          <h5>array1.difference(array2)</h5>
           <p>This method allows you to compare one array against another. It returns all objects in the first array that are not in the second.</p>
           <pre class='prettyprint linenums'>// Find difference:
 var people1 = [
@@ -212,7 +305,7 @@ var difference = people1.difference(people2);
 // Difference is [{firstName: 'Howard', lastName: 'Nelson'}]
           </pre>
 
-          <p><code>array1.intersection(array2)</code></p>
+          <h5>array1.intersection(array2)</h5>
           <p>This method lets you find all objects share between two arrays.</p>
           <pre class='prettyprint linenums'>// Find the intersection:
 var people1 = [
@@ -232,7 +325,7 @@ var shared = people1.difference(people2);
   {firstName: 'Joe', lastName: 'Bodoni'}
 ] */
           </pre>
-          <p><code>array1.mixin(array2)</code></p>
+          <h5>array1.mixin(array2)</h5>
           <p>This method lets you mixin the objects of one array to another. If the objects already exist in the target, they will not be added.</p>
           <pre class='prettyprint linenums'>// Mixin in array:
 var people1 = [
@@ -258,7 +351,7 @@ people1.mixin(people2);
 */
           </pre>
 
-          <p><code>Array.unique()</code></p>
+          <h5>array.unique()</h5>
           <p>This method lets you remove any duplicates from an array. This works with arrays of simple values as well as with objects.</p>
           <pre class='prettyprint linenums'>// Remove duplicates:
 var people = [
