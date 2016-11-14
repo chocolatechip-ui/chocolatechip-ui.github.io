@@ -88,6 +88,7 @@
             <li>$.once()</li>
             <li>$.before()</li>
             <li>$.after()</li>
+            <li>$.flatten()</li>
           </ul>
 
           <h4>$.isEmptyObject()</h4>
@@ -233,7 +234,13 @@ var alertUser = function(message) {
 };
 $('#alertButton').on('tap', $.after(3, alertUser('A message from your sponsors!'));</pre>
 
+          <h4>$.flatten(array)</h4>
+          <p>This method takes and array of nested array and returns it flattened. The original array is left untouched. You use it like this:</p>
 
+          <pre class='prettyprint linenums'>// Flatten a nested array:
+var nestedArray = [[[1], [2], 3, [[4, 5], 6], 7], 8];
+var flattenedArray = $.flatten(nestedArray);
+// returns [1,2,3,4,5,6,7,8]</pre>
 
 
 
