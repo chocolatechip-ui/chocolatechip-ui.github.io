@@ -99,6 +99,28 @@
     }
   }]
 });</li></pre>
+            
+            <li><strong>styles</strong>: This property takes an object defining styles for your view. In most cases you won't need to use it since the default styles will work fine. However, if you want to customize the look of your view, you can use this propertly to create a vitual stylesheet for it. The styles will be defined off of the element selector you anchor your view to using the <code>element</code> property. The style object looks like this:
+<pre class='prettyprint linenums'>var myView = $.View({
+  element: '#itemsList', 
+  styles: {
+    // Style the list itself:
+    border: 'solid 1px red',
+    // Style the view's child elements:
+    '> li': {
+      'background-color': 'red'
+    }
+  }
+});</pre>
+          <p>This will create a stylesheet like this:</p>
+<pre class='prettyprint linenums'>#itemsList {
+  border: solid 1px red;
+}
+#itemsList > li {
+  background-color: red;
+}</pre>
+        <p>To learn more about defining styles for a view, please read the <a target='_blank' href="./views-styles.html">documentation</a>.</p>
+            </li>
 
             <li><strong>startIndexFrom</strong>: This tells ChocolateChip-UI where to start a template's index from. If you are using <code>$.view.index</code> in your template to output sequential numbers, the numbers will start with the value provided here.</li>
 
@@ -363,7 +385,7 @@ $(function() {
   myView.render();
 });</pre>
 
-        <p><strong>Data Binding</strong></p>
+        <h4>Data Binding</h4>
         <p>If you want an imported view to be bound to a model for automatic refresh, you'll need to set the model after import:</p>
 
   <pre class='prettyprint linenums'>import {cartModel} from './data/cartModel';
@@ -381,7 +403,11 @@ $(() => {
   app.cartView.setModel(cartModel);
   app.totalPurchasedItemsView.setModel(cartModel);
 });</pre>
-
+        
+        <h4>Styles</h4>
+        <p>You can define styles on your view that create a virtual stylesheet. You would do this to override existing styles, style some custom layout in your view or create a styled view that you can re-use in different projects. The styles are based off of the selector you provide when you create the view. So, a style definition on a view without a element provided will not do anything. When you use <code>setElement</code> to change which element your view is anchored to, ChocolateChip-UI will re-create the virtual stylesheet using the new element selector.</p>
+        <p>Please note that if you define styles for your view and then want to change templates, your styles may not work with the new template. If you need to be able to change a view's templates dynamically, then don't bother to define its styles with the style property. But those styles in your app's stylesheet file instead.</p>
+        <p>To learn more about defining styles for a view, please read the <a target='_blank' href="./views-styles.html">documentation</a>.</p>
 
         </div>
         

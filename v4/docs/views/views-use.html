@@ -85,18 +85,25 @@ var simpleView = $.View({
           </pre>
           <p>The above view presupposes the existence of an element called <code>#special</code>. This might have a template inside it like this:</p>
           <pre class="prettyprint linenums">
-&lt;ul&gt;
+&lt;ul class='list'&gt;
   &lt;li&gt;{= data.name }&lt;/li&gt;
 &lt;/ul&gt;
           </pre>
+
           <p>When we point a view to an element with a template, ChocolateChip-UI extracts the template and parses it. Then we can render the template with our data:</p>
           <pre class="prettyprint linenums">
 simpleView.render(fruits);
           </pre>
           <p>If <code>fruits</code> were a collection, the view would render the template repeatedly to output the collection. And if fruits was a simle object, it would render just once. Views do not care whether data is iterable or not. If it is, it renders repeatedly, otherwise it renders a single time.</p>
 
+
+          <p>And, here's an example of a simple view with its template in the markup rendering an array of items:</p>
+
+          <p data-height="350" data-theme-id="6688" data-slug-hash="MbbmBr" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 1" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/MbbmBr/">View Example 1</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
           <h5>Template in View</h5>
-          <p>If you don't like having templates defined in the document, you could also define your template directly in the View setup. If your template spans multiple lines, you will need to escape the new lines with backslashes. When you provide a template string in a view's setup, ChocolateChip-UI will not try to extract a template from the element. As such, the target element should be empty:</p>
+          <p>If you don't like having templates defined in the document, you could also define your template directly in the View setup. If your template spans multiple lines, you will need to escape the new lines with backslashes. When you provide a template string in a view's setup, ChocolateChip-UI will not try to extract a template from the element. Notice that we give the view a <code>variable</code> property to tell it what we want to use in the template to describe our data, in this case, "fruit". As such, the target element should be empty:</p>
 
           <pre class="prettyprint linenums">
 // Define view with string template:
@@ -108,12 +115,37 @@ var simpleView = $.View({
 // Render view:
 simpleView.render(fruits);
           </pre>
+
+          <p>And here's the same example from before, but with the template now defined in the view itself:</p>
+
+          <p data-height="350" data-theme-id="6688" data-slug-hash="oYYWOr" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 2" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/oYYWOr/">View Example 2</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+        
+        <p>Defining your templates in your view objects means your app's markup is less clutter and the template and view object are together as a single unit. No need to look around for where the view's template is.</p>
           
 
           <p>To learn more about templates please visit the documentation for <a href="../templates/templates-intro.html">templates</a>.</p>
 
-          
           <h4>Managing a View's Data</h4>
+
+          <h5>Using Plain JavaScript Objects</h5>
+
+          <p>Rather than passing the data to your view as an argument of the render function, you can tell the view that it should use a data object. When you do this, you only need to call the render function on the view:</p>
+
+          <p data-height="350" data-theme-id="6688" data-slug-hash="Pbbjob" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 3" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/Pbbjob/">View Example 3</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <pre class='prettyprint linenums'>
+// Define view with string template:
+var simpleView = $.View({
+  element: '#special',
+  variable: 'fruit',
+  data: fruits,
+  template: '&lt;li&gt;{= fruit.name }&lt;/li&gt;'
+});
+// Render view:
+simpleView.render();
+          </pre>
 
           <h5>Using Models</h5>
           <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's views. However, in many cases you might prefer to create an model and use that with a view. Why? Because models offer you functionality that plain JavaScript objects do not. Models let you regester events and a number of useful utility functions for manipulating and accesssing the model's data with minimal effort. When you designate a model as the source of a view's data, whenever the model changes, the view will update automatically. For more information about Models, read their <a href="../models/models-intro.html">documentation</a>.</p>
@@ -149,6 +181,11 @@ myView.addEvent({
     console.log($(this).text());
 });
           </pre>
+
+          <p>And here's an example of a view with events bound to its items. Click on an item and it will alert the content:</p>
+
+          <p data-height="350" data-theme-id="6688" data-slug-hash="QGGgdm" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 4" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/QGGgdm/">View Example 4</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h4>Managing a View's Template</h4>
 
