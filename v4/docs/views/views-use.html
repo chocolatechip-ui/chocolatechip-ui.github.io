@@ -249,7 +249,87 @@ $.defineHelper({
           </pre>
 
           <h5>Nested Templates</h5>
-          <p>Rendering a data object that has a child element that is a collection is tricky. ChocolateChip-UI allows you to cover this by running JavaScript directly in your template</p>
+          <p>Rendering a data object that has a child element that is a collection is tricky. ChocolateChip-UI allows you to cover this by running JavaScript directly in your template. In fact, when the view is processed, your template gets converted into a JavaScript function. This means that you can use any JavaScript inside a template. You do need to escape the JavaScript code from the template. This is done using doube curly braces.</p>
+
+          <p>Let's say we want to output a list like in our above examples. But each list item might have a sub list. Using JavaScript in our template, we can have our view render the sub items. So let's use this data and see how to render the sub-lists of data:</p>
+
+          <pre class="prettyprint linenums">var people = [
+  {
+    name: 'Joe',
+    friends: [
+      {
+        name: "Sam"
+      },
+      {
+        name: "Jack"
+      }
+    ]
+  },,
+  {
+    name: 'Brad'
+  }
+  {
+    name: 'Ellen',
+    friends: [
+      {
+        name: 'Sherry'
+      },
+      {
+        name: 'Jill'
+      },
+      {
+        name: 'Bill'
+      }
+    ]
+  },
+  {
+    name: 'Tom',
+    friends: [
+      {
+        name: 'Joe'
+      },
+      {
+        name: 'Mary'
+      },
+      {
+        name: 'Kevin'
+      }
+    ]
+  }
+]</pre>
+
+          <p>In the above data set, Brad has no friends. Therefore we want to check if each person has friends before create the friends list. Below is the code to make that happen:</p>
+
+          <pre class="prettyprint linenums">var peopleView = $.View({
+  element: '#list',
+  variable: 'person',
+  data: people,
+  template:
+  `&lt;li&gt;
+    &lt;div&gt;
+      &lt;h3&gt;{= person.name }&lt;/h3&gt;
+      {{ if (person.friends &amp;&amp; person.friends.length) { }}
+        &lt;div&gt;
+          &lt;h3&gt;Friends:&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;ol&gt;
+            {{  person.friends.forEach(function(friend) {  }}
+            &lt;li&gt; {= friend.name}&lt;/li&gt;
+            {{  });  }}
+          &lt;/ol&gt;
+        &lt;/div&gt;
+      {{ } }}
+    &lt;/div&gt;
+  &lt;/li&gt;`
+});
+
+peopleView.render();</pre>
+
+          <p>And here's a working example:</p>
+
+          <p data-height="600" data-theme-id="6688" data-slug-hash="gLLxaz" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/gLLxaz/">View Example 5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h4>Reusing Views</h4>
           <p>If you want to, you could reuse a single view again and again by chainging what element, template and data it uses. Although you can do this, organization-wise it's better to have an view object for each view in the document.</p>
