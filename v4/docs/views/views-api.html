@@ -403,11 +403,6 @@ $(() => {
   app.cartView.setModel(cartModel);
   app.totalPurchasedItemsView.setModel(cartModel);
 });</pre>
-        
-        <h4>Styles</h4>
-        <p>You can define styles on your view that create a virtual stylesheet. You would do this to override existing styles, style some custom layout in your view or create a styled view that you can re-use in different projects. The styles are based off of the selector you provide when you create the view. So, a style definition on a view without a element provided will not do anything. When you use <code>setElement</code> to change which element your view is anchored to, ChocolateChip-UI will re-create the virtual stylesheet using the new element selector.</p>
-        <p>Please note that if you define styles for your view and then want to change templates, your styles may not work with the new template. If you need to be able to change a view's templates dynamically, then don't bother to define its styles with the style property. But those styles in your app's stylesheet file instead.</p>
-        <p>To learn more about defining styles for a view, please read the <a target='_blank' href="./views-styles.html">documentation</a>.</p>
 
         </div>
         
