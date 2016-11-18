@@ -70,77 +70,228 @@
       <div>
         <div>
           <h2>Views</h2>
-          <h3>Intro</h3>
-          <p>Views are magical unicorns. They take data and turn it into your app. ChocolateChip-UI's View is very versitile. You can create a view with nothing and add functionality later. Or you can configure it all at once.</p>
+          <h3>Styles</h3>
+          
+          <h4>Creating A View Specific Style</h4>
+          <p>Since <strong>version 4.1.0</strong>, you can style your view with a style object. Most of the time you may not need anything more than a tiny snippet of CSS in your document. However, if you want to override the default styles for some serious customization, using the view's style object is the way to go. Similarly, if you are creating a totally new layout for a view, you can use the style object to provide the view's styles. When you define your view with a style property, ChocolateChip-UI creates a virtual stylesheet with a selector based on the view's element selector. Any child elements will be styles as descended of that selector.</p>
 
-          <p>A View's data binding is one-directional, making it easy to reason about. After modifying your data or model, just render the view. It will automatically use the current state of the data.</p>
+          <p>When you have a highly customized or specialized layout for a view, it makes sense to include styles in the view itself. The plus to this is that if you intended to reuse the view in other projects, the styles will accompany the view automatically. No need to dig around for styles in other places.</p>
 
-          <p>If you give a view an element and some data, the view will attempt to extract a template from the element, then render it with the data. At any time you can change the template that the View uses, or change the model that the view uses.</p>
-
-          <p>You can wire up a view with events. If the events are targeting the element's descendants, they will be delegated on the element. Of course, you can also remove events from a view.</p>
-
-          <p>By default, ChocolateChip-UI encodes any HTML or JavaScript in the data before rendering it in a view. You can tell a view to render data unencoded, but you should only do this with data you can trust. Automatic encode helps prevent injection of malicious scripts in your document.</p>
-
-          <p>A view can contain information about the element it is bound to, a model it is bound to, the template that it uses and events bound to the view's template elements. You create an instace of a view with the <code>$.View()</code> method:</p>
-
-<pre class="prettyprint linenums">
-var luminariesView = $.View({
-  element: '#repeaterWithImages', 
-  model: LuminariesModel,
-  name: 'luminariesView',
-  variable: 'person',
+          <p>To add a style to a view, you use the <code>styles</code> property and assign it an object of styles. <strong>Note</strong>, because you are providing the styles property an object, the CSS definitions do not end with a semi-colon but with a comma. Putting a semi-color in your style object will throw an error:</p>
+          
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
   template: 
-  "&lt;li class='comp'&gt;\
-    &lt;img data-src='{= person.image }' alt=''>\
-    &lt;div&gt;\
-      &lt;h3&gt;\
-        {= person.firstName } {= person.lastName }\
-      &lt;/h3&gt;\
-    &lt;/div&gt;\
-  &lt;/li&gt;",
-  events: [
-    {
-      element: 'li',
-      event: 'tap',
-      callback: function() {
-        console.log($(this).text());
-      }
-    }
-  ]
-});
-</pre>
-        <h4>ES6 Template Literals</h4>
-        <p>If you are taking advantange of ES6 (ECMAScript 2015) to build your app using JSPM, you can use ES6 template literals to define you View templates. In the following example, notice how much cleaner the template is compared to the version above.</p>
-
-<pre class="prettyprint linenums">
-var luminariesView = $.View({
-  element: '#repeaterWithImages', 
-  model: LuminariesModel,
-  name: 'luminariesView',
-  variable: 'person',
-  template: 
-  `&lt;li class='comp'&gt;
-    &lt;img data-src='{= person.image }' alt=''>
-    &lt;div&gt;
-      &lt;h3&gt;
-        {= person.firstName } {= person.lastName }
-      &lt;/h3&gt;
-    &lt;/div&gt;
+  `&lt;li&gt; 
+    &lt;h3&gt;{= data.name }&lt;/h3&gt;
   &lt;/li&gt;`,
-  events: [
-    {
-      element: 'li',
-      event: 'tap',
-      callback: function() {
-        console.log($(this).text());
-      }
-    }
-  ]
+  styles: {
+    // your styles here
+  } 
 });
 </pre>
 
-        <h4>Views are Flexible</h4>
-        <p>When defining views, use the coding style that works for you. If you prefer your templates in the markup, you can. You can put your templates in script tags in the place where they'll be rendered, or put them wherever you want. Or use plain HTML markup in place for your templates. Just put the class <code>cloak</code> on the parent element. If you prefer to write your DOM events separate, you can. If you prefer a more component-style approach as illustrated above, define your templates and events right in the view definition. Use the method that suits your style.</p>
+          <h4>ChUI Style Notation</h4>
+
+          <p>ChocolateChip-UI uses a special object notation to define the styles for a view. Because it is an object, hyphenated CSS properties must be either quoted or changed to camel case.</p>
+          <p>The sytax uses hierarchical relationships, like <strong>SASS</strong> and <strong>LESS</strong>. You indicate child elements based on the view's element. Let's look at a style example:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Add border to list:
+    border: 'solid 1px red'
+  } 
+});
+</pre>
+        <p>In the above example, ChocolateChip-UI will create the following style definition:</p>
+
+        <pre class="prettyprint linenums lang-css">
+#list {
+  border: solid 1px red;
+}
+</pre>
+
+        <h4>Child Selectors</h4>
+        <p>In the above example, the style <code>border: 'solid 1px red'</code> will get applied to the CSS selector <code>#list1</code>, because that is the root of the view. If we want to style the list items, we will need to use a CSS child selector and nest it inside the list definition. Remember that when providing style selectors, they need to be quoted, and that they are style with their own object of properties and values:</p>
+
+        <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Add border to list:
+    border: 'solid 1px red',
+    // Add child selector for list items:
+    '> li': {
+      backgroundColor: 'red',
+      color: '#fff'
+    }
+  } 
+});
+</pre>
+        <p>The above view style object will result in the following stylesheet definition:</p>
+
+        <pre class="prettyprint linenums lang-css">
+#list {
+  border: solid 1px red;
+}
+#list > li {
+  background-color: red;
+  color: #fff;
+}
+</pre>
+
+        <p>In the above example, the list background color will be read. However, since the text is inside of H3 an H4, the color value will not affect them, instead we will need to add their styles as child elements of the list item. We do this by adding another child selector nested in the list item property definition:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Add border to list:
+    border: 'solid 1px red',
+    // Add child selector for list items:
+    '> li': {
+      'background-color': 'red',
+      '> h3': {
+        color: '#fff'
+      }
+    }
+  } 
+});
+</pre>
+        
+        <p>The above view style object will result in the following stylesheet definition:</p>
+        
+        <pre class="prettyprint linenums lang-css">
+#list {
+  border: solid 1px red;
+}
+#list > li {
+  background-color: red;
+  color: #fff;
+}
+#list > li > h3 {
+  color: #fff;
+}
+</pre>
+        
+        <h4>Pseudo Elements</h4>
+
+        <p>You can define a pseudo selectors using the ":" or "::" directly on a selector's root level:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Add child selector for list items:
+    '> li': {
+      backgroundColor: 'red',
+      // Add a pseudo element:
+      '::after': {
+        content: 'This is a pseudo element!',
+        display: 'block',
+        position: 'relative',
+        top: '100%'
+      }
+      // Add a hover state to list item:
+      ':hover': {
+        'background-color': 'red'
+        // color for h3 with hover:
+        '> h3': {
+          color: '#fff'
+        }
+      }
+    }
+  } 
+});
+</pre>
+        
+        <p>The above view style object will result in the following stylesheet definition:</p>
+        
+        <pre class="prettyprint linenums lang-css">
+#list > li::after {
+  content: 'This is a pseudo element!';
+  display: block;
+  position: relative;
+  top: 100%;
+}
+#list > li:hover {
+  background-color: red;
+}
+#list > li:hover > h3 {
+  color: #fff;
+}
+</pre>
+
+        <h4>Automatic Pixel Values</h4>
+        <p>If you're defining a simple numeric pixel value, you can simply provide the value as a number:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Give list margin of 20px on all sides:
+    margin: 10,
+    // Give list a width of 200px:
+    width: 200
+  } 
+});
+</pre>
+
+        <p>If you need to provide different values for compound values, different for different dimensions, you'll need to provide the pixel length and quote the value:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Give list margin of  5px 20px:
+    margin: '5px 20px'
+  } 
+});
+</pre>
+
+        <p>Similarly, if you want a value other than pixels, you'll need to provide the desired length identifier and quote the value:</p>
+
+          <pre class="prettyprint linenums">var myView = $.View({
+  element: '#list1',
+  variable: 'person',
+  template: 
+  `&lt;li&gt; 
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;/li&gt;`,
+  styles: {
+    // Give list margin of  1em:
+    margin: '1em'
+  } 
+});
+</pre>
+
+
         </div>
         
         <div id="menu">
@@ -153,11 +304,11 @@ var luminariesView = $.View({
                 </g>
               </g>
             </svg>
-            <li><a href="../views/views-intro.html" class='selected'>Views</a>
+            <li><a href="../views/views-intro.html">Views</a>
               <ul>
-                <li><a href="views-intro.html" class='selected'>Intro</a></li>
+                <li><a href="views-intro.html">Intro</a></li>
                 <li><a href="views-use.html">Use</a></li>
-                <li><a href="views-styles.html">Styles</a></li>
+                <li><a href="views-styles.html" class='selected'>Styles</a></li>
                 <li><a href="views-api.html">API</a></li>
               </ul></li>
             </li>
@@ -184,7 +335,6 @@ var luminariesView = $.View({
         </div>
       </div>
     </section>
-
 
     <footer>
       <div>

@@ -331,6 +331,50 @@ peopleView.render();</pre>
           <p data-height="600" data-theme-id="6688" data-slug-hash="gLLxaz" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/gLLxaz/">View Example 5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+          <h4>Styles in Views</h4>
+          <p>Since version 4.1.0, you can use a views <code>styles</code> property to define styles for a view. Using this property creates a virtual stylesheet for the view. Using this property to define a view's styles means that you can easily reuse the view in other projects and the styles will accompany this. If you are following the default patterns provided by ChocolateChip-UI you may not need to provide styles in the view. However, if you are creating a unique layout or customizing an existing one, you can use the <code>styles</code> property to make the view's layout look the way you want.</p>
+          <p>ChocolateChip-UI uses a special style object notation to define the styles for a view. Selectors must be quoted. These recevie a style object consisting of a property and value. Values must be quoted. Simple properties do not need to be quoted. However, if they are hyphenated, then they need to be quoted. However, if you use the camel case verion of a property, you do not need to quote it. Like values, selectors also need to be quoted. The base of the stylesheet is the selector provided as the anchor for the view. In the view below, that will be a list with the id <code>#list</code>. You style child elements by nesting them of of parent selectors, similar to SASS and LESS. <strong>Note</strong>, because you are providing the styles property an object, the CSS definitions do not end with a semi-colon but with a comma. Putting a semi-color in your style object will throw an error.</p>
+
+          <pre class="prettyprint linenums">// View with style object:
+var myView = $.View({
+  element: '#list',
+  variable: 'person',
+  template:
+  `&lt;li&gt;
+    &lt;h3&gt;{= person.name }&lt;/h3&gt;
+    &lt;h4&gt;{= person.age }&lt;/h4&gt;
+  &lt;li&gt;`,
+  // Define a style object for the view:
+  styles: {
+    // Style the partent list:
+    border: 'solid  2px green',
+    margin: '10px 20px',
+    // Style the list's child elements:
+    '> li': {
+      '> h3': {
+        color: 'red'
+      },
+      '> h4': {
+        color: 'blue'
+      }
+
+    }
+  }
+})</pre>
+
+          <p>And here's the stylesheet that gets created:</p>
+          <pre class="prettyprint linenums">#list: {
+  border: solid  2px green;
+  margin: 10px 20px;
+}
+#list > li > h3 {
+  color: red;
+}
+#list > li > h4 {
+  color: blue;
+}</pre>
+          <p>To learn more about using a view's style property, please go to <a target='_blank' href="./views-styles.html">the page dedicated to it</a>.</p>
+
           <h4>Reusing Views</h4>
           <p>If you want to, you could reuse a single view again and again by chainging what element, template and data it uses. Although you can do this, organization-wise it's better to have an view object for each view in the document.</p>
 
@@ -387,6 +431,7 @@ peopleView.render();</pre>
               <ul>
                 <li><a href="views-intro.html">Intro</a></li>
                 <li><a href="views-use.html" class='selected'>Use</a></li>
+                <li><a href="views-styles.html">Styles</a></li>
                 <li><a href="views-api.html">API</a></li>
               </ul></li>
             </li>
