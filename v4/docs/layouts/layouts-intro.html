@@ -93,6 +93,21 @@
             <li>switch-rtl-ar.html</li>
           </ul>
 
+          <p>You can create your own styles for a right-to-left language easily. Just provide the <code>html[dir=rtl]</code> as the main part of the selector, followed by the selector you wish to override for rtl support:</p>
+
+          <pre class="prettyprint linenums">
+p.myClass {
+  padding-left: 10px;
+  margin-right: 10px;
+}
+/* Support right-to-left languages */
+html[dir=rtl] p.myClass {
+  padding-left: 0 !important;
+  padding-right: 10px;
+  margin-left: 0 !important;
+  margin-right: 10px;
+}</pre>
+
           <p>For information about how to get the examples, please read the <a target='_blank' href="../../install.html#all_chui_examples">installation instructions</a>.</p>
 
           <h4>Screens</h4>
