@@ -93,11 +93,20 @@
 
           <p>When colorizing your app, there is one thing to keep in mind, readability. If you color the navigation bar and toolbar with a dark color, you will need to color the text and widget indicators in them so that they stand out from the background color. So, in the case of a light color in the navigation and tool bars, you'd be fine. But if you gave them a dark red, you'd need to make their content lighter so that you can see them.</p>
 
+          <h4>Coloring Nav Bars</h4>
+          <p>If you intend to colorize your app's nav bars, you need to also make sure that you include the <code>#globalNav</code> selector. To create the global nav bar, just set the <code>$.globalNav</code> property to true as the first entry in your DOM ready function:</p>
+
+          <pre class="prettyprint linenums">$(function() {
+  $.globalNav = true;
+  // You other code here
+});</pre>
+          <p>To see how to style this global nav bar, examine the styles below. It's always right after the <code>nav</code> selector.</p>
+
           <h3>iOS</h3>
           <p>In the following example, we'll give the navigation and toolbars a light blue color and make the titles and buttons in them a dark charcoal:</p>
 
-<pre class='prettyprint linenums'>/* Color navbar and toolbar */
-nav, screen > footer, screen > toolbar {
+<pre class='prettyprint linenums'>/* Color navbar, globalNav and toolbar */
+nav, #globalNav, screen > footer, screen > toolbar {
   background-color: #9fc5e8;
 }
 /* Color title and buttons in nav and toolbars */
@@ -113,8 +122,8 @@ nav h1, nav button, toolbar button, footer button, nav .back, #chui-back-arrow  
 
 <p>Now if we want to use a darker background color on the nav and toolbars, we would need to lighten up the button in them as well, setting them to #fafafa:</p>
 
-<pre class='prettyprint linenums'>/* Color navbar and toolbar */
-nav, screen > footer, screen > toolbar {
+<pre class='prettyprint linenums'>/* Color navbar, globalNav and toolbar */
+nav, #globalNav, screen > footer, screen > toolbar {
   background-color: red;
 }
 /* Color title and buttons in nav and toolbars */
@@ -133,8 +142,8 @@ nav h1, nav button, toolbar button, footer button, nav .back, #chui-back-arrow  
           <h3>Android</h3>
 
           <p>Colorizing the Android theme works the same as iOS:</p>
-<pre class='prettyprint linenums'>/* Color navbar and toolbar */
-nav, screen > footer, screen > toolbar {
+<pre class='prettyprint linenums'>/* Color navbar, globalNav and toolbar */
+nav, #globalNav, screen > footer, screen > toolbar {
   background-color: #9fc5e8;
 }
 /* Color title and buttons in nav and toolbars */
@@ -154,8 +163,8 @@ span.androidSelectionBorder {
 
 <p>And here we have the same dark red background for Android:</p>
 
-<pre class='prettyprint linenums'>/* Color navbar and toolbar */
-nav, screen > footer, screen > toolbar {
+<pre class='prettyprint linenums'>/* Color navbar, globalNav and toolbar */
+nav, #globalNav, screen > footer, screen > toolbar {
   background-color: red;
 }
 /* Color title and buttons in nav and toolbars */
