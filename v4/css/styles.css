@@ -100,7 +100,6 @@ menu > a {
 	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
 	font-weight: 600;
 	border-bottom: solid 6px transparent;
-	/*padding-bottom: 1px;*/
 	transition: all .33s ease-out;
 }
 menu > a#v3 {
@@ -243,6 +242,9 @@ footer > div > menu a#chuiLogoLink {
 #facebook > svg, 
 #twitter > svg {
 	height: 25px;
+}
+#social-links > #google {
+	margin-left: 30px;
 }
 /* Media Queries */
 @media only screen and (max-width: 1024px) {
