@@ -94,13 +94,13 @@
           <p>When colorizing your app, there is one thing to keep in mind, readability. If you color the navigation bar and toolbar with a dark color, you will need to color the text and widget indicators in them so that they stand out from the background color. So, in the case of a light color in the navigation and tool bars, you'd be fine. But if you gave them a dark red, you'd need to make their content lighter so that you can see them.</p>
 
           <h4>Coloring Nav Bars</h4>
-          <p>If you intend to colorize your app's nav bars, you need to also make sure that you include the <code>#globalNav</code> selector. To create the global nav bar, just set the <code>$.globalNav</code> property to true as the first entry in your DOM ready function:</p>
+          <p>If you intend to colorize your app's nav bars and your app is using navigation lists, you need to also make sure that you include the <code>#globalNav</code> selector. If you do not have navigation lists in your app, you do not need this feature. To create the global nav bar, just set the <code>$.globalNav</code> property to true as the first entry in your DOM ready function:</p>
 
           <pre class="prettyprint linenums">$(function() {
   $.globalNav = true;
   // You other code here
 });</pre>
-          <p>To see how to style this global nav bar, examine the styles below. It's always right after the <code>nav</code> selector.</p>
+          <p>To see how to style this global nav bar, examine the styles below. It's always right after the <code>nav</code> selector. Remember, you only need the global nav bar if you are using navigation lists in your app.</p>
 
           <h3>iOS</h3>
           <p>In the following example, we'll give the navigation and toolbars a light blue color and make the titles and buttons in them a dark charcoal:</p>
