@@ -85,9 +85,9 @@ var myStepper = $.Stepper({
   defaultValue: 3
 });</pre>
           <img  class='layout'  src="../../images/widgets/stepper.png"  alt="Simple  Layout">
-          <p>We can get the current value of the stepper at any time by running <code>getValue()</code> on the stepper instance:</p>
+          <p>We can get the current value of the stepper at any time by running <code>val()</code> on the stepper instance. Please note that upto version 4.1.2 you would have instead used <code>getValue()</code>:</p>
           <pre class="prettyprint linenums">
-var stepperValue = myStepper.getValue();</pre>
+var stepperValue = myStepper.val();</pre>
           <p>Take a look at the file "stepper.html" in the examples folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
           <h4>Stepper Example</h4>

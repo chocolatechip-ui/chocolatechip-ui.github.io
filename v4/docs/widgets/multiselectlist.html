@@ -90,7 +90,7 @@ var renderSelection = function() {
   var temp = [];
   // A multi-select list returns an array,
   // so we loop over the results:
-  myMulitSelectList.getSelection().forEach(function(item){
+  myMulitSelectList.val().forEach(function(item){
     temp.push(item.value);
   });
   temp = temp.join(', ');
@@ -102,9 +102,9 @@ var renderSelection = function() {
 };</pre>
 
       <img class='layout' src="../../images/widgets/multi-select-list.png" alt="Simple Layout">
-      <p>As you can see from the multi-select list options above, you can provide a series of pre-selected list items by using an array. Numbering is zero based. To get the current value of a multi-select list, you use the <code>getSelection()</code> method on the list instance. This returns an array of objects like this:</p>
+      <p>As you can see from the multi-select list options above, you can provide a series of pre-selected list items by using an array. Numbering is zero based. To get the current value of a multi-select list, you use the <code>val()</code> method on the list instance. This returns an array of objects like this. Please note that before version 4.2.0 you would have instead used <code>getSelection</code> for the same purpose:</p>
       <pre class="prettyprint linenums">
-var choices = myMulitSelectList.getSelection();
+var choices = myMulitSelectList.val();
 // choices:
 /* [
   {index: 2, value: "work"},

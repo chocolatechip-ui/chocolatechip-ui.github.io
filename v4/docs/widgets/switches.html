@@ -92,12 +92,12 @@ var sleepSwitch = $.Switch({
   }
 });</pre>
 <img  class='layout'  src="../../images/widgets/switch.png"  alt="Simple  Layout">
-    <p>In the above example notice that we provided the id of the switch to initialize. The name value will be used as the name of the switch's checkbox. The value will be the value of the checkbox. The checked value will set the initalial state of the switch and checkbox. And finally, we provide two callbacks: onCallback and offCallback. You don't have to provide both. Just use the one you are interested in, or you might want to use both. It's your choice. We can get the value of any switch by using the <code>getValue()</code>  method on the switch instance. This returns an object like this:</p>
+    <p>In the above example notice that we provided the id of the switch to initialize. The name value will be used as the name of the switch's checkbox. The value will be the value of the checkbox. The checked value will set the initalial state of the switch and checkbox. And finally, we provide two callbacks: onCallback and offCallback. You don't have to provide both. Just use the one you are interested in, or you might want to use both. It's your choice. We can get the value of any switch by using the <code>val()</code> method on the switch instance. Please note that upto version 4.1.2 you would have instead used <code>getValue()</code> for the same purpose. This returns an object like this:</p>
     <pre class="prettyprint linenums">{checked: true, value: "get some sleep"}</pre>
     <p>Using this object, we can verify whether a switch is checked/on or unchecked/off and what its value is:</p>
-    <pre class="prettyprint linenums">sleepSwitch.getValue().value
+    <pre class="prettyprint linenums">sleepSwitch.val().value
 // returns the value of the switch
-sleepSwitch.getValue().checked
+sleepSwitch.val().checked
 // returns the checked state: true or false</pre>
       <p>Check out the demo of switches in the example folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
