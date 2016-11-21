@@ -231,7 +231,7 @@ footer > div > menu a#chuiLogoLink {
 #social-links > a:hover {
 	border-color: transparent !important;
 }
-#facebook {
+#facebook, #youtube, #google {
 	height: 25px;
 	width: 25px;
 } 
@@ -243,7 +243,8 @@ footer > div > menu a#chuiLogoLink {
 #twitter > svg {
 	height: 25px;
 }
-#social-links > #google {
+#social-links > #google,
+#social-links > #youtube {
 	margin-left: 30px;
 }
 /* Media Queries */
@@ -496,11 +497,26 @@ footer > div > menu a#chuiLogoLink {
 		height: 15px !important;
 		width: 20px;
 	}
+	#social-links > #google,
+	#social-links > #youtube {
+		height: 20px !important;
+		width: 20px !important;
+		margin-left: 10px !important;
+	}
 	#facebook > svg {
 		height: 15px !important;
 		width: 15px;
+		margin-left: 10px !important;
 	} 
 	#twitter > svg {
+		height: 15px !important;
+		width: 20px;
+	}
+	#google > svg {
+		height: 15px !important;
+		width: 20px;
+	}
+	#youtube > svg {
 		height: 15px !important;
 		width: 20px;
 	}

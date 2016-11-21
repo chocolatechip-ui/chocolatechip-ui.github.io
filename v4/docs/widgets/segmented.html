@@ -95,7 +95,7 @@ var segCtrl = $.Segmented({
   callback: function() {
     e.stopPropagation();
     // Output the numeric value of the selection:
-    $('.attentionGrapper').text(segCtrl.val().index + 1);
+    $('.attentionGrabber').text(segCtrl.val().index + 1);
     // Output the text value of the button selected:
     $('.content').text(segCtrl.val().element.text());
   }
