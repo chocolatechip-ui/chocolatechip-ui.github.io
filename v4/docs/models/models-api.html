@@ -314,6 +314,8 @@ var data = myModel.get();
 var name = personModel.getPropAt('name', 11);
 console.log('The name is: ' + name);
 </pre>
+        
+        <p>If you use a negative number as a position, that will count back from the end of the collection. So, a position of <code>-1</code> would be the last item in the collection, -2 would be the next to last, etc.</p>
 
         <h4>setPropAt</h4>
         <p><code>setPropAt(property, value, position)</code></p>
@@ -321,6 +323,8 @@ console.log('The name is: ' + name);
 <pre class='prettyprint linenums'>// Set the value of a property:
 personMode.setPropAt('name', 'John Doe', 21);
 </pre>
+        
+        <p>If you use a negative number as a position, that will count back from the end of the collection. So, a position of <code>-1</code> would be the last item in the collection, -2 would be the next to last, etc.</p>
 
         <h4>push</h4>
         <p><code>push(data)</code></p>
