@@ -91,10 +91,12 @@
     }
   }
 ]);</pre>
-        <p>When setting up your navigation lists, slide out menus and tab bars, you can provide an id value that can be captured by the route to do something specific based on that id. This allows you to have, for example, a navigation list where all the list items go to the same page. The route for that page takes the provided id of each list item and renders content based on that id. So, where would you get an id from? That would be from the data collection you used to render the navigation list. You could use a unique property, an id or uuid or whatever to identify each object in the collection. And you would output that as part of the route used by the navigation list, etc. Below is an navigation list item with an id as part of its route:</p>
+        
+        <h4>Passing a Parameter to a Route</h4>
+        <p>When setting up your navigation lists, slide out menus and tab bars, you can provide a parameter that can be captured by the route callback to do something specific based on its value. This allows you to have, for example, a navigation list where all the list items go to the same page. The route for that page takes the provided parameter of each list item and renders content based on that parameter value. You can use a unique property, an id or uuid or whatever to identify each object in the collection to use as route parameters. You use a semi-colon, <code>:</code>, after the route to separate the parameter from the route. Below is a navigation list item with a uuid as a parameter of the route. Notice how the parameter is seprated from the route by the semi-colon:</p>
         <pre class='prettyprint linenums'>&lt;li data-goto="detail:N356f953-2c3c-4a72-b4e7-5955662ec80f"&gt;
         </pre>
-        <p>Notice the semi-colon followed by a uuid. You use a semi-colon to tell the router that what follows is a route id. When the user taps such a list item, the router separates it from the route and lets you capture it in your route's callback as its parameter. Below is an example of how to capture a route id in the callback. Notice the <code>id</code> parameter in the callback's <code>function</code>:</p>
+        <p>The semi-colon tells the router that what follows is a route parameter. When the user taps such a list item, the router separates the parameter from the route and lets you capture it in your route's callback. Below is an example of how to capture a route parameter in the callback. Notice the <code>id</code> parameter in the callback's <code>function</code>. That will be the parameter captured from the route value:</p>
         <pre class='prettyprint linenums'>var AppRoutes = $.Router();
 AppRoutes.addRoute([
   {
@@ -112,7 +114,7 @@ AppRoutes.addRoute([
   }
 ]);
         </pre>
-        <p>If you have a single destination and you want to render it differently based on the route id, you probably want to use a switch state to do so. In the following example, based on whether the id is 'music', 'pictures', etc., we use a different tempalate and data set to render in the container '#myList' in the when the user navigates to the 'choice' screen:</p>
+        <p>If you have a single destination and you want to render it differently based on the route parameter, you probably want to use a switch state to do so. In the following example, based on whether the id is 'music', 'pictures', etc., we use a different template and data set to render in the container '#myList' when the user navigates to the 'choice' screen:</p>
         <pre class='prettyprint linenums'>AppRoutes.addRoute([
   {
     // The route:
@@ -146,10 +148,10 @@ AppRoutes.addRoute([
     }
   }
 ]);</pre>
-        <p>Take a look at the example the source code for <code>slide-out-menu-routes.html</code> in the ChocolateChip-UI examples. Go to <a href="../../install.html" target='_blank'> for how to get the examples</a>.</p>
+        <p>Take a look at the example source code for <code>slide-out-menu-routes.html</code> in the ChocolateChip-UI examples. Read <a href="../../install.html" target='_blank'> for how to get the examples</a>.</p>
 
           <h4>Digging deeper</h4>
-          <p>Navigations lists automatically dispatch a route when the user taps on a list item. Where does it get the route? From the <code>data-goto</code> value you use to indicate where that list item goes to. Similarly, silde out menus use the <code>data-show</code> property. And tab bars use <code>data-id</code>. Because setting up each type of layout is different, it will be easier to open the examples provided in the source code. You want to look at the following examples depending on what type of layout you wish to create:</p>
+          <p>Navigation lists automatically dispatch a route when the user taps on a list item. Where does it get the route? From the <code>data-goto</code> value you use to indicate where that list item goes to. Similarly, silde out menus use the <code>data-show</code> property. And tab bars use <code>data-id</code>. Because setting up each type of layout is different, it will be easier to open the examples provided in the source code. You want to look at the following examples depending on what type of layout you wish to create:</p>
           <ul>
             <li>navigation-routes.html</li>
             <li>slide-out-menu-routes.html</li>
