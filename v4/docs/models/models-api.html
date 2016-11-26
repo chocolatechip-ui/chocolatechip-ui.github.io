@@ -75,7 +75,14 @@
 
         <h4>Model</h4>
         <p><code>$.Model(options)</code></p>
-        <p>This is a factor that creates a model object for you based on the options you provide. It takes two arguments, the data to encapsule in the model, and a handle to use as its identifier. The model uses the handle to inform the system when it has changed. Mediators listen for this handle and react when it is dispatched. Models can hold either an object of key-value paris, or a collection of objects. Depending on the contents, different methods will work. Collection methods will not work with an object and object methods will not work with a collection. But some methods work for both. Therefore check the explanation of each method below to see what type of data they work with.</p>
+        <p>This is a factor that creates a model object for you based on the options you provide. It takes two arguments, the data to encapsule in the model, and a handle to use as its identifier. The model uses the handle to inform the system when it has changed. Mediators listen for this handle and react when it is dispatched.</p>
+
+        <p>Models can hold either an object of key-value pairs, or a array of objects. Depending on the contents, different methods will work. Array methods will not work with an object model and object methods will not work with a array model. However, some methods are share by both models:.</p>
+        <ul>
+          <li><a href="#object_models">Methods for Object Models</a></li>
+          <li><a href="#array_models">Methods for Array Models</a></li>
+          <li><a href="#both_models">Methods for Both</a></li>
+        </ul>
 
         <p>After putting your data in a model, you can dispose of it if you want to free up memory:</p>
 <pre class='prettyprint linenums'>// Create a new model:
@@ -84,6 +91,7 @@ var MyModel = $.Model(myData, 'mydata-handle');
 myData = null;
 </pre>
     
+        <a name='object_models'></a>
         <p>Models can hold two kinds of data: a single object of properties and values, or an array of objects. Dependeing on which of these two a model holds, it exposes different methods for you to use. We'll first look at the model methods of a object, then at those for an array.</p>
 
         <h3>Model of Single Object Data</h3>
@@ -146,6 +154,7 @@ personModel.merge(obj);
         <p><code>mixin</code></p>
         <p>This method lets you extend a model with the properties of the provided object. Unlike <code>mixin</code>, if the properties of the object already exist on the model, they will not be replaced. Only properties that are not currently on the model will be added.</p>
         <p>In the following example, notice how the final model only received properties that were new after the mixin.</p>
+        <a name='array_models'></a>
 <pre class='prettyprint linenums'>// Mixin an object into the model:
 var person = {
   name: 'Joe Bodoni',
@@ -170,131 +179,6 @@ personModel.mixin(obj);
   address: '123 Lazy Lane, Clownville, Bozowania'
 }
 </pre>
-
-        <h4>on</h4>
-        <p><code>on(event, callback)</code></p>
-        <p>This method works like attaching events to a DOM element. You can create custom events that make sense for what you app needs to do. You can also regester multiple callbacks to the same event, just like DOM element events. You can use model events to do things such as:</p>
-        <ol>
-          <li>Update a view after manipulating the model.</li>
-          <li>Validate the model's data.</li>
-          <li>Persist the model's data locally.</li>
-          <li>Push the model's data to a remote domain.</li>
-        </ol>
-        <p>You may have other uses for model events as well.</p>
-<pre class='prettyprint linenums'>// Add an event to a model:
-myModel.on('update', function() {
-  console.dir(myModel.get());
-});
-// Add another `update` event to the model:
-myModel.on('update', function() {
-  alert('Just updated the model!');
-});
-
-// If we trigger `update` on myModel,
-// both of the above will execute.
-</pre>
-
-        <h4>trigger</h4>
-        <p><code>trigger(event, data?)</code></p>
-        <p>When a model has an event registered, you can use `trigger` to make the model's event handler execute. You can also pass along some data, which will be available as its argument in the event callback.</p>
-<pre class='prettyprint linenums'>// Trigger and event on a model:
-myModel.trigger('update');
-// Register another event:
-myModel.on('announce', function(data) {
-  console.log(data);
-});
-// Trigger the `announce` event:
-myModel.trigger('This is an announcement.');
-// The model returns 'This is an announcemnt.'
-</pre>
-
-        <h4>off</h4>
-        <p><code>off(event)</code></p>
-        <p>This method let you remove an event from a model. Just provide the event name. If there are multiple callbacks regesterd on the event, all of them will be removed.</p>
-<pre class='prettyprint linenums'>// Remove a model event:
-myModel.off('announce');
-// Now this does nothing:
-myModel.trigger('announce');
-</pre>
-
-        <h4>events</h4>
-        <p><code>events()</code></p>
-        <p>This method returns all events and their callbacks currently registered on a model.</p>
-<pre class='prettyprint linenums'>// Get all events on the model:
-var events = myModel.events();
-</pre>
-
-        <h4>removeEventCallback</h4>
-        <p><code>removeEventCallback(event, position)</code></p>
-        <p>Just as you can remove an event from a model, you can more specifically remove a callback from a model's event. The position is zero-based. A model event's callbacks are stored as an array. This method removes a callback based on its position in that array. If a model's event has only one event, using this is unnecessary. In that case it would be better to use <code>myModel.off(event)</code>.</p>
-<pre class='prettyprint linenums'>// Remove the second callback:
-myModel.on('update', function() {
-  console.dir(myModel.get());
-});
-// Add another `update` event to the model:
-myModel.on('update', function() {
-  alert('Just updated the model!');
-});
-// Trigger `update`.
-// Both callbacks will fire:
-myModel.trigger('update');
-// Remove the last callback:
-myModel.removeEventCallback('update', 1);
-// This time only the first callback gets fired:
-myModel.trigger('update');
-</pre>
-
-        <h4>stop</h4>
-        <p><code>stop()</code></p>
-        <p>Rather than deleting an event from a model, you can instead simply `stop` it. This prevents the event from executing until it is started again.</p>
-<pre class='prettyprint linenums'>// Stop a model's events:
-myModel.stop();
-// This will not do anything:
-myModel.trigger('update', 'Something here.');
-</pre>
-
-        <h4>start</h4>
-        <p><code>start()</code></p>
-        <p>If you needed to stop a model's events for some reason, you can use this method to start the model's events again.</p>
-<pre class='prettyprint linenums'>// Restart a model's events:
-myModel.stop();
-// This does nothing:
-myModel.trigger('announce', 'A message here.');
-// Restart the model:
-myModel.start();
-// This now works:
-myModel.trigger('annoucne', 'A new message this time.');
-</pre>
-
-        <h4>isStopped</h4>
-        <p><code>isStopped()</code></p>
-        <p>This method lets you test whether a model's events have been stopped or not. It returns a boolean.</p>
-<pre class='prettyprint linenums'>// Test if the model is stopped:
-if (myModel.isStopped()) {
-  myModel.start();
-  myModel.trigger('update');
-}
-</pre>
-
-        <h4>purge</h4>
-        <p><code>purge()</code></p>
-        <p>This method will delete all data from the model, leaving only and empty object: <code>{}</code>. After purging a model, <code>myModel.get()</code> will return <code>{}</code>.</p>
-        <pre class='prettyprint linenums'>// Delete all data from an object in a model:
-myModel.purge();
-// Check what the model holds:
-myModel.get();
-// returns {}</pre>
-
-        <h4>replace</h4>
-        <p><code>replace(data, renderView)</code></p>
-        <p>This method allows you to quickly replace all the data in the model with other data. This is so that you can do some complicated operations on the data before updating the model. By default using this method does not cause a view to render. However, if you pass any secondary boolean true argument (<code>renderView</code>), the bound view will be rendered with the changes.</p>
-        <pre class='prettyprint linenums'>// Replace model data, do not render view:
-myModel.replace(newData);
-
-// Replace model data and render view:
-myModel.replace(newData, true);</pre>
-
-
 
         <h3>Model of Array of Objects</h3>
 
@@ -522,6 +406,7 @@ productsView.render();
 var tenthPerson = peopleModel.eq(9);
 </pre>
 
+        <a name='both_models'></a>
         <h4>size</h4>
         <p><code>size()</code></p>
         <p>This method returns the number of objects in a model.</p>
@@ -529,6 +414,9 @@ var tenthPerson = peopleModel.eq(9);
 var number = cartModel.size();
 alert('You have ' + number + ' items in your cart.');
 </pre>
+
+        <h3>Medhods Shared by Objects and Arrays</h3>
+        <p><strong>The following methods are shared by models of objects and arrays.</strong></p>
 
 
         <h4>on</h4>
@@ -638,12 +526,12 @@ if (myModel.isStopped()) {
 
         <h4>purge</h4>
         <p><code>purge()</code></p>
-        <p>This method will delete all data from the model, leaving only and empty array: <code>[]</code>. After purging a model, <code>myModel.get()</code> will return <code>[]</code>.</p>
-        <pre class='prettyprint linenums'>// Delete all data from an array in a model:
+        <p>This method will delete all data from the model, leaving only and empty object: <code>{}</code>. After purging a model, <code>myModel.get()</code> will return <code>{}</code>.</p>
+        <pre class='prettyprint linenums'>// Delete all data from an object in a model:
 myModel.purge();
 // Check what the model holds:
 myModel.get();
-// returns []</pre>
+// returns {}</pre>
 
         <h4>replace</h4>
         <p><code>replace(data, renderView)</code></p>
