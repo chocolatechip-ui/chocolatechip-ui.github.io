@@ -196,6 +196,9 @@
           <p data-height="600" data-theme-id="6688" data-slug-hash="ZBJmJO" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Android Buttons" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/ZBJmJO/">Android Buttons</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+          <p>And here are the Android buttons with a red theme:</p>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="vyJvyq" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Android Buttons Red Theme" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/vyJvyq/">Android Buttons Red Theme</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h3>iOS Buttons</h3>
           <p>Buttons on iOS are much more subtle than Android ones. Generally buttons do not have a background color. Instead they are transparent. In most cases they do not have borders either, just text. For special purposes a button may have a border. In those cases they also have a border radius.</p>
@@ -313,9 +316,21 @@
           <p data-height="600" data-theme-id="6688" data-slug-hash="dOzQzm" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="iOS Buttons" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/dOzQzm/">iOS Buttons</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+          <p>And here's the iOS buttons with the red theme:</p>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="ObjrWy" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="iOS Buttons Red Theme" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/ObjrWy/">iOS Buttons Red Theme</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h3>Cross Platform Strategies</h3>
-          <p>You building an app that you want to deploy for both Android and iOS.</p>
+          <p>You building an app that you want to deploy for both Android and iOS. Sometimes you need to customize something just for Android or just for iOS. ChocolateChip-UI provides hooks for you to do that. When the app loads, it checks what theme you're using. For the Android theme it puts the class <code>themeIsAndroid</code> on the body tag. For iOS it puts <code>themeIsiOS</code> on the body tag. This is useful were you just have a very minor fix that you want to put directly in your app's stylesheet. This is also useful where you are defining a style object in a view. So, to target something for Android, just use the theme class first, and for iOS, the same:</p>
+
+          <pre class="prettyprint linenums">/* Color for Android button: */
+.themeIsAndroid .myButton {
+  color: red;
+}
+/* Color for iOS button: */
+.themeIsiOS .myButton {
+  color: blue;
+}</pre>
           
 
         </div>
