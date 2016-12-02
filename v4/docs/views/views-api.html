@@ -347,10 +347,14 @@ $.defineHelper({
 </pre>
 
           <h4>safeHTML</h4>
-          <p><code>safeHTML(true)</code></p>
+          <p><code>safeHTML(true/false)</code></p>
           <p>This method lets you tell a view to render any HTML tags in the data it is using. It takes a boolean true, otherwise it escapes any markup in the data. Setting a view to render data can allow malicious code injection, so use with caution and only when you are certain about the safety of the data you are using.</p>
 <pre class='prettyprint linenums'>// Tell a view to render any markup in the data:
 myView.safeHTML(true);
+</pre>
+          <p>If your view is set to use safe HTML and you want to change it to escape all markup, use a falsy value. From that moment on your view will escape all markup in the view's data.</p>
+<pre class='prettyprint linenums'>// Tell a view to render any markup in the data:
+myView.safeHTML(false);
 </pre>
 
           <h4>isEscapingHTML</h4>
