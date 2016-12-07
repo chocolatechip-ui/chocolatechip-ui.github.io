@@ -138,7 +138,8 @@ var date_1980 = new Date('January 1, 1980');
             <p>This method lets you sort numbers in ascending order. It works as the predicate of the Array.sort or Model.sort methods:</p>
 <pre class='prettyprint linenums'>var numbers = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
 
-// Sort the numbers in ascending order:
+// Sort the numbers in ascending order.
+// Pass '$.sortNumbers' as pedicate for sort method:
 numbers.sort($.sortNumbers);
 // returns: 
 .02
@@ -156,7 +157,8 @@ numbers.sort($.sortNumbers);
             <p>Like <code>$.sortNumbers</code>, you pass this as the predicate of the Array.sort or Model.sort methods:</p>
 <pre class='prettyprint linenums'>var numbers = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
 
-// Sort the array in descending order:
+// Sort the array in descending order.
+// Pass '$.sortNumberssortNumbersDescending' as pedicate for sort method:
 numbers.sort($.sortNumbersDescending);
 // returns: 
 42.98
