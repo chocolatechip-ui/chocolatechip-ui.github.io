@@ -43,6 +43,18 @@ nav {
 	right: 0;
 	z-index: 100000;
 }
+nav::after {
+	display: block;
+	content: ' ';
+	height: 1px;
+	background: #333;
+	border-bottom: solid 1px #333;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.75);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
 nav > div {
 	height: 100%;
 	padding: 1px;
@@ -118,24 +130,12 @@ header {
 	color: #111;
 	position: relative;
 }
-header::before {
-	display: block;
-	content: ' ';
-	height: 1px;
-	background: #333;
-	border-bottom: solid 1px #666;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.5);
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-}
 header::after {
 	display: block;
 	content: ' ';
 	height: 1px;
 	background: #666;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.5);
 	position: absolute;
 	bottom: -1px;
 	left: 0;

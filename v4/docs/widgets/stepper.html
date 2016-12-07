@@ -74,9 +74,11 @@
           
           <p>A stepper is a small control that allows the user to increase or decrease a value between predetermined values. It's not a picker. It's for when the difference between choices is not great. The user decreases or increase the value by tapping on either side of the stepper.</p>
 
-          <p>To create a stepper you use a span with the class "stepper":</p>
+          <p>To create a stepper, use a stepper tag. Prior to verion 4.2.11, you had to  use a span with the class "stepper":</p>
 
           <pre class="prettyprint linenums">
+&lt;stepper id="digits"&gt;&lt;/stepper&gt;
+// For Chui 4.2.10 and older:
 &lt;span class='stepper' id="digits"&gt;&lt;/span&gt;</pre>
 
           <p>To initialize a stepper, we use the <code>$.Stepper()</code> method and pass it three options: min value, max value and default value:</p>
