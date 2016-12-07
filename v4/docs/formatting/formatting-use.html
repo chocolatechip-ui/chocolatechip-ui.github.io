@@ -137,18 +137,22 @@ var date_1980 = new Date('January 1, 1980');
             <h4>$.sortNumbers</h4>
             <p>This method lets you sort numbers in ascending order. It works as the predicate of the Array.sort or Model.sort methods:</p>
 <pre class='prettyprint linenums'>var prices = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
-// Format the sorted numbers as currency as ascending values:
-$.currency(prices.sort($.sortNumbers);
+
+// First sort the numbers in ascending order:
+prices = prices.sort($.sortNumbers;
+
+// Then format as currency:
+$.currency(prices);
 // returns: 
-$42.98
-$12.10
-$9.99
-$7.50
-$5.00
-$4.25
-$1.00
-$.98
 $.02
+$.98
+$1.00
+$4.25
+$5.00
+$7.50
+$9.99
+$12.10
+$42.98
 </pre>
 
             <h4>$.sortNumbersDescending</h4>
@@ -156,8 +160,12 @@ $.02
 <pre class='prettyprint linenums'>&lt;script type="text/x-template"&gt;
 
 var prices = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
-// Format the sorted numbers as currency in descending values:
-$.currency(prices.sort($.sortNumbersDescending));
+
+// First, sort the array in descending order:
+prices = prices.sort($.sortNumbersDescending);
+
+// Then format them as currency in descending order:
+$.currency(prices);
 // returns: 
 $42.98
 $12.10
