@@ -95,7 +95,7 @@
           <p>The above code creates a view instance named "MyView". We can use this instance to render templates, bind to models, etc.</p>
 
           <h4>Delimiters</h4>
-          <p>Templates are defined using standard HTML markup and delimiters. ChocolateChip-UI has two kinds of delimiters: interpolators and executors. Interpolator delimiters allow you to ouput a data value. Executor delimiters lets you write JavaScript that will be run when the template is rendered. You can use any JavaScript you could possibly need in a template using executor delimitors.</p>
+          <p>Templates are defined using standard HTML markup and delimiters. ChocolateChip-UI has two kinds of delimiters: interpolators and executors. Interpolator delimiters allow you to ouput a data value. Executor delimiters lets you write JavaScript that will be run when the template is rendered. You can use any JavaScript you could possibly need in a template using executor delimiters.</p>
           <p>ChocolateChip-UI's interpolator delimiters follow the HTML5 template string convention:</p>
           <pre class='prettyprint linenums'>&lt;h1 id="appTitle" &gt;{= data }&lt;/h1&gt;</pre>
 
@@ -216,11 +216,11 @@ AppTitleView.render('My Great App');</pre>
 <pre class='prettyprint linenums'>// Render with "persons" array:
 personView.render(persons);</pre>
 
-        <h3>Executor Delimitors</h3>
+        <h3>Executor Delimiters</h3>
 
         <p>So far we've looked at how to use data interpolation in view templates. We can also write executable JavaScript in our templates. This allows you to render data conditionally, or whatever pre-rendering task you might need to perform.</p>
 
-        <p>The executor delimitors are a pair of opening and closing curly braces, like Mustache templates:</p>
+        <p>The executor delimiters are a pair of opening and closing curly braces, like Mustache templates:</p>
 
           <pre class='prettyprint linenums'>// JavaScript in template:
 &lt;div id='executable'&gt;

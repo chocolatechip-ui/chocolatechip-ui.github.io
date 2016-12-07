@@ -89,50 +89,30 @@
           <h2>Mediators</h2>
           <h3>Intro</h3>
           
+          <p>Mediators allow you to create loosely coupled code. They serve as the glue to bind the different parts of your app together. Mediators sit between the different parts of your app and handle complex tasks so that your models and views don't have to. You could use a mediator to process data before post it to a remote server, or before persisting it in a local dataStore.</p>
 
-          <p>Mediators are what binds the different parts of ChocolateChip-UI together. Model, Views, remote domains and local data persistence do not know about each other. Only the mediators know about these. ChocolateChip-UI's mediators topic the flow from one to the other. The following picture illustrates the role mediators play in ChocolateChip-UI's architecture:</p>
-          <p>
-            <img id='chui-architecture' src="../../images/mediator.png" alt="">
-          </p>
-          <p>From this image you can see that the remove server can send a push notification to a mediator. A model can notify a mediator that it has changed. A view can notify a mediator about a user interaction. And a mediator can interact with the remote server, the model, the view and the local data layer.</p>
+          <p>As useful as mediators are, they are optional. You can build a very efficient app without writing a single mediator. However, if you are using any type of navigation, including routing, mediators are running behind the scenes.</p>
 
-          <p>This architecture supports the following work flows:</p>
+          <p>ChocolateChip-UI uses an evented bus system to enable mediators. The events that mediators respond to are called "topics". You can use delimiters to create namespaced topics for your mediators. When you dispatch a topic, any mediator listening to it will fire. And like normal events, you can have multiple mediators listening to the same topic.</p>
 
-          <ul>
-            <li>View =&gt; Mediator =&gt; Model</li>
-            <li>View =&gt; Mediator =&gt; Remote Domain</li>
-            <li>View =&gt; Mediator =&gt; Local Domain</li>
-            <li>Model =&gt; Mediator =&gt; View</li>
-            <li>Model =&gt; Mediator =&gt; Remote Domain</li>
-            <li>Model =&gt; Mediator =&gt; Local Domain</li>
-            <li>Remote Domain =&gt; Mediator =&gt; View</li>
-            <li>Remote Domain =&gt; Mediator =&gt; Model</li>
-            <li>Remote Domain =&gt; Mediator =&gt; Local Domain</li>
-          </ul>
-
-          <p>Of course, you can come up with other workflows for your mediators.</p>
-
-          <p>Dividing task up into individual mediators makes it easier to test. But too much decoupling can make it difficult to find the breaking point when a workflow fails. It's a good practice to include logging in your mediators during development so you can see how they are working together.</p>
-
-          <p>ChocolateChip-UI's Mediators are an evented bus system. Mediators can respond to events, or as they are called in ChocolateChip-UI, topics. For example, when a model changes, it announces that change using a topic. If a mediator is listening for that topic, it can respond. This gets useful when the topic comes with data. The mediator can then take that data and do something with it. When you define the callback for a mediator, it gets passed the data used by the mediator:</p>
+          <p>You can pass data to a mediator when you run it. And you can define mediator's callback to automatically capture that data. To define a mediator, you use <code>$.on()</code>. The first argument is the topic, followed by the callback to execute. Notice that the following callback is set to capture any data that gets passed:</p>
 
 <pre class='prettyprint linenums'>// Access passed data in the callback using `data`:
-var FooMtor = $.on('FooMtor', function(data) {
+var fooMtor = $.on('Foo', function(data) {
   console.log('What we got: ' + data);
 });
-// Execute the mediator:
-FooMtor.run('Something for you here.');
+// Execute the mediator with a message:
+fooMtor.run('Something for you here.');
 // Result: "What we got: Something for you here."
 </pre>
 
-
           <p>You can also define a mediator that is executed like any other function. For example:</p>
 
-<pre class='prettyprint linenums'>var FooMtor = $.on('FooMtor', function() {
-  console.log('This is FooMtor running1');
+<pre class='prettyprint linenums'>var FooMtor = $.on('foo', function() {
+  console.log('This is fooMtor running!');
 });
 // Execute the mediator:
-FooMtor.run();
+fooMtor.run();
 </pre>
 
         </div>

@@ -72,9 +72,10 @@
           <h2>Widgets</h2>
           <h3>Busy</h3>
           
-          <p>Activity indicators are complicated. Every platform has a distinct way to showing that the system is busy. ChocolateChip-UI offers a busy control that you can use in your app when you begin some task that may take an undeterminable amount of time so the user knows to wait. ChocolateChip-UI you can provide a color and a size, and ChocolateChip-UI will create an appropriate activity indicator for the platform. On Android this is a spinning semi-circle, on iOS it is a spinning pronged star, on Windows Phone this is a progress bar.</p>
+          <p>Every platform has a different look for their activity indicators. ChocolateChip-UI offers a busy control that you can use in your app when you begin some task that may take an undeterminable time to complete so the user knows to wait. You can provide a color and a size for the activity indicator. On Android this is a spinning semi-circle, on iOS it is a spinning pronged star.</p>
           <img class='layout' src="../../images/widgets/busy.png" alt="Simple Layout">
-          <p>A busy indicator is injected into another element, its conainer. So, you can show a busy indicator on a screen, a navigation bar, or even in an empty popup. It takes just two arguments: color and size. The defaults are 40 pixels by 40 pixels and #666666. You can also optional provide positioning coordinates which would be used to position the busy. Or you could run the method <code>Center()</code> on it as well. Here are some possible initializations for busy indicators:</p>
+          <p>A busy indicator is injected into another element, its conainer. So, you can show a busy indicator on a screen, a navigation bar, or even in an empty popup. It takes just two arguments: color and size. The defaults are 40 pixels by 40 pixels and #666666. You can also optionally provide positioning coordinates which would be used to position the control. Or you could run the method <code>Center()</code> on it as well. Here are some possible initializations for busy indicators:</p>
+
           <pre class="prettyprint linenums">
 $('#navBusy').Busy({color:'#007AFF', size: 28});
 $('#navBusy').find('.busy').css('top','10px');
@@ -84,7 +85,9 @@ $('#busy1').find('.busy').Center();
 
 $('#busy2').Busy({'color': 'gold', 'size': 100});
 $('#busy2').find('.busy').Center();</pre>
+
       <p>And here's an example of creating an empty popup and inserting a busy indicator into it:</p>
+
       <pre class="prettyprint linenums">
 $.Popup({empty: true, width: 100});
 $('#showModalBusyIndicator').on('tap', function(e) {
@@ -97,6 +100,7 @@ $('#showModalBusyIndicator').on('tap', function(e) {
     $('.popup').ClosePopup();
   },5000);
 });</pre>
+
       <p>Check out the following files in the examples folder: "activity-indicator.html", "activity-indicator-modal.html". Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
         <h4>Busy Indicator Example</h4>

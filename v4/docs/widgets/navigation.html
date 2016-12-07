@@ -54,7 +54,7 @@
     <header>
       <div>
         <h2>Docs</h2>
-        <h3>Everything  You  Need  to  Know</h3>
+        <h3>Everything You Need to Know</h3>
       </div>
     </header>
     
@@ -64,23 +64,29 @@
      <h2>Widgets</h2>
      <h3>Navigation</h3>
       
-     <p>Navigation Lists enable you to provide a step by step way for the user to drill down from the general to the specific. Navigation lists are very easy to implement, and providing a Back button in the navigation bar of the target screen automatically allows the user to return to the previous screen. No coding required.</p>
-     <p>It's best to keep the contents of navigation lists simple. Each list should have an attribute that tells ChocolateChip-UI where it will navigate to. This is done with the <code>data-goto</code>. The value of the data-goto attribute should be the id of the screen to go to. Just the id, no #.</p>
+     <p>Navigation lists enable you to provide a way for the user to drill down from the general to the specific. Navigation lists are very easy to implement, and providing a back button in the navigation bar of the target screen automatically allows the user to return to the previous screen. No coding required.</p>
+
+     <p>It's best to keep the contents of navigation lists simple. Each list should have an attribute that tells ChocolateChip-UI where it will navigate to. This is done with the <code>data-goto</code> attribute. Its value should be the id of the screen to go to. You don't need to include the '#'.</p>
+
      <p>For example, if you wanted a fruit list item to go to the "oranges" screen, you could do this:</p>
+
      <pre class="prettyprint linenums">
 &lt;li  data-goto='oranges'&gt;
   &lt;h3&gt;Oranges&lt;h3&gt;
-&lt;/li&gt;
-     </pre>
-     <p>As long as you have a screen with that id, tapping that list item would take the user to the oranges screen. You do not need to write any code for this. As soon as the app loads, ChocolateChip-UI looks for data-goto attributes and registers an event to handle the navigation, complete with animation.</p>
-     <p>Now that we have a list item navigating to oranges, we want to give the user a way to get back to the fruit list. We can do this by adding a Back button in the navigation bar of the oranges screen:</p>
+&lt;/li&gt;</pre>
+
+     <p>As long as there is a screen with that id, tapping that list item would take the user to that screen. You do not need to write any code for this. As soon as the app loads, ChocolateChip-UI looks for data-goto attributes and registers an event to handle the navigation, complete with animation.</p>
+
+     <p>Now that we have a list item navigating to oranges, we want to give the user a way to get back to the fruit list. We can do this by adding a back button in the navigation bar of the oranges screen. This is literally just a button with a class of "back":</p>
+
      <pre class="prettyprint linenums">
 &lt;nav&gt;
   &lt;button  class="back"&gt;Fruits&lt;button&gt;
   &lt;h1&gt;Oranges&lt;h1&gt;
-&lt;/nav&gt;
-      </pre>  
-  <p>That's all there is to it. ChocolateChip-UI will see the Back button at load time. Based on where the user has navigated to, ChocolateChip-UI will use its internal navigation system to figure out what is the current screen the user is on and which was the previous screen the user was on. Tapping the Back button, ChocolateChip-UI will return the user to the previous screen, complete with animation. No code required.</p>
+&lt;/nav&gt;</pre>  
+
+  <p>That's all there is to it. ChocolateChip-UI will see the back button at load time. When the user taps it, ChocolateChip-UI will use its internal navigation system to figure out which screen the user came from and send the user back to it, complete with animation.</p>
+
      <p>For more information about this type of simple navigation, please take a look at the file navigation.html in the examples folder of the source code form Github.</p>
      <div class="layout">
       <img  class='layout'  src="../../images/widgets/navigation.png"  alt="Simple  Layout">
@@ -88,8 +94,15 @@
      </div>
     
      <h3>Routing</h3>
+
      <p>By default, when the user taps a navigation list item, ChocolateChip-UI dispatches that navigation id to its router. Using ChocolateChip-UI's router you can do some interesting things. For example, if you wanted to set up a navigation list where the items all went to the same destination and you wanted to render the contents of that destination based on which item the user tapped, you would use routing.</p>
-     <p>To understand how to set up our navigation list, let's take another look at our fruit list. This could be build from a complex object about fruits. We build the list using just the fruit names. When the user taps a name, she will be brought the a detail screen where they can see everything in our object about that fruit. So, how to make this work? We need a unique identifier for each fruit in the object. Your choice how to implement the uniqueness. It could be by the name, or an id, or a uuid. Choose whatever tickles your tooth. We're looking for a structure something like this:</p>
+
+     <p>To understand how to set up our navigation list, let's take another look at our fruit list. This could be build from a complex object of fruits. We build the list using just the fruit names. When the user taps a name, the user will be land on a detail screen where they can see everything in that fruit's object. For this to work, we need a unique identifier for each fruit object.</p>
+
+     <h4>Route Paramters</h4>
+
+     <p>We can pass parameters to the router by adding them to the <code>data-goto</code> attribute value. We indicate a parameter by using a colon:</p>
+
      <pre class="prettyprint linenums">  
 &lt;ul&gt;
   &lt;li data-goto='detailScreen:apples'&gt;
@@ -102,9 +115,12 @@
   &lt;h4&gt;Bananas&lt;/h4&gt;
   &lt;/li&gt;
 &lt;/ul&gt;</pre>
-    <p>Notice how all list items are pointing to the screen "detailScreen". We used a semi-colon to attach a unique id for the route. That will get passed by the navigation route dispatcher and can be intercepted on the detail screen by a route. Here's how you do that:</p>
-  <pre class="prettyprint linenums">
+
+    <p>Now that the route parameters are implemented, we can capture them in a route. To do so, first we create a route object using the <code>$.Router()</code> factory. Then we define the route we want to catch. We do this with the method <code>.addRoute()</code>. This takes an array of route objects. Each route object has two properties: a route, and a callback to execute when the route is navigated to.</p>
+
+  <pre class="prettyprint linenums">// Create route object:
 var FruitRouter = new Router();
+// Add route to router:
 FruitRouter.addRoute([
   {
     route: 'detailScreen',
@@ -115,14 +131,18 @@ FruitRouter.addRoute([
     var chosenFruit = fruits.filter(function(fruit) {
     return fruit.name === id;
     });
-    ChosenFruitView.render(chosenFruit);
+    // Render view with user choice:
+    chosenFruitView.render(chosenFruit);
    }
  }
 ]);</pre>
-  <p>The above route makes a few assumes. Firstly, that we have a fruit collection call fruits with object that have a name property equal to our fruits. Secondly, that our detail screen has a view named ChosenFruitView that we can pass our fruit object to for rendering. If this is new to you, go over to <a href="../views/views-intro.html">views</a> to learn how to use them. For more information about routing, please read about ChocolateChip-UI's <a href="../router/router-intro.html">Router</a>.</p>
+
+  <p>The above route makes a few assumptions. First, that we have a fruit collection call fruits with objects that have a name property equal to our fruits. Secondly, that our detail screen has a view named "chosenFruitView" that we can pass our fruit object to for rendering. If this is new to you, go over to <a href="../views/views-intro.html">views</a> to learn how to create views. For more information about routing, please read about ChocolateChip-UI's <a href="../router/router-intro.html">Router</a>.</p>
 
         <h4>Examples</h4>
+
         <p>Check out the following examples in the source code to see how to implement navigation lists</p>
+
         <ul>
           <li>navigation.html - simple navigation list</li>
           <li>navigation-backto.html - shows how to go back to an arbitrary place in the navigation history</li>
@@ -132,14 +152,14 @@ FruitRouter.addRoute([
           <p>Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
           <h4>Basic Navigation List</h4>
-          <p>This uses a separate screen for each navigation destination.</p>
+          <p>This navigation list uses a separate screen for each navigation destination.</p>
 
           <p data-height="500" data-theme-id="0" data-slug-hash="BLvqEB" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Navigation List" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/BLvqEB/">Navigation List</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           
           <h4>Navigation List with Routing</h4>
-          <p>Here's the same list redone using routing. There is only one destination for this list. It uses routing to populate the destination with the correct data.</p>
+          <p>Here's the same list redone using routing. There is only one destination screen for this list. It uses routing to populate the destination with the correct data.</p>
 
           <p data-height="500" data-theme-id="0" data-slug-hash="XjoyXV" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Navigation List with Routing" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/XjoyXV/">Navigation List with Routing</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

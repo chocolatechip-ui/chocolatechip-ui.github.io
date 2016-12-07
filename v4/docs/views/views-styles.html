@@ -73,11 +73,11 @@
           <h3>Styles</h3>
           
           <h4>Creating A View Specific Style</h4>
-          <p>Since <strong>version 4.1.0</strong>, you can style your view with a style object. Most of the time you probably won't need anything more than a tiny snippet of CSS in your document. However, if you want to override the default styles for some serious customization, using the view's styles object is the way to go. Similarly, if you are creating a totally new layout for a view, you can use the styles object to provide the view's styles. When you define your view with a styles property, ChocolateChip-UI creates a virtual stylesheet with a selector based on the view's element selector. Any child elements will be styled as descended of that selector. Putting styles in the view makes it easy to port the view to other projects with like branding intact.</p>
+          <p>Since <strong>version 4.1.0</strong>, you can style your view with a style object. Most of the time you probably won't need anything more than a tiny snippet of CSS in your document. However, if you want to override the default styles for some serious customization, using the view's styles object is the way to go. Similarly, if you are creating a totally new layout for a view, you can use the styles object to provide the view's styles. When you define your view with a styles property, ChocolateChip-UI creates a virtual stylesheet with a selector based on the view's element selector. Any child elements will be styled as descendants of that selector.</p>
 
-          <p>When you have a highly customized or specialized layout for a view, it makes sense to include styles in the view itself. The plus to this is that if you intended to reuse the view in other projects, the styles will accompany the view automatically. No need to dig around for styles in other places.</p>
+          <p>When you have a highly customized or specialized layout for a view, it makes sense to include styles in the view itself. The advantage to this is that if you intended to reuse the view in other projects, the styles will accompany the view automatically. No need to dig around for styles in other places.</p>
 
-          <p>To add a style to a view, you use the <code>styles</code> property and assign it an object of styles. <strong>Note</strong>, because you are providing the styles property an object, the CSS definitions do not end with a semi-colon but with a comma. Putting a semi-color in your style object will throw an error:</p>
+          <p>To add a style to a view, you use the <code>styles</code> property and assign it an object of styles. <strong>Note:</strong> Because this is object notation, CSS definitions do not end with a semi-colon but with a comma. Putting a semi-colon after your CSS value will throw an error.</p>
           
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#list1',
@@ -131,7 +131,7 @@
     // Add border to list:
     border: 'solid 1px red',
     // Add child selector for list items:
-    '> li': {
+    li: {
       backgroundColor: 'red',
       color: '#fff'
     }
@@ -144,7 +144,7 @@
 #list {
   border: solid 1px red;
 }
-#list > li {
+#list li {
   background-color: red;
   color: #fff;
 }
@@ -163,9 +163,9 @@
     // Add border to list:
     border: 'solid 1px red',
     // Add child selector for list items:
-    '> li': {
+    li: {
       'background-color': 'red',
-      '> h3': {
+      h3: {
         color: '#fff'
       }
     }
@@ -179,18 +179,18 @@
 #list {
   border: solid 1px red;
 }
-#list > li {
+#list li {
   background-color: red;
   color: #fff;
 }
-#list > li > h3 {
+#list li h3 {
   color: #fff;
 }
 </pre>
         
         <h4>Pseudo Elements</h4>
 
-        <p>You can define a pseudo selectors using the ":" or "::" directly on a selector's root level:</p>
+        <p>You can define pseudo selectors using the ":" or "::" directly on a selector's root level:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#list1',
@@ -201,7 +201,7 @@
   &lt;/li&gt;`,
   styles: {
     // Add child selector for list items:
-    '> li': {
+    li: {
       backgroundColor: 'red',
       // Add a pseudo element:
       '::after': {
@@ -223,19 +223,19 @@
 });
 </pre>
         
-        <p>The above view style object will result in the following stylesheet definition:</p>
+        <p>The above style object will result in the following stylesheet definition:</p>
         
         <pre class="prettyprint linenums lang-css">
-#list > li::after {
+#list li::after {
   content: 'This is a pseudo element!';
   display: block;
   position: relative;
   top: 100%;
 }
-#list > li:hover {
+#list li:hover {
   background-color: red;
 }
-#list > li:hover > h3 {
+#list li:hover > h3 {
   color: #fff;
 }
 </pre>
@@ -259,7 +259,7 @@
 });
 </pre>
 
-        <p>If you need to provide different values for compound values, different for different dimensions, you'll need to provide the pixel length and quote the value:</p>
+        <p>If you need to provide different values for compound values, you'll need to provide the pixel length and quote the value:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#list1',

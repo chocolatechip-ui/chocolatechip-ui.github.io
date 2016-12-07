@@ -71,17 +71,17 @@
         <div>
           <h2>Views</h2>
           <h3>Intro</h3>
-          <p>Views are magical unicorns. They take data and turn it into your app. ChocolateChip-UI's View is very versitile. You can create a view with nothing and add functionality later. Or you can configure it all at once.</p>
+          <p>Views are magical unicorns. They take data and turn it into your app. ChocolateChip-UI's views are very versitile. You can create a view with nothing and add functionality later. Or you can configure it all at once.</p>
 
-          <p>A View's data binding is one-directional, making it easy to reason about. After modifying your data or model, just render the view. It will automatically use the current state of the data.</p>
+          <p>A view's data binding is one-directional, making it easy to reason about. After modifying your data, just render the view. It will automatically use the current state of the data. If you define your view to use a model, whenever you modify the model's data, the view will render automatically.</p>
 
-          <p>If you give a view an element and some data, the view will attempt to extract a template from the element, then render it with the data. At any time you can change the template that the View uses, or change the model that the view uses.</p>
+          <p>When you define a view, you can put the template in an element. When you assign that element to your view, it will extract the template from the element. Or you can define the template directly on the view. At any time you can change the template that a view uses, or change the model that it is bound to as well.</p>
 
-          <p>You can wire up a view with events. If the events are targeting the element's descendants, they will be delegated on the element. Of course, you can also remove events from a view.</p>
+          <p>You can also define events for a view. If the events are targeting the element's descendants, they will be delegated on the element. Of course, you can also remove events from a view at any time.</p>
 
-          <p>By default, ChocolateChip-UI encodes any HTML or JavaScript in the data before rendering it in a view. You can tell a view to render data unencoded, but you should only do this with data you can trust. Automatic encode helps prevent injection of malicious scripts in your document.</p>
+          <p>By default, ChocolateChip-UI encodes any HTML or JavaScript in the data before rendering it in a view. You can tell a view to render data unencoded, but you should only do this with data you can trust. Automatic encoding helps prevent injection of malicious scripts in your document.</p>
 
-          <p>A view can contain information about the element it is bound to, a model it is bound to, the template that it uses and events bound to the view's template elements. You create an instace of a view with the <code>$.View()</code> method:</p>
+          <p>You create an instance of a view with the <code>$.View()</code> method:</p>
 
 <pre class="prettyprint linenums">
 var luminariesView = $.View({
@@ -110,7 +110,7 @@ var luminariesView = $.View({
 });
 </pre>
         <h4>ES6 Template Literals</h4>
-        <p>If you are taking advantange of ES6 (ECMAScript 2015) to build your app using JSPM, you can use ES6 template literals to define you View templates. In the following example, notice how much cleaner the template is compared to the version above.</p>
+        <p>If you are taking advantange of ES6 (ECMAScript 2015) to build your app using JSPM, you can use ES6 template literals to define your view templates. In the following example, notice how much cleaner the template is compared to the version above.</p>
 
 <pre class="prettyprint linenums">
 var luminariesView = $.View({
@@ -140,7 +140,7 @@ var luminariesView = $.View({
 </pre>
 
         <h4>Views are Flexible</h4>
-        <p>When defining views, use the coding style that works for you. If you prefer your templates in the markup, you can. You can put your templates in script tags in the place where they'll be rendered, or put them wherever you want. Or use plain HTML markup in place for your templates. Just put the class <code>cloak</code> on the parent element. If you prefer to write your DOM events separate, you can. If you prefer a more component-style approach as illustrated above, define your templates and events right in the view definition. Use the method that suits your style.</p>
+        <p>When defining views, use the coding style that works for you. If you prefer your templates in the markup, you can. You can put your templates in script tags or template tags, or put the raw template directly in the element. This way your template is right where it will be rendered. However, keeping everything definined in the view makes it easy to find and reason about what a view is doing. We recommend defining your templates and events directly in your views. This makes it easier to reuse a view in another project.</p>
         </div>
         
         <div id="menu">

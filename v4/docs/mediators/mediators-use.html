@@ -73,17 +73,17 @@
           <h3>Use</h3>
           
           <p>Setting up mediators is very simple. You just need to provide a topic for the mediator to use and a callback to execute:</p>
-          <pre class='prettyprint linenums'>var FooMtor = $.on('baz-topic',function(data) {
-  console.log('1. Foo here.')
+          <pre class='prettyprint linenums'>var barMtor = $.on('foo-topic',function(data) {
+  console.log('1. Bar here.')
   console.log(data);
 });
-var BarMtor = $.on('baz-topic',function(data){
-  console.log('2. Bar here.');
+var bazMtor = $.on('foo-topic',function(data){
+  console.log('2. Baz here.');
   console.log(data);
 });</pre>
-          <p>In the above example, notice that we've created both mediators to use the same topic. This means that when anything publishes to that topic, both mediators will react. Think of a mediator's topic as a custom event. When something dispatches that event topic, any mediator listening for it will react. Mediators do not need to share the same topic. That's up to your use case how you need mediators to react. One mediator might listen for a topic to do one thing, whereas another mediator might also be listening for the same topic to do something very different.</p>
+          <p>Notice that we've created both mediators to use the same topic. This means that when anything sends that topic, both mediators will react. Of course, mediators do not need to share the same topic. Define mediators with topics according to what makes sense for your use case.</p>
 
-          <p>Once you have a mediator defined, you can run it using its <code>run</code> method:</p>
+          <p>Once you have a mediator defined, you can execute it using its <code>run</code> method:</p>
           <pre class='prettyprint linenums'>FooMtor.run('This is Godzilla!');
 // results:
 // 1. Foo here.
@@ -92,7 +92,7 @@ var BarMtor = $.on('baz-topic',function(data){
         <p>Even though both mediators are listening to the same topic, running one mediator will not invoke the other mediator. If you want all mediators using the same topic to respond, you need to use ChocolateChip-UI's dispatcher. Just dispatch the topic with any data you want the mediators to receive. You do this using the <code>$.send(topic, data?)</code> method:</p>
 
         <pre class='prettyprint linenums'>// Send to both mediators:
-$.send('baz-topic', 'Sent from the dispatcher.');
+$.send('foo-topic', 'Sent from the dispatcher.');
 
 // Result:
 // 1. Foo here.
@@ -104,32 +104,33 @@ $.send('baz-topic', 'Sent from the dispatcher.');
 
         <p>You can find out what topic a mediator is using by examining its <code>topic</code> property:</p>
         <pre class='prettyprint linenums'>
-// Get FooMtor's topic:
-var topic = FooMtor.getTopic();
-// topic is "baz-topic"</pre>
+// Get barMtor's topic:
+var topic = barMtor.getTopic();
+// topic is "foo-topic"</pre>
 
         <h4>Controlling Your Mediators</h4>
         <p>Like regular events, you can delete a mediator. You do this by executing the <code>off</code> method on the mediator:</p>
 
-        <pre class='prettyprint linenums'>// Turn FooMtor off:
-FooMtor.off();
-// Turn BarMtor off:
-BarMtor.off();
+        <pre class='prettyprint linenums'>// Turn barMtor off:
+barMtor.off();
+// Turn bazMtor off:
+bazMtor.off();
 
-// FooMtor will not run now:
-FooMtor.run('Is this working now?');
-// BarMtor will not run now:
-BarMtor.run('Hey, at least this one works.');</pre>
+// barMtor will not run now:
+barMtor.run('Is this working now?');
+// bazMtor will not run now:
+bazMtor.run('Hey, at least this one works.');</pre>
 
         <h3>Dispatchers</h3>
 
-        <p>Mediators are part of ChocolateChip-UI's dispatch system. If you want, you can use the more generic dispatch system to handle program flow. To create a generic dispatch receiver you use the same <code>$.on()</code> method as for mediators, but you don't capture it in a variable.</p>
+        <p>You can use the ChocolateChip-UI's dispatch system to create generic mediators using its pubsub methods. To do so you use the <code>$.on()</code> method as you did for mediators, but you don't capture it in a variable.</p>
       <pre class='prettyprint linenums'>// Define a dispatch receiver:
 $.on('my-topic', function(msg) {
   if (msg) {
     console.log('The message is: ' + msg);
   }
 });</pre>
+
       <p>You can register multiple callbacks on the same topic:</p>
 
       <pre class='prettyprint linenums'>// Define a dispatch receiver:

@@ -72,13 +72,17 @@
           <h2>Widgets</h2>
           <h3>Editable List</h3>
           
-          <p>You may have a list that you want your users to be able to modify in some way, such as change the order or deleting some items. You can provide that functionality with ChocolateChip-UI's editable list. This allows you to make a list items movable, or deletable, or both. You set this up when you initialize the list.</p>
+          <p>You may have a list that you want your users to be able to modify in some way, such as change the order or deleting some items. You can provide that functionality with ChocolateChip-UI's editable list. This allows you to make a list's items movable, or deletable, or both. You set this up when you initialize the list.</p>
+
           <p>You can also bind an editable list to a model. That way, when the user is done modifying the list, its changes will to synched to the model.</p>
+
           <div class="layout">
             <img class='layout' src="../../images/widgets/editable-list-1.png" alt="Simple Layout">
             <img class='layout' src="../../images/widgets/editable-list-3.png" alt="Simple Layout">
           </div>
+
           <p>Below is an example of setting up an editable list:</p>
+
           <pre class="prettyprint linenums">
 var myEditList = $.EditList({
   deletable: true,
@@ -88,15 +92,17 @@ var myEditList = $.EditList({
   element: '#editList',
   view: editListView
 });</pre>
-      <p>In this example we set the list items to be movable and deletable. We told the list instance what model it should be bound to. We also provided a modelProp value, which in this case is a uuid. You need to use some value that is unique to each item. This is allows ChocolateChip-UI to identify objects in the model to compare with the changes made by the user. We also provide the list with the view we used to render the list. ChocolateChip-UI will update the view's template to contain the elements that the editable list uses. That way if the list gets rerendered after the final changes, it still contains the elements it needs to function as an edtiable list. When you initialize a list to be editable, ChocolateChip-UI injects a number of elements into it that were not there when it was first rendered by the view.</p>
-      <p>You can get the mode that the editable list is using like this:</p>
+
+      <p>In this example we set the list items to be movable and deletable. We told the list instance what model it should be bound to. We also provided a modelProp value, which in this case is a uuid. You need to use some value that is unique to each item. This allows ChocolateChip-UI to identify objects in the model to compare with the changes made by the user. We also need to indicate what view we used to render the list. ChocolateChip-UI will update the view's template to contain the elements that the editable list uses. That way if the list gets rendered after the final changes, it will be rendered with everything it needs to remail editable. When you initialize a list to be editable, ChocolateChip-UI injects a number of elements into it that were not there when it was first rendered by the view, such as for moving or deleting list items.</p>
+
+      <p>You can get the model that the editable list is using like this:</p>
+
           <pre class="prettyprint linenums">// Get edit list model:
 var editableListModel = myEditList.getModel();
 
-// Now we can get the editable list model's data:
+// Now we can get the list's data:
 var editedListData = editableListModel.get();
-// You can now persist this data locally or remotely.
-          </pre>
+// You can now persist this data locally or remotely.</pre>
           
           <p>Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 

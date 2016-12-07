@@ -72,19 +72,24 @@
           <h2>Widgets</h2>
           <h3>Sheets</h3>
           
-          <p>Sheets are panels that slide down from the top of the app, or up from its bottom. They completely cover the screen, but are semi-transparent so the user can see what is behind. On Android and iOS the content behind the sheet gets blurred. This is currently not possible on Windows phone.</p>
-          <p>We can initialize a sheet with three options: an id, whether to show the default handle or not, and whether it slides down or up. By default, sheets show have a handle along the top, and they slide up from the bottom:</p>
+          <p>Sheets are panels that slide down from the top of the app, or up from the bottom. They completely cover the screen but are semi-transparent so the user can see what is behind. On Android and iOS the content behind the sheet gets blurred.</p>
+
+          <p>We can initialize a sheet with three options: an id, whether to show the default handle or not, and whether it slides down or up. By default, sheets have a handle along the top and they slide up from the bottom:</p>
+
           <pre class="prettyprint linenums">
 $.Sheet({
   id: 'mySheet',
   handle: false,
   slideDown: true
 });</pre>
+
       <div class="layout">
          <img  class='layout'  src="../../images/widgets/sheet-1.png"  alt="Simple  Layout">
           <img  class='layout'  src="../../images/widgets/sheet-2.png"  alt="Simple  Layout">
       </div>
-        <p>The above code creates the sheet. But it is currently an empty sheet. We need to populate it with things the user can interact with. It's your choice what you want to put in a sheet. In the following code we are going to take the sheet that we created above, populate it and attach an event to handle user interaction:</p>
+
+        <p>The above code creates the sheet. But it is currently empty. We need to populate it with things the user can interact with. It's your choice what you want to put in a sheet. In the following code we are going to populate the shet and attach an event to handle user interaction:</p>
+
           <pre class="prettyprint linenums">
 var sheetContent = "&lt;ul class='list'&gt;\n\
   &lt;li&gt;&lt;button class='action'&gt;Save&lt;/button&gt;&lt;/li&gt;\n\
@@ -98,13 +103,17 @@ $('#mySheet').find('section').append(sheetContent);
 // Hide sheet when tapping buttons:
 $('#mySheet').on('tap', 'button', function() {
   $.HideSheet('#mySheet');</pre>
+
         <p>If we were doing this properly, we would delegate events on the sheet to handle the buttons. You get the idea.</p>
+
         <p>Finally, we need an event to show the sheet:</p>
+
         <pre class="prettyprint linenums">
 // Initialize button to show sheet:
 $('#showSheet').on('tap', function() {
   $.ShowSheet('#mySheet');
 });</pre>
+
         <p>Check out the file "sheets.html" in the examples folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
         <h4>Sheets Example</h4>

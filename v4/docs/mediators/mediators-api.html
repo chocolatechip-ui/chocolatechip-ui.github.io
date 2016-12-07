@@ -74,7 +74,7 @@
           
           
           <h4>Dispatch System</h4>
-          <p>ChocolateChip-UI's dispatch system has two modes: anonymous and mediator. Both use <code>$.on()</code> for setup. When you save the setup to a variable, that is called a mediator. It offers a saved reference to the dispatch object and several methods that affect only that instance of the dispatch object. Otherwise, you activate the generic dispatch objects using <code>$.send(topic, data)</code>. Using <code>$.send(topic, data)</code> will also activate any mediators listening to that topic.</p>
+          <p>ChocolateChip-UI's dispatch system has two modes: anonymous and mediator. Both use <code>$.on()</code> for setup. When you save the setup to a variable, that is called a mediator. It offers a saved reference to the dispatch object and several methods that affect only that instance of the dispatch object. Otherwise, you can create generic dispatch objects using <code>$.send(topic, data)</code>. Using <code>$.send(topic, data)</code> will also activate any mediators listening to that topic.</p>
 
           <h4>Dispatch API</h4>
           <p><code>$.on(topic, callback)</code></p>

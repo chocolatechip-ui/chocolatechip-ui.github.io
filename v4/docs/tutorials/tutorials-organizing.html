@@ -74,12 +74,12 @@
           
           <h4>It's About Parts</h4>
 
-          <p>The piece of ChocolateChipJS that you will always use, regardless of the type of app you're making, is views. The second part that you'll probably need to use is the router. After that, other features depend on your use case. To better understand how we can organize ChocolateChip-UI's app code, we need to take a look at how views work and what they can do for you to organize your code.</p>
+          <p>The part of ChocolateChip-UI that you will always use, regardless of the type of app you're making, is views. The second part that you'll probably need to use is a navigation list with routing. To better understand how you can organize your app code, you need to know how views work.</p>
 
           <h4>Views</h4>
-          <p>Although we write code to make an app, when we run it, we see a UI. ChocolateChip-UI's views let you break that UI down into managable chunks. You can create views to do this in three ways. You can have a view render data to the screen. This might be just a snippet of text, or an object or a collection of object. You can also add event listeners to your views. You can also define the template the view uses when you setup the view. This results in a complete component where you do not need to look elsewhere to understand its functionality. Or you could create a view whose only purpose is to wire up events in the UI.</p>
+          <p>Although we write code to make an app, when we run it, we see a UI. ChocolateChip-UI's views let you break that UI down into managable chunks. You can create views to do this in three ways. You can have a view render data to the screen. This might be just a snippet of text, or an object or a array of objects. You can also add event listeners to your views. You can also define the template the view uses when you setup the view. This results in a complete component where you do not need to look elsewhere to understand its functionality. Or you could create a view whose only purpose is to wire up events for the UI.</p>
 
-          <p>When your app has a lot of views, it gets hard to dig through the code to find the view you want. But you can combine all of your views into one object. Below we show a before and after:</p>
+          <p>When your app has a lot of views, it gets hard to dig through the code to find the view you want. You can combine all of your views into one object as a namespace. Below we show a before and after:</p>
 
           <pre class='prettyprint linenums'>//===========================
 // Scope views to App object:
@@ -213,7 +213,7 @@ var AppEvents = $.View({
 
         <h4>Routes</h4>
 
-        <p>The other main item you will use in your app is routes. Luckily, routes are organized by default. You set up routes by creating a router object and defining routes on it. This means there's just one place to look for routes:</p>
+        <p>The other main item you will use in your app is routes.  You set up routes by creating a router object and defining routes on it. This means there's just one place to look for routes:</p>
 
         <pre class='prettyprint linenums'>// Define Routes:
 //===============
@@ -342,7 +342,11 @@ FragranzRoutes.addRoute([
 
         <p>If you really want to be able to organize your app in a modular way, then you will want to build your app using ES6 modules.</p>
 
-        <p>Check out these examples. After downloading the examles, open up the <code>src/dev</code> folder and examing each project's <code>app.js</code> file. These show you how to use ES6 modules with import/export to organize your app in sensible ways. By using JSPM, all the imports get bundled together with the app file so that you actually only load one file in the browser. Sourcemaps give you the ability to see the origin ES6 modules when you debug.</p>
+        <p>To see examples of projects built around ES6 modules, you should examine ChocolateChip-UI's reference apps. You'll need to have our <a target='_blank' href="../../install.html">command line tool</a> install to get them. Run:</p>
+
+        <pre class='prettyprint linenums'>chui -r</pre>
+
+        <p>This will create a folder called 'Chui Reference Apps' on your desktop. Inside you'll find a folder called <code>jspm</code>. In this you'll find for projects. In each of these you'll find a <code>dev</code> folder. These hold the projects view, models, routers and controllers broken down as ES6 modules. Each project is organized differently to show you various possible was of structing a project.</p>
 
         </div>
         

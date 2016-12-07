@@ -74,7 +74,7 @@
           
           <p>To validate and convert form elements into JSON you need to define a ChocolateChip-UI Form object. <code>$.Form</code> expects an array of objects, each of which defines a form element to validate. A Form validation object have three parts: the element to validate, the type of validation, and a callback to execute if validation fails. If validation passes on all elements pass to $.Form, it converts the collection of values into a JSON object.</p>
 
-          <p>Because <code>$.Form</code> takes individual node elements to validate, you do not need to enclose the elements in an actual form tag. To work correctly, you need to include every single element that you need. That means all checkboxes and all radio buttons, regardless whether they are in groups. <code>$.Form</code> needs all of the elements in order to construct a JSON object from their values.</p>
+          <p>Because <code>$.Form</code> takes individual node elements to validate, you do not need to enclose the elements in an actual form tag. This means you have to include every elements whose data you want.</p>
 
           <p>To set up a validation object, we need to providing a selector for each element, preferably this should be an ID. This is necessary since form elements can have the same name. Next you want to provide the type of validation to run on the element. ChocolateChip-UI has validators for the following types:</p>
 
@@ -96,7 +96,9 @@
             <li>selectlist: check that a select list item is selected</li>
             <li>multiselectlist: check that a multi-select list item is selected</li>
           </ul>
+
           <h5>Naming Conventions</h5>
+
           <p>In order to get a JSON object from your form elements, you need to name your elements appropriately. <code>$.Form</code> lets you use an underscore `_` as a delemiter to describe the structure of your JSON. So, if you wanted an object named `person` followed by `name` and `first` and `last`, you would create a name on elements as follows:</p>
 
 <pre class="prettyprint linenums"><code>&lt;input type='text' name='person_name_first'&gt;
@@ -116,8 +118,7 @@
       "last": "Doe"
     }
   }
-}
-</code></pre>
+}</code></pre>
 
           <p>After providing the type of validation, you can also provide a callback to execute if the element does not validate. You might you this to notify the user of the problem and how to address it.</p>
 
@@ -177,8 +178,7 @@
     $.formData = myForm.get();
     console.dir($.formData)
   }
-});
-</code></pre>
+});</code></pre>
 
         <h4>Custom Validators</h4>
         <p>Out of the box ChocolateChip-UI has number of useful validators. If you need a validation that isn't provided, you can create a custom validator to use with <code>$.Form</code>. This is done with the <code>$.validateWithRegex()</code> method. This takes two arguments: the input to check and the regular expression to use. For example, this will let you set up a validator for a phone number that differs from the US/Canada or standard international form that ChocolateChip-UI provides.</p>
@@ -187,8 +187,7 @@
 /* Expression to parse Australian landline telephone numbers. Will only accept valid STD codes. Allows for parens around the STD code and either spaces or dashes between number groups. */
 /* This can handle these formats: (02) 9323 1234 | 0293231234 | 02-9323-1234 */
 var phoneRegex = /^\({0,1}0(2|3|7|8)\){0,1}(\ |-){0,1}[0-9]{4}(\ |-){0,1}[0-9]{4}$/;
-$.validateWithRegex('#australianPhoneNum', phoneRegex)
-</pre>
+$.validateWithRegex('#australianPhoneNum', phoneRegex)</pre>
 
       <h4>$.registerCustomValidator</h4>
       <p>If you want to use a custom validator with <code>$.Form</code> so that you can get a JSON object, you need to do two things: register the custom validator and indicate it in the <code>$.Form</code> setup. To register a custom validator you use <code>$.registerCustomValidator</code>. This takes two arguments: a name for your validator and a regular express. The name should start with 'custom-'. This is required for registering it. The regular expression should be in the following format: <code>/abc/</code>. Below is an example custom validator used with <code>$.Form</code>:</p>
@@ -212,11 +211,9 @@ $('#validateForm').on('click', function() {
     $.formData = myForm.get();
     console.dir($.formData)
   }
-});
-</pre>
+});</pre>
+
         <p>When you define a custom validator remember that you must prefix the name with "custom-". In the above example, notice how we registered out validator as "custom-textWithSpaces".</p>
-
-
 
 
         </div>

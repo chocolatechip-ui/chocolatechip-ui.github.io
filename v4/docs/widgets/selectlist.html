@@ -94,18 +94,24 @@ mySelectList = $.SelectList({
 });</pre>
       <img class='layout' src="../../images/widgets/select-list.png" alt="Multi-Select List">
 
-      <p>You can find out what the current selection list is by querying the instance of the list that you created. Please note that upto version 4.1.2 you would use <code>getSelection()</code>, but since 4.1.3 the preferred way is to use <code>val()</code>:</p>
+      <p>You can find out what the current selection of a list is by querying the instance of the list that you created. Please note that upto version 4.1.2 you would use <code>getSelection()</code>, but since 4.1.3 the preferred way is to use <code>val()</code>:</p>
+
       <pre class="prettyprint linenums">
 mySelectList.val()</pre>
+
       <p>This will return an object like this:</p>
+
       <pre class="prettyprint linenums">
 {index: 2, value: "work"}</pre>
+
       <p>To get just the value, you could do this:</p>
+
       <pre class="prettyprint linenums">// Get the value of the selection:
 mySelectList.val().value
 
 // Get the index of the selection:
 mySelectList.val().index</pre>
+
       <p>Please check out the file "selectlist.html" in the examples folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
       <h4>Select List Example</h4>

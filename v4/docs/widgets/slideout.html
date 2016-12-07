@@ -72,13 +72,15 @@
           <h2>Widgets</h2>
           <h3>Slide Out Menu</h3>
           
-          <p>Slide out menus offer a convenient way to provide the user access to a number of otherwise unrelated screens. If you have more screen than can fit in a tab bar, but you don't want to use a navigation list in a tab bar to reveal them, a slide out menu is a better option.</p>
-          <p>To create a slide out menu, you need to provide it with the screens you want to show when the slide out menu items are tapped by the user. First we create the slide out menu using the <code>$.SlideOut</code> method. Then we populate the menu by passing it some options:</p>
+          <p>Slide out menus offer a convenient way to provide the user access to a number of otherwise unrelated screens. If you have more screens than can fit in a tab bar, but you don't want to use a navigation list in it, a slide out menu is a better option.</p>
+
+          <p>To create a slide out menu, you need to provide it with the screens you want to show when the menu items are tapped. First we create the slide out menu using the <code>$.SlideOut</code> method. Then we populate the menu by passing it some options. These are an array of key/value pairs. The key is the id of the screens to use, and the value is the label that will be displayed in the slide out menu:</p>
+
           <pre class="prettyprint linenums">
-// Set up Slide Out Menu:
-//=======================
+// Set up slide out menu:
 var appSlideOut = $.SlideOut();
 
+// Populate slide out menu:
 appSlideOut.populate([
   { music: 'Music' },
   { pictures: 'Pictures' },
@@ -86,21 +88,24 @@ appSlideOut.populate([
   { recipes: 'Recipes' },
   { favorites: 'Favorites' }
 ]);</pre>
-  <p>In the above example, the ids of the screens will be 'music', 'pictures', 'docuemnts', 'recipes', and 'favorites'. And the slide menu items will be 'Music', 'Pictures', etc. Tapping on the menu items will show the associated screen below.</p>
+
+  <p>In the above example, the ids of the screens will be 'music', 'pictures', 'docuemnts', 'recipes', and 'favorites'. And the slide menu labels will be 'Music', 'Pictures', etc. Tapping on the menu items will show the associated screen.</p>
+
   <div class="layout">
      <img  class='layout'  src="../../images/widgets/slide-out-menu-1.png"  alt="Simple  Layout">
      <img  class='layout'  src="../../images/widgets/slide-out-menu-2.png"  alt="Simple  Layout">
   </div>
  
   <h4>Routing</h4>
-  <p>You can use routes with the slide out menu. You might do that when you want to have just one screen and render its contents depending on which menu item the user taps in the slide out. This is easy to do, even if the content is different, because ChocolateChip-UI lets you switch out what template a view uses. Just as we set up routing in a navigation list by providing ids, we would need to do the same thing here. ChocolateChip-UI automatically dispatches a route when the user taps a slide out menu, so you just need to provide each menu item with a unique id and set up a router to capture the dispatch. You may want to review ChocolateChip-UI's <a href="../router/router-intro.html">Router</a>. Below we have set up a slide out to pass ids with the routes:</p>
+
+  <p>You can use routes with the slide out menu. You might do that when you want to have just one screen and render its contents depending on which menu item the user taps in the slide out. This is easy to do, even if the content is different because ChocolateChip-UI lets you switch out what template a view uses. Just as we set up routing in a navigation list by providing ids, we need to do the same here. ChocolateChip-UI automatically dispatches a route when the user taps a slide out menu, so you just need to provide each menu item with a unique id and set up a router to capture the dispatch. You may want to review ChocolateChip-UI's <a href="../router/router-intro.html">Router</a>. Below we have set up a slide out to pass ids with the routes:</p>
+
   <pre class="prettyprint linenums">
-  // Setup Slide Out:
-//=================
+// Setup Slide Out:
 var appSlideOut = $.SlideOut();
 // Notice names have `:` to 
-// indicate id for routing.
-// Id will be used to render view.
+// indicate parameter for routing.
+// Id will be used to render the view.
 appSlideOut.populate([
   { "choice:music": 'Music' },
   { "choice:pictures": 'Pictures' },
@@ -108,13 +113,17 @@ appSlideOut.populate([
   { "choice:recipes": 'Recipes' },
   { "choice:favorites": 'Favorites' }
 ]);</pre>
+
   <p>Every menu item is showing the same screen, but passing a unique id with the route. We can capture that id with a router:</p>
-<pre class="prettyprint linenums">var MyRoutes = $.Router();
+
+<pre class="prettyprint linenums">// Create the router:
+var MyRoutes = $.Router();
+// Add a route:
 MyRoutes.addRoute([
   {
     // The route:
     route: 'choice', 
-    // Callback to handle passed id:
+    // Callback to handle passed route parameter:
     callback: function(id) {
       // Method to render templates in switch statement:
       var renderChosenTemplate = function(element, template, item) {
@@ -143,9 +152,13 @@ MyRoutes.addRoute([
     }
   }
 ]);</pre>
+
   <h4>Slide Out Menu with Navigation List</h4>
+
   <p>You can also have a navigation list as one of the screens that a slide out menu reveals. It doesn't require anything special. Just put it there and provide its id to the slide out menu.</p>
+
   <p>You can examine the following files in the examples folder of the source code to see working examples of how to set up slide out menus.</p>
+
   <ul>
     <li>slide-out-menu.html</li>
     <li>slide-out-menu-routes.html</li>

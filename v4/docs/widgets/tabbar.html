@@ -72,7 +72,7 @@
           <h2>Widgets</h2>
           <h3>Tab Bar</h3>
           
-          <p>When your app has three to five main screens, a tab bar is a perfect way to structure your app. Having more than five tabs is too cramped for narrower mobile devices, and there are still a lot of those around. Tab bars look very different on Android, iOS and Windows Phone. On iOS the tabs always have icons and the bar is on the bottom, where as on Android and Windows they do not have icons and the bar is on the top. You set up your tab bar and ChocolateChip-UI will take care of making it look properly for each platform. If you are targetting iOS, you will need to provide images for the tabs.</p>
+          <p>When your app has three to five main screens, a tab bar is a perfect way to structure your app. Having more than five tabs is too cramped for narrower mobile devices, and there are still a lot of those around. Tab bars look very different on Android and iOS. On iOS the tabs always have icons and the bar is on the bottom, where as on Android they do not have icons and the bar is on the top. You set up your tab bar and ChocolateChip-UI will take care of making it look properly for each platform. If you are targetting iOS, you will need to provide images for the tabs.</p>
           <p>Below is how you would set up a tab bar:</p>
           <pre class="prettyprint linenums">
 // Options for Tab Bar:
@@ -93,26 +93,34 @@ var myTabbar = $.TabBar(opts);
             <img  class='layout'  src="../../images/widgets/tabbar-2.png"  alt="Simple  Layout">
             
           </div>
-          <p>In the above options, the icons have are rendered on a the tab as a class that you can use to show an icon as a background image of it icon. Each tab has an icon element. On iOS the label will appear under the icon. On Android and Windows the icons won't be visible and only the labels will be. The selected value tells ChocolateChip-UI which tab should be selected at load time. Selection is zero-based, so the first tab is 0, the second tab is 1, etc. Screens are the ids of the screens you want the tabs to show. The tabs will be created in the order of the icons, labels and screens, so check your options to make sure you have everything in the right order. If you want your tab bar to exhibit icons for Android or Windows, you can override the default tab bar behavior by providing a option property <code>showIcons: true</code>. ChocolateChip-UI will adust the height of the tab bar to accomodate the icons you provided, just as it does for iOS. Labels will be under their icons.</p>
+
+          <p>In the above options, the icons for the tabs are indicated as a class. You would use this class with CSS to show a background image as its icon. Each tab has an icon element that is used for showing the icon background image. On iOS the label will appear under the icon. On Android the icon element will be hidden, leaving only the labels. The selected value tells ChocolateChip-UI which tab should be selected at load time. Selection is zero-based, so the first tab is 0, the second tab is 1, etc. Screens are the ids of the screens you want the tabs to show. The tabs will be created in the order of the icons, labels and screens, so check your options to make sure you have everything in the right order.</p>
+
+          <h4>Tab Bar Icons for Android</h4>
+          <p>If you want your tab bar on Android to exhibit icons, you can override the default behavior by providing a optional property <code>showIcons: true</code>. ChocolateChip-UI will adust the height of the tab bar to accomodate the icons you provided, just as it does for iOS. Labels will be under their icons. You will need to provide additional styling to show the icons, same as is done for iOS.</p>
           
           <h4>Tab Bar with Navigation List</h4>
-          <p>If you really, really want a tab bar, but more screens than can fit in the tab bar, you could make the last tab a navigation list the directs the user to the additional screens. To set up our tab bar with a navigation list, just provide the last tab with the name "more". Notice how we've set up our tab bar options:</p>
+          <p>If you want a tab bar but have more screens than can fit, you can make the last tab a navigation list that directs the user to the additional screens. To set up the tab bar with a navigation list, just give the last tab  the name "more". Notice how we've set that up:</p>
           <pre class="prettyprint linenums">
 var opts = {
    icons: ["music", "pictures", "docs", "recipes", "more"],
    labels: ["Music", "Pictures", "Docs", "Recipes", "More"],
    selected: 1,
    screens: ['music', 'pictures', 'documents', 'recipes', 'fruits']
-};
-          </pre>
+};</pre>
+
           <p>In this case, the navigation list will be the final tab. It will have an id of "fruits". Tapping a navigation list item will take the user to a detail screen for that fruit. Read <a href="./navigation.html">Navigation</a> to learn how to set up navigation lists.</p>
+
           <p>You could also use routing with the tab bar's navigation list. That is also covered by the section on <a href="./navigation.html">Navigation</a>.</p>
+
           <p>You can look at the following files in the source code examples folder to see how these are put together:</p>
+
           <ul>
             <li>tabbar.html</li>
             <li>tabbar-nav.html</li>
             <li>tabbar-nav-routes.html</li>
           </ul>
+
           <p>Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
           <h4>Example of Tabbar</h4>

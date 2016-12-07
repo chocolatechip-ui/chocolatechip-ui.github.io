@@ -72,8 +72,9 @@
           <h2>Models</h2>
           <h3>Use</h3>
           
-          <p>Models provide a powerful interface to your data so that ChocolateChip-UI can do things to make your work easier. Although many frameworks don't use models but expect you to use plain JavaScript objects, this have a number of drawbacks. You can not judge easily when the state of the data changes without costly polling and caching of duplicates, etc.</p>
-          <p>Model are easy to create. Just use the $.Model method to do so. We'll first create a model that represents a JavaScript object of key/value pairs:</p>
+          <p>Models provide a powerful interface to your data to make your work easier. When using plain JavaScript objects, you can not judge easily when the data changes. In contrast, models automatically render their bound views when you modify their data.</p>
+
+          <p>Models are easy to create. Just use the <code>$.Model()</code> method and pass it the data to encapsulate. In the following example we create a model that represents a JavaScript object of key/value pairs:</p>
           <pre class="prettyprint linenums">
 // Plain JavaScript object:
 var myObject = {
@@ -90,15 +91,18 @@ var personModel = $.Model(myObject);
 
 // Get rid of the plain JavaScript object,
 // since we don't need it any more:
-myOjbect = undefined;
-          </pre>
-          <p>To initialize the model, we gave it the object to use. And that's it. Since it is now a model, we can access the model with object appropriate methods. These are:</p>
+myOjbect = undefined;</pre>
+
+          <p>To initialize the model, we gave it the object to use. Since it is now a model, we can access its data with accessor methods. These are:</p>
+
           <ul>
             <li>personModel.getItemProp()</li>
             <li>personModel.setItemProp()</li>
             <li>personModel.deleteItemProp()</li>
           </ul>
-          <p>In our case, if we want to get the name, we might do this:</p>
+
+          <p>To get the name, we would do this:</p>
+
           <pre class="prettyprint linenums">
 personModel.getItemProp('name')
 // returns: {first: "John", last: "Doe"}
@@ -106,9 +110,10 @@ personModel.getItemProp('name')
 var firstName = personModel.getItemProp('name').first
 // returns: "John"
 var lastName = personModel.getItemProp('name').last
-// returns: "Doe"
-          </pre>
-<p>Now let's create a model that holds a collection. By collection we mean an array. This might be a simple array or an array of objects. Making it is the same as we did for the simple object:</p>
+// returns: "Doe"</pre>
+
+<p>Now let's create a model that holds an array of objects. This is the same as the previous example:</p>
+
 <pre class="prettyprint linenums">
 var fruits = [
   {name: "Apple", image: 'images/apple.png'},
@@ -120,15 +125,15 @@ var fruitModel = $.Model(fruits);
 fruits = undefined;
 
 var orange = fruits.getItemProp(2, 'name'); // returns "Orange"
-// Returns
-</pre>
-<p>In the above example, we accessed the data a little differently. Because this is a collection, we need to tell ChocolateChip-UI what index of the collect we want to get the property from. The index, like arrays, is zero-based.</p>
+// Returns</pre>
+
+<p>Because this model holds an array, we need to provide an index to indicate where in the array we want to get the property from. Theis is, of course, zero-based.</p>
         
         <h3>When Not To Use</h3>
 
-        <p>Not all data needs to be in a model. If you have simple data, a string, an array of a couple of items, or a very simple object, it doesn't make sense to put them in a model. Similarly, if your data is of a temporary nature, don't bother putting it in a model. If your data is complex and your app depends on it for functionality, put it in a model. Models are ideal when you want to bind a view to one for automatic refershes.</p>
+        <p>Not all data needs to be in a model. If you have simple data, a string, an array of a couple of items, or a very simple object, it doesn't make sense to put them in a model. Similarly, if your data is of a temporary nature, don't bother putting it in a model. If your data is complex and your app depends on it for functionality, put it in a model. Models are ideal when you want your views to update automatically when the data changes.</p>
 
-        <p>ChocolateChip-UI tries to be efficient at rendering model changes quickly. However, if you are pushing the envelope with data sizes and rapid changes and you see a serious performance degradation, do switch to rendering the view with raw JavaScript data. You can always store the data in a model after the transforms are finished.</p>
+        <p>ChocolateChip-UI tries to be efficient at rendering model changes. However, if you are pushing the envelope with data sizes and rapid changes and you see a serious performance degradation, try rendering your view with raw JavaScript data. You can always store the data in a model after you are finished manipulating your data.</p>
 
         </div>
         

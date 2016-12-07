@@ -72,9 +72,12 @@
           <h2>Widgets</h2>
           <h3>Popover</h3>
           
-          <p>Popovers are a menu system on mobile devices. Having actual menus doesn't make sense because they are hard targets for the finder. But having a tappable target that can reveal a popover is a useful and satisfying experience for the user.</p>
-          <p>A popover is just a container into which you can put whatever you want your users to interact with. That might be a list or a set of buttons. What to put there depends on your particular needs.</p>
-          <p>Popovers are created on demand, meaning they aren't lying around somewhere unused. They are created when needed, then deleted. To setup a popover, you need to provide the <code>$.Popover()</code> the necessary options:</p>
+          <p>Popovers are a menu system on mobile devices. Having actual menus doesn't make sense because they are hard targets for the finger. But having a tappable target that can reveal a popover is a useful and satisfying experience for the user.</p>
+
+          <p>A popover is just a container into which you can put whatever you want your users to interact with. That might be a list or a set of buttons. What you put there depends on your needs.</p>
+
+          <p>Popovers are created on demand, meaning they aren't lying rendered at load time and sticking around unused. They are created when needed, then deleted. To setup a popover, you need to provide the <code>$.Popover()</code> the necessary options:</p>
+
           <pre class="prettyprint linenums">$('#showPopover1').on('tap', function() {
   var trigger = this;
   $.Popover({
@@ -86,8 +89,11 @@
     }
   });
 });</pre>
-        <p>The title is only displayed on iOS. The trigger, is the element the user interacts with to show the popover. The popover will be displayed relative to the position of the trigger element. The content is a string o markup that will be injected into the popover. As we mentioned earlier, this could be a list, or a series of buttons. Finally we provide a callback. We can use this callback to register a delegated event on the popover to handle user interactions.</p>
+
+        <p>The title is only displayed on iOS. The trigger, is the element the user interacts with to show the popover. The popover will be displayed relative to the position of the trigger element. The content is a string of markup that will be injected into the popover. As we mentioned earlier, this could be a list, or a series of buttons. Finally we provide a callback. We can use this callback to register a delegated event on the popover to handle user interactions.</p>
+
         <img  class='layout'  src="../../images/widgets/popover.png"  alt="Simple  Layout">
+
         <p>Check out the file "popover.html" in the examples folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
         <h4>Popover Example</h4>

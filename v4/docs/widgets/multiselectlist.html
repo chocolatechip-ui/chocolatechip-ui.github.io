@@ -75,7 +75,6 @@
           <p>You can use ChocolateChip-UI's multi-select list to enable your users to select multiple items from a list. The setup is very similar to a select list. You create an instance and provide it with options:</p>
           <pre class="prettyprint linenums">
 // Set up Select List:
-// //====================
 var myMulitSelectList = $.MultiSelectList({
   element: '#multiSelectList',
   selected: [1,2],
@@ -85,7 +84,6 @@ var myMulitSelectList = $.MultiSelectList({
 });
 
 // Define callback for multi-select list:
-//================================= 
 var renderSelection = function() {
   var temp = [];
   // A multi-select list returns an array,
@@ -102,16 +100,19 @@ var renderSelection = function() {
 };</pre>
 
       <img class='layout' src="../../images/widgets/multi-select-list.png" alt="Simple Layout">
+
       <p>As you can see from the multi-select list options above, you can provide a series of pre-selected list items by using an array. Numbering is zero based. To get the current value of a multi-select list, you use the <code>val()</code> method on the list instance. This returns an array of objects like this. Please note that before version 4.2.0 you would have instead used <code>getSelection</code> for the same purpose:</p>
+
       <pre class="prettyprint linenums">
 var choices = myMulitSelectList.val();
 // choices:
 /* [
   {index: 2, value: "work"},
   {index: 4, value: "vacation"}
-] */
-      </pre>
+] */</pre>
+
       <p>To evaluate the returned value, we can loop over it, as we are doing in the callback in the example above.</p>
+      
       <p>Please look at the file "multi-select-list.html" in the example folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
       <h4>Multi-Select List</h4>

@@ -72,11 +72,15 @@
           <h2>Widgets</h2>
           <h3>Stepper</h3>
           
-          <p>A stepper is a small control that allows the user to increase or decrease a value between predetermined values. It's not a picker. It's for when the different between possible choice is not great. The user decreases or increase the value by tapping on either side of the stepper.</p>
+          <p>A stepper is a small control that allows the user to increase or decrease a value between predetermined values. It's not a picker. It's for when the difference between choices is not great. The user decreases or increase the value by tapping on either side of the stepper.</p>
+
           <p>To create a stepper you use a span with the class "stepper":</p>
+
           <pre class="prettyprint linenums">
 &lt;span class='stepper' id="digits"&gt;&lt;/span&gt;</pre>
+
           <p>To initialize a stepper, we use the <code>$.Stepper()</code> method and pass it three options: min value, max value and default value:</p>
+
           <pre class="prettyprint linenums">
 var myStepper = $.Stepper({ 
   element: '#digits', 
@@ -84,10 +88,14 @@ var myStepper = $.Stepper({
   max: 8,
   defaultValue: 3
 });</pre>
+
           <img  class='layout'  src="../../images/widgets/stepper.png"  alt="Simple  Layout">
+
           <p>We can get the current value of the stepper at any time by running <code>val()</code> on the stepper instance. Please note that upto version 4.1.2 you would have instead used <code>getValue()</code>:</p>
+
           <pre class="prettyprint linenums">
 var stepperValue = myStepper.val();</pre>
+
           <p>Take a look at the file "stepper.html" in the examples folder. Read the following <a target='_blank' href="../../install.html#all_chui_examples">instructions</a> for getting the examples.</p>
 
           <h4>Stepper Example</h4>

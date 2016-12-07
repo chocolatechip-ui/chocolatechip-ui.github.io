@@ -92,119 +92,54 @@ myRouter.addRoute([
   }
 ]);
 </code></pre>
-<p>When handling a route, you have the option of also receiving and id with the route. The id is a unique value represeting a object in a collection. A route id is indicated by a color after the route:</p>
+<p>When handling a route, you have the option of also receiving and parameter with the route. The parameter is a unique value represeting a object in a collection. A route parameter is indicated by a colon after the route:</p>
 
 <pre class="prettyprint"><code>&lt;li data-goto="detail:apple"&gt;&lt;/li&gt;
 &lt;li data-goto="detail:orange"&gt;&lt;/li&gt;
 &lt;li data-goto="detail:banana"&gt;&lt;/li&gt;
 </code></pre>
-<p>From the above code, ChocolateChip-UI will send routes like this: 'detail:apple', etc. The route examines routes for ids. When it find them, it separates them and passes them to the route's callback as the first argument. That means you can capture the id being passed in your routes callback:</p>
+<p>From the above code, ChocolateChip-UI will send routes like this: 'detail:apple', etc. The route examines routes for parameters. When it find them, it separates them and passes them to the route's callback as the first argument. That means you can capture the parameter being passed in your routes callback:</p>
 
 <pre class="prettyprint"><code>var myRouter = $.Router();
 myRouter.addRoute([
   route: 'detailScreen',
-  callback: function(id) {
-    // Get the item represented by the route's id:
+  callback: function(param) {
+    // Get the item represented by the route's param:
     var item = myModel.filter(function(obj) {
-      return obj.id = id;
+      return obj.id = param;
     });
     // Render the view with the returned object:
     detailView.render(item);
   }
 </code></pre><h4>getFullRoute</h4>
           <p><code>getFullRoute()</code></p>
-          <p>This method returns a backslash delimited path of the current position of the user. In tab bars and slides this may simply be the current screen. If the user has drilled down in a navigation list, this will show the path the user has taken.</p>
-<pre class="prettyprint"><code>var route = $.Router.getFullRoute();
+          <p>This method is executed on a router instance. It returns a backslash delimited path of the current position of the user. In tab bars and slides this may simply be the current screen. If the user has drilled down in a navigation list, this will show the path the user has taken.</p>
+<pre class="prettyprint"><code>// For a myRouter router:
+var route = myRouter.getFullRoute();
 console.log(route) // 'main/fruits/banana'
 </code></pre>
           
           <h4>getCurrentLoc</h4>
           <p><code>getCurrentLoc()</code></p>
-          <p>Returns the user's current location. This is the id of the current screen.</p>
-<pre class="prettyprint"><code>var currentScreen = $.Router.getCurrentLoc();
+          <p>This method is executed on a router instance. It returns the user's current location. This is the id of the current screen.</p>
+<pre class="prettyprint"><code>// For a myRouter router:
+var currentScreen = myRouter.getCurrentLoc();
 </code></pre>
           
           <h4>dispatch</h4>
           <p><code>dispatch(route)</code></p>
-          <p>This method lets you dispatch to a particular route. This means that you can tell the Router to handle the route. It takes one argument, the route. All navigation wigets (tab bars, slide out menus and navigation lists) automatically dispatch their routes. Also, if you use <code>$.GoToScreen()</code> to direct the user somewhere, this will automatically dispath the screen id you provided.</p>
+          <p>This method is executed on a router instance. It lets you dispatch to a particular route. This means that you can tell the Router to handle the route. It takes one argument, the route. All navigation wigets (tab bars, slide out menus and navigation lists) automatically dispatch their routes. Also, if you use <code>$.GoToScreen()</code> to direct the user somewhere, this will automatically dispath the screen id you provided.</p>
           <p></p>
-<pre class="prettyprint"><code>$.Router.dispatch('detail');
+<pre class="prettyprint"><code>// For a myRouter router:
+myRouter.dispatch('detail');
 
-// Dispatch route with id:
-$.Router.dispatch('detail:123');
+// Dispatch route with param:
+myRouter.dispatch('detail:123');
 </code></pre>
-
-        <h3>Route Manipulation</h3>
-        <p>In general you should never need to use any of the following methods. These are used internally by ChocolateChip-UI.</p>
-          
-          <h4>push</h4>
-          <p><code>push(route)</code></p>
-          <p>This method allows you to push a route onto ChocolateChip-UI's router object - $.ChuiRoutes</p>
-<pre class="prettyprint"><code>$.Router.push('newRoute')
-</code></pre>
-          
-          <h4>pop</h4>
-          <p><code>pop()</code></p>
-          <p>This method lets you pop the last route from the global router object - $.ChuiRoutes</p>
-<pre class="prettyprint"><code>var lastRoute = $.Router.pop();
-</code></pre>
-          
-          <h4>unshift</h4>
-          <p><code>unshift(route)</code></p>
-          <p>This method lets you add a new route at the beginning of the global router object - $.ChuiRoutes</p>
-<pre class="prettyprint"><code>$.Router.unshift('newRoute');
-</code></pre>
-          
-          <h4>shift</h4>
-          <p><code>shift()</code></p>
-          <p>This method lets you get the first route from the global router object - $.ChuiRoutes</p>
-<pre class="prettyprint"><code>var firstRoute = $.Router.shift();
-</code></pre>
-          
-          <h4>insert</h4>
-          <p><code>insert(position, route)</code></p>
-          <p>This method lets you insert a route in global router object - $.ChuiRoutes, at the position you provide. This is a zero-based number.</p>
-<pre class="prettyprint"><code>$.Router.insert(2, 'aNewRouteAt3');
-</code></pre>
-          
-          <h4>eq</h4>
-          <p><code>eq(number)</code></p>
-          <p>This method lets you get a route based on its index in the global router object - $.ChuiRoutes. This is a zero-based number.</p>
-<pre class="prettyprint"><code>var fourthRoute = $.Router.eq(3)
-</code></pre>
-          
-          <h4>indexOf</h4>
-          <p><code>indexOf(route)</code></p>
-          <p>By passing a route as an argument, this method lets you get its position in global router object - $.ChuiRoutes. This is a zero-based number.</p>
-<pre class="prettyprint"><code>var routePos = $.Router.indexOf('myRoute');
-</code></pre>
-          
-          <h4>remove</h4>
-          <p><code>remove(route)</code></p>
-          <p>This method allows you to delete the provided route from the global router object - $.ChuiRoutes.</p>
-<pre class="prettyprint"><code>$.Router.remove('myRoute');
-// This will delete 'myRoute' or 'myRoute:someID'
-</code></pre>
-          <p>If a route has an id, the <code>remove</code> method will by default eliminate it. If you want to delete a route only when it lacks an id, pass it a second optional value of <code>true</code>:</p>
-<pre class="prettyprint"><code>// Only delete route without id:
-$.Router.remove('myRoute', true);
-// This will delete 'myRoute' but not 'myRoute:someID'
-</code></pre>
-
-          <h3>JSPM and ES6 Modules</h3>
-          <h4>mount</h4>
-          <p><code>mount()</code></p>
-          <p>If you want to use JSPM and ES6 modules to organize your code while using routes, you will need to use this method. This allows you to put your routes out into a separate file and import them into you <code>app.js</code> file. Because the import happens before the DOM is fully loaded, you'll need to mount the route after importing it. This is necessary because router setup requires access to the apps available screens. These aren't accessible to the router until after the DOM is loaded. Mounting the route after import allows it to find the screen and be ready for use.</p>
-          <pre class="prettyprint">import {myRoute} from '../routes/appRoutes';
-
-// Mount the imported route:
-myRoute.mount();</pre>
-          
-          <p>For more information about using JSPM, Babel and ES6 modules to orangize you code, please read this <a target="_blank" href="../tutorials/es6.html#mounting_your_imports">documentation</a>.</p>
 
 
           <h4>$.ChuiRoutes</h4>
-          <p>The ChocolateChip-UI router object. This holds the current routes. You can find out what the current route by running <code>$.ChuiRoutes.getFullPath()</code>. If the user have gone down a nvigation list, this will return a string with routes separated by back slashes like so: <code>"main/options/detail:item23"</code>.</p>
+          <p>The ChocolateChip-UI router object. This is an array of the current routes. ChocolateChip-UI builds the stores the screens a user navigates to in this array. When you provide a back navigation scheme, such as with back buttons, ChocolateChip-UI examines $.ChuiRoutes to see where the user came from and then send the user back.</p>
 
 
         </div>

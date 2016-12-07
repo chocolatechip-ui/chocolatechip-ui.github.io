@@ -69,9 +69,11 @@
           <h2>Forms &amp; Validation</h2>
           <h3>Intro</h3>
           
-          <p>Forms are complicated. You need to validate different inputs for values before submitting. And maybe you need to make a JSON object to send to the server. ChocolateChip-UI's Form does all of this for you. It validates and converts your form data into a JSON object.</p>
-          <p>To validate your form, you use <code>$.Form</code>. This takes and array of elements to validate. Each item has a selector for the element, the type of validation to run and optionally a callback that will execute when validation fails. You can use this to notify the user that their input for the element was wrong.</p>
-          <p>Form adds the class `invalid` on inputs that fail validation. ChocolateChip-UI has styles that puts a red glow around invalid inputs. You can define a new style for the class in your app to change the look of invalid inputs. Similarly, ChocolateChip-UI puts the class `valid` on inputs that pass validation. This has no default styling, but you can define one your self in your apps stylesheet.</p>
+          <p>When using form elements, you may need to validate their values before doing anything with them. Or maybe you need to convert them into a JSON object to send to the server. ChocolateChip-UI's Form does all of this for you. It validates your form values and converts it into a JSON object.</p>
+
+          <p>To validate your form, you use <code>$.Form</code>. This takes an array of elements to validate. Each item has a selector for the element, the type of validation to run and an optional callback that will execute when validation fails. You can use this to notify the user that their input for the element was wrong.</p>
+
+          <p>Form adds the class `invalid` on inputs that fail validation. ChocolateChip-UI has styles that put a red glow around invalid inputs. You can define a new style for the class in your app to change the look of invalid inputs. Similarly, ChocolateChip-UI puts the class `valid` on inputs that pass validation. This has no default styling, but you can define one in your app's stylesheet.</p>
         </div>
         
         <div id="menu">

@@ -73,64 +73,123 @@
           <h3>Use</h3>
           
           <h4>Setup</h4>
-          <p>To initialize a view, you can make an empty view, or provide a number of options to give it various types of functionality. If you want a view, but aren't ready to have it associate with someting in the DOM quite yet, you can make an empty one like so:</p>
+          <p>When initializing a view, you can make it empty, or provide a number of options to give it various types of functionality. If you want a view, but aren't ready to have it associate with someting in the DOM quite yet, you can make an empty one like so:</p>
           <pre class="prettyprint linenums">
 var emptyView = $.View();
           </pre>
-          <p>To be useful a view needs at least an element to associate it with. Generally this element will hold a template that the view will use, but it doesn't have too. You can always attach a template to a view later. Let's look at create a view with an associate DOM element:</p>
+          <p>To be useful a view needs at least an element to associate it with. You basically anchor the view to that elemnet. This element may hold a template that the view will use, but it doesn't have too. You can always attach a template to a view later. Now, let's create a view with an associated DOM element:</p>
           <pre class="prettyprint linenums">
 var simpleView = $.View({
   element: '#special'
-});
-          </pre>
-          <p>The above view presupposes the existence of an element called <code>#special</code>. This might have a template inside it like this:</p>
-          <pre class="prettyprint linenums">
-&lt;ul class='list'&gt;
+});</pre>
+          <p>The above view presupposes the existence of an element called <code>#special</code>. This might have a template inside. There are several ways to do that. We can use a script tag, a template tag, or plain markup. When putting the template markup directly in the element, always give the element a class of <code>cloak</code>:</p>
+          <pre class="prettyprint linenums">// Script tag:
+&lt;script type='text/template'&gt;
+  &lt;ul class='list'&gt;
+    &lt;li&gt;{= data.name }&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/script&gt;</pre>
+          <pre class="prettyprint linenums">// Template tag:
+&lt;template'&gt;
+  &lt;ul class='list'&gt;
+    &lt;li&gt;{= data.name }&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;</pre>
+          <pre class="prettyprint linenums">// Template in element with "cloak":
+&lt;ul class='list cloak'&gt;
   &lt;li&gt;{= data.name }&lt;/li&gt;
-&lt;/ul&gt;
-          </pre>
+&lt;/ul&gt;</pre>
 
-          <p>When we point a view to an element with a template, ChocolateChip-UI extracts the template and parses it. Then we can render the template with our data:</p>
-          <pre class="prettyprint linenums">
-simpleView.render(fruits);
-          </pre>
-          <p>If <code>fruits</code> were a collection, the view would render the template repeatedly to output the collection. And if fruits was a simle object, it would render just once. Views do not care whether data is iterable or not. If it is, it renders repeatedly, otherwise it renders a single time.</p>
+          <p>When we point a view to an element with a template, ChocolateChip-UI extracts the template and parses it. After that, we can render the template with our data:</p>
+          <pre class="prettyprint linenums">// Define a view:
+var simpleView = $.View({
+  element: '#fruitList'
+});
+// Render the view with data:
+simpleView.render(fruits);</pre>
+          <p>If <code>fruits</code> were a collection, the view would render the template repeatedly with the collection. And if fruits was a simle object, it would render just once. Views do not care whether data is iterable or not. It checks the data before rendering and decides. As long as the properties on an object or array of objects matches your template, it will render without issue.</p>
 
 
-          <p>And, here's an example of a simple view with its template in the markup rendering an array of items:</p>
+          <p>Here's an example of a simple view with its template in the markup rendering an array of items:</p>
 
           <p data-height="350" data-theme-id="6688" data-slug-hash="MbbmBr" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 1" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/MbbmBr/">View Example 1</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <h5>Template in View</h5>
-          <p>If you don't like having templates defined in the document, you could also define your template directly in the View setup. If your template spans multiple lines, you will need to escape the new lines with backslashes. When you provide a template string in a view's setup, ChocolateChip-UI will not try to extract a template from the element. Notice that we give the view a <code>variable</code> property to tell it what we want to use in the template to describe our data, in this case, "fruit". As such, the target element should be empty:</p>
+          <h4>Template in View</h4>
+          <p>If you don't like having templates defined in the document, you can also define your template directly in the view's definition. If your template spans multiple lines, you will need to escape the new lines with backslashes. When you provide a template string in a view's setup, ChocolateChip-UI will not try to extract a template from the element. Notice that the template uses the workd <code>data</code> to represent what we want to render. In the following example, we are rendering a view with a simple string. The term <code>data</code> in the template is the placeholder for the data we wish to render. It will get replaced with the data when we render the view:</p>
+
+          <pre class="prettyprint linenums">
+// Markup:
+&lt;div id='someTag'&gt;&lt;/div&gt;
+// Script:
+var stuff = 'This is my stuff.'
+var simpleView = $.View({
+  element: '#someTag',
+  template: '{= data }'
+});
+simpleView.render(stuff);</pre>
+
+          <p>The above view would render "This is my stuff." inside the div. We could just as easily use a number as well.</p>
+
+          <h4>Templates with Complex Data</h4>
+
+          <p>So far we've only rendered simple data. If you have an object and want to render it, you'll need to change how you use the data variable. Suppose we have an object like this:</p>
+
+          <pre class="prettyprint linenums">// Object:
+var person = {
+  name: 'Joe',
+  job: 'Mechanic'
+}</pre>
+          <p>Because of the nature of this object, simply using <code>data</code> in the template won't work. We need to tell the template which object properties it should render. We do that using normal object dot notation:</p>
+          <pre class="prettyprint linenums">
+// Define view with string template:
+var simpleView = $.View({
+  element: '#special',
+  template: 
+'&lt;li&gt;
+  &lt;h3&gt;{= data.name }&lt;/h3&gt;
+  &lt;h4&gt;{= data.job }&lt;/h4&gt;
+&lt;/li&gt;'
+});
+// Render view with the person object:
+simpleView.render(person);</pre>
+
+
+
+          <h4>Using a Variable in a Template</h4>
+          <p>When we are rendering our view with complex data, using the default <code>data</code> variable in our templates can make them hard to understand. ChocolateChip-UI lets you define a custom variable to use in your template. Since we are using a data object called "person", we can tell our view to use that as instead of the generic term "data". To do that, we give the view a <code>variable</code> property and assign it the term we want to use in the template. So, let's use the term "person":</p>
 
           <pre class="prettyprint linenums">
 // Define view with string template:
 var simpleView = $.View({
   element: '#special',
-  variable: 'fruit',
-  template: '&lt;li&gt;{= fruit.name }&lt;/li&gt;'
+  // Define a custom variable for the template:
+  variable: 'person',
+  // Use the "person" variable in the template:
+  template: 
+'&lt;li&gt;
+  &lt;h3&gt;{= person.name }&lt;/h3&gt;
+  &lt;h4&gt;{= person.job }&lt;/h4&gt;
+&lt;/li&gt;'
 });
-// Render view:
-simpleView.render(fruits);
-          </pre>
+// Render view with the person object:
+simpleView.render(person);</pre>
+  
+          <p>As you can see, this makes it easier to understand what the template is rendering.</p>
 
-          <p>And here's the same example from before, but with the template now defined in the view itself:</p>
+          <p>Here's the same example from before, but with the template now defined in the view itself:</p>
 
           <p data-height="350" data-theme-id="6688" data-slug-hash="oYYWOr" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 2" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/oYYWOr/">View Example 2</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
         
-        <p>Defining your templates in your view objects means your app's markup is less clutter and the template and view object are together as a single unit. No need to look around for where the view's template is.</p>
+        <p>When you define your templates in your view, your app's markup is less clutter and the template and view object are together as a single unit. No need to look around for where the view's template is. This also makes it easier for you to reuse a view elsewhere.</p>
           
 
           <p>To learn more about templates please visit the documentation for <a href="../templates/templates-intro.html">templates</a>.</p>
 
-          <h4>Managing a View's Data</h4>
+          <h4>Defining a View's Data</h4>
 
-          <h5>Using Plain JavaScript Objects</h5>
-
-          <p>Rather than passing the data to your view as an argument of the render function, you can tell the view that it should use a data object. When you do this, you only need to call the render function on the view:</p>
+          <p>Rather than passing the data to your view as an argument of the render function, you can tell the view what data it should use when rendering. Then whenever you call its render function, it will use that data. You do that by giving the view a <code>data</code> property to which you assign the data:</p>
 
           <p data-height="350" data-theme-id="6688" data-slug-hash="Pbbjob" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 3" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/Pbbjob/">View Example 3</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -144,25 +203,27 @@ var simpleView = $.View({
   template: '&lt;li&gt;{= fruit.name }&lt;/li&gt;'
 });
 // Render view:
-simpleView.render();
-          </pre>
+simpleView.render();</pre>
 
-          <h5>Using Models</h5>
-          <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's views. However, in many cases you might prefer to create an model and use that with a view. Why? Because models offer you functionality that plain JavaScript objects do not. Models let you regester events and a number of useful utility functions for manipulating and accesssing the model's data with minimal effort. When you designate a model as the source of a view's data, whenever the model changes, the view will update automatically. For more information about Models, read their <a href="../models/models-intro.html">documentation</a>.</p>
-          <p>To use a model with a view is simple:</p>
+          <h4>Binding a View to a Model</h4>
+          <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's views. However, in many cases you might prefer to create an model and use that with a view. Why? Models offer you functionality that plain JavaScript objects do not. However, the most important reason for binding your view to a model is that whenever the model changes, the view will render automatically. No need for you to call the view's render function. For more information about Models, read their <a href="../models/models-intro.html">documentation</a>.</p>
+
+          <p>To use a model with a view, assign the <code>model</code> to the view's model property instead of the <code>data</code> property:</p>
+
           <pre class="prettyprint linenums">
 var boundView = $.View({
   element: '#peopleList',
   model: peopleModel
-});
-          </pre>
+});</pre>
 
           <h4>Make a View Interactive</h4>
-          <p>You can make view interactive by providing events when setting up a view. You use the <code>events</code> property, which takes an array of event initializations. Events have three components: the element, the event and a callback. If no element is provided or you use the string <code>"self"</code>, ChocolateChip-UI will register the event on the element the view is attached to. However you can create a delegate event by providing a selector for a child element of the view's target. You can use any of the events that ChocolateChip-UI supports from mouse events to touch gestures. For the callback, <code>this</code> will refer to the element the user is interacting with:</p>
+          <p>You can make a view interactive by providing events. For this you use the <code>events</code> property, which takes an array of event objects. Event objects have three possible properties: the event you want to capture, a callback and an optional element to delegate the event to. Instead of an element you can use the string <code>"self"</code> to target the view's anchor element. You can use any of the events that ChocolateChip-UI supports from mouse events to touch gestures. For the callback, <code>this</code> will refer to the element the user is interacting with:</p>
+
           <pre class="prettyprint linenums">
 var interactiveView = $.View({
   element: '#items',
   model: ItemsModel,
+  // Define an event delegated to the list items:
   events: [{
     element: 'li',
     event: 'tap',
@@ -170,43 +231,41 @@ var interactiveView = $.View({
       console.log($(this).text());
     }
   }]
-});
-          </pre>
-          <p>You can add events at any time to an existing view using the <code>addEvents</code> method on a view:</p>
+});</pre>
+          <p>You can add events at any time to an existing view using the view's <code>addEvents</code> method:</p>
+
           <pre class="prettyprint linenums">
 myView.addEvent({
   element: 'h3',
   event: 'doubletap',
   callback: function() {
     console.log($(this).text());
-});
-          </pre>
+});</pre>
 
           <p>And here's an example of a view with events bound to its items. Click on an item and it will alert the content:</p>
 
           <p data-height="350" data-theme-id="6688" data-slug-hash="QGGgdm" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="View Example 4" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/QGGgdm/">View Example 4</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <h4>Managing a View's Template</h4>
+          <h4>Changing a View's Template</h4>
+          <p>As we mentioned previously, you can change the template that a view is using. If you wanted to render different data in the same view depending on what the user chooses, you can change the view's template. To do so, you assign the template using the <code>setTemplate()</code> method. After changing the template, you will need to render the template again, as illustrated below:</p>
 
-          <h5>Changing Templates</h5>
-          <p>As we mentioned previously, you can change the template that a view is using. If you wanted to render several kinds of data on the same view depending on what the user chooses, you can change the view's model and template with each choice.</p>
-          <p>To change a view's template, you assign it using the property <code>template</code>. After changing the template, you will need to render the template again, as illustrated below:</p>
           <pre class="prettyprint linenums">// Get a template:
 var template2 = $('#template2').html();
 // Assign new template to view:
 peopleView.setTemplate(template2);
 // Rerender view with new template:
-peopleView.render();
-          </pre>
+peopleView.render(newData);</pre>
+
           <p>If you want to change a view's model and template, change the template first, then the model. That way, the new model will render the view with the new template. Please see <a href="../templates/templates-intro.html">templates</a> for more details.</p>
 
-          <h5>Sequential Numbering</h5>
+          <h4>Sequential Numbering</h4>
           <p>Sometimes you want to output sequential numbering in your view's template. You do this by first using the <code>$.view.index</code> value in your template. By default all sequential numbering starts from <code>1</code>. However, you can set a view to start from any number you want. You can even use a negative number. The number you provide will be the first number output in the template.</p>
+
         <pre class="prettyprint linenums">
 // Template numbering will begin at 10:
-peopleView.startIndexFrom(10); 
-        </pre>
+peopleView.startIndexFrom(10);</pre>
+
         <p>And here's a template using it:</p>
          <pre class="prettyprint linenums">
 &lt;ul class="list cloak" id="arrayTemplate1"&gt;
@@ -215,10 +274,9 @@ peopleView.startIndexFrom(10);
       {= $.view.index }: {= data.firstName } {= data.lastName }
     &lt;/h3&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-         </pre>
+&lt;/ul&gt;</pre>
 
-          <h5>Formatting Output</h5>
+          <h4>Formatting Output</h4>
           <p>You may need to format the data you are rendering in a view's template. ChocolateChip-UI provides a number of formatters to help you. These go right in the template where you want the data formated. ChocolateChip-UI has the following formatters:</p>
           <ul>
             <li>formatNumber</li>
@@ -232,23 +290,24 @@ peopleView.startIndexFrom(10);
           <p>Please see temlates for more information about data formatters.</p>
 
 
-          <h5>Using Template Helpers</h5>
+          <h4>Using Template Helpers</h4>
           <p>Depending on your data, you may have the need to do some specialized formating of the data before outputing it. ChocolateChip-UI helps you accomplish this using a template helper. You do this using the <code>defineHelper</code> method:</p>
+
           <pre class="prettyprint linenums">
 $.defineHelper({
   upperCase: function(data) {
     return data.lastName.toUpperCase();
   }
-});
-          </pre>
+});</pre>
+
           <p>You can then use it like so:</p>
+
           <pre class="prettyprint linenums">
 &lt;ul class="list cloak" id="basicRepeater"&gt;
   &lt;li&gt;{= $.helpers.upperCase(data) }&lt;/li&gt;
-&lt;/ul&gt;
-          </pre>
+&lt;/ul&gt;</pre>
 
-          <h5>Nested Templates</h5>
+          <h4>Nested Templates</h4>
           <p>Rendering a data object that has a child element that is a collection is tricky. ChocolateChip-UI allows you to cover this by running JavaScript directly in your template. In fact, when the view is processed, your template gets converted into a JavaScript function. This means that you can use any JavaScript inside a template. You do need to escape the JavaScript code from the template. This is done using doube curly braces.</p>
 
           <p>Let's say we want to output a list like in our above examples. But each list item might have a sub list. Using JavaScript in our template, we can have our view render the sub items. So let's use this data and see how to render the sub-lists of data:</p>
@@ -332,8 +391,9 @@ peopleView.render();</pre>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h4>Styles in Views</h4>
-          <p>Since version 4.1.0, you can use a views <code>styles</code> property to define styles for a view. Using this property creates a virtual stylesheet for the view. Using this property to define a view's styles means that you can easily reuse the view in other projects and the styles will accompany this. If you are following the default patterns provided by ChocolateChip-UI you may not need to provide styles in the view. However, if you are creating a unique layout or customizing an existing one, you can use the <code>styles</code> property to make the view's layout look the way you want.</p>
-          <p>ChocolateChip-UI uses a special style object notation to define the styles for a view. Selectors must be quoted. These recevie a style object consisting of a property and value. Values must be quoted. Simple properties do not need to be quoted. However, if they are hyphenated, then they need to be quoted. However, if you use the camel case verion of a property, you do not need to quote it. Like values, selectors also need to be quoted. The base of the stylesheet is the selector provided as the anchor for the view. In the view below, that will be a list with the id <code>#list</code>. You style child elements by nesting them of of parent selectors, similar to SASS and LESS. <strong>Note</strong>, because you are providing the styles property an object, the CSS definitions do not end with a semi-colon but with a comma. Putting a semi-color in your style object will throw an error.</p>
+          <p>Since version 4.1.0, you can use the <code>styles</code> property to define styles for a view. This creates a virtual stylesheet for the view. This makes the view's style portable so you can reuse the view in other projects. If you are following the default patterns provided by ChocolateChip-UI you may not need to provide styles in a view. However, if you are creating a unique layout or customizing an existing one, you can use the <code>styles</code> property to make the view's layout look the way you want.</p>
+
+          <p>ChocolateChip-UI uses a special style object notation to define the styles for a view. Selectors must be quoted. These recevie a style object consisting of a property and value. Values must be quoted. Simple properties do not need to be quoted. However, if they are hyphenated, then they need to be quoted, otherwise you can use the camel case version of the property without quotes. The base of the stylesheet is the selector provided as the anchor of the view. In the example below, that will be the element <code>#list</code>. You can nest child elements in their parent selectors, similar to SASS and LESS. <strong>Note:</strong> Because this is object notation, CSS definitions do not end with a semi-colon but with a comma. Putting a semi-colon after your CSS value will throw an error.</p>
 
           <pre class="prettyprint linenums">// View with style object:
 var myView = $.View({
@@ -373,6 +433,7 @@ var myView = $.View({
 #list > li > h4 {
   color: blue;
 }</pre>
+
           <p>To learn more about using a view's style property, please go to <a target='_blank' href="./views-styles.html">the page dedicated to it</a>.</p>
 
           <h4>Reusing Views</h4>
@@ -412,8 +473,7 @@ var myView = $.View({
     // Set element to white wines scroll panel:
     specialWhitesView.setElement('#picksWhite');
     // Render with white wine data:
-    specialWhitesView.render(bestWines[1].data);
-</pre>     
+    specialWhitesView.render(bestWines[1].data);</pre>     
 
         </div>
         

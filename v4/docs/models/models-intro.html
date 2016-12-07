@@ -69,11 +69,11 @@
           <h2>Models</h2>
           <h3>Intro</h3>
           
-          <p>Data is the source of all truth in an app. Models provide a powerful way to manage data. You could just use POJO, plain ole JavaScript objects. Many frameworks do. But by doing so you loose the power of models.</p>
+          <p>Data is the source of all truth in an app. You can use plain JavaScript objects. But models provide a powerful way to manage data. Models offer feature not available in plain JavaScript objects.</p>
 
-          <p>ChocolateChip-UI models can hold a single object of key value pairs, or an array of objects with key value pairs. ChocolateChip-UI views feed on models. When rendering their templates, the views do not care what the data is. They take a model of an object and render one occurrence of the template. But if you provide the same view with a model holding an array of objects, that same view will render its template repeatedly, consuming all the objects in the model's array.</p>
+          <p>ChocolateChip-UI models can hold a single object of key value pairs, or an array of objects with key value pairs. When rendering their templates, the views do not care whether the data is an object or an array of objects. The view examines the data of the model. If its a single object, the view renders it. If the data is an array of objects, the view loops over the objects, rendering each one with its template.</p>
 
-          <p>Models encapsulate your data so that it is only accessible except through the model's interface. This protects your data from unintentional modification. You can also regester events on a model, which you can then trigger when needed.</p>
+          <p>Models encapsulate your data so that it is only accessible through the model's interface. This protects your data from unintentional modification. You can also register events on a model which you can then trigger when necessary.</p>
 
         </div>
         

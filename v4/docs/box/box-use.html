@@ -75,7 +75,9 @@
           <p>ChocolateChip-UI's Box is an interface to three different types of local data persistence: IndexedDB, WebSQL and localStorage. Which one it uses depends on the browser. Box first tries to use IndexedDB, if the browser does not support it, Box tries WebSQL, if the browser does not support that, it uses localStorage.</p>
 
           <h4>$.Box.set()</h4>
-          <p>If your data needs are simply, meaning you just need a simple box for local data persistence of a few items, you can use the defaul box. You do this by just setting your data. Box will put it in its default box called 'keyvaluepairs'. You can examine your boxes by opening the browser's Web inspector and examining your resources.</p>
+
+          <p>If your data needs are simple, you can use the default box. You do this by just setting your data. Box will put it in its default box called 'keyvaluepairs'. You can examine your boxes by opening the browser's Web inspector and examining your resources.</p>
+
           <p>To put something in a box, let's look at the following example. We'll need to write an event to grab some data from some form inputs, and a mediator to handle putting those values in a box:</p>
           
           <pre class='prettyprint linenums'>// Handle event to trigger model agumentation:
@@ -90,7 +92,7 @@ $('#boxit').on('click', function() {
 // Define Mediator to handle boxing model:
 //========================================
 var boxMediator = $.on('box-mediator', function(data) {
-  if (data && data.key) {
+  if (data &amp;&amp; data.key) {
     var key = data.key;
     var value = data.value;
     // Set a Box key/value pair:
@@ -101,8 +103,8 @@ var boxMediator = $.on('box-mediator', function(data) {
       });
     });
   }
-});
-          </pre>
+});</pre>
+
           <h4>$.Box.get()</h4>
           <p>You can get a key/value pair out of a box using <code>$.Box.get()</code>. Just give if the key you want to retrieve. Box will return a promise that you can use to access that data:</p>
           <pre class='prettyprint linenums'>$.Box.get('name').then(function(value) {

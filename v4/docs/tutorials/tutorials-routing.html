@@ -93,7 +93,7 @@ routes.addRoute({
 });</pre>
           <p>So, now we have a ChocolateChip-UI route defined, but how do you activate one? There's no url, so links aren't going to do it. But ChocolateChip-UI apps don't use links for navigation anyway. They use element attributes to define how navigation works. For example, to make a navigation list go to a detail page, you use the attribute <code>data-goto</code> and give it the value <code>detail</code>. When the use tap's the list item with that value, ChocolateChip-UI will direct the user to that screen and it will automatically dispatch the vaue as a route. Since we have a route defined for <code>detail</code>, when the user taps the list item with <code>data-goto='detail'</code>, ChocolateChip-UI will take the user there and execute our route callback.</p>
 
-          <p>Good so far, but sometimes you want to have multiple list items leading to the same detail screen and loading different content depeding on which item the user tapped. No problem. You can include a unique id with a route. You do this by adding it to the route with a color ":"</p>
+          <p>Good so far, but sometimes you want to have multiple list items leading to the same detail screen and loading different content depeding on which item the user tapped. No problem. You can include a unique id with a route. You do this by adding it to the route with a colon ":". Whatever comes after the colon will be treated as a route parameter.</p>
 
           <pre class='prettyprint linenums'>&lt;ul class="list"&gt;
   &lt;li data-goto="detail:apples"&gt;
@@ -125,20 +125,24 @@ routes.addRoute({
           
 routes.addRoute({
   route: 'detail',
-  callback: function(id) {
+  // Get the route parameter:
+  callback: function(param) {
     // Filter the chosen fruit from the collection:
     var chosenFruit = fruitsCollection.filter(function(fruit) {
-      return fruit.id = id;
+      // Compare the route param with the fruit id:
+      return fruit.id = param;
     });
 
-    // Rener the detail view with the fruit:
+    // Render the detail view with the chosen fruit:
     ChosenFruitView.render(chosenFruit);
   }
 });</pre>
 
-        <p>This works great for navigating around an app, but routes also provide another useful feature, communicating with a remote server. If you wish to use a RESTful interface for persisting local actions to a server, you can get the current full path of a route. Use the method <code>$.Router.getFullRoute</code>. This will give you the route, including route ids, separated by slashes:</p>
+        <p>This works great for navigating around an app, but routes also provide another useful feature, communicating with a remote server. If you wish to use a RESTful interface for persisting local actions to a server, you can get the current full path of a route. Use the method <code>getFullRoute</code> on the route object. This will give you the route, including route ids, separated by slashes:</p>
 
-          <pre class='prettyprint linenums'>var currentRoute = $.Router.getFullRoute();
+          <pre class='prettyprint linenums'>// Define route:
+var router = $.Router;
+var currentRoute = router.getFullRoute();
 // Possible value: 'main/fruits:banana'</pre>
           <p>After getting the full path, you can post it to a server in an Ajax/Fetch request.</p>
 

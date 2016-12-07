@@ -72,11 +72,14 @@
           <h2>Widgets</h2>
           <h3>Segmented Button</h3>
           
-          <p>Segmented buttons are useful to provide the user several possible actions from one interface control. The can also be used to toggle sections' visibility. To create a segemented button control you need to have a container for them. This is usally a div with the classes "horizontal centered". We will inject the segmented buttons in this:</p>
+          <p>Segmented buttons are useful to provide the user several possible actions from one interface control. The can also be used to toggle the visibility of panels of content. To create a segemented button control you need to have a container for them. This is usually a div with the classes "horizontal centered". We will inject the segmented buttons in this:</p>
 
       <img class='layout' src="../../images/widgets/segmented-button.png" alt="Segmented Buttons">
+
           <pre class="prettyprint linenums">&lt;div id='segmentedPanel' class='horizontal centered'&gt;&lt;/div&gt;</pre>
+
           <p>With our container ready, we can initialize the control:</p>
+
           <pre class="prettyprint linenums">
 $.Segmented({
   element: '#segmentedPanel',
@@ -84,9 +87,11 @@ $.Segmented({
   selected: 2,
   callback: segmentedResponse
 });</pre>
+
     <p>In the above example notice that we provide the id of the container as the value of element. Then we provide labels that the buttons will display. We set a default selected state, which is a zero-based number. And finally, a callback to execute when the user taps a segment. That's all there is to set up a segmented control. Please see the file "segmented-button.html" in the folder of examples in the source code from Github.</p>
 
         <p>You can capture an instance of a segmented button control so that you can find out what its current selection is. To do this, assign the control to a variable. When you create an instance in this way, you can use the method <code>val()</code> to get an object of the current selection. The object exposes the zero-based index of the seclection, as well as the currently selected button. Please note that before version 4.2.0 you would have used <code>getSelection()</code> for the same purpose. In the following example, we assign the control to <code>segCtrl</code> and then execute <code>segCtrl.val().index</code> to output the current selected button, and we use <code>segCtrl.val().element</code> to get the text of the button:</p>
+
           <pre class="prettyprint linenums">
 var segCtrl = $.Segmented({
   element: '#segmentedPanel',
