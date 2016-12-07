@@ -83,31 +83,39 @@ var simpleView = $.View({
   element: '#special'
 });</pre>
           <p>The above view presupposes the existence of an element called <code>#special</code>. This might have a template inside. There are several ways to do that. We can use a script tag, a template tag, or plain markup. When putting the template markup directly in the element, always give the element a class of <code>cloak</code>:</p>
+
           <pre class="prettyprint linenums">// Script tag:
 &lt;script type='text/template'&gt;
   &lt;ul class='list'&gt;
-    &lt;li&gt;{= data.name }&lt;/li&gt;
+    &lt;li&gt;{= data }&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/script&gt;</pre>
+
           <pre class="prettyprint linenums">// Template tag:
 &lt;template'&gt;
   &lt;ul class='list'&gt;
-    &lt;li&gt;{= data.name }&lt;/li&gt;
+    &lt;li&gt;{= data }&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/template&gt;</pre>
+
           <pre class="prettyprint linenums">// Template in element with "cloak":
 &lt;ul class='list cloak'&gt;
-  &lt;li&gt;{= data.name }&lt;/li&gt;
+  &lt;li&gt;{= data }&lt;/li&gt;
 &lt;/ul&gt;</pre>
 
           <p>When we point a view to an element with a template, ChocolateChip-UI extracts the template and parses it. After that, we can render the template with our data:</p>
-          <pre class="prettyprint linenums">// Define a view:
+          <pre class="prettyprint linenums">//Markup:
+// The template will include the span tag:
+&lt;div id='stuff'&gt;
+  &lt;span class='important'&gt;{= data }&lt;/span&gt;
+&lt;/div&gt;
+// Define a view:
 var simpleView = $.View({
-  element: '#fruitList'
+  element: '#stuff'
 });
 // Render the view with data:
-simpleView.render(fruits);</pre>
-          <p>If <code>fruits</code> were a collection, the view would render the template repeatedly with the collection. And if fruits was a simle object, it would render just once. Views do not care whether data is iterable or not. It checks the data before rendering and decides. As long as the properties on an object or array of objects matches your template, it will render without issue.</p>
+simpleView.render(myStuff);</pre>
+          <p>If <code>myStuff</code> were an array of objects, the view would render the template with each object. And if myStuff was a simple object, it would render just once. Views do not care whether data is iterable or not. It checks the data before rendering and decides. As long as the properties on an object or array of objects matches your template, it will render without issue.</p>
 
 
           <p>Here's an example of a simple view with its template in the markup rendering an array of items:</p>
@@ -200,7 +208,7 @@ var simpleView = $.View({
   element: '#special',
   variable: 'fruit',
   data: fruits,
-  template: '&lt;li&gt;{= fruit.name }&lt;/li&gt;'
+  template: '&lt;li&gt;{= fruit }&lt;/li&gt;'
 });
 // Render view:
 simpleView.render();</pre>
