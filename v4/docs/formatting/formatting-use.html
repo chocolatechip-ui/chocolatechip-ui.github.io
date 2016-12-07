@@ -125,7 +125,9 @@ $.formatTime(date.toLocaleTimeString())
 var date_1999 = new Date('October 30, 1999');
 var date_1949 = new Date('August 20, 1949');
 var date_1980 = new Date('January 1, 1980');
-// Sort the dates:
+
+// Sort the dates.
+// Pass '$.sortDate' as pedicate for sort method:
 [today, date_1999, date_1949, date_1980].sort($.sortDate);
 // returns:
 1949, August
