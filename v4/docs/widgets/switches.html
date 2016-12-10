@@ -85,15 +85,17 @@ var sleepSwitch = $.Switch({
   name: 'sleep',
   value: 'get some sleep',
   checked: false,
-  onCallback: function() {
+  on: function() {
     console.log('Just turned this on!');
     $('#response').text(sleepSwitch.getValue().value);
   },
-  offCallback: function() {
+  off: function() {
     console.log('Turning this thing off!');
     $('#response').empty();
   }
 });</pre>
+
+    <p><strong>Notice: </strong>Before version <strong>4.3.0</strong> you would use <code>onCallback</code> and <code>offCallback</code>. These have been deprecated in favor of the shorter forms: <code>on</code> and <code>off</code> for the switch callbacks as illustrated above.</p>
 
     <img  class='layout'  src="../../images/widgets/switch.png"  alt="Simple  Layout">
 
