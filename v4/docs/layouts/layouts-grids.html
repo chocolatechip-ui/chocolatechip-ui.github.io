@@ -70,311 +70,92 @@
       <div>
         <div>
           <h2>Layouts</h2>
-          <h3>Cards</h3>
+          <h3>Grids</h3>
           
-          <p>Cards provide a simple and consitent interface for displaying chuncks of data. Cards automatically stack their content up vertically. It's like a card. You can give a card a header and a footer, or neither. The content of a card is always contained in a <code>section</code> tag. You should always put your content in a section tag because in the context of a card, the section that will provide automatic vertical scrolling when the content is more than can fit in the height of the card. Below is the simplest possible card with a header, section and footer:</p>
+          <p>ChocolateChip-UI provides a grid system that you can use for you app layouts. This is based on CSS flexbox.</p>
 
-          <pre class="prettyprint linenums">
-&lt;div class="chui-card"&gt;
-  &lt;header&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer&gt;
-    &lt;button&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;</pre>
-          <img class='layout2' src="../../images/cards/card-1.png" alt="Card Layout">
+          <h3>.grid &amp; .col</h3>
 
-          <h4>Borders</h4>
-          <p>You can spice up your cards with various classes. There are classes that provide common values for many CSS properties, such as height, width, padding, margin, background-color and box shadow. In the above card everything looks like its just sitting together in the same space. We can provide some clarity about the parts of the card by giving the header and footer a border. To do this we can use the classes <code>chui-border-top</code> and <code>chui-border-bottom</code> on the header and footer respectively.</p>
-          <pre class="prettyprint linenums">
-&lt;div class="chui-card"&gt;
-  &lt;header class="chui-border-bottom"&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class="chui-border-top"&gt;
-    &lt;button&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
+          <p>You build grids using two classes: <code>grid</code> and <code>col</code>. The <code>grid</code> class create a row. Inside of this you put tags with a class of <code>col</code>. You indicate how much a column should take up in relation to other columns by giving it another class. This class begins with <code>flex-</code> followed by a numerical value to index its CSS flex value. You can use a value from 1 to 10:</p>
+
+          <pre class="prettyprint linenums">// Define some grids:
+&lt;div class='grid'&gt;
+  &lt;div class='col flex-1'&gt;1&lt;/div&gt;
+  &lt;div class='col flex-1'&gt;1&lt;/div&gt;
+  &lt;div class='col flex-1'&gt;1&lt;/div&gt;
 &lt;/div&gt;</pre>
 
-        <img class='layout2' src="../../images/cards/card-2.png" alt="Card Layout">
+          <p>Giving all columns the same flex value, in this case, <code>flex-1</code>, means that they all get an equal amount of the available space:</p>
 
-        <h4>Padding</h4>
-        <p>As you can see, this gives us some separation, but the areas of the card feel cramped. We need some space. For that we can use the padding classes: <code>chui-padding-0</code>. These values start a zero and increase by 5 upto to 20. This version of padding classes adds equal padding to all sides:</p>
+          <h4>Live Example</h4>
+          <p data-height="300" data-theme-id="6688" data-slug-hash="xRJJMJ" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 1" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/xRJJMJ/">Grids 1</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <pre class="prettyprint linenums">.chui-padding-0
-.chui-padding-5
-.chui-padding-10
-.chui-padding-15
-.chui-padding-20</pre>
-          <p>If you want less padding above and more on the sides, use these classes:</p>
-
-          <pre class="prettyprint linenums">.chui-padding-0-10
-.chui-padding-0-20
-.chui-padding-5-10
-.chui-padding-5-20
-.chui-padding-10-20
-.chui-padding-15-30</pre>
-          <p>If you need some other padding that you can reuse on your cards, just define a new class with the padding you need and add it to your apps CSS. Then use the new class on your card or its elements:</p>
-
-          <pre class="prettyprint linenums">.chui-padding-10-100 {
-  padding: 10px 100px !important;
-}
-.chui-padding-10-auto {
-  padding: 10px auto !important;
-}</pre>
-          <p><strong>Note: </strong>As we did above with custom padding classes, you can define any new classes you need to provide any other styles for reuse in your cards. You are not limited by the ones provied by ChocolateChip-UI.</p>
-
-          <p>So, lets add some padding to our card:</p>
-
-          <pre class="prettyprint linenums">
-&lt;div class="chui-card"&gt;
-  &lt;header class="chui-border-bottom chui-padding-5"&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class="chui-border-top chui-padding-5"&gt;
-    &lt;button&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;</pre>
           
-          <img class='layout2' src="../../images/cards/card-3.png" alt="Card Layout">
+          <p>By increasing the flex value of a column, we increase its width relative to the other columns:</p>
 
-          <h4>Height</h4>
-          <p>Next we're going to had a fixed height for our cards. Without a designated height, the card would expand infinitely to accomodate its content. The whole point of cards is that provide stardized areas for displaying content. We can set the height of a card with card classes:</p>
-
-          <pre class="prettyprint linenums">.chui-height-100
-.chui-height-150
-.chui-height-200
-.chui-height-250
-.chui-height-300
-.chui-height-350
-.chui-height-400
-.chui-height-450
-.chui-height-500</pre>
-          <p>If the provided heights don't work for you, create your own class with the height you need. Now we'll set our cards height to 200:</p>
-
-          <pre class="prettyprint linenums">
-&lt;div class="chui-card chui-height-200"&gt;
-  &lt;header class="chui-border-bottom chui-padding-5"&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class="chui-border-top chui-padding-5"&gt;
-    &lt;button&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
+          <pre class="prettyprint linenums">// Define some grids:
+&lt;div class='grid'&gt;
+  &lt;div class='col flex-1'&gt;1&lt;/div&gt;
+  &lt;div class='col flex-2'&gt;2&lt;/div&gt;
+  &lt;div class='col flex-3'&gt;3&lt;/div&gt;
 &lt;/div&gt;</pre>
-          <img class='layout2' src="../../images/cards/card-4.png" alt="Card Layout">
 
-          <p>Now that the card has a fixed height, the content in the section tag is scrollable.</p>
-
-          <h4>Width</h4>
-          <p>We can also set the width of our card. Setting height and width allows use to easily assemble cards into oraganized grids of items.</p>
-          <p>The width classes are:</p>
-
-          <pre class="prettyprint linenums">.chui-width-200
-.chui-width-250
-.chui-width-300
-.chui-width-350
-.chui-width-400
-.chui-width-450
-.chui-width-500
-.chui-width-550
-.chui-width-600</pre>
           
-          <p>We'll constain the width of our card to 200 pixels with the class <code>chui-width-200</code>:</p>
+          <h4>Live Example</h4>
+          <p data-height="300" data-theme-id="6688" data-slug-hash="QGBBoG" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 2" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/QGBBoG/">Grids 2</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <pre class="prettyprint linenums">
-&lt;div class="chui-card chui-height-200 chui-width-200"&gt;
-  &lt;header class="chui-border-bottom chui-padding-5"&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class="chui-border-top chui-padding-5"&gt;
-    &lt;button&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;</pre>
-            <img class='layout2' src="../../images/cards/card-5.png" alt="Card Layout">
+          <h4>Equal Height Columns</h4>
+          <p>You don't have to worry about the column heights not matching in a grid. They will always be equal height, regardless of thee content:</p>
 
-            <h4>Background Color</h4>
-            <p>We can also give a card or elements of a card background colors. ChocolateChip-UI provides a number of useful ones, but you can always define your own class with the specific background colors you want.</p>
+          <p data-height="500" data-theme-id="6688" data-slug-hash="XNBBwE" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 6" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/XNBBwE/">Grids 6</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <pre class="prettyprint linenums">.chui-bc-dark rgba(0,0,0,0.05)
-.chui-bc-darker rgba(0,0,0,0.1)
-.chui-bc-lite rgba(255,255,255,0.15)
-.chui-bc-liter rgba(255,255,255,0.25)
-.chui-bc-red (#FF0000)
-.chui-bc-blue (#0000ff)
-.chui-bc-green (#0f7002)
-.chui-bc-orange (#ff8000)
-.chui-bc-yellow (#f7f701)
-.chui-bc-pink (#ff00ff)
-.chui-bc-tan (#c7a679)
-.chui-bc-lime (#22ff08)
-.chui-bc-purple (#6c006c)
-.chui-bc-lavender (#e0dff8)
-.chui-bc-gold (#fed009)
-.chui-bc-sky-blue (#66ccff)
-.chui-bc-black (#000000)
-.chui-bc-white (#ffffff)
-.chui-bc-ivory (#ffffed)
-.chui-bc-gray (#6d6d6d)
-.chui-bc-charcoal (#333333)
-.chui-bc-brown (#942f01)
-.chui-bc-teal (#0e6e6c)
-.chui-bc-violet (#9a42ea)
-.chui-bc-olive (#6d6f03)
-.chui-bc-moss (#40652f)</pre>
+          <h3>Column Gutters</h3>
 
-        <p>Try out different background color classes on the card, header, section and footer to see what works for you.</p>
+          <p>All the above examples have the columns up against each other. You can put gutters between your columns with the <code>gutter-5</code> and <code>gutter-10</code> classes on the grid container:</p>
 
-        <p>We're going to add some colors to the header, section, footer and button in the footer. We'll use <code>chui-bc-green</code> on the header, <code>chui-bc-ivory</code> on the section, <code>chui-bc-gold</code> on the footer and <code>chui-bc-green</code> on the button in the footer.</p>
-
-          <pre class="prettyprint linenums">&lt;div class="chui-card chui-height-200 chui-width-200"&gt;
-  &lt;header class='chui-border-bottom chui-padding-5 chui-bc-green'&gt;
-    &lt;h2&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5 chui-bc-ivory'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class='chui-border-top chui-padding-5 chui-bc-gold'&gt;
-    &lt;button class="chui-bc-green"&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
+          <pre class="prettyprint linenums">// Grid with 5px gutter between columns:
+&lt;div class='grid gutter-5'&gt;
+  &lt;div class='col flex-1'&gt;&lt;/div&gt;
+  &lt;div class='col flex-2'&gt;&lt;/div&gt;
+  &lt;div class='col flex-1'&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
 
-        <img class='layout2' src="../../images/cards/colored-1.png" alt="Card Layout">
+          <h4>Live Example</h4>
+          <p data-height="300" data-theme-id="6688" data-slug-hash="KNBBYm" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 3" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/KNBBYm/">Grids 3</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+
+          <h4>Gradated Column Widths</h4>
+          <p>You can use a particule column value, say 10, as the base for defining column flex values. This allows to create some interesting layout patters:</p>
+
+          <h4>Columns Based on 10</h4>
+          <p data-height="450" data-theme-id="6688" data-slug-hash="xRJJea" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 4" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/xRJJea/">Grids 4</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+  
+          <h4>Columns Basd on 6</h4>
+          <p data-height="350" data-theme-id="6688" data-slug-hash="NbBBZR" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 7" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/NbBBZR/">Grids 7</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
         
-        <h4>Text Color</h4>
-        <p>As you can see, the text of the header and button are hard to read because of the background color. We can fix that using a card color class. These are the defaults:</p>
+          <h3>Flex Wrap</h3>
+          <p>You can make a grid wrap when the content doesn't fit the available screen width. This is useful when the device is rotated from landscape to portrait. To do so, just add the class <code>wrap</code> to the grid container:</p>
 
-          <pre class="prettyprint linenums">.chui-c-lite
-.chui-c-dark</pre>
+          <p data-height="300" data-theme-id="6688" data-slug-hash="ObwwYy" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/ObwwYy/">Grids 5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <h3>Centered Grids</h3>
+          <p>You can center the columns in a grid using the class <code>center</code> on the grid container:</p>
+
+          <p data-height="500" data-theme-id="6688" data-slug-hash="LbBBKq" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 8" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/LbBBKq/">Grids 8</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
           
-          <p>We'll use <code>chui-c-lite</code> on h1 in the header and button to make them easier to read.</p>
+          <h3>Fixed Width Columns</h3>
+          <p>When using grids, sometimes you may want on column to have a constant fixed width. You can do that by difining a width for it with a class, or an inline style on it:</p>
 
-          <pre class="prettyprint linenums">&lt;div class="chui-card chui-height-200 chui-width-200"&gt;
-  &lt;header class='chui-border-bottom chui-padding-5 chui-bc-green'&gt;
-    &lt;h2 class='chui-c-lite'&gt;Card 1&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5 chui-bc-ivory'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos earum voluptate, pariatur iusto at. In animi tenetur corporis aliquam quibusdam consequuntur amet eius vero molestiae, repellat sunt, rerum incidunt quia.&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class='chui-border-top chui-padding-5 chui-bc-gold'&gt;
-    &lt;button class="chui-bc-green chui-c-lite"&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;</pre>
-
-          <img class='layout2' src="../../images/cards/colored-2.png" alt="Card Layout">
-
-          <h4>Background Image</h4>
-          <p>ChocolateChip-UI does not have class for background images, but it is easy to make one. You can make a class to add a background image to the card itself or any of its elements. In the image below you can see a card with a background image on its header and another card with a background image on the card itself so that it shows there on all content:</p>
-
-          <img class='layout2' src="../../images/cards/card-collection-4.png" alt="Card Layout">
-
-          <p>Here are the classes we made to handle that:</p>
-
-
-          <pre class="prettyprint linenums">.card-12 > header {
-  background: transparent url(../images/myPictures/germany-70567_640.jpg) no-repeat;
-  background-size: 100% auto;
-}
-.card-12 h2 {
-  font-size: 30pt; 
-  font-weight: bold; 
-  text-shadow: 2px 2px 4px #000;
-}
-
-.card-13 {
-  background: transparent url(../images/pics/pic-01.jpg) no-repeat;
-  background-size: 100% auto;
-}
-.card-13 h2 {
-  font-size: 30pt; 
-  font-weight: bold; 
-  text-shadow: 2px 2px 4px #000;
-}
-.card-13 > section {
-  background-color: rgba(255,255,255,0.85);
-}</pre>
-
-
-          <p>And here is the markup for those two cards:</p>
-
-
-          <pre class="prettyprint linenums">&lt;div class="card-12 chui-card chui-shadow-1 chui-height-250 chui-width-600"&gt;
-  &lt;header class='chui-padding-5'&gt;
-    &lt;h2 class='chui-c-lite'&gt;Card 12&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut modi nulla soluta minus ex atque cupiditate excepturi exercitationem ad accusamus consequuntur architecto autem omnis officiis, quidem harum, nam minima voluptate?&lt;/p&gt;
-  &lt;/section&gt;
-&lt;/div&gt;
-
-&lt;div class="card-13 chui-card chui-shadow-1 chui-height-250 chui-width-600"&gt;
-  &lt;header class='chui-padding-5'&gt;
-    &lt;h2 class='chui-c-lite'&gt;Card 13&lt;/h2&gt;
-  &lt;/header&gt;
-  &lt;section class='chui-padding-5'&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut modi nulla soluta minus ex atque cupiditate excepturi exercitationem ad accusamus consequuntur architecto autem omnis officiis, quidem harum, nam minima voluptate?&lt;/p&gt;
-  &lt;/section&gt;
-  &lt;footer class='chui-border-top chui-padding-20 chui-bc-transparent-gray'&gt;
-    &lt;button class='chui-c-lite'&gt;Click&lt;/button&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;</pre>
-
-
-          <h4>Margins</h4>
-          <p>You can also use margin classes on cards or card elements. The following classes are avaiable:</p>
-
-          <pre class="prettyprint linenums">.chui-margin-0
-.chui-margin-10-5
-.chui-margin-10-6
-.chui-margin-5
-.chui-margin-10
-.chui-margin-15
-.chui-margin-20
-.chui-margin-5-6
-.chui-margin-5-10
-.chui-margin-5-15
-.chui-margin-5-20
-.chui-margin-10-15
-.chui-margin-10-20</pre>
-
-          <h4>Box Shadow</h4>
-          <p>And finally, there are classes for box shadows. These can help make your cards pop off the page with some dimension. The following classes are avaiable:</p>
-
-          <pre class="prettyprint linenums">.chui-shadow-1 (1px 1px 2px 1px #ccc)
-.chui-shadow-2 (2px 2px 4px 2px #bbb)
-.chui-shadow-3 (3px 3px 6px 3px #aaa)</pre>
-          <p>If you really want a more dramatic box shadow, simply derine your own class.</p>
-
-          <p style='text-align:center;'>.chui-shadow-1</p>
-          <img class='layout' src="../../images/cards/shadow-1.png" alt="Card Layout">
-          <p style='text-align:center;'>.chui-shadow-2</p>
-          <img class='layout' src="../../images/cards/shadow-2.png" alt="Card Layout">
-          <p style='text-align:center;'>.chui-shadow-3</p>
-          <img class='layout' src="../../images/cards/shadow-3.png" alt="Card Layout">
-
-          <h4>Responsive</h4>
-          <p>Cards have responsive behavior built in. So if you use or define a class with a longer width than can fit on a cell phone in portrait mode, the card will be resized to fit the screen.</p>
-
-          <h4>Examples</h4>
-          <p>Here are a number of cards defined with the default classes and in some cases a background image applied.</p>
-
-          <img class='layout3' src="../../images/cards/card-collection.png" alt="Card Layout">
-
+          <p data-height="300" data-theme-id="6688" data-slug-hash="NbBBQb" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 9" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/NbBBQb/">Grids 9</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
         </div>
         
@@ -406,8 +187,8 @@
                 <li><a href="layouts-intro.html">Intro</a></li>
                 <li><a href="layouts-use.html">Use</a>
                 <li><a href="layouts-buttons.html">Buttons</a>
-                <li><a href="layouts-cards.html" class='selected'>Cards</a>
-                <li><a href="layouts-grids.html">Grids</a></li></li>
+                <li><a href="layouts-cards.html">Cards</a>
+                <li><a href="layouts-grids.html" class='selected'>Grids</a></li></li>
               </ul>
             </li>
             <li><a href="../themes/themes-intro.html">Themes</a></li>
