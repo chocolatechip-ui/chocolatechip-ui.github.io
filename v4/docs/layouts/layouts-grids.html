@@ -128,15 +128,15 @@
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 
-          <h4>Gradated Column Widths</h4>
-          <p>You can use a particule column value, say 10, as the base for defining column flex values. This allows to create some interesting layout patters:</p>
+          <h3>Gradated Column Widths</h3>
+          <p>You can use a particular column value, say 10, as the base for defining column flex values. This allows to create some interesting layout patters:</p>
 
-          <h4>Columns Based on 10</h4>
+          <h4>Columns Basd on 10</h4>
           <p data-height="450" data-theme-id="6688" data-slug-hash="xRJJea" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 4" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/xRJJea/">Grids 4</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
   
           <h4>Columns Basd on 6</h4>
-          <p data-height="350" data-theme-id="6688" data-slug-hash="NbBBZR" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 7" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/NbBBZR/">Grids 7</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+          <p data-height="300" data-theme-id="6688" data-slug-hash="GNXKzG" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 7-gutterless" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/GNXKzG/">Grids 7-gutterless</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
         
           <h3>Flex Wrap</h3>
@@ -144,6 +144,17 @@
 
           <p data-height="300" data-theme-id="6688" data-slug-hash="ObwwYy" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Grids 5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/ObwwYy/">Grids 5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <h3>Responsie Grids</h3>
+          <p>By default, the widths of columns are responsive. However, an narrow mobile devices in portrait mode it may be difficult to display columns effectively. You can tell your grid to automatically collapse to a collection of stacked elemets when the screen is too narrow. You do that by putting the class <code>responsive</code> on the grid:</p>
+
+          <pre class="prettyprint linenums">// Responsive grid.
+// Notice the class "responsive" on this grid:
+&lt;div class='grid gutter-5 responsive'&gt;
+  &lt;div class='col flex-1'&gt;&lt;/div&gt;
+  &lt;div class='col flex-2'&gt;&lt;/div&gt;
+  &lt;div class='col flex-1'&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
 
           <h3>Centered Grids</h3>
           <p>You can center the columns in a grid using the class <code>center</code> on the grid container:</p>
