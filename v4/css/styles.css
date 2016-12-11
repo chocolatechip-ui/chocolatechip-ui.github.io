@@ -6,7 +6,7 @@ html, body {
 	-webkit-font-smoothing: subpixel-antialiased;
 	background-color: #fafafa;
 }
-#edit-area {
+#edit-area, #the-body {
 	overflow: hidden !important;
 }
 #chui-logo {
