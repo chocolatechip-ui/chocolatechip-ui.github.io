@@ -6,12 +6,6 @@ html, body {
 	-webkit-font-smoothing: subpixel-antialiased;
 	background-color: #fafafa;
 }
-body {
-	position: relative;
-}
-#edit-area, #the-body {
-	overflow: hidden !important;
-}
 #chui-logo {
 	display: block;
 	height: 80px;
