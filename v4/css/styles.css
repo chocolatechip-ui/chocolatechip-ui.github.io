@@ -6,6 +6,9 @@ html, body {
 	-webkit-font-smoothing: subpixel-antialiased;
 	background-color: #fafafa;
 }
+.code-box.active {
+	overflow: hidden;
+}
 #chui-logo {
 	display: block;
 	height: 80px;
