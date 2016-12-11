@@ -7,7 +7,7 @@ html, body {
 	background-color: #fafafa;
 }
 .code-box.active {
-	overflow: hidden;
+	overflow: hidden !important;
 }
 #chui-logo {
 	display: block;
