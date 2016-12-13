@@ -85,7 +85,7 @@
 &lt;/ul&gt;</pre>
         <p>To turn a simple list into a select list, you need to define it with the following options: an element, a selected list item and a callback. If no selected item is provided, none of them will be selected at load time.</p>
         <pre class="prettyprint linenums">
-mySelectList = $.SelectList({
+var mySelectList = $.SelectList({
   element: '#selectList',
   selected: 2,
   callback: function() {
