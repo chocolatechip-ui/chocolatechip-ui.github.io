@@ -74,7 +74,7 @@
           
           <p>You can provide formatters different parameters to tell it how to format your data.</p>
 
-            <h4>$.formatNumber(number, separator, decimal)</h4>
+            <h3>$.formatNumber(number, separator, decimal)</h3>
             <p>Besides passing in the number to format, you can provide a character to use for indicating thousands. The third argument is the character to represent decimals. The default is thousands separator `,`. Some cultures use `.` for thousands and `,` for decimals. To format a number for Latin America:</p>
 <pre class='prettyprint linenums'>$.formatNumber(123456789.24312, '.', ',');
 // returns: 123.456.789,24312
@@ -86,12 +86,12 @@ $.formatNumber(123456789.24312, 0);
 // returns: 123,456,789
 </pre>
 
-            <h4>$.sum(array)</h4>
+            <h3>$.sum(array)</h3>
             <p>This takes an array of numbers and returns their sum:</p>
 <pre class='prettyprint linenums'>$.sum([1,2,3,4,5,6,7,8,9,10,11.2]);
 // returns: 66.2
 </pre>
-            <h4>$.currency(amount, symbol, separator, decimal)</h4>
+            <h3>$.currency(amount, symbol, separator, decimal)</h3>
             <p>This method takes an amount and formats it as currency, the default is for US dollars. The second parameters is the currency symbol, The third parameter is the thousands separator. The fourth parameter is the decimal separator or rounding number.</p>
 <pre class='prettyprint linenums'>$.currency(9123456789.2382, "$");
 // returns: $9,123,456,789.24
@@ -99,7 +99,7 @@ $.currency(9123456789.99, "€", ",", 0);
 // returns: €9,123,456,789
 </pre>
 
-            <h4>$.formatTime(time)</h4>
+            <h3>$.formatTime(time)</h3>
             <p>Using JavaScript, you can get the local time to format:</p>
 <pre class='prettyprint linenums'>// Output a data:
 var date = new Date();
@@ -118,7 +118,7 @@ $.formatTime(date.toLocaleTimeString())
             <h3>Sorting</h3>
             <p>ChocolateChip-UI's Model has the sortBy method to sort its contents. But this will not work as expected with dates. Also you may want to sort an array or model of numbers in ascending or descending order.</p>
 
-            <h4>$.sortDate</h4>
+            <h3>$.sortDate</h3>
             <p>This function lets you sort dates. You pass it as the predicate of the sort method on arrays and models:</p>
 
 <pre class='prettyprint linenums'>var today = new Date();
@@ -136,7 +136,7 @@ var date_1980 = new Date('January 1, 1980');
 2015, November
 </pre>
 
-            <h4>$.sortNumbers</h4>
+            <h3>$.sortNumbers</h3>
             <p>This method lets you sort numbers in ascending order. It works as the predicate of the Array.sort or Model.sort methods:</p>
 <pre class='prettyprint linenums'>var numbers = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
 
@@ -155,7 +155,7 @@ numbers.sort($.sortNumbers);
 42.98
 </pre>
 
-            <h4>$.sortNumbersDescending</h4>
+            <h3>$.sortNumbersDescending</h3>
             <p>Like <code>$.sortNumbers</code>, you pass this as the predicate of the Array.sort or Model.sort methods:</p>
 <pre class='prettyprint linenums'>var numbers = [5, 4.25, .98, 12.1, 42.98, 9.99, 1, .02, 7.5];
 

@@ -75,7 +75,7 @@
           <p>As explained in the intro, your app consists of a series of screens. Within the screens you create the layout structure for your app. A screen can contain any of four elements: nav, section, toolbar, footer. Every screen must have a section. This is absolutely required for the content to be accessible. The section tag inside a screen creates a vertial scroller. A screen stacks its elements vertically, one on top of the other, so order is important: nav first, followed by section, followed by optional toolbar or footer. You would at least have a nav and section in every screen. OK, you can leave out a nav if you absolute must have maximum screen real estate, however, you must then provide something to allow the user to get out of that screen.</p>
           <p>ChocolateChip-UI uses h1-h5 for semantic purposes. An h1 is always in the navigation bar and serves as the title for that screen. An h2 is put before a list and serves as the list's title. h3 are used inside lists as the title of a list item. And h4 are using inside lists as the subtitle of a list item. Putting a paragraph tag after a list creates a footnote for the list. Or you can use the summary tag directly after a list for the same purpose.</p>
           <p>Lists are created with unordered lists. Just put the class "list" on it and it will be displayed as a proper list. Otherwise it will appear as a normal bulleted list. Lists constitute the principal way that you will create layouts. </p>
-          <h4>Simple List</h4>
+          <h3>Simple List</h3>
           <p>To create a simple list, just put an h3 into a list item:</p>
           <pre class="prettyprint linenums">
 &lt;ul class='list'&gt;
@@ -130,7 +130,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;</pre>
       
-      <h4>Navigation Lists</h4>
+      <h3>Navigation Lists</h3>
       <p>To make a list look like it's navigable you need to include navigation disclosures in the list items:</p>
       <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -164,7 +164,7 @@
 &lt;/li&gt;</pre>
       <img class='layout' src="../../images/layouts/layout-3-b.png" alt="Navigation List Layout">
 
-      <h4>List Detail</h4>
+      <h3>List Detail</h3>
       <p>To include a detail along with the list item's title and subtitle, we use a paragraph tag:</p>
       <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -176,7 +176,7 @@
 &lt;/li&gt;</pre>
       <img class='layout' src="../../images/layouts/layout-4-a.png" alt="List with Detail Layout">
 
-      <h4>Columns</h4>
+      <h3>Columns</h3>
       <p>You can create columns inside a list item by including two divs. Please make sure that your target devices are wide enough to accomodate this type of layout. You can visually separate the two columns by putting a class "separator" on the second div. By default both columns will be the same width. Depending on what your content is, this may not work. You can change that behavior by putting a class "no-flex" on a div, as we did below. then in the stylesheet for the app we added a CSS definition to makes the first column only 100 pixels width:</p>
       <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -190,7 +190,7 @@
 &lt;/li&gt;</pre>
       <img class='layout' src="../../images/layouts/layout-4-b.png" alt="List With Columns Layout">
 
-      <h4>Icons in List Items</h4>
+      <h3>Icons in List Items</h3>
       <p>You can use a span to display icons in your list items. Just you a span with the name icon and provide a syle for it. In the example below we give each icon span a secondar name so we can define its image in the stylesheet:</p>
       <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -236,7 +236,7 @@
 }</pre>
         <img class='layout' src="../../images/layouts/layout-5.png" alt="List With Icons Layout">
 
-        <h4>Images in List Items</h4>
+        <h3>Images in List Items</h3>
         <p>You can include an image in a list item. Just make it the first item in the list. Put all the other content, h3, h4 and p tags, into a div after it:</p>
         <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -248,7 +248,7 @@
 &lt;/li&gt;</pre>
         <img class='layout' src="../../images/layouts/layout-6-b.png" alt="List With Images Layout">
 
-        <h4>Information Indicator</h4>
+        <h3>Information Indicator</h3>
         <p>Besides navigation indicators, sometimes you want to alert the user that tapping a list item will show them more detail about the item. You do this using the info tag in an aside as the last element in the list item:</p>
 
         <pre class="prettyprint linenums">
@@ -261,7 +261,7 @@
 &lt;/li&gt;</pre>
         <img class='layout' src="../../images/layouts/layout-6-a.png" alt="List With Info Indicator Layout">
 
-        <h4>Showing a Price</h4>
+        <h3>Showing a Price</h3>
         <p>If you wanted to show a price, put the class "price" on the aside, and a span to hold the price:</p>
         <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -276,7 +276,7 @@
   &lt;/aside&gt;
 &lt;/li&gt;</pre>
         <img class='layout' src="../../images/layouts/layout-6-c.png" alt="List With Prices Layout">
-        <h4>Date and Time</h4>
+        <h3>Date and Time</h3>
         <p>You show a date or time by putting those classes on the aside and including the data in a span tag:</p>
         <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -301,7 +301,7 @@
 &lt;/li&gt;</pre>
         <img class='layout' src="../../images/layouts/layout-7-a.png" alt="List With Date and Time Layout">
 
-        <h4>Numbers</h4>
+        <h3>Numbers</h3>
         <p>You display numbers by putting the "number" class on an aside and putting the number in a span tag:</p>
         <pre class="prettyprint linenums">
 &lt;li data-goto&gt;
@@ -314,7 +314,7 @@
 &lt;/li&gt;</pre>
         <img class='layout' src="../../images/layouts/layout-7-b.png" alt="List With Info Numbers Layout">
 
-        <h4>Style the List Headers</h4>
+        <h3>Style the List Headers</h3>
         <p>By default, when you put an h2 before a list as its header, it gets style uppercase and it wraps around. Instead it gets cut off with ellipses. You can change this to suit your needs with some list header-specific classes.</p>
         <h5>Normal Case</h5>
         <p>By putting the class "normal-case" on a h2, it will display the default case of the text.</p>

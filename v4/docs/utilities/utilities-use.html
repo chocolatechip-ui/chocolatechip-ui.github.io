@@ -91,32 +91,32 @@
             <li>$.flatten()</li>
           </ul>
 
-          <h4>$.isEmptyObject()</h4>
+          <h3>$.isEmptyObject()</h3>
           <p><code>$.isEmptyObject(object)</code> tests where an object is <code>{}</code> or where it has properties. This is a boolean value.</p>
 
-          <h4>$.isInteger()</h4>
+          <h3>$.isInteger()</h3>
           <p><code>$.isInteger(number)</code> tests whether the number is an integer or not. This is a boolean value.</p>
 
-          <h4>$.isFloat()</h4>
+          <h3>$.isFloat()</h3>
           <p><code>$.isFloat(number)</code> tests whether the number is a float or not. This is a boolean value.</p>
 
-          <h4>$.encode()</h4>
+          <h3>$.encode()</h3>
           <p><code>$.encode(data)</code> returns the value from a form element encoded.</p>
 
-          <h4>$.escapeHTML()</h4>
+          <h3>$.escapeHTML()</h3>
           <p><code>$.escapeHTML(data)</code> escapes the html tags, parenthesis, etc.</p>
 
-          <h4>$.concat()</h4>
+          <h3>$.concat()</h3>
           <p><code>$.concat(args)</code> takes a series of strings and returns one string. This is useful where you need to concatenate a lot of string pieces together</p>
           <pre class='prettyprint linenums'>var str = $.concat('This', ' ', 'is', ' ', 'a' , ' ', 'string', '.');</pre>
 
-          <h4>$.uuid()</h4>
+          <h3>$.uuid()</h3>
           <p><code>$.uuid()</code> create a uuid. This is a string. You can use it to create a unique identifier for objects in a collection, or for ids of DOM elements. ChocolateChip-UI uses $.uuid internally for this purpose.</p>
 
-          <h4>$.unique()</h4>
+          <h3>$.unique()</h3>
           <p>$.unique() takes an array as its argument. It returns a new array free of duplicates.</p>
 
-          <h4>$.throttle()</h4>
+          <h3>$.throttle()</h3>
 
           <p><code>$.throttle()</code> allows you to control how often a set of events fire. If you are listening for keystokes in an input, you can capture the event a designated amount of time. This helps you avoid a flood of events. This method takes two arguments, a callback to execute and the time in milliseconds to wait before the next execution.</p>
 
@@ -151,7 +151,7 @@
 
           <p>Debounce takes two arguments: a callback and the amount of time in milliseconds before firing.</p>
 
-          <h4>$.debounce()</h4>
+          <h3>$.debounce()</h3>
 <pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
   // do something here
 }, 1000);</pre>
@@ -163,7 +163,7 @@
 }, 1000, true);</pre>
 
         
-        <h4>$.once()</h4>
+        <h3>$.once()</h3>
         <p>There may be times where you only want a function to execute once, no matter how many times the user tries to run it. A submit button is a good example. Using <code>$.once()</code> you can do this. You pass it the function you want to execute, and it returns wrapped so that it will only execute once:</p>
 <pre class='prettyprint linenums'>// Execute function only once:
 var alertUser = function(message) {
@@ -186,7 +186,7 @@ var alertUser = function(message) {
 $('#alertButton').on('tap', $.once(alertUser('A message from your sponsors!'));</pre>
 
         
-        <h4>$.before(times, callback)</h4>
+        <h3>$.before(times, callback)</h3>
 
         <p>This function takes the number of times and wraps the callback so that it will only execute x times before the times argument is reached. For example, if you pass a times of 4, the callback will execute only the first 3 times. After that it will not execute. Use this method to limit a callback to only execute a specific number of times.</p>
 
@@ -211,7 +211,7 @@ var alertUser = function(message) {
 $('#alertButton').on('tap', $.before(4, alertUser('A message from your sponsors!'));</pre>
 
         
-        <h4>$.after(times, callback)</h4>
+        <h3>$.after(times, callback)</h3>
 
         <p>This function takes the number of times and wraps the callback so that it will only execute on the times attempt. For example, if you pass a times of 4, the callback will not execute on the fourth attempt to execute it. After that the callback will execute on every attempt. Use this method to prevent a callback from being execute until after a specific attempts.</p>
 
@@ -234,7 +234,7 @@ var alertUser = function(message) {
 };
 $('#alertButton').on('tap', $.after(3, alertUser('A message from your sponsors!'));</pre>
 
-          <h4>$.flatten(array)</h4>
+          <h3>$.flatten(array)</h3>
           <p>This method takes and array of nested array and returns it flattened. The original array is left untouched. You use it like this:</p>
 
           <pre class='prettyprint linenums'>// Flatten a nested array:
@@ -245,7 +245,7 @@ var flattenedArray = $.flatten(nestedArray);
 
 
 
-          <h4>The Haz Helpers</h4>
+          <h3>The Haz Helpers</h3>
           <p>These help you avoiding writing loops to handle finding elements by selectors. These do not return booleans like their jQuery cousins. Instead they directly return the elements that match the selector. This allows you to write oneliners to access them.</p>
           <ul>
             <li>$(selector).iz(selector)</li>
@@ -268,7 +268,7 @@ $('#list').haznt('li').append('&lt;li&gt;Some default text&lt;/li&gt;');
 $('#list').hazClass('important').css({'background-color': 'blue, 'color': '#fff''});
 $('button').hazAttr('disabled').removeProp('disabled');</pre>
 
-          <h4>element.forEach()</h4>
+          <h3>element.forEach()</h3>
           <p>ChocolateChip-UI lets you iterate over element collections using a normal JavaScript foreach function. jQuery uses the each function where the index value comes first. Since most of the time we care about the context and not the index, foreach gives us that option:</p>
           <pre class='prettyprint linenums'>// Access the list item directly:
 $('li').forEach(function(li) {
@@ -287,7 +287,7 @@ $('li').each(function(index, li) {
             <li>$(input).disable()</li>
           </ul>
 
-          <h4>Array Extras</h4>
+          <h3>Array Extras</h3>
           <p>ChocolateChip-UI provides the following array extras. These are polyfills and will not overwrite any existing array methods.</p>
 
           <h5>Array.pluck(property)</h5>

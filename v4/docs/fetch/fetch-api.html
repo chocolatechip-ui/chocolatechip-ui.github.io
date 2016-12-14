@@ -73,7 +73,7 @@
           <h3>API</h3>
           
 
-        <h4>fetch</h4>
+        <h3>fetch</h3>
         <p><code>fetch(url)</code></p>
         <p>Fetch is a method for access a remote server. You use this like you would the XMLHttpRequest object. In face, ChocolateChip-UI has a polyfill that uses XMLHttpRequest behind the scenes to implement fetch. Currently fetch support is spotty in browsers.</p>
         <p>Fetch can perform your basic CRUD operations. Fetch takes two arguments, an input (url) and an init object of key value pairs. If you are getting data from a server, you can just provide the url and use promise chaining to handle the result:</p>
@@ -147,7 +147,7 @@ fetch('my/url/stuff')
 fetch
 </code></pre>
 
-        <h4>fetch.then</h4>
+        <h3>fetch.then</h3>
         <p><code>fetch.then(callback)</code></p>
         <p>This method allows you to chain results of a fetch request to handle it. A single then might be sufficient for your needs, or you may want to break down what you are doing into multipe thens by returning a promise in each one. Using then allows you to have a number of operations, each dependent on the result of the previous, without dealing with nested callbacks.</p>
 <pre class="prettyprint"><code>
@@ -164,7 +164,7 @@ fetch('my/url/stuff')
   });
 </code></pre>
 
-        <h4>fetch.catch</h4>
+        <h3>fetch.catch</h3>
         <p><code>fetch.catch(callback)</code></p>
         <p>This method is used on a fetch object to handle errors. Even though it handles errors, it is chainable with other thens, allows you to do something after handling the error:</p>
 <pre class="prettyprint"><code>
@@ -192,14 +192,14 @@ fetch('my/url/stuff')
   })
 </code></pre>
 
-        <h4>Headers</h4>
+        <h3>Headers</h3>
         <p><code>Headers.Headers()</code></p>
         <p>This method creates a new Headers object.</p>
 <pre class="prettyprint"><code>
 var headers = Headers.Headers();
 </code></pre>
 
-        <h4>Headers.append</h4>
+        <h3>Headers.append</h3>
         <p><code>Headers.append()</code></p>
         <p>Appends a new value onto an existing header inside a Headers object, or adds the header if it does not already exist.</p>
 <pre class="prettyprint"><code>
@@ -207,14 +207,14 @@ var myHeaders = new Headers();
 myHeaders.append('Content-Type', 'image/jpeg');
 </code></pre>
 
-        <h4>Headers.delete</h4>
+        <h3>Headers.delete</h3>
         <p><code>Headers.delete()</code></p>
         <p>Deletes a header from a Headers object.</p>
 <pre class="prettyprint"><code>
 myHeaders.delete('Content-Type')
 </code></pre>
 
-        <h4>Headers.get</h4>
+        <h3>Headers.get</h3>
         <p><code>Headers.get()</code></p>
         <p>Returns the first value of a given header from within a Headers object.</p>
 <pre class="prettyprint"><code>
@@ -223,7 +223,7 @@ myHeaders.append('Content-Type', 'image/jpeg');
 myHeaders.get('Content-Type'); // Returns 'image/jpeg'
 </code></pre>
 
-        <h4>Headers.getAll</h4>
+        <h3>Headers.getAll</h3>
         <p><code>Headers.getAll()</code></p>
         <p>Returns an array of all the values of a header within a Headers object with a given name.</p>
 <pre class="prettyprint"><code>
@@ -234,7 +234,7 @@ myHeaders.append('Accept-Encoding', 'gzip');
 myHeaders.getAll('Accept-Encoding');
 </code></pre>
 
-        <h4>Headers.has</h4>
+        <h3>Headers.has</h3>
         <p><code>Headers.has()</code></p>
         <p>Returns a boolean stating whether a Headers object contains a certain header.</p>
 <pre class="prettyprint"><code>
@@ -244,7 +244,7 @@ myHeaders.has('Content-Type'); // Returns true
 myHeaders.has('Accept-Encoding'); // Returns false
 </code></pre>
 
-        <h4>Headers.set</h4>
+        <h3>Headers.set</h3>
         <p><code>Headers.set()</code></p>
         <p>Sets a new value for an existing header inside a Headers object, or adds the header if it does not already exist.</p>
 <pre class="prettyprint"><code>
@@ -254,7 +254,7 @@ myHeaders.append('Content-Type', 'image/jpeg');
 myHeaders.set('Content-Type', 'text/html');
 </code></pre>
 
-        <h4>Request.Request</h4>
+        <h3>Request.Request</h3>
         <p><code>Request.Request(input, init)</code></p>
         <p>Creates a new Request object. <code>input</code> defines the resource that you wish to fetch. This can either be:</p>
         <ul>
@@ -272,7 +272,7 @@ myHeaders.set('Content-Type', 'text/html');
         <li>redirect: The redirect mode to use: follow, error, or manual.</li>
       </ul>
 
-        <h4>Response.Response</h4>
+        <h3>Response.Response</h3>
         <p><code>Response.Response()</code></p>
         <p>Creates a new Response object. This takes two arguments, body and init. Body is an object defining a body for the response. This can be one of:</p>
         <ol>
@@ -292,21 +292,21 @@ myHeaders.set('Content-Type', 'text/html');
 var myResponse = new Response(body, init);
 </code></pre>
 
-        <h4>Response.clone</h4>
+        <h3>Response.clone</h3>
         <p><code>Response.clone()</code></p>
         <p>Creates a clone of a Response object.</p>
 <pre class="prettyprint"><code>
 var response2 = response1.clone();
 </code></pre>
 
-        <h4>Response.error</h4>
+        <h3>Response.error</h3>
         <p><code>Response.error()</code></p>
         <p>Returns a new Response object associated with a network error.</p>
 <pre class="prettyprint"><code>
 var errorResponse = response.error();
 </code></pre>
 
-        <h4>Response.redirect</h4>
+        <h3>Response.redirect</h3>
         <p><code>Response.redirect(url, status)</code></p>
         <p>Creates a new response with a different URL. This can take up to two arguments. First, the URL that the new response is to originate from. Second, you can pass an optional status code for the response (e.g., 302.)</p>
 <pre class="prettyprint"><code>
@@ -314,7 +314,7 @@ var response2 = response1.redirect(url,status);
 </code></pre>
 
 
-        <h4>Body.arrayBuffer</h4>
+        <h3>Body.arrayBuffer</h3>
         <p><code>Body.arrayBuffer()</code></p>
         <p>Takes a Response stream and reads it to completion. It returns a promise that resolves with an ArrayBuffer.</p>
 <pre class="prettyprint"><code>
@@ -323,7 +323,7 @@ response.arrayBuffer().then(function(buffer) {
 )};
 </code></pre>
 
-        <h4>Body.blob</h4>
+        <h3>Body.blob</h3>
         <p><code>Body.blob()</code></p>
         <p>Takes a Response stream and reads it to completion. It returns a promise that resolves with a Blob.</p>
 <pre class="prettyprint"><code>
@@ -332,7 +332,7 @@ response.blob().then(function(myBlob) {
 });
 </code></pre>
 
-        <h4>Body.formData</h4>
+        <h3>Body.formData</h3>
         <p><code>Body.formData()</code></p>
         <p>Takes a Response stream and reads it to completion. It returns a promise that resolves with a FormData object.</p>
 <pre class="prettyprint"><code>
@@ -341,7 +341,7 @@ response.formData().then(function(formdata) {
 });
 </code></pre>
 
-        <h4>Body.json</h4>
+        <h3>Body.json</h3>
         <p><code>Body.json()</code></p>
         <p>Takes a Response stream and reads it to completion. It returns a promise that resolves with a JSON object.</p>
 <pre class="prettyprint"><code>
@@ -350,7 +350,7 @@ response.json().then(function(json) {
 });
 </code></pre>
 
-        <h4>Body.text</h4>
+        <h3>Body.text</h3>
         <p><code>Body.text()</code></p>
         <p>Takes a Response stream and reads it to completion. It returns a promise that resolves with a USVString (text).</p>
 <pre class="prettyprint"><code>
@@ -360,7 +360,7 @@ response.text().then(function (text) {
 </code></pre>
 
 
-        <h4>$.jsonp</h4>
+        <h3>$.jsonp</h3>
         <p><code>$.jsonp(url, options)</code></p>
         <p>Although Fetch does not have support for JSONP, ChocolateChipJS provides a Fetch-like API for doing JSONP. It uses the <code>$.jsonp</code> method, which takes two arguments, a url and an object of key values. The possible keys are:</p>
         <ol>

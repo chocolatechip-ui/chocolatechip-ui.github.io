@@ -71,7 +71,7 @@
         <div>
           <h2>Views</h2>
           <h3>API</h3>
-          <h4>View</h4>
+          <h3>View</h3>
           <h3>View Lifecycle</h3>
           <p>The following diagram illustrates the lifecycle of a view from instantiation to rendering. After instantiation, a view can be rendered by a change to the model it is bound to or by the render function on the view instance.</p>
           <p><img id='view-lifecycle' style='display: block; margin: 0 auto;' src="../../images/view-lifecycle.png" alt="view life cycle"></p>
@@ -130,7 +130,7 @@
           <h3>Data Binding</h3>
           <p>When you set a model on your view, as we did above, the view is bound to that model. This means that whenever you use model methods to change its data, the view will automatically refresh to show those changes.</p>
 
-          <h4>Model Methods that Trigger View Refresh</h4>
+          <h3>Model Methods that Trigger View Refresh</h3>
           <p>The following model methods will trigger a fresh of a bound view:</p>
 
           <p><strong>Object Model</strong></p>
@@ -159,7 +159,7 @@
           </ul>
 
           <h3>View Methods</h3>
-          <h4>render</h4>
+          <h3>render</h3>
           <p><code>render(data, append)</code></p>
           <p>The render method will render a template. If it is bound to a model, it will render the view's template with that model:</p>
 <pre class='prettyprint linenums'>// Render a view:
@@ -175,35 +175,35 @@ myView.render(myData);
 myView.render(myData, true);
 </pre>
 
-          <h4>empty</h4>
+          <h3>empty</h3>
           <p><code>empty()</code></p>
           <p>Running this method on a view will remove all rendered content from the parent element.</p>
 <pre class='prettyprint linenums'>// Empty a view:
 myView.empty();
 </pre>
 
-          <h4>resetIndex</h4>
+          <h3>resetIndex</h3>
           <p><code>resetIndex()</code></p>
           <p>This will reset the index ($.view.index) used by a template to 1. That means, if you had set it to start from 10, running this will set it to start from 1.</p>
 <pre class='prettyprint linenums'>// Reset a view's index value:
 myView.resetIndex();
 </pre>
 
-          <h4>startIndexFrom</h4>
+          <h3>startIndexFrom</h3>
           <p><code>startIndexFrom(number)</code></p>
           <p>Setting this value tells the view at what number to start when rendering $.view.index in a repeating template.</p>
 <pre class='prettyprint linenums'>// Set a view's index start value:
 myView.startIndexFrom(10);
 </pre>
 
-          <h4>getTemplate</h4>
+          <h3>getTemplate</h3>
           <p><code>getTemplate()</code></p>
           <p>This will return a string of the template currently being used. This is the unparsed version of the template.</p>
 <pre class='prettyprint linenums'>// Get the template a view is using:
 var template = myView.getTemplate();
 </pre>
 
-          <h4>setTemplate</h4>
+          <h3>setTemplate</h3>
           <p><code>setTemplate(template)</code></p>
           <p>You can use this to change the template that a view is using. It expects a string, unparsed template.</p>
           <p>Using this with <code>myView.setModel(newModel)</code> allows you to totally change what the view is rendering to the screen.</p>
@@ -211,28 +211,28 @@ var template = myView.getTemplate();
 myView.setTemplate(newTemplate);
 </pre>
 
-          <h4>isRendered</h4>
+          <h3>isRendered</h3>
           <p><code>isRendered()</code></p>
           <p>Use this method to find out if the view has rendered its template to the screen. This returns a boolean true/false.</p>
 <pre class='prettyprint linenums'>// Check if the view is rendered:
 var myViewIsRendered = myView.isRendered();
 </pre>
 
-          <h4>isEmpty</h4>
+          <h3>isEmpty</h3>
           <p><code>isEmpty()</code></p>
           <p>This method returns a boolean true/false depending on whether the element has any content or not.</p>
 <pre class='prettyprint linenums'>// Check if a view is empty:
 var myViewIsEmpty = myView.isEmpty();
 </pre>
 
-          <h4>getElement</h4>
+          <h3>getElement</h3>
           <p><code>getElement()</code></p>
           <p>This method allows you to find out what parent element the view is attached to.</p>
 <pre class='prettyprint linenums'>// Get the element a view is attached to:
 var parentElement = myView.getElement();
 </pre>
 
-          <h4>setElement</h4>
+          <h3>setElement</h3>
           <p><code>setElement(element)</code></p>
           <p>This method allows you to change the element a view is anchored to. If you change the parent, the new element will have its content deleted. If you intend to change the parent element that a view uses, make sure that the view has the template you want and some data so that you can render it immediately.</p>
           <p>When you change the parent element that a view is using, ChocolateChip-UI rebinds any events you have in your view. If you want different events you need to change those using the <code>addEvent</code> method.</p>
@@ -255,7 +255,7 @@ myView.addEvent({
 myView.render(someData);
 </pre>
 
-          <h4>addEvent</h4>
+          <h3>addEvent</h3>
           <p><code>addEvent(events, replace)</code></p>
           <p>This method allows you to add events to a view. The method expects an object or array. The object should have at least two properties:</p>
 <pre class='prettyprint linenums'>// Add an event to the view:
@@ -306,20 +306,20 @@ myView.addEvent([
 }]);
 </pre>
 
-          <h4>bindModel</h4>
+          <h3>bindModel</h3>
           <p><code>setModel(myModel)</code></p>
           <p>If you have initialized your view with raw JavaScript data and want to switch to using a view, you use this method. It takes one argument, the model you want the view to use. After binding the view to the model, any changes to the model will trigger a refresh of the view with the model changes.</p>
           <p>You can also use this method to dynamically change what model a view is currently using. This method automatically unbind any previously bound model before binding the new one.</p>
 
-          <h4>unbindModel</h4>
+          <h3>unbindModel</h3>
           <p><code>unbindModel(myModel)</code></p>
           <p>If for some reason you wish to use plain JavaScript data with your model, or you simply don't want the view to change any more, you can unbind it from its model using this method. It takes one argument: the model you wish to unbind from.</p>
 
-          <h4>getModel</h4>
+          <h3>getModel</h3>
           <p><code>getModel()</code></p>
           <p>This method lets you get the model the view is currently bound to. If it is not bound to a model, it will generate an error.</p>
 
-          <h4>off</h4>
+          <h3>off</h3>
           <p><code>off(event, element, callback)</code></p>
           <p>Remove an event or all events from a view. If no argument is passed, all events are removed. Otherwise you can pass the following parameters to remove a specific event: event, element, callback</p>
 <pre class='prettyprint linenums'>// Remove all events from a view:
@@ -329,7 +329,7 @@ myView.off();
 myView.off('tap', '#element')
 </pre>
           
-          <h4>defineHelper</h4>
+          <h3>defineHelper</h3>
           <p><code>defineHelper(callback)</code></p>
           <p>This method lets you define helpers to use inside of a view's template. It expects an object in the following format:</p>
 <pre class='prettyprint linenums'>// Define a helper to capitalize the last name:
@@ -346,7 +346,7 @@ $.defineHelper({
 &lt;/ul&gt;
 </pre>
 
-          <h4>safeHTML</h4>
+          <h3>safeHTML</h3>
           <p><code>safeHTML(true/false)</code></p>
           <p>This method lets you tell a view to render any HTML tags in the data it is using. It takes a boolean true, otherwise it escapes any markup in the data. Setting a view to render data can allow malicious code injection, so use with caution and only when you are certain about the safety of the data you are using.</p>
 <pre class='prettyprint linenums'>// Tell a view to render any markup in the data:
@@ -357,19 +357,19 @@ myView.safeHTML(true);
 myView.safeHTML(false);
 </pre>
 
-          <h4>isEscapingHTML</h4>
+          <h3>isEscapingHTML</h3>
           <p><code>isEscapingHTML()</code></p>
           <p>Find out if a view is escaping HTML markup in its data or not. This returns a boolean true/false. By default ChocolateChip-UI escapes all data. It only renders the markup when you set the <code>safeHTML</code> flag in a view or set it with the <code>view.safeHTML</code> method described above.</p>
 <pre class='prettyprint linenums'>// Find out if the view is escaping markup:
 var isSafeOutput = myView.isEscapingHTML();
 </pre>
 
-          <h4>getData</h4>
+          <h3>getData</h3>
           <p><code>getData()</code></p>
           <p>This method lets you get the data the view is currently rendered with.</p>
           <pre class='prettyprint linenums'>var viewData = myView.getData();</pre>
 
-          <h4>setData</h4>
+          <h3>setData</h3>
           <p><code>setData()</code></p>
           <p>If you have a view set to render some data and you want to use some other data, rather than just passing the data as an argument to <code>render(newData)</code> you can set the view to use that data and then just render the view as is:</p>
           <pre class='prettyprint linenums'>myView.setData(newData);
@@ -377,7 +377,7 @@ var isSafeOutput = myView.isEscapingHTML();
 // Render the view with the new data binding:
 myView.render();</pre>
 
-          <h4>mount</h4>
+          <h3>mount</h3>
           <p><code>mount()</code></p>
           <p>This method is for use with JSPM and ES6 modeles. If you are not using JSPM with ES6 modules to organize your project's structure, you will not need to use this method. However if you are, you will need this method.</p>
           <p>When you import a view from an external file, because this happens before the DOM is thoroughly loaded, ChocolateChip-UI is not able to find the view's element or bind any events that it has. To get around this problem, after importing a view you need to mount it. Mounting should always be done inside a DOM load function. Mounting a view tells it to look for its element and bind any events that it has. After mounting, a view will function as expected.</p>
@@ -389,7 +389,7 @@ $(function() {
   myView.render();
 });</pre>
 
-        <h4>Data Binding</h4>
+        <h3>Data Binding</h3>
         <p>If you want an imported view to be bound to a model for automatic refresh, you'll need to set the model after import:</p>
 
   <pre class='prettyprint linenums'>import {cartModel} from './data/cartModel';
@@ -408,7 +408,7 @@ $(() => {
   app.totalPurchasedItemsView.setModel(cartModel);
 });</pre>
         
-        <h4>Styles</h4>
+        <h3>Styles</h3>
         <p>You can define styles on your view that create a virtual stylesheet. You would do this to override existing styles, style some custom layout in your view or create a styled view that you can re-use in different projects. The styles are based off of the selector you provide when you create the view. So, a style definition on a view without a element provided will not do anything. When you use <code>setElement</code> to change which element your view is anchored to, ChocolateChip-UI will re-create the virtual stylesheet using the new element selector.</p>
         <p>Please note that if you define styles for your view and then want to change templates, your styles may not work with the new template. If you need to be able to change a view's templates dynamically, then don't bother to define its styles with the style property. But those styles in your app's stylesheet file instead.</p>
         <p>To learn more about defining styles for a view, please read the <a target='_blank' href="./views-styles.html">documentation</a>.</p>

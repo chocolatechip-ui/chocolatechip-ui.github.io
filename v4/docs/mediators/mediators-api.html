@@ -73,10 +73,10 @@
           <h3>API</h3>
           
           
-          <h4>Dispatch System</h4>
+          <h3>Dispatch System</h3>
           <p>ChocolateChip-UI's dispatch system has two modes: anonymous and mediator. Both use <code>$.on()</code> for setup. When you save the setup to a variable, that is called a mediator. It offers a saved reference to the dispatch object and several methods that affect only that instance of the dispatch object. Otherwise, you can create generic dispatch objects using <code>$.send(topic, data)</code>. Using <code>$.send(topic, data)</code> will also activate any mediators listening to that topic.</p>
 
-          <h4>Dispatch API</h4>
+          <h3>Dispatch API</h3>
           <p><code>$.on(topic, callback)</code></p>
           <p>You do not have to capture data in the dispatch receiver's callback. Also, you should use guards to check if their is any data accompanying a topic dispatch, because it is possible to send a dispatch without data.</p>
 <pre class='prettyprint linenums'>$.on('my-topic', function(msg) {
@@ -91,18 +91,18 @@
 </pre>
           <p>You can use <code>$.on(topic, callback)</code> to regeister multiple callbacks on the same topic. When you send to that topic, all handles will be executed. You can use some conditional logic in the callbacks to decide if you want to react to that broadcast or not. You might do that by testing the type of data sent, or any boolean value accessible by the callback.</p>
 
-          <h4>send</h4>
+          <h3>send</h3>
           <p><code>$.send(topic, data)</code></p>
           <p>You use <code>$.send(topic, data)</code> to execute a dispatch receiver's callback. If your broadcast might sometimes not have data, make sure to test in the dispatch receiver's callback for data before trying to use it.</p>
 
-          <h4>getTopics</h4>
+          <h3>getTopics</h3>
           <p><code>$.getTopics()</code></p>
           <p>This method returns an object of all currently registered topics and their callbacks. Each topic has an array that can hold multiple callbacks that will get executed when the topic is triggered. This means that instead of having a hugely complicated callback to handle every conceivable thing you need to do with a topic, you can instead separate things out into their own callbacks, all listening to the same topic.</p>
 
-          <h4>removeTopic</h4>
+          <h3>removeTopic</h3>
           <p><code>$.removeTopic(topic)</code></p>
 
-          <h4>Mediator API</h4>
+          <h3>Mediator API</h3>
           <p><code>$.on(topic, callback)</code></p>
           <p>This is a factory that returns a dispatch object. When this object is stored in a variable, it's called a mediator. The setup is the same as a generic dispatch receiver describe earlier. It takes two arguments: a topic and a callback to execute when the topic is broadcast. Since a dispatch can also include data, the mediator can do something with the data, such as transforming it or passing it to a view for rendering.</p>
 <pre class='prettyprint linenums'>var MyMtor = $.on('my-topic', function(myData) {
@@ -111,7 +111,7 @@
 </pre>
           <p>When you capture a dispatch receiver as a mediator, you get several addition methods that affect that instance of the object:</p>
           
-          <h4>run</h4>
+          <h3>run</h3>
           <p><code>run()</code></p>
           <p>This method is used to execute a mediator. It takes one argument, data to pass to the mediator's callback.</p>
 <pre class='prettyprint linenums'>var MyMtor = $.on('my-topic', function(message) {
@@ -120,7 +120,7 @@
 MyMtor.run('This is a message');
 </pre>
           
-          <h4>off</h4>
+          <h3>off</h3>
           <p><code>off()</code></p>
           <p>This method allows you to destory a method. This is will delete the callback that the mediator uses. Other mediators using the same topic will continue to function.</p>
 <pre class='prettyprint linenums'>// Stop the mediator immediately:
@@ -132,7 +132,7 @@ MyMtor.run('This is another message');
 
           <p>You can also stop a mediator from responding to dispatches using the <code>$.removeTopic</code> method. This will stop all mediators and all dispatch receivers that use that topic from running. In contrast, <code>MyMtor.off()</code> only affects that mediator.</p>
           
-          <h4>getTopic</h4>
+          <h3>getTopic</h3>
           <p><code>getTopic()</code></p>
           <p>This returns the topic the mediator is listening to.</p>
 <pre class='prettyprint linenums'>var topic = MyMtor.getTopic();

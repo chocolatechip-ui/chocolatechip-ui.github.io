@@ -74,7 +74,7 @@
           
           <p>ChocolateChip-UI's DOM library has the following methods. Most of these are identical to those of the same name in jQuery.</p> 
 
-            <h4>$(selector)</h4>
+            <h3>$(selector)</h3>
             <p>This works the same as jQuery. You can provide any valid DOM/CSS selector.</p>
 <pre class='prettyprint linenums'>var listItems = $('li');
 var class = $('.items');
@@ -82,7 +82,7 @@ var id = $('#item');
 var attr = $([type']);
 var attr2 = $([type='text']);
 </pre>
-            <h4>$(function)</h4>
+            <h3>$(function)</h3>
             <p>Like jQuery, this lets you run a function when the browser's DOM has loaded.</p>
 <pre class='prettyprint linenums'>$(function() {
   // Do stuff when the DOM is ready.
@@ -90,36 +90,36 @@ var attr2 = $([type='text']);
 </pre>
             <p>You can have multiple functions in your document. They will be execute one after the other in order. If the DOM is already loaded, this function will execute immediately.</p>
 
-            <h4>$(markup)</h4>
+            <h3>$(markup)</h3>
             <p>By passing in valid markup, this creates DOM nodes that can be inserted into the docuemnt.</p>
 <pre class='prettyprint linenums'>var nodes = $('&lt;p&gt;This is a paragraph&lt;/p&gt;');
 var list = $('&lt;ul&gt;&lt;li&gt;One&lt;/li&gt;&lt;li&gt;Two&lt;/li&gt;&lt;/ul&gt;');
 </pre>
-            <h4>element.find(selector) - find descendant</h4>
+            <h3>element.find(selector) - find descendant</h3>
             <p>This method let you find a select that is a descendent of the element it is anchored to.</p>
 <pre class='prettyprint linenums'>// Get the current screen:
 var screen = $('screen.current');
 // Find all lists in the current screen:
 screen.find('.list');
 </pre>
-            <h4>element.is(selector)</h4>
+            <h3>element.is(selector)</h3>
             <p>This method lets you test the element against the provided selector. It returns a boolean true/false.</p>
 <pre class='prettyprint linenums'>var list = $('.list');
 if (list.is('ul')) {
   console.log('We got a list.');
 }
 </pre>
-            <h4>element.not(selector)</h4>
+            <h3>element.not(selector)</h3>
             <p>This method eliminates elements from a collection that do not match the selector.</p>
 <pre class='prettyprint linenums'>// Get uls that do not have the class `list`:
 var unorderedList = $('ul').not('.list');
 </pre>
-            <h4>element.has(selector)</h4>
+            <h3>element.has(selector)</h3>
             <p>This method lets you get elements whose descedents match the selector.</p>
 <pre class='prettyprint linenums'>// Get a list that is not empty;
 var list = $('.list').has('li');
 </pre>
-            <h4>element.prev(selector?)</h4>
+            <h3>element.prev(selector?)</h3>
             <p>This method lets you get the element before the current. You can pass it a select to use. In that case the previous element must match the selector.</p>
 <pre class='prettyprint linenums'>// Get the previous element:
 var prev = $('ul').prev();
@@ -127,7 +127,7 @@ var prev = $('ul').prev();
 // Get previous element if it is an H2:
 var prev = $('ul').prev('h2');
 </pre>
-            <h4>element.prevAll(selector?)</h4>
+            <h3>element.prevAll(selector?)</h3>
             <p>This method lests you get all the element before the current element. You can pass it a selector to match the previous elements against.</p>
 <pre class='prettyprint linenums'>// Get all previous elements:
 var prevEls = $('ul').prevAll();
@@ -135,7 +135,7 @@ var prevEls = $('ul').prevAll();
 // Get previous elements that are H2s:
 var prevEls = $('ul').prevAll('h2');
 </pre>
-            <h4>element.next(selector?)</h4>
+            <h3>element.next(selector?)</h3>
             <p>Get the next element after the element. You can pass it a selector to check against.</p>
 <pre class='prettyprint linenums'>// Get the next element:
 var next = $('ul').next();
@@ -143,7 +143,7 @@ var next = $('ul').next();
 // Get next element that is a p tag:
 var next = $('ul').next('p');
 </pre>
-            <h4>element.nextAll(selector?)</h4>
+            <h3>element.nextAll(selector?)</h3>
             <p>Get all the next elements. You can pass this a selector to match against.</p>
 <pre class='prettyprint linenums'>// Get all next elements:
 var nextEls = $('ul').nextAll();
@@ -151,15 +151,15 @@ var nextEls = $('ul').nextAll();
 // Get all next elements that are p tags:
 var nextEls = $('ul').nextAll('p');
 </pre>
-            <h4>element.first()</h4>
+            <h3>element.first()</h3>
             <p>Get the first element out of a collection.</p>
 <pre class='prettyprint linenums'>var firstItem = $('li').first();
 </pre>
-            <h4>element.last()</h4>
+            <h3>element.last()</h3>
             <p>Get the last element of a collection.</p>
 <pre class='prettyprint linenums'>var lastItem = $('li').last();
 </pre>
-            <h4>element.index(element?)</h4>
+            <h3>element.index(element?)</h3>
             <p>Get the position of an element in a collection. This is a zero-based number. If no argument is provided, it gets the position of the element this is executed on in relation to its siblings. If an element is passed as an argument, it checks to see what its position is in relation to the collection this is executed against.</p>
 <pre class='prettyprint linenums'>// Get the index of a p tag:
 var paragraphPos = $('p').index();
@@ -168,7 +168,7 @@ var paragraphPos = $('p').index();
 var selectedListItem = $('.selected');
 var pos = $('li').index(selectedListItem);
 </pre>
-            <h4>element.children(selector?)</h4>
+            <h3>element.children(selector?)</h3>
             <p>This method lets you get the children of an element. If you provide a select, the return children must match it.</p>
 <pre class='prettyprint linenums'>// Get the list's children:
 var listItems = $('ul').children();
@@ -176,7 +176,7 @@ var listItems = $('ul').children();
 // Get only li elements:
 var listItems = $('ul').children('li');
 </pre>
-            <h4>element.siblings(selector?)</h4>
+            <h3>element.siblings(selector?)</h3>
             <p>Get the siblings of an element. If a selector is provided, the sibings must match it.</p>
 <pre class='prettyprint linenums'>// Get all siblings of `.selected`:
 var siblings = $('.selected').siblings();
@@ -184,15 +184,15 @@ var siblings = $('.selected').siblings();
 // Get siblings that are list items:
 var siblings = $('.selected').siblings('li');
 </pre>
-            <h4>element.parent()</h4>
+            <h3>element.parent()</h3>
             <p>Get the parent of an element.</p>
 <pre class='prettyprint linenums'>var parent = $('ul').parent();
 </pre>
-            <h4>element.closest(selector)</h4>
+            <h3>element.closest(selector)</h3>
             <p>Get an element's ancestor that matches the provided selector.</p>
 <pre class='prettyprint linenums'>var section = $('.list').closest('section');
 </pre>
-            <h4>element.css(property)</h4>
+            <h3>element.css(property)</h3>
             <p>This method lets you get the value of a provided CSS property on the element.</p>
 
 <pre class='prettyprint linenums'>// Get the following CSS properties:
@@ -201,7 +201,7 @@ var color = $('h3').css('color');
 </pre>
 
 
-            <h4>element.css(property, value)</h4>
+            <h3>element.css(property, value)</h3>
             <p>By passing this method two arguments, You can set the CSS properties of an element. CSS can be set in two ways: as two arguments - a property and a value - separated by a comma, or as a object of key value pairs.</p>
 <pre class='prettyprint linenums'>// Set some CSS properties:
 $('ul').css('color', 'red');
@@ -210,31 +210,31 @@ $('li').css('padding', '2px');
 // Use an object to set the values:
 $('ul').css({padding: '2px', color: 'red'});
 </pre>
-            <h4>element.width()</h4>
+            <h3>element.width()</h3>
             <p>This method returns the width of an element. This value is the width plus any padding. It does not include margins or border widths. The value returned is a number without any length identifier.</p>
 <pre class='prettyprint linenums'>var width = $('screen.current').width();
 </pre>
-            <h4>element.height()</h4>
+            <h3>element.height()</h3>
             <p>This method returns the height of an element. This value is the height plus any padding. It does not include margins or border widths. The value returned is a number without any length identifer.</p>
 <pre class='prettyprint linenums'>var height = $('ul').height();
 </pre>
-            <h4>element.before(content)</h4>
+            <h3>element.before(content)</h3>
             <p>This method allows you to insert content before an element. The argument should be valid markup.</p>
 <pre class='prettyprint linenums'>$('ul').before('&lt;h2&gt;The Title&lt;/h2&gt;');
 </pre>
-            <h4>element.after(content)</h4>
+            <h3>element.after(content)</h3>
             <p>This method lets you insert content after an element. This argument should be valid markup.</p>
 <pre class='prettyprint linenums'>$('ul').after('&lt;summary&gt;This is the list summary.&lt;/summary&gt;');
 </pre>
-            <h4>element.prepend(content)</h4>
+            <h3>element.prepend(content)</h3>
             <p>This method allows you to prepend content to an element. That means the content is inserted at the beging of the elements children.</p>
 <pre class='prettyprint linenums'>$('ul').prepend('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;');
 </pre>
-            <h4>element.append(content)</h4>
+            <h3>element.append(content)</h3>
             <p>This method allows you to append content to an element. That means the content is inserted as the last children of the element.</p>
 <pre class='prettyprint linenums'>$('ul').append('&lt;li&gt;&lt;h3&gt;A new, last item&lt;/h3&gt;&lt;/li&gt;');
 </pre>
-            <h4>element.prependTo(selector)</h4>
+            <h3>element.prependTo(selector)</h3>
             <p>This method allows you to take some content and prepend it to an element. The order of how this happens is a little different from <code>prepend()</code>.</p>
 <pre class='prettyprint linenums'>var ul = $('ul');
 $('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;').prependTo(ul);
@@ -242,7 +242,7 @@ $('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;').prependTo(ul);
 // Or you could pass a DOM node:
 $('li.selected').prependTo('ul');
 </pre>
-            <h4>element.appendTo(selector)</h4>
+            <h3>element.appendTo(selector)</h3>
             <p>This method allows you to append content to a selector. The order of how this happends is a little different from <code>append()</code>.</p>
 <pre class='prettyprint linenums'>var ul = $('ul');
 $('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;').appendTo(ul);
@@ -250,61 +250,61 @@ $('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;').appendTo(ul);
 // Or you could pass a DOM node:
 $('li.selected').appendTo('ul');
 </pre>
-            <h4>element.clone(true?)</h4>
+            <h3>element.clone(true?)</h3>
             <p>This element allows you to clone an element. If a boolean true argument is provided, deep clone is performed.</p>
 <pre class='prettyprint linenums'>var clone = $('ul.list').clone();
 
 // Perform a deep clone:
 var clone = $('ul.list').clone(true);
 </pre>
-            <h4>element.wrap(markup)</h4>
+            <h3>element.wrap(markup)</h3>
             <p>Wrap an element in the provided markup. When doing this, any events that were attached to the elements being wrap with be disconnect. You'll want to remove the events first to prevent memory leaks, then wrap them, then re-apply the events.</p>
 <pre class='prettyprint linenums'>var list = $('ul');
 list.wrap('&lt;div class="list-wrapper"&gt;&lt;/div&gt;');
 </pre>
-            <h4>element.unwrap()</h4>
+            <h3>element.unwrap()</h3>
             <p>This method will unwrap a element from its immediate parent. If the elements being unwrapped have bound events, this will break. Therefore you should unbind events from any elements you intend to unwrap. You can re-bind the events after unwrapping.</p>
 <pre class='prettyprint linenums'>$('ul').unwrap();
 </pre>
-            <h4>element.offset()</h4>
+            <h3>element.offset()</h3>
             <p>Retrieve the current position of an element relative to the document. This method returns an object with the left and top positions.</p>
 <pre class='prettyprint linenums'>var offset = $('ul').offset();
 // offset = {left: 200, top: 60}
 </pre>
-            <h4>element.position()</h4>
+            <h3>element.position()</h3>
             <p>This method returns the position of an element relative to its parent. Contrast that with offset above.</p>
 <pre class='prettyprint linenums'>var position = $('li.selected').position();
 // positon = {left: 10, top 100}
 </pre>
-            <h4>element.empty()</h4>
+            <h3>element.empty()</h3>
             <p>This method deletes all the child elements of the element it is executed on.</p>
 <pre class='prettyprint linenums'>// Delete a list's content:
 $('ul').empty()
 </pre>
-            <h4>element.html(content)</h4>
+            <h3>element.html(content)</h3>
             <p>This method allows you to set the content of an element. The content should be valid markup.</p>
 <pre class='prettyprint linenums'>$('.list').html('&lt;li&gt;&lt;h3&gt;A new item&lt;/h3&gt;&lt;/li&gt;')
 </pre>
             <p><strong>Note about element.html(content)</strong></p>
             <p>ChocolateChip-UI's implementation differs from jQuery in that to create HTML elements, the markup must be valid HTML5. jQuery allows using its own shorthand markup, such as <code>&lt;div/&gt;</code> or <code>&lt;ul/&gt;</code>. Since this is not valid HTML5 markup, it will fail in ChocolateChip-UI. You need to use <code>&lt;div&gt;&lt;/div&gt;</code> or <code>&lt;ul&gt;&lt;/ul&gt;</code>.</p>
 
-            <h4>element.html()</h4>
+            <h3>element.html()</h3>
             <p>This method lets you get the content of an element.</p>
 <pre class='prettyprint linenums'>var listContent = $('ul').html();
 </pre>
-            <h4>element.text(content)</h4>
+            <h3>element.text(content)</h3>
             <p>This method lets you set the text content of an element.</p>
 <pre class='prettyprint linenums'>$('h2').text('This is the title');
 </pre>
-            <h4>element.text()</h4>
+            <h3>element.text()</h3>
             <p>This method lets you get the text of an element.</p>
 <pre class='prettyprint linenums'>var title = $('h2').text();
 </pre>
-            <h4>element.remove()</h4>
+            <h3>element.remove()</h3>
             <p>This method removes the element it is executed on. Before removing the element, all events are unbound.</p>
 <pre class='prettyprint linenums'>$('li.selected').remove();
 </pre>
-            <h4>element.replaceWith(content)</h4>
+            <h3>element.replaceWith(content)</h3>
             <p>This method replaces the element it is executed on with the provided content, which may be markup for new elements or a node of a currently existing element in the document.. Before removing the element, all events are unbound from it and, if the element that will replace it is already in the DOM, from the replacement element as well.</p>
 <pre class='prettyprint linenums'>// Replace element with new content:
 $('li.selected').replaceWith('&lt;li&gt;&lt;h3&gt;New content!&lt;/h3&gt;&lt;/li&gt;');
@@ -312,99 +312,99 @@ $('li.selected').replaceWith('&lt;li&gt;&lt;h3&gt;New content!&lt;/h3&gt;&lt;/li
 // Replace one element with another:
 $('li.selected').replaceWith($('li:first-of-type'));
 </pre>
-            <h4>element.addClass(className)</h4>
+            <h3>element.addClass(className)</h3>
             <p>This method lets you add a class to an element.</p>
 <pre class='prettyprint linenums'>$('li').addClass('special');
 </pre>
-            <h4>element.hasClass(className)</h4>
+            <h3>element.hasClass(className)</h3>
             <p>This method lets you test if an element has the provided class. It returns a boolean true/false.</p>
 <pre class='prettyprint linenums'>if ('li').hasClass('selected')) {
   console.log('found a selected one.')
 }
 </pre>
-            <h4>element.removeClass(className)</h4>
+            <h3>element.removeClass(className)</h3>
             <p>This method removes the provided class from an element.</p>
 <pre class='prettyprint linenums'>$('screen').removeClass('current');
 </pre>
-            <h4>element.toggleClass(className)</h4>
+            <h3>element.toggleClass(className)</h3>
             <p>This method allows you to toggle a class on an element. If the class is not present the first time it run, then it adds it, otherwise it removes it.</p>
 <pre class='prettyprint linenums'>$('li').on('tap', function() {
   $(this).toggleClass('selected');
 });
 </pre>
-            <h4>element.attr(property)</h4>
+            <h3>element.attr(property)</h3>
             <p>Get the value of the provided property on an element.</p>
 <pre class='prettyprint linenums'>var ariaVisible = $('li.selected').attr('aria-hidden');
 </pre>
-            <h4>element.attr(property, value)</h4>
+            <h3>element.attr(property, value)</h3>
             <p>This method allows you to set the value of a property on an element.</p>
 <pre class='prettyprint linenums'>$('li').attr('aria-hidden', true);
 </pre>
-            <h4>element.removeAttr(property)</h4>
+            <h3>element.removeAttr(property)</h3>
             <p>This method lets you remove an attribute from an element.</p>
 <pre class='prettyprint linenums'>$('li').removeAttr('aria-hidden');
 </pre>
-            <h4>element.prop(property)</h4>
+            <h3>element.prop(property)</h3>
             <p>This method lets you get a property of an element.</p>
 <pre class='prettyprint linenums'>var disabled = $('input').prop('disabled');
 </pre>
-            <h4>element.prop(property, value)</h4>
+            <h3>element.prop(property, value)</h3>
             <p>This method lets you set a property on an element.</p>
 <pre class='prettyprint linenums'>$('input').prop('disabled', true);
 </pre>
-            <h4>element.removeProp(property)</h4>
+            <h3>element.removeProp(property)</h3>
             <p>This method lets you remove a property from an element.</p>
 <pre class='prettyprint linenums'>$('input').removeProp('disabled');
 </pre>
-            <h4>element.disable().</h4>
+            <h3>element.disable().</h3>
             <p>This method lets you disable a form element.</p>
 <pre class='prettyprint linenums'>$('button').disable();
 </pre>
-            <h4>element.enable()</h4>
+            <h3>element.enable()</h3>
             <p>This method lets you enable a form element.</p>
 <pre class='prettyprint linenums'>$('button').enable();
 </pre>
-            <h4>element.val(value)</h4>
+            <h3>element.val(value)</h3>
             <p>This method lets you set the value of a form element.</p>
 <pre class='prettyprint linenums'>$('#nameInput').val('John Doe');
 </pre>
-            <h4>element.val()</h4>
+            <h3>element.val()</h3>
             <p>This method lets you get the value of a form element.</p>
 <pre class='prettyprint linenums'>var name = $('#nameInput').val();
 </pre>
-            <h4>element.hide()</h4>
+            <h3>element.hide()</h3>
             <p>This method lets you hide an element.</p>
 <pre class='prettyprint linenums'>$('li').is('.selected').hide();
 </pre>
-            <h4>element.show()</h4>
+            <h3>element.show()</h3>
             <p>This method lets you show a hidden element.</p>
 <pre class='prettyprint linenums'>$('li').show();
 </pre>
-            <h4>element.data(key, value)</h4>
+            <h3>element.data(key, value)</h3>
             <p>This method lets you store a key value pair on an element.</p>
 <pre class='prettyprint linenums'>$('ul').data('price-list', [5,12,4,6,11,5.5]);
 </pre>
-            <h4>element.data(key)</h4>
+            <h3>element.data(key)</h3>
             <p>This method lets you get the data store on an element using its key.</p>
 <pre class='prettyprint linenums'>var prices = $('ul').data('price-list');
 </pre>
-            <h4>element.removeData(key)</h4>
+            <h3>element.removeData(key)</h3>
             <p>This method lets you remove a store item from a list.</p>
 <pre class='prettyprint linenums'>$('ul').removeData('price-list');
 </pre>
-            <h4>element.on(event, callback, type)</h4>
+            <h3>element.on(event, callback, type)</h3>
             <p>This method lets you bind an event to an element.</p>
 <pre class='prettyprint linenums'>$('button').on('tap', function() {
   alert('You just tapped!');
 }, false);
 </pre>
-            <h4>element.on(event, element, callback, type)</h4>
+            <h3>element.on(event, element, callback, type)</h3>
             <p>This method allows you to register a delegated event on a element. You use delegated event when you need to register events on multiple items, such as list items.</p>
 <pre class='prettyprint linenums'>$('ul').on('tap', 'li', function() {
   alert($('this').text());
 });
 </pre>
-            <h4>element.off(event, callback, type)</h4>
+            <h3>element.off(event, callback, type)</h3>
             <p>This method lets you remove an event from an element. If no arguments are provided, all events will be removed.</p>
 <pre class='prettyprint linenums'>// Remove tap event:
 $('button').off('tap');
@@ -412,24 +412,24 @@ $('button').off('tap');
 // Remove all events from list:
 $('ul').off();
 </pre>
-            <h4>element.off(event, element, callback, type)</h4>
+            <h3>element.off(event, element, callback, type)</h3>
             <p>This method lets you remove delegated events.</p>
 <pre class='prettyprint linenums'>// Remove delegated events from list items:
 $('ul').off('tap', 'li');
 </pre>
-            <h4>element.trigger(event)</h4>
+            <h3>element.trigger(event)</h3>
             <p>This method lets you trigger the provided event on the element.</p>
 <pre class='prettyprint linenums'>$('button').trigger('tap');
 </pre>
-            <h4>element.serializeArray()</h4>
+            <h3>element.serializeArray()</h3>
             <p>This method create an array of key-value objects from a form's elements.</p>
 <pre class='prettyprint linenums'>var data = $(form).serializeArray();
 </pre>
-            <h4>element.serialize()</h4>
+            <h3>element.serialize()</h3>
             <p>This method creates a text string in standard URL-encoded notation.</p>
 <pre class='prettyprint linenums'>var data = $(form).serialize();
 </pre>
-            <h4>$.param(obj, traditional)</h4>
+            <h3>$.param(obj, traditional)</h3>
             <p>This method lets you create a serialized representation of an array or a plain object suitable for use in a URL query string or a Fetch request.</p>
 <pre class='prettyprint linenums'>var myObject = {
   a: {
@@ -441,64 +441,64 @@ $('ul').off('tap', 'li');
 };
 var recursiveEncoded = $.param(myObject);
 </pre>
-            <h4>element.eq(index)</h4>
+            <h3>element.eq(index)</h3>
             <p>Get an element based on its position in a collection. This uses zero-based numbers.</p>
 <pre class='prettyprint linenums'>$('li').eq(4).addClass('important');
 </pre>
-            <h4>element.push(element)</h4>
+            <h3>element.push(element)</h3>
             <p>Push an element onto the collection.</p>
 <pre class='prettyprint linenums'>var listItem = $('#firstList').find('li').eq(2);
 $('#list').find('li').push(listItem);
 </pre>
-            <h4>element.pop()</h4>
+            <h3>element.pop()</h3>
             <p>This method lets you pop the last item off of a collection.</p>
 <pre class='prettyprint linenums'>var listItems = $('li');
 listItems.pop();
 </pre>
-            <h4>element.unshift(element)</h4>
+            <h3>element.unshift(element)</h3>
             <p>This method lets you add an element to the start of a collection.</p>
 <pre class='prettyprint linenums'>var listItem = $('#firstList').find('li').eq(2);
 $('#list').find('li').unshift(listItem);
 </pre>
-            <h4>element.shift()</h4>
+            <h3>element.shift()</h3>
             <p>This method lets you remove an element from a collection.</p>
 <pre class='prettyprint linenums'>$('li').shift();
 </pre>
-            <h4>element.forEach(callback)</h4>
+            <h3>element.forEach(callback)</h3>
             <p>This method lets you execute a callback on each item in the collection. Its arguments follow the normal JavaScript convention of context followed by index.</p>
 <pre class='prettyprint linenums'>$('li').each(function(item) {
     $('item').append(' Sold!');
 });
 </pre>
-            <h4>element.each(callback)</h4>
+            <h3>element.each(callback)</h3>
             <p>This method lets you execute a callback on each item in the collection. Its arguments follow the jQuery convention of index and context.</p>
 <pre class='prettyprint linenums'>$('li').each(function(item) {
     $('item').append(' Sold!');
 });
 </pre>
-            <h4>element.slice()</h4>
+            <h3>element.slice()</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.splice()</h4>
+            <h3>element.splice()</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.filter(callback)</h4>
+            <h3>element.filter(callback)</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.map(callback)</h4>
+            <h3>element.map(callback)</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.every(callback)</h4>
+            <h3>element.every(callback)</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.some(callback)</h4>
+            <h3>element.some(callback)</h3>
             <p>This method works just like the array equivalent.</p>
 
-            <h4>element.unique()</h4>
+            <h3>element.unique()</h3>
             <p>This method removes any duplicate elements in the collection.</p>
 <pre class='prettyprint linenums'>var listItems = $('li').unique();
 </pre>
-            <h4>$.type(argument).</h4>
+            <h3>$.type(argument).</h3>
             <p>This method lets you find out what type the argument is. It can test for boolean, number, string, function, array, date, error, regexp, object.</p>
 <pre class='prettyprint linenums'>if ($.type(data) === 'array') {
   data.forEach(function(item) {
@@ -506,7 +506,7 @@ $('#list').find('li').unshift(listItem);
   });
 }
 </pre>
-            <h4>$.each(object, callback)</h4>
+            <h3>$.each(object, callback)</h3>
             <p>This method lets you pass an array or object and execute a callback recursively over the members of the data. The parameters in the callback are in jQuery order: index and context.</p>
 <pre class='prettyprint linenums'>// Iterate over an object's keys:
 $.each(objectData, function(key, value) {
@@ -520,7 +520,7 @@ $.each(arrayData, function(idx, ctx) {
   }
 });
 </pre>
-            <h4>$.noop</h4>
+            <h3>$.noop</h3>
             <p>This is a function stub that you can use anywhere where you want to have a function/callback, but don't want anything to happen yet.</p>
 <pre class='prettyprint linenums'>var callback = $.noop;
 $('li').on('tap', $.noop);
@@ -529,25 +529,25 @@ $('li').on('tap', $.noop);
             <h3>Different from jQuery</h3>
             <p>The following methods may have similar functionality in jQuery but work slightly differently.</p>
 
-            <h4>$.delay(func, milliseconds)</h4>
+            <h3>$.delay(func, milliseconds)</h3>
             <p>This method is similar to jQuery's <code>.delay()</code>. However, instead of being a chainable function for animations, its a standalone function that can delay the execution of any JavaScript code</p>
 <pre class='prettyprint linenums'>$.delay(function() {
   alert('hi');
 }, 10000);
 </pre>
-            <h4>$.defer(func)</h4>
+            <h3>$.defer(func)</h3>
             <p>This method has no equivalent in jQuery. It allows you to tell a function to wait until the call stack is clear before executing.</p>
 <pre class='prettyprint linenums'>$.defer(function() {
   alert("I'm ready to go.")
 })
 </pre>
-            <h4>$.require(scriptSrc, callback</h4>
+            <h3>$.require(scriptSrc, callback</h3>
             <p>This method is similar to jQuery's <code>$.getScript</code>. It allows you to insert a remote script into the document. It takes two arguments: a url for the script and a callback to execute when the script is fully loaded.</p>
 <pre class='prettyprint linenums'>$.require('http:/my/script/url.js', function() {
   alert("I've got the script loaded now.")
 });
 </pre>
-            <h4>$.replace(oldElement, newelement)</h4>
+            <h3>$.replace(oldElement, newelement)</h3>
             <p>This method allows you to replace one element with another. The first argument is the element to replace, and the second argument is the element that will be replace it.</p>
 <pre class='prettyprint linenums'>var list1 = $('#list1');
 var list2 = $('#list2');

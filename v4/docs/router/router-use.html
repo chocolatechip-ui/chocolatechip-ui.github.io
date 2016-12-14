@@ -73,7 +73,7 @@
           <h3>Use</h3>
           
           <p>ChocolateChip-UI's router enables you to capture the user's interaction with ChocolateChip-UI's various navigations schemes. These are three: navigation lists, slide out menus and tab bars.</p>
-          <h4>Gettin Started</h4>
+          <h3>Gettin Started</h3>
           <p>To use routes you first need to initialize a router:</p>
           <pre class='prettyprint linenums'>var AppRoutes = $.Router();</pre>
           <p>You can then add routes to handle each route separately:</p>
@@ -92,7 +92,7 @@
   }
 ]);</pre>
         
-        <h4>Passing a Parameter to a Route</h4>
+        <h3>Passing a Parameter to a Route</h3>
 
         <p>When setting up your navigation lists, slide out menus and tab bars, you can provide a parameter that can be captured by the route callback to do something specific based on its value. This allows you to have, for example, a navigation list where all the list items go to the same page. The route for that page takes the provided parameter of each list item and renders content based on that parameter value. You can use a unique property, an id or uuid or whatever to identify each object in the collection to use as route parameters. You use a semi-colon, <code>:</code>, after the route to separate the parameter from the route. Below is a navigation list item with a uuid as a parameter of the route. Notice how the parameter is seprated from the route by the semi-colon:</p>
 
@@ -156,7 +156,7 @@ AppRoutes.addRoute([
 
         <p>Take a look at the example source code for <code>slide-out-menu-routes.html</code> in the ChocolateChip-UI examples. Read <a href="../../install.html" target='_blank'> for how to get the examples</a>.</p>
 
-          <h4>Digging deeper</h4>
+          <h3>Digging deeper</h3>
 
           <p>Navigation lists automatically dispatch a route when the user taps on a list item. Where does it get the route? From the <code>data-goto</code> value you use to indicate where that list item goes to. Similarly, silde out menus use the <code>data-show</code> property. And tab bars use <code>data-id</code>. Because setting up each type of layout is different, it will be easier to open the examples provided in the source code. You want to look at the following examples depending on what type of layout you wish to create:</p>
 
@@ -168,7 +168,7 @@ AppRoutes.addRoute([
 
           <p>You can find these in the examples folder created from the command line as mentioned previously. Please read <a href="../../install.html">Install.</a></p>
 
-          <h4>Example of Routing</h4>
+          <h3>Example of Routing</h3>
 
           <p data-height="500" data-theme-id="6688" data-slug-hash="BKaEvV" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="BKaEvV" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/BKaEvV/">BKaEvV</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 

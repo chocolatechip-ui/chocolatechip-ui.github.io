@@ -74,7 +74,7 @@
           
           <p>ChocolateChip-UI's Box is an interface to three different types of local data persistence: IndexedDB, WebSQL and localStorage. Which one it uses depends on the browser. Box first tries to use IndexedDB, if the browser does not support it, Box tries WebSQL, if the browser does not support that, it uses localStorage.</p>
 
-          <h4>$.Box.set()</h4>
+          <h3>$.Box.set()</h3>
 
           <p>If your data needs are simple, you can use the default box. You do this by just setting your data. Box will put it in its default box called 'keyvaluepairs'. You can examine your boxes by opening the browser's Web inspector and examining your resources.</p>
 
@@ -105,14 +105,14 @@ var boxMediator = $.on('box-mediator', function(data) {
   }
 });</pre>
 
-          <h4>$.Box.get()</h4>
+          <h3>$.Box.get()</h3>
           <p>You can get a key/value pair out of a box using <code>$.Box.get()</code>. Just give if the key you want to retrieve. Box will return a promise that you can use to access that data:</p>
           <pre class='prettyprint linenums'>$.Box.get('name').then(function(value) {
   console.log('The name is: ' + value);
 });</pre>
           <p>Because this is a promise, you can use <code>catch</code> to handle errors.</p>
 
-          <h4>How Box Stores Values</h4>
+          <h3>How Box Stores Values</h3>
           <p>A value can be any of the following:</p>
           <ul>
             <li>Array</li>
@@ -138,7 +138,7 @@ var boxMediator = $.on('box-mediator', function(data) {
     console.log('The price is: ' + price);
   });
 });</pre>
-          <h4>$.Box.each()</h4>
+          <h3>$.Box.each()</h3>
           <p>If you want to get all the keys out of your box, you can use the <code>each()</code> method. This will run a loop on the box, returning the key/value pairs. You can do it like this:</p>
           <pre class='prettyprint linenums'>$.Box.each(function(value, key, idx) {
   console.log([key, value]);

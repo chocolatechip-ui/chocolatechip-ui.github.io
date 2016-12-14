@@ -180,7 +180,7 @@
   }
 });</code></pre>
 
-        <h4>Custom Validators</h4>
+        <h3>Custom Validators</h3>
         <p>Out of the box ChocolateChip-UI has number of useful validators. If you need a validation that isn't provided, you can create a custom validator to use with <code>$.Form</code>. This is done with the <code>$.validateWithRegex()</code> method. This takes two arguments: the input to check and the regular expression to use. For example, this will let you set up a validator for a phone number that differs from the US/Canada or standard international form that ChocolateChip-UI provides.</p>
 
 <pre class="prettyprint linenums">
@@ -189,7 +189,7 @@
 var phoneRegex = /^\({0,1}0(2|3|7|8)\){0,1}(\ |-){0,1}[0-9]{4}(\ |-){0,1}[0-9]{4}$/;
 $.validateWithRegex('#australianPhoneNum', phoneRegex)</pre>
 
-      <h4>$.registerCustomValidator</h4>
+      <h3>$.registerCustomValidator</h3>
       <p>If you want to use a custom validator with <code>$.Form</code> so that you can get a JSON object, you need to do two things: register the custom validator and indicate it in the <code>$.Form</code> setup. To register a custom validator you use <code>$.registerCustomValidator</code>. This takes two arguments: a name for your validator and a regular express. The name should start with 'custom-'. This is required for registering it. The regular expression should be in the following format: <code>/abc/</code>. Below is an example custom validator used with <code>$.Form</code>:</p>
 
 <pre class="prettyprint linenums">

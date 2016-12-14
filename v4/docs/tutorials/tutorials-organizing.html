@@ -72,11 +72,11 @@
           <h2>Tutorials</h2>
           <h3>Organizing Your Code</h3>
           
-          <h4>It's About Parts</h4>
+          <h3>It's About Parts</h3>
 
           <p>The part of ChocolateChip-UI that you will always use, regardless of the type of app you're making, is views. The second part that you'll probably need to use is a navigation list with routing. To better understand how you can organize your app code, you need to know how views work.</p>
 
-          <h4>Views</h4>
+          <h3>Views</h3>
           <p>Although we write code to make an app, when we run it, we see a UI. ChocolateChip-UI's views let you break that UI down into managable chunks. You can create views to do this in three ways. You can have a view render data to the screen. This might be just a snippet of text, or an object or a array of objects. You can also add event listeners to your views. You can also define the template the view uses when you setup the view. This results in a complete component where you do not need to look elsewhere to understand its functionality. Or you could create a view whose only purpose is to wire up events for the UI.</p>
 
           <p>When your app has a lot of views, it gets hard to dig through the code to find the view you want. You can combine all of your views into one object as a namespace. Below we show a before and after:</p>
@@ -211,7 +211,7 @@ var AppEvents = $.View({
   ]
 });</pre>
 
-        <h4>Routes</h4>
+        <h3>Routes</h3>
 
         <p>The other main item you will use in your app is routes.  You set up routes by creating a router object and defining routes on it. This means there's just one place to look for routes:</p>
 
@@ -246,7 +246,7 @@ FragranzRoutes.addRoute([
   }
 ]);</pre>
 
-          <h4>Mediators</h4>
+          <h3>Mediators</h3>
 
           <p>If you want to decouple your code, you'll use mediators. However, you'd probably never have more than a couple. You can namespace them with views or routes or however you like.</p>
 
@@ -334,7 +334,7 @@ FragranzRoutes.addRoute([
   });
 };</pre>
 
-        <h4>Build Scripts</h4>
+        <h3>Build Scripts</h3>
 
         <p>You could also break your code down into separate files. Using a logical file structure allows you to have small, managable chunks of code. It's easy to find cart code in a cart directory. If you take this approach, you will need to do one of two things. Create a build script to combine them together, or use a module loader/package manager, which will do that for you. There are so many module bundlers to choose from: SystemJS, JSPM, Webpack, etc. We feel that a build script gives you more control over how your final file is. In contrast, bundlers add module loading code in the final output. If you choose to write a build script, there are a number of ways to do so. You could use make, npm, gulp or grunt. We currently use gulp to assemble all the pieces of ChocolateChipJS together and are happy with how it's working.</p>
 

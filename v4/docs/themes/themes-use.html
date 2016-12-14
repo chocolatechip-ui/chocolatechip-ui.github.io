@@ -93,7 +93,7 @@
 
           <p>When colorizing your app, there is one thing to keep in mind, readability. If you color the navigation bar and toolbar with a dark color, you will need to color the text and widget indicators in them so that they stand out from the background color. So, in the case of a light color in the navigation and tool bars, you'd be fine. But if you gave them a dark red, you'd need to make their content lighter so that you can see them.</p>
 
-          <h4>Coloring Nav Bars</h4>
+          <h3>Coloring Nav Bars</h3>
           <p>If you intend to colorize your app's nav bars and your app is using navigation lists, you need to also make sure that you include the <code>#globalNav</code> selector. If you do not have navigation lists in your app, you do not need this feature. To create the global nav bar, just set the <code>$.globalNav</code> property to true as the first entry in your DOM ready function:</p>
 
           <pre class="prettyprint linenums">$(function() {
@@ -187,7 +187,7 @@ span.androidSelectionBorder {
         <h3>Material Design</h3>
         <p>The Android theme is based on the principles of Google's Material Design. When the Android theme is loaded on a mobile device, the typical ripple effects will occur when the user taps a button or interactive list item, showing the user that a tap occurred. ChocolateChip-UI uses a sophisticated color algorithm to determine when the ripple color needs to be dark or light based on the background color of the item being tapped.</p>
 
-        <h4>Custom Ripple Color</h4>
+        <h3>Custom Ripple Color</h3>
         <p>You can also provide a preferred color for the ripple to override the default. To do so, just put the property <code>data-ripple-color</code> with the color you want to use. Ripples will always be rendered a 45% opacity, so setting a ripple color to red would result in a pink ripple. This is for legibility purposes.</p>
 
         <pre class='prettyprint linenums'>
@@ -203,7 +203,7 @@ span.androidSelectionBorder {
   &lt;/li&gt;
 &lt;/ul&gt;</pre>
 
-          <h4>Buttons in Navbars</h4>
+          <h3>Buttons in Navbars</h3>
           <p>The code that implements the Android Material Design ripples also checks buttons to see if they are in a navbar. If they are, it checks the navbar's background color and determines the button's ripple color based on this. So, if you customize your Android layouts with colored navbars, any buttons in them will automatically have the correct ripple contrast to show over the navbar. You can, of course, override this by setting a custom color for the ripple with the <code>data-ripple-color</code> attribute.</p>
 
           <h3>Color Support</h3>

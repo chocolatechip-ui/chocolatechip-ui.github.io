@@ -73,7 +73,7 @@
           <h3>API</h3>
           
 
-        <h4>Model</h4>
+        <h3>Model</h3>
         <p><code>$.Model(options)</code></p>
         <p>This is a factor that creates a model object for you based on the options you provide. It takes two arguments, the data to encapsule in the model, and a handle to use as its identifier. The model uses the handle to inform the system when it has changed. Mediators listen for this handle and react when it is dispatched.</p>
 
@@ -97,7 +97,7 @@ myData = null;
         <h3>Model of Single Object Data</h3>
         <p>When a model holds a single object of properties and values, the model exposes the following methods:</p>
 
-        <h4>get</h4>
+        <h3>get</h3>
         <p><code>get(property?)</code></p>
         <p>This method lets you get the value of the provided property if it exists on the object stored in the model. If no property is provided, it returns the comple object of data.</p>
 <pre class='prettyprint linenums'>// Get the value of `name`:
@@ -107,7 +107,7 @@ var name = myModel.get('name');
 var data = myModel.get();
 </pre>
 
-        <h4>set</h4>
+        <h3>set</h3>
         <p><code>set(property, data)</code></p>
         <p>This method lets you set a property and value on the model's data. If the property already exists, its value will be updated to that provided by this method. If the property does not currently exist on the model's data, it will be added.</p>
 <pre class='prettyprint linenums'>// Update the model's name property:
@@ -117,7 +117,7 @@ myModel.set('name', 'John Doe');
 myModel.set('age', 32);
 </pre>
 
-        <h4>remove</h4>
+        <h3>remove</h3>
         <p><code>remove(property)</code></p>
         <p>This method lets you remove a property from the model's data.</p>
 <pre class='prettyprint linenums'>// Remove `age` from the model:
@@ -125,7 +125,7 @@ myModel.remove('age');
 myModel.get('age') // returns undefined
 </pre>
 
-        <h4>merge</h4>
+        <h3>merge</h3>
         <p><code>merge(object)</code></p>
         <p>This method lets you merge an object into the model's data. If any of the properties of the object being merged into the model already exist on the model, they will be replaced with those of the merged object. And any properties unique to the merged object will be added to the model.</p>
 <pre class='prettyprint linenums'>// Merge an object into the model:
@@ -150,7 +150,7 @@ personModel.merge(obj);
 }
 </pre>
 
-        <h4>mixin</h4>
+        <h3>mixin</h3>
         <p><code>mixin</code></p>
         <p>This method lets you extend a model with the properties of the provided object. Unlike <code>mixin</code>, if the properties of the object already exist on the model, they will not be replaced. Only properties that are not currently on the model will be added.</p>
         <p>In the following example, notice how the final model only received properties that were new after the mixin.</p>
@@ -184,14 +184,14 @@ personModel.mixin(obj);
 
         <p>When a model holds an array of objects, the model exposes the following methods:</p>
 
-        <h4>get</h4>
+        <h3>get</h3>
         <p><code>get()</code></p>
         <p>This method lets you get all of the model's data. Since this is an array of objects, that is what you will get.</p>
 <pre class='prettyprint linenums'>// Get the model's data:
 var data = myModel.get();
 </pre>
 
-        <h4>getPropAt</h4>
+        <h3>getPropAt</h3>
         <p><code>getPropAt(property, position)</code></p>
         <p>This method lets you get the value of a property at the specified position in the model's array. It takes two arguments: the property and position in the array.</p>
 <pre class='prettyprint linenums'>// Get the property at position:
@@ -201,7 +201,7 @@ console.log('The name is: ' + name);
         
         <p>If you use a negative number as a position, that will count back from the end of the collection. So, a position of <code>-1</code> would be the last item in the collection, -2 would be the next to last, etc.</p>
 
-        <h4>setPropAt</h4>
+        <h3>setPropAt</h3>
         <p><code>setPropAt(property, value, position)</code></p>
         <p>This method lets you set the value of a property at the specified position in the model's array. It takes three arguments: the property, the value for the property, and the position in the model's array.</p>
 <pre class='prettyprint linenums'>// Set the value of a property:
@@ -210,14 +210,14 @@ personMode.setPropAt('name', 'John Doe', 21);
         
         <p>If you use a negative number as a position, that will count back from the end of the collection. So, a position of <code>-1</code> would be the last item in the collection, -2 would be the next to last, etc.</p>
 
-        <h4>push</h4>
+        <h3>push</h3>
         <p><code>push(data)</code></p>
         <p>This method lets you push data onto the model's data. This works like the Array.push method.</p>
 <pre class='prettyprint linenums'>// Push some data onto the model:
 myModel.push({name: 'Joe', age: 22});
 </pre>
 
-        <h4>pop</h4>
+        <h3>pop</h3>
         <p><code>pop()</code></p>
         <p>This method lets you pop the last item off of the model, just like Array.pop.</p>
 <pre class='prettyprint linenums'>// Pop the last item from the model:
@@ -225,7 +225,7 @@ var lastPerson = peopleModel.pop();
 console.log(lastPerson.name);
 </pre>
 
-        <h4>unshift</h4>
+        <h3>unshift</h3>
         <p><code>unshift(data)</code></p>
         <p>This method lets you insert data to the beginning of a model, just like Array.unshift.</p>
 <pre class='prettyprint linenums'>// Insert data at the start of the model:
@@ -235,14 +235,14 @@ peopleModel.unshift({
 });
 </pre>
 
-        <h4>shift</h4>
+        <h3>shift</h3>
         <p><code>shift()</code></p>
         <p>This method lets you </p>
 <pre class='prettyprint linenums'>// Pop the first item from the model:
 var firstPerson
 </pre>
 
-        <h4>slice</h4>
+        <h3>slice</h3>
         <p><code>slice(start, end)</code></p>
         <p>This method lets you get a slice of the model's data. This works the same as Array.slice by returning a new array and does not affect the integrity of the model's data. Note: the start and end value are zero-based.</p>
 <pre class='prettyprint linenums'>// Get a slice of the model:
@@ -250,7 +250,7 @@ var tenPeople = peopleModel.slice(0, 9);
 peopleView.render(tenPeople);
 </pre>
 
-        <h4>splice</h4>
+        <h3>splice</h3>
         <p><code>splice(start, end, data)</code></p>
         <p>This method lets you splice your model's data. This works the same as Array.splice, so it does directly manipulate the model's data. Splicing allows you to insert new content into the array, remove a chunk of the array or replace a range of the array with new data. Note: the start and end value are zero-based.</p>
 <pre class='prettyprint linenums'>// Get a chuck of the model:
@@ -258,7 +258,7 @@ var chuck = productsModel.splice(9, 19, newProducts);
 </pre>
         <p>If you have multiple items you want to slice into the model, do not try to do so as an array, as the array itself will be inserted. Instead provides the items individual as arguments after the end position separated by commas.</p>
 
-        <h4>insert</h4>
+        <h3>insert</h3>
         <p><code>insert(position, data)</code></p>
         <p>Like splice, this method lets you directly insert data into the model. You provide the position to insert at and the data to insert. Note: the position value is zero-based.</p>
 <pre class='prettyprint linenums'>// Insert data into model:
@@ -266,7 +266,7 @@ myProducts.insert(20, {name: 'Sam', age 40});
 </pre>
         <p>If you have multiple items you want to insert into the model, do not try to do so as an array, as the array itself will be inserted. Instead provides the items individual as arguments after the insert position separated by commas.</p>
 
-        <h4>pluck</h4>
+        <h3>pluck</h3>
         <p><code>pluck(property)</code></p>
         <p>This method lets you pluck all the values of a property from the model. You might, for example, want to get all the prices of a model of products, or the last names of all costumers in a model. Just provide the property you want and this method will return the values as an array.</p>
 <pre class='prettyprint linenums'>// Get prices from model:
@@ -275,7 +275,7 @@ prices.sort().reverse();
 pricesView.render(prices);
 </pre>
 
-        <h4>find</h4>
+        <h3>find</h3>
         <p><code>find(callback)</code></p>
         <p>This method works the same as Array.find. Its callback can perform any kind of operation on any property to determine whether to return the object or not. This is similar to the model's <code>getPropEquals</code>, but more versatile. If you need to performs some complicated test to determine whether to get the object by a property, this is the version to use.</p>
 <pre class='prettyprint linenums'>// Find a model's object by last name:
@@ -284,14 +284,14 @@ var john = peopleModel.find(function(person) {
 });
 </pre>
 
-        <h4>indexOf</h4>
+        <h3>indexOf</h3>
         <p><code>indexOf(value)</code></p>
         <p>This method works the same as Array.indexOf. As such, it is only works if the model's data is an array so simple values. If the model holds an array of objects, then use <code>findIndex</code> go get the object's index value.</p>
 <pre class='prettyprint linenums'>// Get the index of a value in the model:
 var index = namesModel.indexOf('Joe');
 </pre>
 
-        <h4>findIndex</h4>
+        <h3>findIndex</h3>
         <p><code>findIndex(callback)</code></p>
         <p>This method works the same as Array.findIndex. You provide a callback to test the wether to return the index of an object.</p>
 <pre class='prettyprint linenums'>// Get index of object in model:
@@ -300,7 +300,7 @@ var index = peopleModel.findIndex(function(person) {
 });
 </pre>
 
-        <h4>forEach</h4>
+        <h3>forEach</h3>
         <p><code>forEach(callback)</code></p>
         <p>This method works the same as Array.forEach. It allows you to run a callback against every item in the model. You can also directly manipulate the data of that iteration, changing the content of the model.</p>
 <pre class='prettyprint linenums'>// Change all last names to uppercase:
@@ -309,7 +309,7 @@ peopleModel.forEach(function(person) {
 });
 </pre>
 
-        <h4>filter</h4>
+        <h3>filter</h3>
         <p><code>filter(callback)</code></p>
         <p>This method works the same as Array.filter. It allows you to run a callback against every item in the array and return a new array based on the results.</p>
 <pre class='prettyprint linenums'>// Filter people by age:
@@ -319,7 +319,7 @@ var youngPeople = peopleModel.filter(function(person) {
 youngPeopleView.render(youngPeople);
 </pre>
 
-        <h4>map</h4>
+        <h3>map</h3>
         <p><code>map(callback)</code></p>
         <p>This method works the same as Array.map. It allows you to run a function against every item of the array and returns a new array based on the outcome of that callback. Unlike <code>forEach</code>, <code>map</code> does not let you affect the model's data directly but instead returns a new array with those changes.</p>
 <pre class='prettyprint linenums'>// Update prices with new tax rate:
@@ -329,7 +329,7 @@ var updatedPrices = productsModel.map(function(product) {
 pricesView.render(updatedPrices);
 </pre>
 
-        <h4>reverse</h4>
+        <h3>reverse</h3>
         <p><code>reverse()</code></p>
         <p>This method works the same as Array.reverse. However, it also works with arrays of objects.</p>
 <pre class='prettyprint linenums'>// Reverse the model's data:
@@ -339,7 +339,7 @@ pricesModel.reverse();
 pricesView.render();
 </pre>
 
-        <h4>sort</h4>
+        <h3>sort</h3>
         <p><code>sort(callback)</code></p>
         <p>This method works the same as Array.sort. You must provide a callback to test the values of the model's objects for the sort order.</p>
 <pre class='prettyprint linenums'>// Sort last names in ascending order:
@@ -354,7 +354,7 @@ peopleModel.sort(function(person1, person2) {
 peopleView.render();
 </pre>
 
-        <h4>orderBy</h4>
+        <h3>orderBy</h3>
         <p><code>orderBy(property1, property2?)</code></p>
         <p>This method lets you sort a model based on various sort criteria. For example, you could sort a model by first name, last name and age. The default sort order is ascending, but you can change the sort order to descending by prefixing a property with a hyphen.</p>
 <pre class='prettyprint linenums'>// Order model by first and last names:
@@ -366,7 +366,7 @@ peopleModel.orderBy(-age);
 peopleView.render();
 </pre>
 
-        <h4>concat</h4>
+        <h3>concat</h3>
         <p><code>concat(newArray)</code></p>
         <p>This method works the same as Array.concat. When you concat an array of new objects to a model, the content of the array is added to the mode, not the array itself. This is useful if you do a non-destructive operation on an array and got a new copy back which you want to add to a model.</p>
 <pre class='prettyprint linenums'>// Concat new data to the model:
@@ -381,7 +381,7 @@ peopleModel.concat(newPeople);
 peopleView.render();
 </pre>
 
-        <h4>mixin</h4>
+        <h3>mixin</h3>
         <p><code>mixin(newArray)</code></p>
         <p>Like mixin for object property, this method will mixin and array of objects to the model. If their are any duplicates, they will be eliminated.</p>
 <pre class='prettyprint linenums'>// Mixin new data to model:
@@ -390,7 +390,7 @@ productsModel.mixin(newItems);
 productsView.render();
 </pre>
 
-        <h4>unique</h4>
+        <h3>unique</h3>
         <p><code>unique()</code></p>
         <p>This method will remove any publicates from the model. This is useful where the user might have made multiple entries of the same thing without realizing it.</p>
 <pre class='prettyprint linenums'>// Remove duplicates from model:
@@ -399,7 +399,7 @@ productsModel.unique();
 productsView.render();
 </pre>
 
-        <h4>eq</h4>
+        <h3>eq</h3>
         <p><code>eq(position)</code></p>
         <p>This method lets you get an object from the model based on its position. This is a zero-based value. You could get the position using <code>findIndex</code> or whatever means you might have.</p>
 <pre class='prettyprint linenums'>// Get the tenth person from model:
@@ -407,7 +407,7 @@ var tenthPerson = peopleModel.eq(9);
 </pre>
 
         <a name='both_models'></a>
-        <h4>size</h4>
+        <h3>size</h3>
         <p><code>size()</code></p>
         <p>This method returns the number of objects in a model.</p>
 <pre class='prettyprint linenums'>// Get the number of products:
@@ -419,7 +419,7 @@ alert('You have ' + number + ' items in your cart.');
         <p><strong>The following methods are shared by models of objects and arrays.</strong></p>
 
 
-        <h4>on</h4>
+        <h3>on</h3>
         <p><code>on(event, callback)</code></p>
         <p>This method works like attaching events to a DOM element. You can create custom events that make sense for what you app needs to do. You can also regester multiple callbacks to the same event, just like DOM element events. You can use model events to do things such as:</p>
         <ol>
@@ -442,7 +442,7 @@ myModel.on('update', function() {
 // both of the above will execute.
 </pre>
 
-        <h4>trigger</h4>
+        <h3>trigger</h3>
         <p><code>trigger(event, data?)</code></p>
         <p>When a model has an event registered, you can use `trigger` to make the model's event handler execute. You can also pass along some data, which will be available as its argument in the event callback.</p>
 <pre class='prettyprint linenums'>// Trigger and event on a model:
@@ -456,7 +456,7 @@ myModel.trigger('This is an announcement.');
 // The model returns 'This is an announcemnt.'
 </pre>
 
-        <h4>off</h4>
+        <h3>off</h3>
         <p><code>off(event)</code></p>
         <p>This method let you remove an event from a model. Just provide the event name. If there are multiple callbacks regesterd on the event, all of them will be removed.</p>
 <pre class='prettyprint linenums'>// Remove a model event:
@@ -465,14 +465,14 @@ myModel.off('announce');
 myModel.trigger('announce');
 </pre>
 
-        <h4>events</h4>
+        <h3>events</h3>
         <p><code>events()</code></p>
         <p>This method returns all events and their callbacks currently registered on a model.</p>
 <pre class='prettyprint linenums'>// Get all events on the model:
 var events = myModel.events();
 </pre>
 
-        <h4>removeEventCallback</h4>
+        <h3>removeEventCallback</h3>
         <p><code>removeEventCallback(event, position)</code></p>
         <p>Just as you can remove an event from a model, you can more specifically remove a callback from a model's event. The position is zero-based. A model event's callbacks are stored as an array. This method removes a callback based on its position in that array. If a model's event has only one event, using this is unnecessary. In that case it would be better to use <code>myModel.off(event)</code>.</p>
 <pre class='prettyprint linenums'>// Remove the second callback:
@@ -492,7 +492,7 @@ myModel.removeEventCallback('update', 1);
 myModel.trigger('update');
 </pre>
 
-        <h4>stop</h4>
+        <h3>stop</h3>
         <p><code>stop()</code></p>
         <p>Rather than deleting an event from a model, you can instead simply `stop` it. This prevents the event from executing until it is started again.</p>
 <pre class='prettyprint linenums'>// Stop a model's events:
@@ -501,7 +501,7 @@ myModel.stop();
 myModel.trigger('update', 'Something here.');
 </pre>
 
-        <h4>start</h4>
+        <h3>start</h3>
         <p><code>start()</code></p>
         <p>If you needed to stop a model's events for some reason, you can use this method to start the model's events again.</p>
 <pre class='prettyprint linenums'>// Restart a model's events:
@@ -514,7 +514,7 @@ myModel.start();
 myModel.trigger('annoucne', 'A new message this time.');
 </pre>
 
-        <h4>isStopped</h4>
+        <h3>isStopped</h3>
         <p><code>isStopped()</code></p>
         <p>This method lets you test whether a model's events have been stopped or not. It returns a boolean.</p>
 <pre class='prettyprint linenums'>// Test if the model is stopped:
@@ -524,7 +524,7 @@ if (myModel.isStopped()) {
 }
 </pre>
 
-        <h4>purge</h4>
+        <h3>purge</h3>
         <p><code>purge()</code></p>
         <p>This method will delete all data from the model, leaving only and empty object: <code>{}</code>. After purging a model, <code>myModel.get()</code> will return <code>{}</code>.</p>
         <pre class='prettyprint linenums'>// Delete all data from an object in a model:
@@ -533,7 +533,7 @@ myModel.purge();
 myModel.get();
 // returns {}</pre>
 
-        <h4>replace</h4>
+        <h3>replace</h3>
         <p><code>replace(data, renderView)</code></p>
         <p>This method allows you to quickly replace all the data in the model with other data. This is so that you can do some complicated operations on the data before updating the model. By default using this method does not cause a view to render. However, if you pass any secondary boolean true argument (<code>renderView</code>), the bound view will be rendered with the changes.</p>
         <pre class='prettyprint linenums'>// Replace model data, do not render view:

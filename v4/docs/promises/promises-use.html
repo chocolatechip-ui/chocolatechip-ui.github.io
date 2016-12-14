@@ -111,7 +111,7 @@
 });
 </code></pre>
 
-<h4>Then</h4>
+<h3>Then</h3>
 <p>Promises provide several methods allowing us to do useful things. The way you'll most like use promises is with the <code>then</code> method. This method can take up two two callbacks–one for success and one for failure.</p>
 
 
@@ -134,7 +134,7 @@ function(reason) {
 
 <p>As you can see in the above code, <code>then</code> can handle two callbacks, one for success and another optional one for failure. You can just provide a single callback to handle the success. That's up to you. If you want, you could return whatever value you get in your success callback, which allows you to chain a second function. Read the next part on Multiple Thens for more information.</p>
 
-<h4>Multiple Thens</h4>
+<h3>Multiple Thens</h3>
 <p>The <code>then</code> method always returns a promsie. This means that you can chain multiple thens together. This allows you to break your code up into more logical blocks. This also helps you to avoid one of JavaScript development's worse patterns–the pyramid of doom–deeply nest series of callbacks.</p>
 
 <pre class="prettyprint"><code>var myPromise = new Promise(function(resolve, reject) {
@@ -151,7 +151,7 @@ myPromise.then(function(value) {
 </code></pre>
 
 
-<h4>Resolve</h4>
+<h3>Resolve</h3>
 
 <p>We can resolve a promise at any time using the <code>resolve</code> method on the static Promise object. Once we execute the resolve method, the promise is disposed of. </p>
 
@@ -166,7 +166,7 @@ new Promise(function (resolve, reject) {
 fulfill(Promise.resolve(5));
 </code></pre>
 
-<h4>Reject</h4>
+<h3>Reject</h3>
 
 <p>Like the resolve example above, we can similarly reject a promise using its method on the static Promise object. In this example we pass a value that gets returned with the rejection:</p>
 
@@ -179,7 +179,7 @@ new Promise(function (resolve, reject) {
 fulfill(Promise.reject(5));
 </code></pre>
 
-<h4>Catch</h4>
+<h3>Catch</h3>
 
 <p>We can handle errors and exceptions using the <code>catch</code> method. This enables us to have a series of thens that only handle success situations. ECMAScript promise pass any exception along until their is some callback to handle it.</p>
 
@@ -195,7 +195,7 @@ myPromise.then(function(value) {
 })
 </code></pre>
 
-<h4>Race</h4>
+<h3>Race</h3>
 
 <p>Sometimes you may need to execute several operations and any one of them could finish first. You want to take the result of the first to finishing, ignoring the others. ECMAScript promises enable this with the <code>race</code> method. This expects an array of promises as its argument.</p>
 
@@ -210,7 +210,7 @@ Promise.race([p1, p2, p3]).then(function(value) {
 f2(2);
 </code></pre>
 
-<h4>All</h4>
+<h3>All</h3>
 <p>Unlike with race conditions, sometimes you want to execute a number of things and wait until they are all done before doing anything. In those cases you can use the <code>all</code> method. This expects an array of promises as its argument.</p>
 
 <pre class="prettyprint"><code>var f1, f2, f3;

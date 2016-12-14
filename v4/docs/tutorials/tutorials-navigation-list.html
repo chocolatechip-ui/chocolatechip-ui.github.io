@@ -73,7 +73,7 @@
           <h2>Tutorials</h2>
           <h3>Navigation List</h3>
           
-          <h4>Setup</h4>
+          <h3>Setup</h3>
           <p>The most common way to organize an app to enable the users to get to different areas is to use a navigation list. By tapping a list item, the user is directed to another screen. Each list item could lead to a complete different screen. Or they could all lead to the same screen, where the app loads different content based on which item the user tapped.</p>
 
           <p>ChocolateChip-UI provides navigation lists to make creating these types of navigation as simple as possible. You use a typical ChocolateChip-UI list, but on the list items you put a <code>data-goto</code> attribute with the screen you want that list item to navigate to:</p>
@@ -99,7 +99,7 @@
 
 <p>The above back button will automatically return the user to the previous screen. This is all there is to put together a navigation list - a list with <code>data-goto</code> values and some destination screens with back buttons.</p>
 
-          <h4>Routing</h4>
+          <h3>Routing</h3>
           <p>Although the above list is a perfect candidate for navigation lists, sometimes you may have a list where each item leads to a detail page that shows the same layout with the details for the items tapped. You can use routing to handle this situation. You have the navigation list items all point to the same screen, but append each destination with a unique id:</p>
 
 <pre class='prettyprint linenums'>&lt;ul class="list"&gt;

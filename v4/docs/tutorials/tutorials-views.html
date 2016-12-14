@@ -72,9 +72,9 @@
           <h2>Tutorials</h2>
           <h3>Views</h3>
           
-          <h4>Understanding ChocolateChip-UI</h4>
+          <h3>Understanding ChocolateChip-UI</h3>
           <p></p>
-          <h4>A Room with a View</h4>
+          <h3>A Room with a View</h3>
           <p>When building applications, separation of concerns is absolutely necessary. ChocolateChip-UI is built on the paradigm of mediators, views and models. Mediators know about views, models, local data stores and remove servers. Views don't know anything except how to render the data they are given and how to execute their registered events for user interaction. Models don't know anything about anything, but when you modify them they will let your app know. Any mediators paying attention to the models will be able to deal with the model's changes by rendering a view, putting the changes in a local data store, or sending it off to a server.</p>
 
           <p>Views are the part of ChocolateChip-UI that you will use most often. Maybe it's the only part you might use in your app. Views are flexible. They can be bound to a model, or consume raw JavaScript data. They can be set to persist themselves in a local data store through ChocolateChip-UI's Box. Views can grab templates from the DOM, or they can hold templates defined on them. You can switch out what template a view is using at any time. You can do that with their models as well. Views can hold events that controller user interaction. You might use views with ChocolateChip-UI mediators or with ChocolateChip-UI's router, or you might just write your own code to handle everything.</p>
@@ -83,10 +83,10 @@
 
           <h3>First Steps</h3>
           <p>Main main reason you are going to use a view is to render a template. Granted, it is possible to make a view that does not use any template. You would do this where you are using a view purely for wiring up events in the DOM.</p>
-          <h4>Templates</h4>
+          <h3>Templates</h3>
           <p>There's a lot of negativity these days about templates. Some developers are of the opinion that templates are evil. This is usually because they want to define the entire app in JavaScript. The fact is, having templates makes it easy to reason about the dynamic parts of an app. Having templates defined in place lets you scan your apps document structure to see how it all fits together - like a storyboard. Or defining your template directly on your view or component makes it easy for you to reason about its behavior.</p>
 
-          <h4>Create a View</h4>
+          <h3>Create a View</h3>
           <p>When you create a view, you want to associate it with an element. This element will serve as the container of DOM elements rendered by the view's template, or hosting registered events. To create a view, just assign it to a variable, which will hold the view's instance. There are many properties we can set when we create a view, but at bare minimum we can just provide it with an element to anchor to. When you indicating the element for the view, you can use standard CSS selector markup, or a DOM node or a ChocolateChipJS DOM object. Usually you'll just use the selector approach:</p>
 
           <pre class='prettyprint linenums'>var appTitleView = $.View({
@@ -94,7 +94,7 @@
 });</pre>
           <p>The above code creates a view instance named "MyView". We can use this instance to render templates, bind to models, etc.</p>
 
-          <h4>Delimiters</h4>
+          <h3>Delimiters</h3>
           <p>Templates are defined using standard HTML markup and delimiters. ChocolateChip-UI has two kinds of delimiters: interpolators and executors. Interpolator delimiters allow you to ouput a data value. Executor delimiters lets you write JavaScript that will be run when the template is rendered. You can use any JavaScript you could possibly need in a template using executor delimiters.</p>
           <p>ChocolateChip-UI's interpolator delimiters follow the HTML5 template string convention:</p>
           <pre class='prettyprint linenums'>&lt;h1 id="appTitle" &gt;{= data }&lt;/h1&gt;</pre>
@@ -149,7 +149,7 @@ PersonView.render(person);</pre>
 <p data-height="265" data-theme-id="0" data-slug-hash="PZvWQB" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="PZvWQB" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/PZvWQB/">PZvWQB</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
           
-          <h4>Custom Variable Names</h4>
+          <h3>Custom Variable Names</h3>
           <p>As I mentioned earlier, you can provide custom variable names so that the templates make sense for the data they are consuming. Instead of <code>data</code>, use the term you want in the template. Then when you define the view, provide the name you want to use on the view's variable property:</p>
 
           <pre class='prettyprint linenums'>&lt;!-- Use the variable "person" --&gt;
@@ -246,10 +246,10 @@ ExecutableView.render('Executable template')</pre>
 
         <p>The fact is, you should try to do any kind of filtering or looping before you hand off data to a view for rendering. Executable delimiters are there for when there is no other options for pre-processing your data for a view.</p>
 
-        <h4>Data Binding</h4>
+        <h3>Data Binding</h3>
         <p>To learn how to bind a model to a view, read the tutorial about <a href="./tutorials-models.html" target="_blank">models</a>. You need to know how models work before using them with views.</p>
 
-        <h4>ES6 and Template Literals</h4>
+        <h3>ES6 and Template Literals</h3>
         <p>If you are writing in ES6 or transpiling from ES6 to ES5, you can take advantage of ES6 template literals to make you view templates more managable. Although defining templates directly in the View definition is great for organization, having to escape new lines with backslashes is a pain. If you're using ES6 as a target or just using it to transpile to ES5 with Babel, Traceur or TypeScript, then template literals are you best friend. No need for backslashes. Just you back ticks to enclose the template definition:</p>
 
           <pre class='prettyprint linenums'>// Use ES6 template literal:

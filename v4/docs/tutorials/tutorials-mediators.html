@@ -72,10 +72,10 @@
           <h2>Tutorials</h2>
           <h3>Mediators</h3>
           
-          <h4>One Ring to Rule Them All</h4>
+          <h3>One Ring to Rule Them All</h3>
           <p>Mediators let you write decoupled code. Mediators work best when they deal with one task. Mediators let you handle unidirectional flow. There are three directions for data flow in a ChocolateChip-UI applications: from a view, from a model or from a remote server/local data store. Mediators capture the flow coming from these three sources and channel it into four possible directions: a model, a view, a local data store or a remote server.</p>
 
-          <h4>Go with the Flow</h4>
+          <h3>Go with the Flow</h3>
 
           <p>When building a ChocolateChip-UI app, there are a certain number of flows that you need to manage. They are:</p>
           <ul>
@@ -135,7 +135,7 @@ $.send('my-topic', {firstName: 'Ben', lastName: 'Carson', age: 35};
 
           <p>When you send a dispatch, any mediators listening to that topic will execute. In the above example for <code>yyMtor</code>, because we are doing type checking, it will only procede if the data passed is a string. You can use any kind of  checks you need to limit whether a mediator handles a dispatch or not.</p>
 
-          <h4>Directly Running a Mediator</h4>
+          <h3>Directly Running a Mediator</h3>
           <p>Besides dispatching a topic to a mediator, you can directly execute them. You do this with their <code>run</code> method. When you run a mediator, you don't need to pass a topic. Instead, you pass it whatever data you want to send:</p>
 
           <pre class='prettyprint linenums'>// Run myMtor:

@@ -73,13 +73,13 @@
           <h3>API</h3>
           
 
-        <h4>Promise</h4>
+        <h3>Promise</h3>
         <p><code>Promise()</code></p>
         <p>This method is used to create a new promise:</p>
 <pre class='prettyprint linenums'>var myPromise = new Promise();
 </pre> 
 
-        <h4>Promise.then</h4>
+        <h3>Promise.then</h3>
         <p><code>Promise.then(callback)</code></p>
         <p>This method is used to handle the return of a promise. Promises are async. Using then allows you to handle the result of a promise when it is ready. The result of the promise being resolved is return as the argument for the callback in <code>then()</code>.</p>
 <pre class='prettyprint linenums'>var myPromise = new Promise();
@@ -88,7 +88,7 @@ myPromise.then(function(result) {
 });
 </pre>
 
-        <h4>Promise.catch</h4>
+        <h3>Promise.catch</h3>
         <p><code>Promise.catch(callback)</code></p>
         <p>This method is used for error handling. Its callback gets the error passed to it. Catch is not finall. You could attach a <code>then</code> to it. In that case the <code>then</code> would be execute after the error was handled.</p>
 <pre class='prettyprint linenums'>var myPromise = new Promise();
@@ -100,7 +100,7 @@ myPromise.then(function(result) {
 });
 </pre>
 
-        <h4>Promise.all</h4>
+        <h3>Promise.all</h3>
         <p><code>Promise.all()</code></p>
         <p>This method allows you to execute a callback after an array of promises are resolved. This is convenient where you have multiple async operations, say requests for remote data, and you want to wait for all of them to complete before doing anything.</p>
 <pre class='prettyprint linenums'>var myPromise1 = new Promise();
@@ -115,7 +115,7 @@ myPromise2(2);
 myPromise3(3);
 </pre>
 
-        <h4>Promise.race</h4>
+        <h3>Promise.race</h3>
         <p><code>Promise.race()</code></p>
         <p>This method allows you to do something with the first of several promises is resovled. </p>
 <pre class='prettyprint linenums'>var f1, f2, f3;
@@ -129,7 +129,7 @@ Promise.race([p1, p2, p3]).then(function(value) {
 f2(2);
 </pre>
 
-        <h4>Promise.resolve</h4>
+        <h3>Promise.resolve</h3>
         <p><code>Promise.resolve()</code></p>
         <p>This method is used to resolve a promise. When it is resolved, any thens chained to it will receive its result.</p>
 <pre class='prettyprint linenums'>var fulfill;
@@ -142,7 +142,7 @@ new Promise(function (resolve, reject) {
 fulfill(Promise.resolve(5));
 </pre>
 
-        <h4>Promise.reject</h4>
+        <h3>Promise.reject</h3>
         <p><code>Promise.reject()</code></p>
         <p>This method is used to reject a promise. When a promise is rejected any error handlers will capture the error.</p>
 <pre class='prettyprint linenums'>var fulfill;

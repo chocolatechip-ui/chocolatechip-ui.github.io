@@ -73,13 +73,13 @@
           <h3>API</h3>
           
           
-          <h4>Router</h4>
+          <h3>Router</h3>
           <p><code>$.Router()</code></p>
           <p>This factory returns a router object which you assign to a variable.</p>
 <pre class="prettyprint"><code>var myRouter = $.Router();
 </code></pre>
           
-          <h4>addRoute</h4>
+          <h3>addRoute</h3>
           <p><code>addRoute(arrayOfRoutes)</code></p>
           <p>This method adds a route to your router object. It expects an array as an argument, even if you are only adding one route. A route is an object with two properties: a route and a callback.</p>
           <p>ChocolateChip-UI's routes are the ids of screens that you will be navigating to. You do not use the `#` but purely the id value of the screen:</p>
@@ -111,7 +111,7 @@ myRouter.addRoute([
     // Render the view with the returned object:
     detailView.render(item);
   }
-</code></pre><h4>getFullRoute</h4>
+</code></pre><h3>getFullRoute</h3>
           <p><code>getFullRoute()</code></p>
           <p>This method is executed on a router instance. It returns a backslash delimited path of the current position of the user. In tab bars and slides this may simply be the current screen. If the user has drilled down in a navigation list, this will show the path the user has taken.</p>
 <pre class="prettyprint"><code>// For a myRouter router:
@@ -119,14 +119,14 @@ var route = myRouter.getFullRoute();
 console.log(route) // 'main/fruits/banana'
 </code></pre>
           
-          <h4>getCurrentLoc</h4>
+          <h3>getCurrentLoc</h3>
           <p><code>getCurrentLoc()</code></p>
           <p>This method is executed on a router instance. It returns the user's current location. This is the id of the current screen.</p>
 <pre class="prettyprint"><code>// For a myRouter router:
 var currentScreen = myRouter.getCurrentLoc();
 </code></pre>
           
-          <h4>dispatch</h4>
+          <h3>dispatch</h3>
           <p><code>dispatch(route)</code></p>
           <p>This method is executed on a router instance. It lets you dispatch to a particular route. This means that you can tell the Router to handle the route. It takes one argument, the route. All navigation wigets (tab bars, slide out menus and navigation lists) automatically dispatch their routes. Also, if you use <code>$.GoToScreen()</code> to direct the user somewhere, this will automatically dispath the screen id you provided.</p>
           <p></p>
@@ -138,7 +138,7 @@ myRouter.dispatch('detail:123');
 </code></pre>
 
 
-          <h4>$.ChuiRoutes</h4>
+          <h3>$.ChuiRoutes</h3>
           <p>The ChocolateChip-UI router object. This is an array of the current routes. ChocolateChip-UI builds the stores the screens a user navigates to in this array. When you provide a back navigation scheme, such as with back buttons, ChocolateChip-UI examines $.ChuiRoutes to see where the user came from and then send the user back.</p>
 
 

@@ -72,7 +72,7 @@
           <h2>Views</h2>
           <h3>Styles</h3>
           
-          <h4>Creating A View Specific Style</h4>
+          <h3>Creating A View Specific Style</h3>
           <p>Since <strong>version 4.1.0</strong>, you can style your view with a style object. Most of the time you probably won't need anything more than a tiny snippet of CSS in your document. However, if you want to override the default styles for some serious customization, using the view's styles object is the way to go. Similarly, if you are creating a totally new layout for a view, you can use the styles object to provide the view's styles. When you define your view with a styles property, ChocolateChip-UI creates a virtual stylesheet with a selector based on the view's element selector. Any child elements will be styled as descendants of that selector.</p>
 
           <p>When you have a highly customized or specialized layout for a view, it makes sense to include styles in the view itself. The advantage to this is that if you intended to reuse the view in other projects, the styles will accompany the view automatically. No need to dig around for styles in other places.</p>
@@ -91,7 +91,7 @@
 });
 </pre>
 
-          <h4>ChUI Style Notation</h4>
+          <h3>ChUI Style Notation</h3>
 
           <p>ChocolateChip-UI uses a special object notation to define the styles for a view. Because it is an object, hyphenated CSS properties must be either quoted or changed to camel case.</p>
           <p>The sytax uses hierarchical relationships, like <strong>SASS</strong> and <strong>LESS</strong>. You indicate child elements based on the view's element. Let's look at a style example:</p>
@@ -117,7 +117,7 @@
 }
 </pre>
 
-        <h4>Child Selectors</h4>
+        <h3>Child Selectors</h3>
         <p>In the above example, the style <code>border: 'solid 1px red'</code> will get applied to the CSS selector <code>#list1</code>, because that is the root of the view. If we want to style the list items, we will need to use a CSS child selector and nest it inside the list definition. Remember that when providing style selectors, they need to be quoted, and that they are style with their own object of properties and values:</p>
 
         <pre class="prettyprint linenums">var myView = $.View({
@@ -188,7 +188,7 @@
 }
 </pre>
         
-        <h4>Pseudo Elements</h4>
+        <h3>Pseudo Elements</h3>
 
         <p>You can define pseudo selectors using the ":" or "::" directly on a selector's root level:</p>
 
@@ -240,7 +240,7 @@
 }
 </pre>
 
-        <h4>Automatic Pixel Values</h4>
+        <h3>Automatic Pixel Values</h3>
         <p>If you're defining a simple numeric pixel value, you can simply provide the value as a number:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({

@@ -73,7 +73,7 @@
           <h3>API</h3>
           
 
-          <h4>Handling Results</h4>
+          <h3>Handling Results</h3>
           <p>ChocolateChip-UI Box offers two ways of using its API, through functions or promises. The functions work like Node functions. You'll be doing everythin inside a callback:</p>
 
 <pre class="prettyprint linenums">
@@ -138,7 +138,7 @@ $.Box.set('key', 'value')
   });
 </pre>
 
-           <h4>set</h4>
+           <h3>set</h3>
            <p><code>set(key, value, successCallback)</code></p>
            <p>Saves data to an offline store. You can store the following types of JavaScript objects:</p>
 
@@ -186,7 +186,7 @@ request.addEventListener('readystatechange', function() {
 });
 </pre>
           <summary>When using localStorage and WebSQL backends, binary data will be serialized before being saved (and retrieved). This serialization will incur a size increase when binary data is saved.</summary>
-          <h4>get</h4>
+          <h3>get</h3>
           <p><code>get(key, successCallback)</code></p>
 
           <p>Gets an item from the storage library and supplies the result to a callback. If the key does not exist, <code>get()</code> will return null.</p>
@@ -205,7 +205,7 @@ $.Box.get('somekey')
   });
  </pre>
 
-          <h4>remove</h4>
+          <h3>remove</h3>
           <p><code>remove(key, successCallback)</code></p>
           <p>Removes the value of a key from the offline store.</p>
 <pre class='prettyprint linenums'>// Execute callback after the key has been removed:
@@ -214,7 +214,7 @@ $.Box.remove('somekey', function(err) {
 });
 </pre>
 
-          <h4>clear</h4>
+          <h3>clear</h3>
           <p><code>clear(successCallback)</code></p>
           <p>Removes every key from the database, returning it to a blank slate.</p>
 <pre class='prettyprint linenums'>// Execute callback after the database has been deleted:
@@ -225,7 +225,7 @@ $.Box.clear(function(err) {
           <summary>$.Box.clear() will remove every item in the offline store. Use this method with caution.
 </summary>
 
-          <h4>size</h4>
+          <h3>size</h3>
           <p><code>size(successCallback)</code></p>
           <p>Gets the number of keys in the offline store (i.e. its “size”).</p>
 <pre class='prettyprint linenums'>// Output the number of keys in the database:
@@ -234,7 +234,7 @@ $.Box.size(function(err, numberOfKeys) {
 });
 </pre>
 
-          <h4>key</h4>
+          <h3>key</h3>
           <p><code>key(keyIndex, successCallback)</code></p>
           <p>Get the name of a key based on its ID.</p>
 <pre class='prettyprint linenums'>// Output the key name:
@@ -242,7 +242,7 @@ $.Box.key(2, function(err, keyName) {
   console.log(keyName);
 });
 </pre>
-          <h4>keys</h4>
+          <h3>keys</h3>
           <p><code>keys(successCallback)</code></p>
           <p>Get the list of all keys in the datastore.</p>
 <pre class='prettyprint linenums'>// An array of all the key names:
@@ -251,7 +251,7 @@ $.Box.keys(function(err, keys) {
 });
 </pre>
 
-          <h4>each</h4>
+          <h3>each</h3>
           <p><code>each(successCallback)</code></p>
           <p>Iterate over all value/key pairs in datastore.</p>
           <p><code>successCallback</code> is called once for each pair, with the following arguments:</p>
@@ -314,7 +314,7 @@ $.Box.each(function(value, key, idx) {
 </pre>
           <summary><code>each</code> supports early exit by returning an undefined value inside the eachCallback. The resulting value will be passed to successCallback with each iteration.</summary>
 
-          <h4>createInstance</h4>
+          <h3>createInstance</h3>
           <p><code>createInstance(options)</code></p>
           <p>You can create multiple instances of ChocolateChip-UI Box. <code>createInstance</code> accepts all the options that config does (see below). Each instance can have its own name to identify it.</p>
 
@@ -338,7 +338,7 @@ moviesBox.get('movie1')
           <h3>Settings</h3>
           <p>These methods allow driver selection and database configuration. They should generally be called before the first data API call to $.Box (i.e. before you call <code>get()</code>, <code>size()</code>, etc.)</p>
 
-          <h4>setDriver</h4>
+          <h3>setDriver</h3>
           <p><code>setDriver(driverName)</code></p>
           <p><code>setDriver([driverName, nextDriverName])</code></p>
           <p>Force usage of a particular driver or drivers, if available.</p>
@@ -363,7 +363,7 @@ $.Box.setDriver([$.Box.WEBSQL, $.Box
 </pre>
             <summary> If the backend you’re trying to load isn’t available on the user’s browser, $.Box will continue to use whatever backend driver it was previously using. This means, for example, if you try to force IE to use WebSQL, it will fail and continue using IndexedDB.</summary>
 
-            <h4>config</h4>
+            <h3>config</h3>
             <p><code>config(options)</code></p>
             <p>Set and persist $.Box options. This must be called before any other calls to $.Box are made, but can be called after $.Box is loaded. If you set any config values with this method, they will persist after driver changes, so you can call <code>config()</code> then <code>setDriver()</code>. The following config values can be set:</p>
 

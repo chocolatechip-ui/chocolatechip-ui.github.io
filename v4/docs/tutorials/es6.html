@@ -72,13 +72,13 @@
           <h2>Tutorials</h2>
           <h3>Organizing Your Code</h3>
           
-          <h4>ES6 (ECMAScript 2015)</h4>
+          <h3>ES6 (ECMAScript 2015)</h3>
 
           <p>If you use the ChocolateChip-UI command line tool to create a start project, you can write your app using ES6. JSPM will transpile the code into ES5. You can use many of the features of ES6 now while still supporting browsers that don't support it. You can use classes, arrow functions, object comprehensions, rest parameters, let and const, promises, template literals and most importantly, modules.</p>
 
           <p>We have four sample apples written with ES6 modules. You can learn more about them here: <a target="_blank" href="tutorials-demos.html">Demos</a>.</p>
 
-          <h4>ES6 Modules</h4>
+          <h3>ES6 Modules</h3>
 
           <p>Before you get started using ES6 modules, make sure you have JSPM installed globally:</p>
 
@@ -324,7 +324,7 @@ $(function() {
   
 });</pre>
 
-        <h4>View the ES6 Examples</h4>
+        <h3>View the ES6 Examples</h3>
         <p>We have provided examples of four simple apps made with ChocolateChip-UI: Fragranž, SFCoffee, TodoMVX and Vino. The come in two versions: double-clickable launch from the desktop and run from with terminal with Gulp, Babel, JSPM and Browsersync. You want to take a could look at the later. When you down the source code from Github, you'll find two folder: simple and jspm. The simple folder holds the double-clickable versions. These are great if you're new to ChocolateChip-UI and you just want to see how to put things together to make something work. However, once you want to get serious about build a real world app, you'll want to look closely at the versions of these apps in the jspm folder.</p>
         <p>The best way to get the lay of an app is to open the dev folder inside the jspm folder. This is where you will actually work. When you use the <code>--jspm</code> or <code>-j</code> flag to start your app using the ChocolateChip-UI command line tool, you'll also find you have a dev folder with an app.js file inside it. The build script takes this, checks for imports, runs everything through Babel and then through JSPM to bundle it all into a single file. This means that anything you import into your app.js file will get bundled into a single app.js file after building. Look at how the example apps code in the dev folder is structured. You can build and run them like this:
         </p>
