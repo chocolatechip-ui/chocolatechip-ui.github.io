@@ -103,7 +103,7 @@
   {{ } }}
 &lt;/template&gt;</pre>
         </p>
-        <h4>Sequential Numbering</h4>
+        <h3>Sequential Numbering</h3>
         <p>ChocolateChip-UI provides a way to enable you to output sequential numbering with each repetition of a template. To do so you put <code>$.view.index</code> at the place where you want the number output. By default number starts at 1. But you can tell the view at what number you want it to start. For example, if you wanted it to start at a negative number, just provide that as the argument. The numbering will begin with the negative number provided and increase by 1. Below are some examples:</p>
         <pre class='prettyprint linenums'>&lt;template&gt;
   &lt;li&gt;
@@ -126,7 +126,7 @@ var PeopleView = new View({
             <p>Even after a view is define and rendered, you can change the start index value by running the <code>startIndexFrom</code> method on the view. This cause the view to immediately rerender with the new index value:</p>
             <pre class='prettyprint linenums'>PeopleView.startIndexFrom(28);</pre>
 
-          <h4>Formatting Data</h4>
+          <h3>Formatting Data</h3>
           <p>ChocolateChip-UI provides several data fromatters that you can use in your templates to control the output of data.</p>
           <ul>
             <li>formatNumber</li>
@@ -145,7 +145,7 @@ var PeopleView = new View({
   &lt;/li&gt;
 &lt;/template&gt;</pre>
             
-            <h4>Temlate Helpers</h4>
+            <h3>Temlate Helpers</h3>
             <p>You can define your own template helpers to operate on data before it is output by the template. To do that you use the <code>$.defineHelper</code> method:</p>
           <pre class='prettyprint linenums'>$.defineHelper({
   bigName: function(data) {
@@ -161,7 +161,7 @@ var PeopleView = new View({
 &lt;/ul&gt;
           </pre>
 
-          <h4>Nested Data Iteration</h4>
+          <h3>Nested Data Iteration</h3>
           <p>Data is complicated. Sometimes a property might have an array as its value. and you need to be able to output that in your template. To do this you can write a JavaScript loop in the template to handle the array. Below is some complicated data, followed by a template to render it:</p>
           <pre class='prettyprint linenums'>var people = [
   {
