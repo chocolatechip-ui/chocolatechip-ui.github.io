@@ -83,7 +83,7 @@
             <li><strong>template</strong>: A template to use. This can must be a string. You could use $(selector).text() to get a template.</li>
             <li><strong>model</strong>: A model. This will bind the view to the designated model. Setting a model on a view binds the view to that model. When the model changes, the view will get updated automatically.</li>
             <li><strong>variable</strong>: A name to use inside your templates to refer to the data being consumed. By default ChocolateChip-UI uses <code>data</code>. Providing a variable allows you to use a term that makes sense for the data you template is consuming.</li>
-            <li><strong>events</strong>: This is an array of events to bind to a view. You can target the parent element by leaving out the `element` property or using `self` as the value for `element`. Otherwise, you can create a delegated event on the template's descendants by providing a selector for the intended target:
+            <li><strong>events</strong>: This is an array of events to bind to a view. You can target the parent element by leaving out the `element` property or using `self` as the value for `element`. Otherwise, you can create a delegated event on the template's descendants by providing a selector for the intended target. You can also provide a bubble value of <code>true</code> to allow events to pass through a delegate event target to elements below it:
 <pre class='prettyprint linenums'>var myView = $.View({
   element: '#arrayTemplate1', 
   model: MyModel,
@@ -96,9 +96,11 @@
     event: 'singletap',
     callback: function() {
       console.log($(this).text());
-    }
+    },
+    bubble: true
   }]
 });</li></pre>
+            <p>Although you can use the <code>bubble</code> attribute when defining events on a view, most of the time you should not need this. The bubble value is only required when you want the event to pass through and be captured by other events registered on child elements.</p>
             
             <li><strong>styles</strong>: This property takes an object defining styles for your view. In most cases you won't need to use it since the default styles will work fine. However, if you want to customize the look of your view, you can use this propertly to create a vitual stylesheet for it. The styles will be defined off of the element selector you anchor your view to using the <code>element</code> property. The style object looks like this:
 <pre class='prettyprint linenums'>var myView = $.View({
