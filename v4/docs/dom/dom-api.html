@@ -521,25 +521,17 @@ $.each(arrayData, function(idx, ctx) {
 });
 </pre>
             <h3>$.noop</h3>
-            <p>This is a function stub that you can use anywhere where you want to have a function/callback, but don't want anything to happen yet.</p>
+            <p>This is a function stub that you can use anywhere where you want to have a function/callback, but don't want anything to happen.</p>
 <pre class='prettyprint linenums'>var callback = $.noop;
 $('li').on('tap', $.noop);
 </pre>
 
-            <h3>Different from jQuery</h3>
-            <p>The following methods may have similar functionality in jQuery but work slightly differently.</p>
-
-            <h3>$.delay(func, milliseconds)</h3>
-            <p>This method is similar to jQuery's <code>.delay()</code>. However, instead of being a chainable function for animations, its a standalone function that can delay the execution of any JavaScript code</p>
-<pre class='prettyprint linenums'>$.delay(function() {
+            <h3>$.delay(milliseconds)</h3>
+            <p>This method returns a promise after the provided time. As such, the code that you want to delay should be entered in a <code>then</code> function:</p>
+<pre class='prettyprint linenums'>// Delay the alert for 10 seconds:
+$.delay(10000).then(function() {
   alert('hi');
-}, 10000);
-</pre>
-            <h3>$.defer(func)</h3>
-            <p>This method has no equivalent in jQuery. It allows you to tell a function to wait until the call stack is clear before executing.</p>
-<pre class='prettyprint linenums'>$.defer(function() {
-  alert("I'm ready to go.")
-})
+});
 </pre>
             <h3>$.require(scriptSrc, callback</h3>
             <p>This method is similar to jQuery's <code>$.getScript</code>. It allows you to insert a remote script into the document. It takes two arguments: a url for the script and a callback to execute when the script is fully loaded.</p>
