@@ -137,9 +137,9 @@ $('nav > button').css('color', textColor);
           <p>As you may have noticed above, we use <strong>139</strong> as the testing point for brightness. If a color has a brightness less than 139, the text should be light, if the brightness is greater than 139, the text should be dark. You might see people advocating use of 150 as the brightness check. This results in light text on light greens, which are impossible to read. Similarly, you might see use of 128. This results in dark text on charcoal grays and saturated colors. We settled on 139 since this works best with charcoals, oranges, violets and greens. You could use 138 to 140 without problem. You can see our version in action in this <a href="./color-contrast-example.html" target="_blank">example</a> where the text color is calculated during page load based on the background color. Feel free to use the brightness check that works for you.</p>
 
           <p>When using a brightness value, think of it like RGB. A value of 0 would be black and a value of 255 would be white. You need to find an intermediate value that works for you.</p>
-          <a name="test_background_colors"></a>
           <p>Be aware that the color calibration of your monitor will affect how you see this working. It's always best to check color contrast using the default color profile for your monitor, since that's what most people use. Also check how your choice looks on the target device.</p>
 
+          <a name="test_background_colors"></a>
           <h3>Test Background Colors</h3>
           <p>You can test what text will look like over a background color using the color picker below. As you adjust the color, the background color will update and the text color will be updated for legibility, either light or dark. You can also just enter a hex, rgb or color name value into the input below the color picker and hit Enter.</p>
           <div id='backgroundColorTest'>The Title</div>
