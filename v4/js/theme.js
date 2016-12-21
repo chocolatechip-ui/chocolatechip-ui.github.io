@@ -47,7 +47,7 @@ $(function() {
     var brightness = $.calculateContrast(obj.color);
     var bkcolor = obj.color;
     var color = '#fff';
-    if (brightness > 150) {
+    if (brightness > 149) {
       color = '#000'
     }
     $('#backgroundColorTest').css({'background-color': bkcolor, 'color': color})
