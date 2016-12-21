@@ -97,7 +97,7 @@
             <li>multiselectlist: check that a multi-select list item is selected</li>
           </ul>
 
-          <h5>Naming Conventions</h5>
+          <h3>JSON from Form</h3>
 
           <p>In order to get a JSON object from your form elements, you need to name your elements appropriately. <code>$.Form</code> lets you use an underscore `_` as a delemiter to describe the structure of your JSON. So, if you wanted an object named `person` followed by `name` and `first` and `last`, you would create a name on elements as follows:</p>
 
@@ -120,9 +120,9 @@
   }
 }</code></pre>
 
-          <p>After providing the type of validation, you can also provide a callback to execute if the element does not validate. You might you this to notify the user of the problem and how to address it.</p>
+          <p>After providing the type of validation, you can also provide a callback to execute if the element does not validate. You might do this to notify the user of the problem and how to address it.</p>
 
-          <p>Based on the above information we present some Form validation setup:</p>
+          <p>Below is an example setup for form validation:</p>
 
 
 <pre class="prettyprint linenums"><code>$('#validateForm').on('click', function() {
