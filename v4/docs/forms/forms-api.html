@@ -362,6 +362,31 @@ if (price.errors()) {
   console.dir(price.get())
 }</pre>
 
+        <h3>Custom Validator</h3>
+        <p>You can also write your own custom validators to use the <code>$.Form</code> using <code>$.registerCustomValidator(name, regex)</code>. You write a custom validator the same as you do with <code>$.validateWithRegex</code>. The difference is that the name you provide this custom validator can be used as a type with <code>$.Form</code> like other types:</p>
+<pre class="prettyprint linenums">// Define custom validator
+// that check for words with possible spaces:
+$.registerCustomValidator('custom-textWithSpaces', /^[A-Za-z\W]+$/);
+
+// Use custom validator with $.Form:
+$('#customValidatorBtn').on('click', function() {
+  var customValidator = $.Form([
+    {
+      element: '#customFormInput',
+      // Important: prefix custom validator with "custom-":
+      type: 'custom-textWithSpaces',
+      callback: function() {
+        alert('The first name needs to be text!')
+      }
+    }
+  ]);
+  if(!customValidator.errors()) {
+    var formData = customValidator.get();
+    console.dir(formData)
+  }
+});</pre>
+
+
         </div>
         
         <div id="menu">
