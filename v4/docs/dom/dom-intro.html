@@ -69,12 +69,13 @@
           <h2>DOM</h2>
           <h3>Intro</h3>
           
-          <p>ChocolateChip-UI has its own DOM selector engine which provides identical functionality to jQuery. ChocolateChip-UI's DOM engine is quite a bit smaller than jQuery's. The main reason we can do this is because we are targetting modern browsers.</p>
+          <p>ChocolateChip-UI has its own DOM selector engine which provides identical functionality to jQuery. ChocolateChip-UI's DOM engine is quite a bit smaller than jQuery's. This is because it is targetting modern browsers.</p>
 
           <ul>
             <li>$(selector) - find selector</li>
             <li>$(function) - run a DOM ready</li>
             <li>$(markup) - create elements from markup</li>
+            <li>$.html(markup) - create elements from markup</li>
             <li>element.find(selector) - find descendant</li>
             <li>element.is(selector)</li>
             <li>element.not(selector)</li>
@@ -151,14 +152,24 @@
             <li>element.every(callback)</li>
             <li>element.some(callback)</li>
             <li>element.unique()</li>
-            <li>$.param(obj, traditional)</li>
-            <li>$.type(object).</li>
-            <li>$.each(object, callback)</li>
-            <li>$.noop</li>
-            <li>$.delay(func, milliseconds)</li>
-            <li>$.defer(func)</li>
-            <li>$.require(scriptSrc, callback</li>
           </ul>
+
+          <p>ChocolateChip-UI also has the following DOM functions that are unique to it:</p>
+          <ul>
+            <li>$(selector).iz()</li>
+            <li>$(selector).iznt()</li>
+            <li>$(selector).haz()</li>
+            <li>$(selector).haznt()</li>
+            <li>$(selector).hazClass()</li>
+            <li>$(selector).hazntClass()</li>
+            <li>$(selector).hazAttr()</li>
+            <li>$(selector).hazntAttr()</li>
+            <li>$(selector).disable()</li>
+            <li>$(selector).enable()</li>
+            <li>$(selector).forEach()</li>
+          </ul>
+
+          <p>For more useful functions, check out the documentation for <a href="../utilities/utilities-use.html" target='_blank'>utilities</a>.</p>
         
 
 

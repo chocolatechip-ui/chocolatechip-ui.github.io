@@ -70,151 +70,300 @@
       <div>
         <div>
           <h2>Forms &amp; Validation</h2>
-          <h3>Use</h3>
+          <h3>API</h3>
           
-          <p>To validate and convert form elements into JSON you need to define a ChocolateChip-UI Form object. <code>$.Form</code> expects an array of objects, each of which defines a form element to validate. A Form validation object have three parts: the element to validate, the type of validation, and a callback to execute if validation fails. If validation passes on all elements pass to $.Form, it converts the collection of values into a JSON object.</p>
-
-          <p>Because <code>$.Form</code> takes individual node elements to validate, you do not need to enclose the elements in an actual form tag. This means you have to include every element whose data you want.</p>
-
-          <p>To set up a validation object, we need to providing a selector for each element, preferably this should be an ID. This is necessary since form elements can have the same name. Next you want to provide the type of validation to run on the element. ChocolateChip-UI has validators for the following types:</p>
-
+          <p></p>      
+          
+          <h4>Form Methods</h4>
           <ul>
-            <li>notempty: check that an input is not empty</li>
-            <li>number: check that a value is a number</li>
-            <li>text: check that a value is pure text</li>
-            <li>alphanumeric: check that a value is alphanumeric</li>
-            <li>username: check that a value is alphanumeric and optional number of characters</li>
-            <li>email: check that a value is a valid email</li>
-            <li>phone: check US/Canada and international phone numbers</li>
-            <li>url: check that a value is a valid url</li>
-            <li>age: check that a value is a number above provide minimum</li>
-            <li>checkbox: check that a checkbox is selected</li>
-            <li>radio: check that a radio button is selected</li>
-            <li>selectbox: check that an option is selected</li>
-            <li>password: check that two passwords match and an optional minimum length</li>
-            <li>switch: check that a switch is on</li>
-            <li>selectlist: check that a select list item is selected</li>
-            <li>multiselectlist: check that a multi-select list item is selected</li>
+            <li>$(form).serialize()</li>
+            <li>$(form).serializeArray()</li>
+            <li>$.param(object, traditional?)</li>
+          </ul>
+          
+          <h4>Form Validation</h4>
+          <ul>
+            <li>$.Form(arguments)</li>
+            <li>$(selector).isNotEmpty()</li>
+            <li>$(selector).validateAlphabetic()</li>
+            <li>$(selector).validateText()</li>
+            <li>$(selector).validateNumber()</li>
+            <li>$(selector).validateAlphaNumeric()</li>
+            <li>$(selector).validateUserName()</li>
+            <li>$(selector).validateEmail()</li>
+            <li>$(selector).validatePhoneNumber()</li>
+            <li>$(selector).validateUrl()</li>
+            <li>$(selector).validateAge()</li>
+            <li>$(selector).validateCheckbox()</li>
+            <li>$(selector).validateRadioButtons()</li>
+            <li>$(selector).validateSelectBox()</li>
+            <li>$(selector).validateSwitch()</li>
+            <li>$(selector).validateSelectList()</li>
+            <li>$(selector).validateMultiSelectList()</li>
+            <li>$.validatePassword(password1, password2, minimum)</li>
+            <li>$.validateWithRegex(input, regex)</li>
+            <li>$.registerCustomValidator(name, regex)</li>
           </ul>
 
-          <h3>JSON from Form</h3>
+          <h3>$(form).serialize()</h3>
+          <p>This method when executed on a form encodes the values of its elements as a string for submission in a Ajax post.</p>
 
-          <p>In order to get a JSON object from your form elements, you need to name your elements appropriately. <code>$.Form</code> lets you use an underscore `_` as a delemiter to describe the structure of your JSON. So, if you wanted an object named `person` followed by `name` and `first` and `last`, you would create a name on elements as follows:</p>
+          <h3>$(form).serializeArray()</h3>
+          <p>This method when executed the values of a form's elements as an array of names and values.</p>
 
-<pre class="prettyprint linenums"><code>&lt;input type='text' name='person_name_first'&gt;
-&lt;input type='text' name='person_name_last'&gt;
-&lt;input type='text' name='person_age'&gt;
-&lt;input type='text' name='person_job'&gt;
-</code></pre>
+          <h3>$.param(object, traditional?)</h3>
+          <p>This method can serialize a plain JavaScript object or array. If the optional second parameter for traditional is passed as a boolean true, the serialization will be perform a traditional shallow encoding.</p>
 
-<p><code>$.Form</code> will create the following object from the above names:</p>
-          
-<pre class="prettyprint linenums"><code>{
-"person": {
-  "age": 32, 
-  "job": "developer"
-  "name": {
-      "first": "John",
-      "last": "Doe"
-    }
-  }
-}</code></pre>
+          <p>Because of limitations to language support for various types of encoding, if the data you need to pass is complex, it is better to pass it as a stringified JSON object. You can use the <code>$.form2JSON</code> method for that purpose.</p>
 
-          <p>After providing the type of validation, you can also provide a callback to execute if the element does not validate. You might do this to notify the user of the problem and how to address it.</p>
+          <h3>$.Form(arguments)</h3>
+          <p><code>$.Form</code> is unique to ChocolateChip-UI. It takes an array of form elements to validate and returns an object with the validation state. The return object also lets you extract the form's data as a JSON object, which you can strigify and post to the server.</p>
 
-          <p>Below is an example setup for form validation:</p>
+          <p><strong>No Actual Form Required.</strong> Because <code>$.Form</code> directly accesses the inputs passed as arguments, you do not need to wrap those inputs in a form element. This gives you considerable freedom about how to structure your layout.</p>
 
+          <h4>Extracting JSON from a Form</h4>
 
-<pre class="prettyprint linenums"><code>$('#validateForm').on('click', function() {
-  var myForm = $.Form([
-    {
-      element: '#firstName',
-      type: 'text',
-      callback: function() {
-        alert('The first name needs to be text!')
-      }
-    },
-    {
-      element: '#lastName',
-      type: 'text'
-    },
-    {
-      element: '#age',
-      type: 'age',
-      min: 20,
-      callback: function() {
-        alert("Please provide a proper age.")
-      }
-    },
-    {
-      element: '#fav1',
-      type: 'checkbox'
-    },
-    {
-      element: '#fav2',
-      type: 'checkbox'
-    },
-    {
-      element: '#fav3',
-      type: 'checkbox'
-    },
-    {
-      element: '#fav4',
-      type: 'checkbox'
-    },
-    {
-      element: '#fav5',
-      type: 'checkbox'
-    },
-    {
-      element: '#fav6',
-      type: 'checkbox'
-    }
-  ]);
+          <p>To extract JSON from a form you do need to set up your form elements. This involves some naming conventions for the inputs. Underscores are used to define the structure for your JSON object. These would be equival to the dot notation used to access the final object. So, to get a person object from a form, you could setup the elements like this:</p>
 
-  // Check that the validation passed,
-  // then return the form's JSON:
-  if(!myForm.errors()) {
-    $.formData = myForm.get();
-    console.dir($.formData)
-  }
-});</code></pre>
-
-        <h3>Custom Validators</h3>
-        <p>Out of the box ChocolateChip-UI has number of useful validators. If you need a validation that isn't provided, you can create a custom validator to use with <code>$.Form</code>. This is done with the <code>$.validateWithRegex()</code> method. This takes two arguments: the input to check and the regular expression to use. For example, this will let you set up a validator for a phone number that differs from the US/Canada or standard international form that ChocolateChip-UI provides.</p>
 
 <pre class="prettyprint linenums">
-/* Expression to parse Australian landline telephone numbers. Will only accept valid STD codes. Allows for parens around the STD code and either spaces or dashes between number groups. */
-/* This can handle these formats: (02) 9323 1234 | 0293231234 | 02-9323-1234 */
-var phoneRegex = /^\({0,1}0(2|3|7|8)\){0,1}(\ |-){0,1}[0-9]{4}(\ |-){0,1}[0-9]{4}$/;
-$.validateWithRegex('#australianPhoneNum', phoneRegex)</pre>
+&lt;input type='text' id='firstName' name='person_name_first'&gt;
+&lt;input type='text' id='lastName' name='person_name_last'&gt;
+&lt;input type='text' id='age' name='person_age'&gt;
+&lt;input type='text' id='job' name='person_job'&gt;
+</pre>
 
-      <h3>$.registerCustomValidator</h3>
-      <p>If you want to use a custom validator with <code>$.Form</code> so that you can get a JSON object, you need to do two things: register the custom validator and indicate it in the <code>$.Form</code> setup. To register a custom validator you use <code>$.registerCustomValidator</code>. This takes two arguments: a name for your validator and a regular express. The name should start with 'custom-'. This is required for registering it. The regular expression should be in the following format: <code>/abc/</code>. Below is an example custom validator used with <code>$.Form</code>:</p>
+<p>For this we'll assume the user enterd "Joe" as the first name, "Bodoni" as the last name, "32" as the age and "Developer" as the job. To extract this data from this form, we can do the following:</p>
 
-<pre class="prettyprint linenums">
-$.registerCustomValidator('custom-textWithSpaces', /^[A-Za-z\W]+$/);
-
-// Setup Form validation:
-$('#validateForm').on('click', function() {
-  var myForm = $.Form([
-    {
-      element: '#name',
-      // Important: prefix custom validator with "custom-":
-      type: 'custom-textWithSpaces',
-      callback: function() {
-        alert('The first name needs to be text!')
-      }
-    }
-  ]);
-  if(!myForm.errors()) {
-    $.formData = myForm.get();
-    console.dir($.formData)
+<pre class="prettyprint linenums">var myForm = $.Form([
+  {
+    element: '#firstName',
+    type: 'text'
+  },
+  {
+    element: '#lastName',
+    type: 'text'
+  },
+  {
+    element: '#age',
+    type: 'age',
+  },
+  {
+    element: '#job',
+    type: 'text'
   }
-});</pre>
+]);
 
-        <p>When you define a custom validator remember that you must prefix the name with "custom-". In the above example, notice how we registered out validator as "custom-textWithSpaces".</p>
+myForm.get()
+/*
+returns:
+{
+  person: {
+    age: 32,
+    job: "Developer",
+    name: {
+      first: "Joe",
+      last: "Bodoni"
+    }
+  }
+};
+*/</pre>
+        <p>The form object also allows you to track errors:</p>
+        <pre class="prettyprint linenums">var myForm = $.Form([
+  {
+    element: '#name',
+    type: 'text'
+  }
+  {
+    element: '#age',
+    type: 'age'
+  }
+]);
+// Check for errors:
+if (myForm.errors()) {
+  console.dir(myForm.getErrors());
+// Otherwise output value:
+} else {
+  console.dir(myForm.get())
+}</pre>
 
+        <h3>Validation Types</h3>
+        <p>In the above example, notice how we provided types for the form elements we wanted to get. This tells the <code>$.Form</code> method to do a validity test. At minimum it will check that each element it is check has a value. If it does not, it will flag that element by attach a class that causes the element to show a red border. It will still return an object, but those inputs without value will be excluded from the final object.</p>
+
+        <p>Many of the validators have options you can provide for refining how the validation works. You can also provide a callback to execute with validation fails. You could use this to popup a message explaining the failure.</p>
+
+        <h3>Options for Validators</h3>
+        <p>Some validation types can have additional options to fine tune the validation:</p>
+
+        <h4>notempty</h4>
+        <p>This will check that the input is not empty.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#myInput',
+  type: 'notempty',
+  callback: function() {
+    alert('The input cannot be empty.')
+  }
+}]);</pre> 
+
+        <h4>number</h4>
+        <p>This will check that the value is a number.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#numberInput',
+  type: 'number'
+}]);</pre> 
+
+        <h4>text</h4>
+        <p>This will check that the value is text.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#textInput',
+  type: 'text'
+}]);</pre> 
+
+        <h4>alphanumeric</h4>
+        <p>This will check that the value is text, number or a mix.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#myInput',
+  type: 'alphanumeric'
+}]);</pre> 
+        
+        <h4>username</h4>
+        <p>This will check that two usernames match. This can take a <code>min</code> value to indicate the minimum number of characters for a username:</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#userName',
+  type: 'username',
+  // Minimum number of characters:
+  min: 6,
+  callback: function() {
+    alert('The user name must have at least 6 characters.')
+  }
+}]);</pre>  
+
+        <h4>email</h4>
+        <p>This will check that the value is a valid email.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#emailInput',
+  type: 'email',
+  callback: function() {
+    alert('This is not a valid email!')
+  }
+}]);</pre> 
+
+        <h4>phone</h4>
+        <p>This will check that the value is a valid phone number in North American format. For other international number formats you will have to create your own custom validator using <code></code></p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#phoneInput',
+  type: 'phone',
+  callback: function() {
+    alert('Please enter a valid phone number.')
+  }
+}]);</pre> 
+
+        <h4>url</h4>
+        <p>This will check that the value is a valid url.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#urlInput',
+  type: 'url',
+  callback: function() {
+    alert('This is not a valid url.')
+  }
+}]);</pre> 
+        
+        <h4>age</h4>
+        <p>This will check that the value is a number. This can take a <code>min</code> value to indicate the minimum age to pass validation:</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#age',
+  type: 'age',
+  // Minimum age requried:
+  min: 21,
+  callback: function() {
+    alert('You are not old enough!')
+  }
+}]);</pre> 
+
+        <h4>checkbox</h4>
+        <p>This will check that a checkbox is selected.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#myCheckbox',
+  type: 'checkbox'
+}]);</pre> 
+
+        <h4>radio</h4>
+        <p>This will check that a radio button is selected.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#myRadio',
+  type: 'radio'
+}]);</pre> 
+
+        <h4>selectbox</h4>
+        <p>This will check that a selection was made on a select box.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#selectBox',
+  type: 'selectbox'
+}]);</pre> 
+
+        <h4>password</h4>
+        <p>This will check that the value to two password inputs are identical. This can take a <code>min</code> value to indicate the minimum number of characters required to pass validation:</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#password1',
+  element2: '#password2'
+  type: 'password',
+  // Minimum characters requried:
+  min: 8,
+  callback: function() {
+    alert('The passwords to not match!')
+  }
+}]);</pre> 
+
+        <h4>switch</h4>
+        <p>This will check that a switch is on.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#mySwitch',
+  type: 'switch'
+}]);</pre> 
+
+        <h4>selectlist</h4>
+        <p>This will check that a select has been made on a select list.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#selectList',
+  type: 'selectlist'
+}]);</pre> 
+
+        <h4>multiselectlist</h4>
+        <p>This will check that a select has been made in a multi-select list.</p>
+
+<pre class="prettyprint linenums">var myForm = $.Form([{
+  element: '#multiSelectList',
+  type: 'multiselectlist'
+}]);</pre> 
+
+        <h3>Custom Validation</h3>
+        <p>You can write your own regular expression to run again an input value. To do that you use <code>$.validateWithRegex(input, regex)</code>. You pass the method the input whose value you want to check and a regular expression to use against that value. This returns an object just like <code>$.Form</code> with the same methods for error tracking and data extraction.</p>
+<pre class="prettyprint linenums">var price = $.validateWithRegex('price', /^(\d*([,](?=\d{3}))?\d+)+((?!\2)[.]\d\d)?$/);
+// Check for errors:
+if (price.errors()) {
+  console.dir(price.getErrors());
+} else {
+  // Otherwise output value:
+  console.dir(price.get())
+}</pre>
+
+        <h3>Custom Validator</h3>
+        <p>You can also write your own custom validators to use the <code>$.Form</code> using <code>$.registerCustomValidator(name, regex)</code></p>
 
         </div>
         
@@ -246,8 +395,8 @@ $('#validateForm').on('click', function() {
             <li><a href="../forms/forms-intro.html" class='selected'>Forms</a>
               <ul>
                 <li><a href="forms-intro.html">Intro</a></li>
-                <li><a href="forms-use.html" class='selected'>Use</a></li>
-                <li><a href="forms-api.html">API</a></li>
+                <li><a href="forms-use.html">Use</a></li>
+                <li><a href="forms-api.html" class='selected'>API</a></li>
               </ul>
             </li>
             <li><a href="../formatting/formatting-intro.html">Data Formatting</a></li>

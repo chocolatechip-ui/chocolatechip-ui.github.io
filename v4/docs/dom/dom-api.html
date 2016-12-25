@@ -75,7 +75,7 @@
           <p>ChocolateChip-UI's DOM library has the following methods. Most of these are identical to those of the same name in jQuery.</p> 
 
             <h3>$(selector)</h3>
-            <p>This works the same as jQuery. You can provide any valid DOM/CSS selector.</p>
+            <p>This works the same as jQuery. You can provide any valid DOM/CSS selector. If there is a match for the selector, it returns the element. Otherwise it returns and empty DOM stack. Running DOM methods on an empty DOM stack will do nothing, erring silently.</p>
 <pre class='prettyprint linenums'>var listItems = $('li');
 var class = $('.items');
 var id = $('#item');
@@ -95,6 +95,13 @@ var attr2 = $([type='text']);
 <pre class='prettyprint linenums'>var nodes = $('&lt;p&gt;This is a paragraph&lt;/p&gt;');
 var list = $('&lt;ul&gt;&lt;li&gt;One&lt;/li&gt;&lt;li&gt;Two&lt;/li&gt;&lt;/ul&gt;');
 </pre>
+            <h3>$.html(markup)</h3>
+            <p>This works the same as the previous method. You pass it a string of valid markup and it returns DOM nodes which you can then insert into the document.</p>
+
+            <pre class='prettyprint linenums'>var nodes = $.html('&lt;p&gt;This is a paragraph&lt;/p&gt;');
+var list = $.html('&lt;ul&gt;&lt;li&gt;One&lt;/li&gt;&lt;li&gt;Two&lt;/li&gt;&lt;/ul&gt;');
+</pre>
+
             <h3>element.find(selector) - find descendant</h3>
             <p>This method let you find a select that is a descendent of the element it is anchored to.</p>
 <pre class='prettyprint linenums'>// Get the current screen:
@@ -498,47 +505,7 @@ $('#list').find('li').unshift(listItem);
             <p>This method removes any duplicate elements in the collection.</p>
 <pre class='prettyprint linenums'>var listItems = $('li').unique();
 </pre>
-            <h3>$.type(argument).</h3>
-            <p>This method lets you find out what type the argument is. It can test for boolean, number, string, function, array, date, error, regexp, object.</p>
-<pre class='prettyprint linenums'>if ($.type(data) === 'array') {
-  data.forEach(function(item) {
-    // do something with item
-  });
-}
-</pre>
-            <h3>$.each(object, callback)</h3>
-            <p>This method lets you pass an array or object and execute a callback recursively over the members of the data. The parameters in the callback are in jQuery order: index and context.</p>
-<pre class='prettyprint linenums'>// Iterate over an object's keys:
-$.each(objectData, function(key, value) {
-  console.log(object[key] ' is ' + value);
-});
 
-// Iterate over an array:
-$.each(arrayData, function(idx, ctx) {
-  if (idx !== 5) {
-    console.log(ctx);
-  }
-});
-</pre>
-            <h3>$.noop</h3>
-            <p>This is a function stub that you can use anywhere where you want to have a function/callback, but don't want anything to happen.</p>
-<pre class='prettyprint linenums'>var callback = $.noop;
-$('li').on('tap', $.noop);
-</pre>
-
-            <h3>$.delay(milliseconds)</h3>
-            <p>This method returns a promise after the provided time. As such, the code that you want to delay should be entered in a <code>then</code> function:</p>
-<pre class='prettyprint linenums'>// Delay the alert for 10 seconds:
-$.delay(10000).then(function() {
-  alert('hi');
-});
-</pre>
-            <h3>$.require(scriptSrc, callback</h3>
-            <p>This method is similar to jQuery's <code>$.getScript</code>. It allows you to insert a remote script into the document. It takes two arguments: a url for the script and a callback to execute when the script is fully loaded.</p>
-<pre class='prettyprint linenums'>$.require('http:/my/script/url.js', function() {
-  alert("I've got the script loaded now.")
-});
-</pre>
             <h3>$.replace(oldElement, newelement)</h3>
             <p>This method allows you to replace one element with another. The first argument is the element to replace, and the second argument is the element that will be replace it.</p>
 <pre class='prettyprint linenums'>var list1 = $('#list1');
@@ -547,6 +514,98 @@ var list2 = $('#list2');
 $.replace(list1, list2);
 </pre>
           <p>jQuery has <code>replaceWith()</code>, but it works quite differently from this. We feel ChocolateChip-UI's <code>replace</code> is more straightforward  about what it's doing than jQuery's <code>replaceWith</code>. ChocolateChip-UI's <code>replace</code> works even when jQuery is present because it is included as a utlity plugin.</p>
+
+          <p><a name="haz-gang"></a></p>
+
+          <h2>ChocolateChip-UI Exclusive</h2>
+          <p>In order to make certain common tasks easier, ChocolateChip-UI has a number of DOM utility methods that reduce boilerplate code into one-liners. They are:</p>
+
+          <ul>
+            <li>$(selector).iz(argument)</li>
+            <li>$(selector).iznt(argument)</li>
+            <li>$(selector).haz(argument)</li>
+            <li>$(selector).haznt(argument)</li>
+            <li>$(selector).hazClass(class)</li>
+            <li>$(selector).hazntClass(class)</li>
+            <li>$(selector).hazAttr(attribute)</li>
+            <li>$(selector).hazntAttr(attribute)</li>
+            <li>$(selector).disable()</li>
+            <li>$(selector).enable()</li>
+            <li>$(selector).forEach()</li>
+          </ul>
+
+          <p>In normal JavaScript, when you perform a test, such as jQuery's <code>$(selector).is()</code>, <code>$(selector).hasClass</code> or plain JavaScript <code>element.hasAttribute</code>, these return a boolean value if there is a match or not. In contrast, ChocolateChip-UI's <code>haz</code> family of methods directly return the element if there is a match. This enbales you to write code as follows:</p>
+
+          <pre class='prettyprint linenums'>// Test if it is a link:
+$('.menu').is('a').css('text-decoration', 'none');
+// Test if button is disabled, then enable:
+$('button').is('[disabled]').enable();
+// Test if title is not an H1:
+$('.title').isnt('h1').css({font-size: '14px'});
+// Test if list has content:
+$('ul').haz('li').addClass('list');
+// Test if list is empty:
+$('ul').haznt('li').html('&lt;li&gt;No content yet.&lt;/li&gt;');
+$('div').hazClass('important').prepend('&lt;h5&gt;Important&lt;h5&gt;')
+$('input').hazAttr('disabled').hide();
+$('button').disable();
+</pre>
+
+        <h3>iz(argument) &amp; iznt(argument)</h3>
+        <p><code>$(selector).iz(argument)</code> returns the element when there is a match. <code>$(selector).iznt</code> returns the element when there isn't a match. These two can accept a number of different arguments, such as a node, a node name, a class or an attribute. When using string arguments, they should be valid CSS selectors, so ids require a '#', classes a '.' and attributes must be enclosed in brackets:</p>
+        <pre class='prettyprint linenums'>
+$(selector).iz(selector);
+$(selector).iz('div').css('border', 'solid 1px green');
+$(selector).iz('#main').addClass('super-important');
+$(selector).iz('.selected').removeClass('selected');
+$(selector).iz('[checked]').find('form').prepend('&lt;h2&gt;Order Now!&lt;/h2&gt;');
+
+// No match:
+$(selector).iznt(selector);
+$(selector).iznt('div').replace('&lt;div&gt;This is a DIV&lt;/div&gt;');
+$(selector).iznt('#main');
+$(selector).iznt('.selected').addClass('selected');
+$(selector).iznt('[checked]');</pre>
+
+        <h3>haz(argument) &amp; haznt(argument)</h3>
+        <p><code>$(selector).haz(argument)</code> returns the element when it has the descendent element provided. <code>$(selector).haznt(argument)</code> returns the element when it does not have the descendent element provided. Because this checks for descendent elements, the argument must be a valid CSS selector.</p>
+        <pre class='prettyprint linenums'>// Selector has descendentas that are "li":
+$(selector).haz('li');
+// Selector has descendent with this class:
+$(selector).haz('.special');
+// Selector has descendent that is checked:
+$(selector).haz('[checked]');</pre>
+
+        <h3>hazClass(class) &amp; hazntClass(class)</h3>
+        <p><code>$(selector).hazClass(class)</code> returns the element when it has the class provided. <code>$(selector).hazntClass(class)</code> returns the element when it does not have the class provided.</p>
+
+        <pre class='prettyprint linenums'>// Get element if it has this class:
+$(selector).hazClass('selected').prepend('&lt;h4&gt;READ THIS!&lt;&gt;');
+// If it doesn't have the class:
+$(selector).hazntClass('selected').remove('h4');</pre>
+
+        <h3>hazAttr(attributeName) &amp; hazntAttr(attributeName)</h3>
+        <p><code>$(selector).hazAttr(attributeName)</code> returns the element when it has the attribute provided. <code>$(selector).hazntAttr(attributeName)</code> returns the element when it does not have the attribute provided. The argument is the name of the attribute you are testing for:</p>
+
+        <pre class='prettyprint linenums'>// Test for attribute:
+$(selector).hazAttr('checked').addClass('selected');
+$(selector).hazntAttr('checked').removeClass('selected');</pre>
+
+        <h3>disable() &amp; enable()</h3>
+        <p><code>$(selector).disable()</code> allows you to disable a form element and adds the class 'disabled'. <code>$(selector).enable()</code> enables the form element and removes the class 'disabled'.</p>
+
+        <h3>$(selector).forEach(ctx, idx)</h3>
+        <p>This method lets you iterate over a collection of elements using normal JavaScript parameter order. jQuery also uses the index first, followed by the context. The normal parameter order for JavaScript is context first, followed by index. If you just want to get the context of the loop, then <code>forEach</code> is more convenient.</p>
+
+        <pre class='prettyprint linenums'>// Looping with each:
+$('li').each(function(idx, ctx) {
+  ctx.append('Woohoo!')
+});
+// Looping with forEach.
+// No need for index parameter:
+$('li').forEach(function(ctx) {
+  ctx.append('Woohoo!')
+});</pre>
 
         </div>
         
