@@ -109,7 +109,7 @@
 
 <p><code>$.Form</code> will create the following object from the above names:</p>
           
-<pre class="prettyprint linenums"><code>{
+<pre class="prettyprint linenums">{
 "person": {
   "age": 32, 
   "job": "developer"
@@ -118,14 +118,14 @@
       "last": "Doe"
     }
   }
-}</code></pre>
+}</pre>
 
           <p>After providing the type of validation, you can also provide a callback to execute if the element does not validate. You might do this to notify the user of the problem and how to address it.</p>
 
           <p>Below is an example setup for form validation:</p>
 
 
-<pre class="prettyprint linenums"><code>$('#validateForm').on('click', function() {
+<pre class="prettyprint linenums">$('#validateForm').on('click', function() {
   var myForm = $.Form([
     {
       element: '#firstName',
@@ -175,10 +175,43 @@
   // Check that the validation passed,
   // then return the form's JSON:
   if(!myForm.errors()) {
-    $.formData = myForm.get();
-    console.dir($.formData)
+    var formData = myForm.get();
+    console.dir(formData)
   }
-});</code></pre>
+});</pre>
+
+        <h3>Form Accessor Methods</h3>
+        <p>When you use <code>$.Form</code>, it returns an object that has three accessor methods:</p>
+        <ul>
+          <li>myForm.get()</li>
+          <li>myForm.errors()</li>
+          <li>myForm.getErrors()</li>
+        </ul>
+
+        <p>As we saw above, using <code>.get()</code> on your <code>$.Form</code> object returns the values of the inputs as a JSON object. You can check if there were any errors using <code>.errors()</code>. This returns a boolean true or false. Finally, <code>.getErrors()</code> returns any error messages generated while processing the inputs. Notice how we use all three methods in this example:</p>
+<pre class="prettyprint linenums">$('#validateForm').on('click', function() {
+  var myForm = $.Form([
+    {
+      element: '#firstName',
+      type: 'text'
+    },
+    {
+      element: '#lastName',
+      type: 'text'
+    }
+  ]);
+
+  // Check for errors using myForm.errors():
+  if(!myForm.errors()) {
+    // Get the data using myForm.get():
+    var formData = myForm.get();
+    console.dir(formData)
+  } else {
+    // If errors, output them using myFrom.getErrors():
+    var errors = myForm.getErrors();
+    console.dir(errors);
+  }
+});</pre>
 
         <h3>Custom Validators</h3>
         <p>Out of the box ChocolateChip-UI has number of useful validators. If you need a validation that isn't provided, you can create a custom validator to use with <code>$.Form</code>. This is done with the <code>$.validateWithRegex()</code> method. This takes two arguments: the input to check and the regular expression to use. For example, this will let you set up a validator for a phone number that differs from the US/Canada or standard international form that ChocolateChip-UI provides.</p>

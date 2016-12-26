@@ -84,6 +84,9 @@
           <h4>Form Validation</h4>
           <ul>
             <li>$.Form(arguments)</li>
+            <li>myForm.errors()</li>
+            <li>myForm.getErrors()</li>
+            <li>myForm.get()</li>
             <li>$(selector).isNotEmpty()</li>
             <li>$(selector).validateAlphabetic()</li>
             <li>$(selector).validateText()</li>
@@ -181,10 +184,14 @@ returns:
 ]);
 // Check for errors:
 if (myForm.errors()) {
-  console.dir(myForm.getErrors());
+  // Output the errors:
+  var errors = myForm.getErrors();
+  console.dir(errors);
 // Otherwise output value:
 } else {
-  console.dir(myForm.get())
+  // Get the JSON from $.From object:
+  var results = myForm.get();
+  console.dir(results)
 }</pre>
 
         <h3>Validation Types</h3>
