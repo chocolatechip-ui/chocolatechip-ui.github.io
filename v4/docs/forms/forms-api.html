@@ -112,12 +112,12 @@
           <p>This method when executed on a form encodes the values of its elements as a string for submission in a Ajax post.</p>
 
           <h3>$(form).serializeArray()</h3>
-          <p>This method when executed the values of a form's elements as an array of names and values.</p>
+          <p>This method when executed returns the values of a form's elements as an array of names and values.</p>
 
           <h3>$.param(object, traditional?)</h3>
           <p>This method can serialize a plain JavaScript object or array. If the optional second parameter for traditional is passed as a boolean true, the serialization will be perform a traditional shallow encoding.</p>
 
-          <p>Because of limitations to language support for various types of encoding, if the data you need to pass is complex, it is better to pass it as a stringified JSON object. You can use the <code>$.form2JSON</code> method for that purpose.</p>
+          <p>Because of limitations to language support for various types of encoding, if the data you need to pass is complex, it is better to pass it as a stringified JSON object. You can use the <code>$.Form()</code> method for that purpose.</p>
 
           <h3>$.Form(arguments)</h3>
           <p><code>$.Form</code> is unique to ChocolateChip-UI. It takes an array of form elements to validate and returns an object with the validation state. The return object also lets you extract the form's data as a JSON object, which you can strigify and post to the server.</p>
