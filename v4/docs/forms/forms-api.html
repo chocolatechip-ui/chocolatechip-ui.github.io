@@ -193,11 +193,60 @@ if (myForm.errors()) {
   var results = myForm.get();
   console.dir(results)
 }</pre>
+        
+        <h3>No Validation, Just Data</h3>
+        <p>If you are not interested in validation and just want to get the data from your form elements as JSON, you can pass the options to <code>$.Form</code> with nothing but the element selectors:</p>
+
+          <pre class="prettyprint linenums html">
+&lt;!-- Markup for form elements --&gt;
+&lt;ul class="list"&gt;
+  &lt;li&gt;
+    &lt;label for="nameFirst"&gt;First Name: &lt;/label&gt;
+    &lt;input type="text" name='person_name_first' id='nameFirst'&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;label for="nameLast"&gt;Last Name: &lt;/label&gt;
+    &lt;input type="text" name='person_name_last' id='nameLast'&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;label for="age"&gt;Age: &lt;/label&gt;
+    &lt;input type="number" name='person_age' id='age'&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;button class='raised' id='validateForm'&gt;Validate&lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<pre class="prettyprint linenums">
+// Get input values without validation:
+var myForm = $.Form([
+  {
+    element: '#nameFirst'
+  },
+  {
+    element: '#nameLast'
+  },
+  {
+    element: '#age'
+  }
+]);
+
+// Returns JSONified data for these elements:
+{
+  "person":{
+    "name":{
+      "first":"John",
+      "last":"Doe"
+    },
+    "age":"23"
+  }
+}
+</pre>
 
         <h3>Validation Types</h3>
-        <p>In the above example, notice how we provided types for the form elements we wanted to get. This tells the <code>$.Form</code> method to do a validity test. At minimum it will check that each element it is check has a value. If it does not, it will flag that element by attach a class that causes the element to show a red border. It will still return an object, but those inputs without value will be excluded from the final object.</p>
+        <p>When you provide a type for a form element, this tells <code>$.Form</code> to do a validity test. At minimum it will check that each element has a value. If it does not, it will flag that element by attaching a class that causes the element to show a red border. It will still return an object, but those inputs without value will be excluded from the final object.</p>
 
-        <p>Many of the validators have options you can provide for refining how the validation works. You can also provide a callback to execute with validation fails. You could use this to popup a message explaining the failure.</p>
+        <p>Many of the validators have options you can provide for refining how validation works. You can also provide a callback to execute with validation fails. You could use this to popup a message explaining the failure.</p>
 
         <h3>Options for Validators</h3>
         <p>Some validation types can have additional options to fine tune the validation:</p>
@@ -393,7 +442,6 @@ $('#customValidatorBtn').on('click', function() {
     console.dir(formData)
   }
 });</pre>
-
 
         </div>
         

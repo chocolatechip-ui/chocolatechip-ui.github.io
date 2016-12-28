@@ -505,6 +505,32 @@ $('#list').find('li').unshift(listItem);
             <p>This method removes any duplicate elements in the collection.</p>
 <pre class='prettyprint linenums'>var listItems = $('li').unique();
 </pre>
+            <h3>element.get()</h3>
+            <p>This method returns an array of DOM nodes from the DOMStack. The DOMStack is a special object abstraction that has the above special methods to interact with the DOM nodes it contains. This method lets you get just the nodes themselves as a simple JavaScript array.</p>
+
+            <pre class='prettyprint linenums'>// Get the list items:
+var li = $('li');
+// Get the DOM nodes:
+var nodes = li.get();</pre>
+
+            <h3>element.length</h3>
+            <p>This is not a method, but a property on a DOMStack. It indicates the number of nodes a DOMStack contains. It does not you use methods to add or remove items from the DOMStack, this value will be updated. However, because a DOMStack is an object, you cannot change it to change the number of items in the DOMStack. <strong>Do not attempt to change this value!</strong>. Use push, pop, and other DOMStack methods to change the number of items.</p>
+
+            <pre class='prettyprint linenums'>// Find out how many list items:
+var li = $('li');
+console.log(li.length);</pre>
+
+            <h3>element[0]</h3>
+            <p>Sometimes you need to get at the plain DOM node. This might be because you want to drop down to plain JavaScript while accessing the properties of a DOM element. To get at the node itself, you can access it direclty using <code>[0]</code> on the node. This only works for the first element. If you want to get at the node at a later position in a collection, use the <code>element.eq()</code> with this:</p>
+
+            <pre class='prettyprint linenums'>// Get the first list item:
+if ($('li')[0].nodeName === 'LI') {
+  alert('Got a list item!');
+}
+// Get the third list item/
+// Remember that `eq` is zero-based:
+var li3 = $('li').eq(2)[0];
+console.log(li3.nodeName);</pre>
 
             <h3>$.replace(oldElement, newelement)</h3>
             <p>This method allows you to replace one element with another. The first argument is the element to replace, and the second argument is the element that will be replace it.</p>
