@@ -351,6 +351,14 @@ chui -n myapp -o android -t tabbar -j -b </code></pre>
 <h3>Troubleshooting Babel, etc.</h3>
 <p>If you are having trouble installing the Babel module, this is probably due to <code>node-gyp</code>. Please read the <a target='_blank' href="https://github.com/nodejs/node-gyp">installation requirements in the documentation</a> for this module dependency.</p>
 
+<h2>JavaScript Intellisense</h2>
+<p>You can get JavaScript intellisense in editors or IDEs that have proper support of TypeScript. To make this posible we provide a TypeScript declaration file for ChocolateChip-UI's types and call signatures. To get these use the flag <code>--ts</code> when you create your project:</p>
+
+<pre class="prettyprint linenums">// Create a project with TypeScript support:
+chui -n MyProject -t navigation -o android --ts</pre>
+
+<p>When you create a project with this flag, it outputs the folder <code>typings</code> at the root of your project, along with a file called <code>jsconfig.json</code>. Editors that understand TypeScript declaration files can use these to provide code completion, hints and code signatures as you type or hover over ChocolateChip-UI code.</p>
+
 <h2>Platform Support</h2>
 
 <h3>Android</h3>
