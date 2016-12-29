@@ -358,7 +358,7 @@ chui -n myapp -o android -t tabbar -j -b </code></pre>
 <p>If you are having trouble installing the Babel module, this is probably due to <code>node-gyp</code>. Please read the <a target='_blank' href="https://github.com/nodejs/node-gyp">installation requirements in the documentation</a> for this module dependency.</p>
 
 <h2>JavaScript Intellisense</h2>
-<p>You can get JavaScript intellisense in editors or IDEs that have proper support of TypeScript. To make this posible we provide a TypeScript declaration file for ChocolateChip-UI's types and call signatures. To get these use the flag <code>--ts</code> when you create your project:</p>
+<p>You can get JavaScript intellisense in editors or IDEs that have proper support of TypeScript. To make this posible we provide a TypeScript declaration file for ChocolateChip-UI's types and call signatures. To get these use the flag <code>--ts</code> when you create your project. Notice that this requires two hyphens with the flag. A single hyphen with <code>ts</code> will throw and exception:</p>
 
 <pre class="prettyprint linenums">// Create a project with TypeScript support:
 chui -n MyProject -t navigation -o android --ts</pre>
