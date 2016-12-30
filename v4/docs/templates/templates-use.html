@@ -165,7 +165,7 @@ var PeopleView = new View({
 &lt;/ul&gt;
           </pre>
 
-          <p>When implementing helpers, if you need to quote anything inside the function, make sure you use double quotes with it inside the template. Templates cannot properly parse single quotes in JavaScript inside the template since these are used internally for escaping JavaScript.</p>
+          <p>When implementing helpers, if you need to quote anything inside the function, make sure you use double quotes with it inside the template. When templates are parsed, all single quotes get escaped. This is so you can have single quotes in English contractions, etc. Unfortunately, with will result in single quotes in JavaScript escaped as well, which will through an exception. So only use double quotes with JavaScript inside a template.</p>
 
           <h3>Nested Data Iteration</h3>
           <p>Data is complicated. Sometimes a property might have an array as its value. and you need to be able to output that in your template. To do this you can write a JavaScript loop in the template to handle the array. Below is some complicated data, followed by a template to render it:</p>

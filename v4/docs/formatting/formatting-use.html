@@ -72,7 +72,7 @@
           <h2>Data Formatting</h2>
           <h3>Use</h3>
           
-          <p>You can provide formatters different parameters to tell it how to format your data. When doing so, make sure you use double quotes. These are required inside templates because single quotes are using internally for parsing templates.</p>
+          <p>You can provide formatters different parameters to tell it how to format your data. When doing so, make sure you use double quotes. These are required inside templates because single quotes are always escaped in a template to allow for single quotes in English contractions, etc..</p>
 
             <h3>$.formatNumber(number, separator, decimal)</h3>
             <p>Besides passing in the number to format, you can provide a character to use for indicating thousands. The third argument is the character to represent decimals. The default is thousands separator `,`. Some cultures use `.` for thousands and `,` for decimals. To format a number for Latin America:</p>
