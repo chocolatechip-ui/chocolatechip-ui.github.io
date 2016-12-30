@@ -72,11 +72,11 @@
           <h2>Data Formatting</h2>
           <h3>Use</h3>
           
-          <p>You can provide formatters different parameters to tell it how to format your data.</p>
+          <p>You can provide formatters different parameters to tell it how to format your data. When doing so, make sure you use double quotes. These are required inside templates because single quotes are using internally for parsing templates.</p>
 
             <h3>$.formatNumber(number, separator, decimal)</h3>
             <p>Besides passing in the number to format, you can provide a character to use for indicating thousands. The third argument is the character to represent decimals. The default is thousands separator `,`. Some cultures use `.` for thousands and `,` for decimals. To format a number for Latin America:</p>
-<pre class='prettyprint linenums'>$.formatNumber(123456789.24312, '.', ',');
+<pre class='prettyprint linenums'>$.formatNumber(123456789.24312, ".", ","");
 // returns: 123.456.789,24312
 </pre>
             <p>If you want to reduce the number of decimals displayed, you can provide the last argument as the number of decimals to show. If the value is 0, it will be rounded of to a whole number.</p>

@@ -137,13 +137,14 @@ var PeopleView = new View({
             <li>sortNumbers</li>
             <li>sortNumbersDescending</li>
           </ul>
-          <p>You use them as a function with the data you want formatted as the argument:</p>
+          <p>You use them as a function with the data you want formatted as the argument. Notice that we are using double quote marks for the arguments in the currency formatter. This is required. Single quotes will throw an exception.:</p>
           <pre class='prettyprint linenums'>&lt;template&gt;
   &lt;li&gt;
     &lt;h3&gt;Ammount: {= $.formatNumber(data.number) }&lt;/h3&gt;
-    &lt;h4&gt;Price: $.currency(data.price, '$', ',', 0)&lt;/h4&gt;
+    &lt;h4&gt;Price: $.currency(data.price, "$", ",", 0)&lt;/h4&gt;
   &lt;/li&gt;
 &lt;/template&gt;</pre>
+
 
             <p>You can learn more about data formatters in the <a target='_blank' href="https://chocolatechip-ui.github.io/v4/docs/formatting/formatting-intro.html">documentation</a>.</p>
             
@@ -155,13 +156,16 @@ var PeopleView = new View({
   }
 });  
           </pre>
-          </pre>
+
           <p>You can then use it like so:</p>
+
           <pre class="prettyprint linenums">
 &lt;ul class="list cloak" id="basicRepeater"&gt;
   &lt;li&gt;{= $.helpers.bigName(data) }&lt;/li&gt;
 &lt;/ul&gt;
           </pre>
+
+          <p>When implementing helpers, if you need to quote anything inside the function, make sure you use double quotes with it inside the template. Templates cannot properly parse single quotes in JavaScript inside the template since these are used internally for escaping JavaScript.</p>
 
           <h3>Nested Data Iteration</h3>
           <p>Data is complicated. Sometimes a property might have an array as its value. and you need to be able to output that in your template. To do this you can write a JavaScript loop in the template to handle the array. Below is some complicated data, followed by a template to render it:</p>
