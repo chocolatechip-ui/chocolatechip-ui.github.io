@@ -13,7 +13,7 @@ h3 > a {
   color: #333;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   nav > div > h1 {
     margin: 0;
   }

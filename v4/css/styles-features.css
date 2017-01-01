@@ -26,7 +26,15 @@ section div div.row {
 section div div.row > div {
 	width: 48%;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
+	section {
+		height: auto !important;
+	}
+	section > div {
+		padding: 1px 10px;
+	}
+}
+@media only screen and (max-width: 858px) {
 	nav > div > h1 {
 		margin: 0;
 	}

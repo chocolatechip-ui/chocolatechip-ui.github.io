@@ -135,7 +135,7 @@ summary {
 	cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
 	img {
 		display: none;
 	}
@@ -161,7 +161,7 @@ summary {
 		display: none;
 	}
 	#menu > ul {
-		padding: 1px 10px;
+		padding: 90px 10px 1px 10px;
 		background-color: #fff;
 		border-left: solid 1px #999;
 		border-bottom: solid 1px #999;

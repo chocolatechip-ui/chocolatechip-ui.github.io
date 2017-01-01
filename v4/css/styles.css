@@ -301,7 +301,7 @@ footer > div > menu a#chuiLogoLink {
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 858px) {
 	nav > div:first-child {
 		display: flex !important;
 		flex-direction: column;
@@ -378,6 +378,7 @@ footer > div > menu a#chuiLogoLink {
 		width: 300px;
 	}
 }
+
 @media only screen and (max-width: 767px) {
 	nav > div > h1 > svg, 
 	nav > div > h1 > a > svg {
@@ -412,6 +413,7 @@ footer > div > menu a#chuiLogoLink {
 		margin-top: 0 !important;
 	}
 }
+
 @media only screen and (max-width: 442px) {
 	header {
 		padding: 1px 20px !important;
@@ -435,11 +437,9 @@ footer > div > menu a#chuiLogoLink {
 	footer {
 		padding-top: 20px;
 	}
-	#social-links {
-		/*margin-top: -10px !important;*/
-	}
 }
-@media only screen and (max-width: 340px) {
+
+/*@media only screen and (max-width: 340px) {
 	nav {
 		height: 80px !important;
 	}
@@ -495,12 +495,9 @@ footer > div > menu a#chuiLogoLink {
 	#mainFooterMenu > a {
 		height: 20px;
 	}
-	#social-links {
-		/*margin-top: 0 !important;*/
-	}
-}
+}*/
 
-@media only screen and (max-width: 320px) {
+/*@media only screen and (max-width: 320px) {
 	article {
 		padding-top: 80px;
 	}
@@ -541,4 +538,4 @@ footer > div > menu a#chuiLogoLink {
 		height: 15px !important;
 		width: 20px;
 	}
-}
+}*/
