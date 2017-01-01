@@ -424,10 +424,24 @@ $('ul').off();
 <pre class='prettyprint linenums'>// Remove delegated events from list items:
 $('ul').off('tap', 'li');
 </pre>
-            <h3>element.trigger(event)</h3>
+            <h3>element.trigger(event, data?)</h3>
             <p>This method lets you trigger the provided event on the element.</p>
 <pre class='prettyprint linenums'>$('button').trigger('tap');
 </pre>
+            <p>Optionally, you can pass a data object with the tirggered event. This gets passed to the callback on the event as the <code>data</code> property. You can access this from the callback's event:</p>
+
+<pre class='prettyprint linenums'>// Setup event listener:
+$('#button').on('tap', function(e) {
+  if (e.data) {
+    alert(e.data.msg);
+  } else {
+    alert('Nothing to say for now.')
+  }
+});
+
+// Trigger event and pass data:
+$('#button').trigger('tap', { msg: 'This is from the trigger. Hello!'});</pre>
+
             <h3>element.serializeArray()</h3>
             <p>This method create an array of key-value objects from a form's elements.</p>
 <pre class='prettyprint linenums'>var data = $(form).serializeArray();
