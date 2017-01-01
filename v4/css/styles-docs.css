@@ -127,7 +127,7 @@ summary {
 }
 #closeMark {
 	position: absolute;
-	top: 10px;
+	top: 80px;
 	right: 10px;
 	display: none;
 	-wekbit-transform: scale(.75);
