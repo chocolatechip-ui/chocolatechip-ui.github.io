@@ -274,6 +274,13 @@ footer > div > menu a#chuiLogoLink {
 	nav > div {
 		width: 90%;
 	}
+	menu  {
+		margin-left: -1em !important;
+		margin-right: 40px;
+	}
+	menu > a:first-child {
+		margin-left: 0 !important;
+	}
 	menu > a {
 		font-size: 20px;
 		margin-left: 30px;
@@ -286,15 +293,6 @@ footer > div > menu a#chuiLogoLink {
 	}
 	footer > div {
 		width: 90% !important;
-	}
-}
-
-@media only screen and (max-width: 1024px) {
-	menu  {
-		margin-left: -1em !important;
-	}
-	menu > a:first-child {
-		margin-left: 0 !important;
 	}
 	#mainFooterMenu  { 
 		margin-top: 20px !important;
@@ -316,6 +314,7 @@ footer > div > menu a#chuiLogoLink {
 		float: left;
 		padding: 0 !important;
 		margin-left: 0 !important;
+		margin-top: -1px;
 	}
 	menu > a {
 		font-size: 12px;

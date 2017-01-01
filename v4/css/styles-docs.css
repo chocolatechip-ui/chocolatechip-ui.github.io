@@ -118,7 +118,7 @@ summary {
 }
 #hamburgerButton {
 	position: absolute;
-	top: 10px;
+	top: 22px;
 	right: 10px;
 	display: none;
 	-wekbit-transform: scale(.75);
