@@ -177,7 +177,7 @@ chui -n Fruits -o android -t slideout
 
 <h2>ES6 with JSPM &amp; Browsersync</h2>
 
-<p>You can also create a project that uses JSPM, Babel and Browsersync. This allows you to write your app's code using ES6 that gets transpiled to ES5. You can also organize your project code using ES6 modules.  You can also use comprehensions, classes and arrow functions, const, let and other ES6 features supported by Babel in your code if you want to. We do. The source code for ChocolateChip-UI is written in ES6 and uses JSPM and Babel to parse the module dependencies. The result is that your final output has only the parts of ChocolateChip-UI that you need. No need for custom builds. ES6 modules give you that automatically.</p>
+<p>You can also create a project that uses JSPM, Babel and Browsersync. This allows you to write your app's code using ES6 that gets transpiled to ES5. You can also organize your project code using ES6 modules.  You can also use comprehensions, classes and arrow functions, const, let and other ES6 features supported by Babel in your code if you want to. We do. The source code for ChocolateChip-UI is written in ES6 and uses JSPM and Babel to parse the module dependencies. The result is that your final output has only the parts of ChocolateChip-UI that you need. ES6 modules give you that automatically.</p>
 
 <p><strong>Important Note:</strong> To use JSPM in your project, first make sure you have JSPM installed globally. You do this by using NPM:</p>
 
@@ -255,6 +255,7 @@ gulp.task('serve', ['build'], function () {
 
 <p>Please be aware that if you do something that throws an exception in either the browser or the server instance, you will need to kill the server in the terminal (control C) to stop the server, then run <code>gulp</code> again.</p>
 
+<a name="custom_builds"></a>
 <h2>Custom Builds</h2>
 <p>When you create a new project, by default you get everything, whether you'll be using it or not. That comes to 133kb of JavaScript. Since the goal is a hybrid app running on devices, this is not bad. This will load really quickly as a local resource. However, if size is a concern for you, you can create a custom build of ChocolateChip-UI for you project if you are using ES6 with JSPM in your project. To do this, just use the flag <code>-c</code> when you create your project.  This will give you a minimal version of ChocolateChip-UI that is only 77kb, almost half the size. It also creates a <code>src</code> folder in your <code>dev</code> folder with importable modules. You can import only the ones you need into your app.</p>
 
