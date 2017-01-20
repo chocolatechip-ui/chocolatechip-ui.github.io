@@ -139,7 +139,7 @@ chui -n myApp -o ios -t slideout</pre>
 
 
 
-<pre class='prettyprint linenums'>// Create a  app:
+<pre class='prettyprint linenums'>// Create an app:
 chui -n myApp -o ios -t default -j
 // Create a navigation list:
 chui -n myApp -o android -t navigation -j
@@ -147,6 +147,21 @@ chui -n myApp -o android -t navigation -j
 chui -n myApp -o win -t tabbar -j
 // Create a slide out menu app:
 chui -n myApp -o ios -t slideout -j</pre>
+
+<h3>Custom Build</h3>
+
+<p>Besides the above options, you can also create a project that has a minimal build of ChocolateChip-UI. Then you can import just the widgets you need. This gives you a substantially smaller final file size. To do this, just include the <code>-c</code> flag in your commands:</p>
+
+<pre class='prettyprint linenums'>// Create an app with minimal build:
+chui -n myApp -o ios -t default -j -c
+// Create a navigation list:
+chui -n myApp -o android -t navigation -j -c
+// Create a tab bar interface:
+chui -n myApp -o win -t tabbar -j -c
+// Create a slide out menu app:
+chui -n myApp -o ios -t slideout -j -c</pre>
+
+<p>By default the minimal build supports navigation lists. As such, the first two projects do not need to import anything. However for the tabbar and the slideout, you would need to import them into your project. Actually, the command does this for you, so you don't have to do anything. If you look at the resulting files in your app's <code>dev</code> folder and examine the <code>app.js</code> file. You'll see how the modules for the widgets get loaded. Of course, if you want to use other widgets, you will need to import them as well. For a better example of how widgets get loaded where they are needed, take a look at the JSPM version of the reference apps. Run <code>chui -r</code> in the terminal, then open the <code>jspm</code> folder. Each project has a <code>dev</code> folder. Check out how each project imports widgets where they are needed in either the <code>app.js</code> file, or in other modules that it is importing.</p>
 
 <p>After creating the app, <code>cd</code> to the project and run:</p>
 

@@ -94,7 +94,7 @@ var mySelectList = $.SelectList({
 });</pre>
       <img class='layout' src="../../images/widgets/select-list.png" alt="Multi-Select List">
 
-      <p>You can find out what the current selection of a list is by querying the instance of the list that you created. Please note that upto version 4.1.2 you would use <code>getSelection()</code>, but since 4.1.3 the preferred way is to use <code>val()</code>:</p>
+      <p>You can also provide a name option to use with the select list: <code>name: 'myChoice'</code>. If you do not, defaults will be used. You would want to provide a name if you intend to get a JSON object from you form elements. Read about form validation to <a href='../forms/forms-api.html' target='_blank'>learn more</a>. You can find out what the current selection of a list is by querying the instance of the list that you created. Please note that upto version 4.1.2 you would use <code>getSelection()</code>, but since 4.1.3 the preferred way is to use <code>val()</code>:</p>
 
       <pre class="prettyprint linenums">
 mySelectList.val()</pre>

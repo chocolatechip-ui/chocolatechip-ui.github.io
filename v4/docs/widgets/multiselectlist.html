@@ -101,7 +101,7 @@ var renderSelection = function() {
 
       <img class='layout' src="../../images/widgets/multi-select-list.png" alt="Simple Layout">
 
-      <p>As you can see from the multi-select list options above, you can provide a series of pre-selected list items by using an array. Numbering is zero based. To get the current value of a multi-select list, you use the <code>val()</code> method on the list instance. This returns an array of objects like this. Please note that before version 4.2.0 you would have instead used <code>getSelection</code> for the same purpose:</p>
+      <p>As you can see from the multi-select list options above, you can provide a series of pre-selected list items by using an array. Numbering is zero based. You can also provide a name optionto use with the multi-select list: <code>name: 'myChoice'</code>. You can see names being used in the Codepen examples below. If you do not, defaults will be used. You would want to provide a name if you intend to get a JSON object from you form elements. Read about form validation to <a href='../forms/forms-api.html' target='_blank'>learn more</a>. To get the current value of a multi-select list, you use the <code>val()</code> method on the list instance. This returns an array of objects like this. Please note that before version 4.2.0 you would have instead used <code>getSelection</code> for the same purpose:</p>
 
       <pre class="prettyprint linenums">
 var choices = myMulitSelectList.val();

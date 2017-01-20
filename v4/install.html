@@ -187,7 +187,7 @@ chui -n Fruits -o android -t slideout
 
 <p>To build a project with these ES6 features, just use the <code>--jspm</code> or <code>-j</code> flags with your command:</p>
 
-<pre class="prettyprint linenums"><code>//Create a project named "Fruits" for Winows phone of type "slideout" using JSPM:
+<pre class="prettyprint linenums"><code>//Create a project named "Fruits" for iOS of type "slideout" using JSPM:
 chui -n Fruits -o ios -t slideout --jspm
 
 // or
@@ -255,7 +255,63 @@ gulp.task('serve', ['build'], function () {
 
 <p>Please be aware that if you do something that throws an exception in either the browser or the server instance, you will need to kill the server in the terminal (control C) to stop the server, then run <code>gulp</code> again.</p>
 
-<h4>Box - Local Data Persistence</h4>
+<h2>Custom Builds</h2>
+<p>When you create a new project, by default you get everything, whether you'll be using it or not. That comes to 133kb of JavaScript. Since the goal is a hybrid app running on devices, this is not bad. This will load really quickly as a local resource. However, if size is a concern for you, you can create a custom build of ChocolateChip-UI for you project if you are using ES6 with JSPM in your project. To do this, just use the flag <code>-c</code> when you create your project.  This will give you a minimal version of ChocolateChip-UI that is only 77kb, almost half the size. It also creates a <code>src</code> folder in your <code>dev</code> folder with importable modules. You can import only the ones you need into your app.</p>
+
+<p>To create a custom project, build a JSPM project using the <code>-j</code> flag, and also include the <code>-c</code> flag:</p>
+
+
+<pre class="prettyprint linenums"><code>//Create a custom project for JSPM with double hyphen options:
+chui --name Fruits --os ios --type slideout --jspm --custom
+
+// Same project with single hyphens options:
+chui -n Fruits -o ios -t slideout -j -c
+</code></pre>
+
+<p>Lacks support for forms, validation, data formatters, Ajax, fetch, promises, local data persistence (Box) and widgets. It does support navigation lists out of the box. Any other functionality will need to be imported. These are all in the <code>src</code> folder in your project's <code>dev</code> folder. Certain file include their dependencies automatically:</p>
+
+<ul>
+  <li>box automatically imports the pomise polyfill</li>
+  <li>fetch  automatically imports the pomise polyfill</li>
+  <li>android-ripple automatically imports color-contrast</li>
+  <li>form automatically imports validators</li>
+</ul>
+
+<p>Here is the complete list of importable modules:</p>
+
+<ul>
+  <li>android-ripple</li>
+  <li>box</li>
+  <li>color-contrast</li>
+  <li>editable</li>
+  <li>fetch</li>
+  <li>form</li>
+  <li>multi-select-list</li>
+  <li>paging</li>
+  <li>popover</li>
+  <li>popup</li>
+  <li>promises</li>
+  <li>range</li>
+  <li>segmented</li>
+  <li>select-list</li>
+  <li>serialize</li>
+  <li>sheets</li>
+  <li>slideout</li>
+  <li>stepper</li>
+  <li>switches</li>
+  <li>tabbar</li>
+  <li>validators</li>
+</ul>
+
+<p>To import a module, use the following format. Be aware the the path need to work for where you are importing the file from. The following would work if you were importing them into your <code>app.js</code> file:</p>
+
+<pre class="prettyprint linenums"><code>import './src/android-ripple';
+import './src/form';
+import './src/segmented';
+import './switches';
+</code></pre>
+
+<h2>Box - Local Data Persistence</h2>
 <p>If you need local data persistence, you can take advantage of the mobile browser's support for IndexedDB, WebSQl or localStorage using ChocolateChip-UI's Box. This is an abstraction layer to these three datastores, providing you with a convenience and easy to use interface for local data persistence.</p>
 
 <p>Box is not in the default build of ChocolateChip-UI. Instead Box is a separate module. You can create a project with support for Box using the flags <code>--box</code> or <code>-b</code> when you create your project. This will give you the following files in your <code>js</code> folder:</p>
