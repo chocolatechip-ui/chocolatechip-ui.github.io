@@ -163,19 +163,66 @@ chui -n myApp -o ios -t slideout -j -c</pre>
 
 <p>By default the minimal build supports navigation lists. As such, the first two projects do not need to import anything. However for the tabbar and the slideout, you would need to import them into your project. Actually, the command does this for you, so you don't have to do anything. If you look at the resulting files in your app's <code>dev</code> folder and examine the <code>app.js</code> file. You'll see how the modules for the widgets get loaded. Of course, if you want to use other widgets, you will need to import them as well. For a better example of how widgets get loaded where they are needed, take a look at the JSPM version of the reference apps. Run <code>chui -r</code> in the terminal, then open the <code>jspm</code> folder. Each project has a <code>dev</code> folder. Check out how each project imports widgets where they are needed in either the <code>app.js</code> file, or in other modules that it is importing.</p>
 
-<p>After creating the app, <code>cd</code> to the project and run:</p>
+<p>Below is a list of all the importable modules:</p>
 
-<pre class='prettyprint linenums'>npm install</pre>
+<ul>
+  <li>android-ripple</li>
+  <li>box</li>
+  <li>color-contrast</li>
+  <li>editable</li>
+  <li>fetch</li>
+  <li>form</li>
+  <li>multi-select-list</li>
+  <li>paging</li>
+  <li>popover</li>
+  <li>popup</li>
+  <li>promises</li>
+  <li>range</li>
+  <li>segmented</li>
+  <li>select-list</li>
+  <li>serialize</li>
+  <li>sheets</li>
+  <li>slideout</li>
+  <li>stepper</li>
+  <li>switches</li>
+  <li>tabbar</li>
+  <li>validators</li>
+</ul>
+
+<p>Four of the above modules have dependencies on other modules, but they import them automatically. They are:</p>
+
+<ul>
+  <li>box imports promises</li>
+  <li>fetch imports promises</li>
+  <li>form imports validators</li>
+  <li>android-ripple imports color-contrast</li>
+</ul>
+
+<p><strong>Note:</strong> If you are targeting Android as the platform for your app, you will need to import <code>android-ripple</code>. This will implement the Material Design ripple effect in your app, no setup or configuration needed. Import it in your <code>app.js</code> file.</p>
+
+<p>To import a module, use the following format. Be aware the the path need to work for where you are importing the file from. The following would work if you were importing them into your <code>app.js</code> file:</p>
+
+<pre class="prettyprint linenums"><code>import './src/android-ripple';
+import './src/form';
+import './src/segmented';
+import './switches';
+</code></pre>
+
+<h4>Building your Custom Project</h4>
+
+<p>In order to build and run your custom app, <code>cd</code> to the project and run:</p>
+
+<pre class='prettyprint linenums'>npm i</pre>
 
 <p>When the install finishes, run:</p>
 
-<pre class='prettyprint linenums'>jspm install</pre>
+<pre class='prettyprint linenums'>jspm i</pre>
 
 <p>After that you can just run:</p>
 
 <pre class='prettyprint linenums'>gulp</pre>
 
-<p>This will build your app, start watchers and launch a server and browser instance to load your app. From then on when you edit and save app.js or index.html, JSPM will recompile your project and load it in the browser.</p>
+<p>This will build your app, importing dependencies and modules, start watchers and launch a server and browser instance to load your app. From then on when you edit and save app.js or index.html, JSPM will recompile your project and load it in the browser.</p>
 
 <h3>Importing Modules and Widgets</h3>
 
