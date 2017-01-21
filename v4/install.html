@@ -269,16 +269,7 @@ chui --name Fruits --os ios --type slideout --jspm --custom
 chui -n Fruits -o ios -t slideout -j -c
 </code></pre>
 
-<p>Lacks support for forms, validation, data formatters, Ajax, fetch, promises, local data persistence (Box) and widgets. It does support navigation lists out of the box. Any other functionality will need to be imported. These are all in the <code>src</code> folder in your project's <code>dev</code> folder. Certain file include their dependencies automatically:</p>
-
-<ul>
-  <li>box automatically imports the pomise polyfill</li>
-  <li>fetch  automatically imports the pomise polyfill</li>
-  <li>android-ripple automatically imports color-contrast</li>
-  <li>form automatically imports validators</li>
-</ul>
-
-<p>Here is the complete list of importable modules:</p>
+<p>The minimal build lacks support for forms, validation, data formatters, fetch, promises, local data persistence (Box) and widgets. It does support navigation lists out of the box. As such, if you need any of these, you'll need to import them into your app. Below are all in the modules available in your project's <code>src</code> folder.</p>
 
 <ul>
   <li>android-ripple</li>
@@ -303,6 +294,17 @@ chui -n Fruits -o ios -t slideout -j -c
   <li>tabbar</li>
   <li>validators</li>
 </ul>
+
+<p>Four of the above modules have dependencies on other modules, but they import them automatically. They are:</p>
+
+<ul>
+  <li>box imports promises</li>
+  <li>fetch imports promises</li>
+  <li>form imports validators</li>
+  <li>android-ripple imports color-contrast</li>
+</ul>
+
+<p><strong>Note:</strong> If you are targeting Android as the platform for your app, you will need to import <code>android-ripple</code>. This will implement the Material Design ripple effect in your app, no setup or configuration needed. Import it in your <code>app.js</code> file.</p>
 
 <p>To import a module, use the following format. Be aware the the path need to work for where you are importing the file from. The following would work if you were importing them into your <code>app.js</code> file:</p>
 
