@@ -80,6 +80,7 @@
             <li>$.delay()</li>
             <li>$.type()</li>
             <li>$.escapeHTML()</li>
+            <li>$.capitalize()</li>
             <li>$.mixin()</li>
             <li>$.compare()</li>
             <li>$.chunk()</li>
@@ -121,7 +122,6 @@ $.delay(2000)
           <h3>$.escapeHTML()</h3>
           <p><code>$.escapeHTML(data)</code> escapes the html tags, parenthesis, etc.</p>
 
-
           <h2>Importing Utilities</h2>
           <p>The previous utilities are included by default in ChocolateChip-UI. To use any of the following utilities you'll need to import them into the <code>app</code> file inside your project's dev folder:</p>
 
@@ -130,10 +130,27 @@ import './src/utils/array_flatten'
 import './src/utils/debounce'
 </pre>
 
+          <h3>$.capitalize()</h3>
+          <p>This method will capitalize a string. By default it capitalizes only the first word in the string. If you pass it a second truthy value, it will caplitalize all words in the string.</p>
+
+          <pre class='prettyprint linenums'>import './src/utils/capitalize'
+
+// Capitalize first word:
+const sentence = $.capitalize('this is some text.')
+// returns: "This is some text."
+
+// Capitalize all words in phrase, use second truthy parameter:
+const expression = $.capitalize('another experiment with text', true)
+// returns: "Another Experiment With Text"
+          </pre>
+
+
           <h3>$.mixin()</h3>
           <p><code>$.mixin(sourceObject, targetObject)</code> allows you to "mixin" one object into another. If a property already exists on the target object, its property will not be replaced nor will its value be changed. Mixing in a object into another only adds properties from the one object to the target.</p>
 
-          <pre class='prettyprint linenums'>// Mixin two objects:
+          <pre class='prettyprint linenums'>import './src/utils/mixin'
+
+// Mixin two objects:
 const myObj = {
   name: 'Sam',
   age: 32,
@@ -164,7 +181,8 @@ console.dir(myObj)
           <h3>$.compare()</h3>
           <p><code>$.compare(argument1, argument2)</code> allows you to compare two things and get a boolean response. The items to compare may be simple values, such as strings or numbers, or objects or arrays. For objects and arrays, they must be identical for a match. If the two items match, this returns true, otherwise false.</p>
 
-          <pre class='prettyprint linenums'>
+          <pre class='prettyprint linenums'>import './src/utils/compare'
+
 // Compare numbers:
 $.compare(1, 1) // returns true
 $.compare(1, 2) // returns false
@@ -200,7 +218,9 @@ $.compare([4,5,6], array2) // returns true
           <h3>$.chunk()</h3>
           <p><code>$.chunk(data, itemsPerPage)</code> allows you to get back chuncks of an array in a specified size. This is useful where you have a large array items and you want to show it in chunks, such as with the paging widget. It takes the array of data, and the number of items each page should hold. If an array had 100 items, you could break it down into five pages of 20 items each as follows:</p>
 
-          <pre class='prettyprint linenums'>// Break array of 100 items into 
+          <pre class='prettyprint linenums'>import './src/utils/chunk'
+
+// Break array of 100 items into 
 // 5 arrays of 20 items each:
 const paginatedData = $.chunk(arrayOf100Items, 20)
 // paginatedData is an array of five arrays with 20 items each.
@@ -214,7 +234,9 @@ paginatedData[4].length // 20</pre>
           <h3>$.flatten(array)</h3>
           <p>This method takes and array of nested array and returns it flattened. The original array is left untouched. You use it like this:</p>
 
-          <pre class='prettyprint linenums'>// Flatten a nested array:
+          <pre class='prettyprint linenums'>import './src/utils/flatten'
+
+// Flatten a nested array:
 const nestedArray = [[[1], [2], 3, [[4, 5], 6], 7], 8]
 const flattenedArray = $.flatten(nestedArray)
 // returns [1,2,3,4,5,6,7,8]</pre>
@@ -236,7 +258,9 @@ $('li').on('tap', (e) => alert($(e.target).text()))
 
           <p><code>$.throttle()</code> allows you to control how often a set of events fire. If you are listening for keystokes in an input, you can capture the event a designated amount of time. This helps you avoid a flood of events. This method takes two arguments, a callback to execute and the time in milliseconds to wait before the next execution.</p>
 
-<pre class='prettyprint linenums'>$('input').on('input', $.throttle(function(e) {
+<pre class='prettyprint linenums'>import './src/utils/throttle'
+
+$('input').on('input', $.throttle(function(e) {
   // If only a few letters, exit:
   if (this.value.length < 2) return
 
@@ -268,7 +292,9 @@ $('li').on('tap', (e) => alert($(e.target).text()))
           <p>Debounce takes two arguments: a callback and the amount of time in milliseconds before firing.</p>
 
           <h3>$.debounce()</h3>
-<pre class='prettyprint linenums'>$('input').on('input', $.debounce(function(e) {
+<pre class='prettyprint linenums'>import './src/utils/debounce'
+
+$('input').on('input', $.debounce(function(e) {
   // do something here
 }, 1000)</pre>
   
@@ -281,7 +307,9 @@ $('li').on('tap', (e) => alert($(e.target).text()))
         
         <h3>$.once()</h3>
         <p>There may be times where you only want a function to execute once, no matter how many times the user tries to run it. A submit button is a good example. Using <code>$.once()</code> you can do this. You pass it the function you want to execute, and it returns wrapped so that it will only execute once:</p>
-<pre class='prettyprint linenums'>// Execute function only once:
+<pre class='prettyprint linenums'>import './src/utils/once'
+
+// Execute function only once:
 const alertUser = function(message) {
   alert(message)
 }
@@ -306,7 +334,9 @@ $('#alertButton').on('tap', $.once(alertUser('A message from your sponsors!'))</
 
         <p>This function takes the number of times and wraps the callback so that it will only execute x times before the times argument is reached. For example, if you pass a times of 4, the callback will execute only the first 3 times. After that it will not execute. Use this method to limit a callback to only execute a specific number of times.</p>
 
-        <pre class='prettyprint linenums'>// Execute the callback only 3 times:
+        <pre class='prettyprint linenums'>import './src/utils/before'
+
+// Execute the callback only 3 times:
 const alertUser = function(message) {
   alert(message)
 }
@@ -331,7 +361,9 @@ $('#alertButton').on('tap', $.before(4, alertUser('A message from your sponsors!
 
         <p>This function takes the number of times and wraps the callback so that it will only execute on the times attempt. For example, if you pass a times of 4, the callback will not execute until after the fourth attempt. After that the callback will execute on every attempt. Use this method to prevent a callback from being executed until after the specified number of attempts.</p>
 
-        <pre class='prettyprint linenums'>// Execute the callback only on and after 3 attempts:
+        <pre class='prettyprint linenums'>import './src/utils/after'
+
+// Execute the callback only on and after 3 attempts:
 const alertUser = function(message) {
   alert(message)
 }
@@ -362,7 +394,9 @@ $('#alertButton').on('tap', $.after(3, alertUser('A message from your sponsors!'
 
           <h3>Array.pluck(property)</h3>
           <p>This method allows you to pluck all objects in the array with that property. It returns a new array of just those property values.</p>
-          <pre class='prettyprint linenums'>// Pluck first names:
+          <pre class='prettyprint linenums'>import './src/utils/array_pluck'
+
+// Pluck first names:
 const people = [
   {firstName: 'Anne', lastName: 'Kimble'},
   {firstName: 'Howard', lastName: 'Nelson'},
@@ -376,7 +410,9 @@ const firstNames = people.pluck('firstName')
 
           <h3>array1.difference(array2)</h3>
           <p>This method allows you to compare one array against another. It returns all objects in the first array that are not in the second.</p>
-          <pre class='prettyprint linenums'>// Find difference:
+          <pre class='prettyprint linenums'>import './src/utils/array_difference'
+
+// Find difference:
 const people1 = [
   {firstName: 'Sam', lastName: 'Daniels'},
   {firstName: 'Howard', lastName: 'Nelson'},
@@ -392,7 +428,9 @@ const difference = people1.difference(people2)
 
           <h3>array1.intersection(array2)</h3>
           <p>This method lets you find all objects or values shared between two arrays.</p>
-          <pre class='prettyprint linenums'>// Find the intersection:
+          <pre class='prettyprint linenums'>import './src/utils/array_intersection'
+
+// Find the intersection:
 const people1 = [
   {firstName: 'Sam', lastName: 'Daniels'},
   {firstName: 'Howard', lastName: 'Nelson'},
@@ -412,7 +450,9 @@ const shared = people1.difference(people2)
           </pre>
           <h3>array1.mixin(array2)</h3>
           <p>This method lets you mixin the objects of one array to another. If the objects already exist in the target, they will not be added.</p>
-          <pre class='prettyprint linenums'>// Mixin in array:
+          <pre class='prettyprint linenums'>import './src/utils/array_mixin'
+
+// Mixin in array:
 const people1 = [
   {firstName: 'Sam', lastName: 'Daniels'},
   {firstName: 'Howard', lastName: 'Nelson'},
@@ -439,7 +479,9 @@ people1.mixin(people2)
           <h3>Array.unique()</h3>
           <p><code>[].unique()</code> operates directly on an array. It removes all duplicates from the array upon which it operates.</p>
 
-          <pre class='prettyprint linenums'>const people = [
+          <pre class='prettyprint linenums'>import './src/utils/array_unique'
+
+const people = [
   {firstName: 'Anne', lastName: 'Kimble'},
   {firstName: 'Anne', lastName: 'Kimble'},
   {firstName: 'Anne', lastName: 'Kimble'},
