@@ -115,7 +115,7 @@ var myMtor = $.on('my-topic', function(data) {
 });
 
 // Create another mediator to handle objects:
-var peopleMtor = $.on('my-topic, function(data) {
+var peopleMtor = $.on('my-topic', function(data) {
   // Check if data is object:
   if ($.type(data) === 'object') {
     // render a view with the data:

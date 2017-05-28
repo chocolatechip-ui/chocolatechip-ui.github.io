@@ -1,0 +1,191 @@
+nav > div > h1 {
+	color: transparent;
+	height: 50px;
+	display: inline-block;
+	width: 300px;
+	margin:  0;
+}
+header h2 {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, San-serif;
+	font-weight: 100;
+	font-size: 24px;
+	margin: 0 0 5px 0;
+	display: block;
+}
+header #chui-image {
+	margin-top: -3px;
+	float: right;
+}
+header div {
+	display: block;
+	box-sizing: content-box;
+	padding: 26px 0 0;
+	height: 140px;
+}
+header div * {
+	font-weight: 500;
+}
+section {
+	box-sizing: border-box;
+	padding: 1px 42px;
+}
+section h2 {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
+	font-size: 36px;
+	color: #4D4D4D;
+	font-weight: normal;
+	margin: 0;
+}
+section h3 {
+	font-family: 'Open Sans', 'Gill Sans', Consolas, Sans-serif;
+	font-size: 16px;
+	color: #4D4D4D;
+	font-weight: normal;
+	margin: 0;
+	max-width: 500px;
+}
+section {
+	height: 400px;
+}
+section div {
+	max-width: 960px;
+	margin: 0 auto;
+	position: relative
+}
+#upgrading,
+#build  {
+	height: 318px;
+	padding-top: 72px;
+}
+#upgrading img,
+#build img {
+	float: left;
+}
+#upgrading aside,
+#build aside {
+	margin-left: 320px;
+}
+#opensource {
+	background-color: #FAFAFA;
+	padding-left: 44px;
+	padding-top: 54px;
+	border-top: solid 1px #e5e5e5;
+	border-bottom: solid 1px #e5e5e5;
+}
+#opensource img {
+	float: right;
+	margin-right: 100px;
+}
+#opensource aside {
+	/*margin-left: 320px;*/
+}
+#build .mainLink {
+	margin: 20px 0 0 0;
+}
+#opensource .mainLink {
+	margin: 20px 0 0 0;
+}
+@media only screen and (max-width: 768px) {
+	nav > div > h1,
+	nav > div > h1 a {
+		background-repeat: no-repeat;
+	}
+	header div {
+		height: 110px;
+	}
+}
+
+#codeExample {
+	background-color: #FAFAFA;
+	padding-left: 44px;
+	padding-top: 42px;
+	border-top: solid 1px #e5e5e5;
+	border-bottom: solid 1px #e5e5e5;
+}
+#codeExample img {
+	float: right;
+	margin-left: 44px;
+}
+@media only screen and (max-width: 858px) {
+
+	#codeExample, #upgrading {
+		padding: 1px 10px;
+		border: solid 1px transparent;
+	}
+	#codeExample img {
+		margin-bottom: 20px;
+		height: 200px;
+	}
+	#upgrading img {
+		margin-bottom: 20px;
+		height: 100px;
+	}
+	#codeExample h2,
+	#upgrading h2 {
+		font-size: 18px !important;
+	}
+	#intro > div {
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+	}
+	#linkToVersions {
+		float: none !important;
+		order: 6;
+	}
+}
+
+@media only screen and (max-width: 780px) {
+	#intro h2,
+	#linkToVersions {
+		font-size: 14px !important;
+	}
+	article > section {
+		min-height: 200px !important;
+	}
+	article > #codeExample,
+	article > #upgrading,
+	article > #opensource {
+		height: 200px !important;
+		min-height: 200px !important;
+		padding-top: 40px !important;
+		padding-bottom: 40px;
+	}
+	article > #build {
+		height: 260px !important;
+		min-height: 240px !important;
+		padding-top: 40px !important;
+	}
+	article > #upgrading {
+		height: 220px !important;
+	}
+	article > #codeExample {
+		border-top: solid 1px #e5e5e5;
+		border-bottom: solid 1px #e5e5e5;
+	}
+	article > #opensource {
+		height: 240px !important;
+		min-height: 240px !important;
+		padding-bottom: 20px !important;
+		padding-left: 20px;
+	}
+}
+@media only screen and (max-width: 442px) {
+	header {
+		padding: 1px 20px !important;
+		height: 120px !important;
+	}
+}
+@media only screen and (max-width: 320px) {
+	header {
+		padding: 1px 20px !important;
+		height: 140px !important;
+	}
+	article > #upgrading {
+		height: 260px !important;
+	}
+	article > #opensource {
+		height: 300px !important;
+	}
+}

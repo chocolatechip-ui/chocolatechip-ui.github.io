@@ -100,9 +100,10 @@ var sheetContent = "&lt;ul class='list'&gt;\n\
 
 $('#mySheet').find('section').append(sheetContent);
 
-// Hide sheet when tapping buttons:
+// Hide sheet when tapping button:
 $('#mySheet').on('tap', 'button', function() {
-  $.HideSheet('#mySheet');</pre>
+  $.HideSheet('#mySheet');
+});</pre>
 
         <p>If we were doing this properly, we would delegate events on the sheet to handle the buttons. You get the idea.</p>
 

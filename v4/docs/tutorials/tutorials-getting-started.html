@@ -99,15 +99,13 @@
 
           <p>Let's break these down. Notice that each option has two versions of the flag - a long form with double hyphens and a short for with one hyphen and one letter. You can choose which you prefer.</p>
 
-          <p>To successfully create a project, ChocolateChipJS needs at least two values: a name for the project and an OS to target. The name can be whatever you want. Please note if there is already a folder in that location with the same name as the project you are creating, it will be replaced with your new project. If you want to replace an existing project, not a problem, but you do need to be aware of this. The other value you must provide is an OS: android, ios or win. These must be lower case. This will provide the correct theme for the target operating system.</p>
+          <p>To successfully create a project, ChocolateChipJS needs at least two values: a name for the project and an OS to target. The name can be whatever you want. Please note if there is already a folder in that location with the same name as the project you are creating, it will be replaced with your new project. If you want to replace an existing project, not a problem, but you do need to be aware of this. The other value you must provide is an OS: android or ios. These must be lower case. This will provide the correct theme for the target operating system.</p>
 
 
           <pre class='prettyprint linenums'>// Create an iOS app:
 chui -n myApp -o ios
 // Create and Android app:
-chui -n myApp -o android
-// Create a Windows Phone app:
-chui -n myApp -o win</pre>
+chui -n myApp -o android</pre>
 
         <p>Running any of the above commands will create a base app shell for the designated operating system. Because a path was not provided, it will be created on the user's desktop. If you want to create the project at a specific location, you'll need to provide the path flag:</p>
 
@@ -115,10 +113,7 @@ chui -n myApp -o win</pre>
 // Path is for Mac OS X:
 chui -n myApp -o ios -p ~/Documents/Dev
 // Create and Android app:
-chui -n myApp -o android ~/Documents/Dev
-// Create a Windows Phone app:
-// Path is for Windows file system:
-chui -n myApp -o win ~\Documents\Dev</pre>
+chui -n myApp -o android ~/Documents/Dev</pre>
 
         <p>You can also tell ChocolateChipJS to create a particular type of app shell. The default is a single screen with a static list. Using the type flag you can create a navigation list with routing, simple tab bar or a slide out menu app. These will have working code included, giving you a clear idea how to customize them and make them work for your needs. The type flag can handle four values: default, navigation, tabbar and slideout. If no type flag is provided, then the default type will be created:</p>
 
@@ -128,7 +123,7 @@ chui -n myApp -o ios -t default
 // Create a navigation list:
 chui -n myApp -o android -t navigation
 // Create a tab bar interface:
-chui -n myApp -o win -t tabbar
+chui -n myApp -t tabbar
 // Create a slide out menu app:
 chui -n myApp -o ios -t slideout</pre>
 
@@ -144,7 +139,7 @@ chui -n myApp -o ios -t default -j
 // Create a navigation list:
 chui -n myApp -o android -t navigation -j
 // Create a tab bar interface:
-chui -n myApp -o win -t tabbar -j
+chui -n myApp -t tabbar -j
 // Create a slide out menu app:
 chui -n myApp -o ios -t slideout -j</pre>
 
@@ -157,7 +152,7 @@ chui -n myApp -o ios -t default -j -c
 // Create a navigation list:
 chui -n myApp -o android -t navigation -j -c
 // Create a tab bar interface:
-chui -n myApp -o win -t tabbar -j -c
+chui -n myApp -o android -t tabbar -j -c
 // Create a slide out menu app:
 chui -n myApp -o ios -t slideout -j -c</pre>
 

@@ -19,6 +19,20 @@
   <script type='text/javascript' src='./v3/scripts/jquery-2.1.3.js'></script>
   <script>
     $(function() {
+			var select = document.getElementById('select-version');
+			select.addEventListener('change', function() {
+				var value = this.value
+				var path = window.location.href
+				var pos = path.lastIndexOf('/')
+				newPath = path.substr(0, pos)
+				if (value === 'v4') {
+					newPath += '/index-v4.html'
+					window.location.href = newPath
+				} else {
+					newPath += '/index.html'
+					window.location.href = newPath
+				}
+			})
 
       // Setup to cache images:
       var emptyArray = [];
@@ -134,17 +148,14 @@
 with Native Look &amp; Feel
 For Web or Hybrid</h2>
       <h3>Light, Fast, Customizable, Standards-based</h3>
-      <p id='linkToVersion4'>
-        <a href="index.html">
-          <svg width="43px" height="40px" viewBox="0 0 43 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <g id="Logo2">
-                      <ellipse id="Oval" fill="#FFFFFF" cx="21.1482971" cy="19.9753366" rx="21.1071582" ry="19.9364793"></ellipse>
-                      <ellipse id="Oval" fill="#333333" cx="21.2609338" cy="19.7971974" rx="3.72110348" ry="3.51471771"></ellipse>
-                      <path d="M32.9492436,25.9738802 C32.553916,27.2768221 29.372685,32.3289523 21.6069843,32.6205746 C14.0371622,32.9048199 7.81439043,26.9505492 7.81439043,19.794928 C7.81439043,12.6393067 13.9675403,6.64397789 21.5407989,6.82983546 C25.4818907,6.92653701 28.6558024,11.0128739 32.6500032,13.2573705 C34.536668,14.3175891 31.8277058,15.9543074 30.3324857,15.4507763 C27.8411812,14.6117827 25.3699154,10.2552799 21.5265621,9.6657966 C15.8021226,8.78781044 11.0187394,14.1130572 11.0187394,19.5908177 C11.0187394,25.0685781 15.7273683,29.4657596 21.5265621,29.5158387 C25.3581332,29.5488875 28.761708,26.8877395 30.0290055,24.6679874 C30.5193939,23.8091392 33.4077664,24.4626968 32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 Z" id="Shape" stroke="#333333" stroke-width="5" fill="#333333"></path>
-                  </g>
-              </g>
-          </svg> version 4 is now available.</a></p>
+      <p>
+				Version 3 - Change Version:
+				<select name="select-version" id="select-version">
+					<option value="">Choose a version</option>
+					<option value="v4">Version 4</option>
+					<option value="v5">Version 5</option>
+				</select>
+      </p>
     </section>
     <section class='platforms'>
       <h2>Write Once, Support 3 Platforms:

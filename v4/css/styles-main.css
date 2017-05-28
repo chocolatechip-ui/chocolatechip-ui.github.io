@@ -62,17 +62,6 @@ section div {
 #build aside {
 	margin-left: 320px;
 }
-#code {
-	background-color: #FAFAFA;
-	padding-left: 44px;
-	padding-top: 42px;
-	border-top: solid 1px #F6F6F6;
-	border-bottom: solid 1px #F6F6F6;
-}
-#code img {
-	float: right;
-	margin-left: 44px;
-}
 #opensource {
 	padding-top: 54px;
 }
@@ -93,7 +82,36 @@ section div {
 	nav > div > h1 a {
 		background-repeat: no-repeat;
 	}
+	header {
+		height: 180px !important;
+	}
 	header div {
 		height: 110px;
+	}
+	article > #code {
+		padding-top: 10px !important;
+		padding-bottom: 1s0px;
+		height: 200px !important;
+	}
+	article > #opensource {
+		padding-top: 10px !important;
+		padding-bottom: 1s0px;
+		height: 200px !important;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	header {
+		padding: 1px 20px !important;
+	}
+	article > #code {
+		padding-top: 10px !important;
+		padding-bottom: 10px;
+		height: 200px !important;
+	}
+	article > #opensource {
+		padding-top: 10px !important;
+		padding-bottom: 1s0px;
+		height: 200px !important;
 	}
 }

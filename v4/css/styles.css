@@ -13,25 +13,8 @@ html, body {
 	margin: 0 auto 10px auto;
 	background-position: left center;
 }
-#v3x {
-	display: inline-block;
-	width: 140px;
-	height: 80px;
-	float: right !important;
-	color: #111;
-	margin-top: 24px;
-	text-align: center;
-	text-decoration: none
-}
-#v3x:hover > div {
-	text-decoration: underline;
-}
-#v3x > div {
-	height: 40px;
-	width: 130px;
-	margin-top: -30px;
-	display: inline-block;
-	font-size: 12pt;
+#linkToVersions {
+	float: right;
 }
 nav {
 	height: 70px;
@@ -224,6 +207,10 @@ footer menu a {
 code {
 	font-size: 16px;
 }
+
+#code img {
+	float: right;
+}
 footer > div > menu a#chuiLogoLink {
 	margin: 0 !important;
 	border: none !important;
@@ -245,9 +232,6 @@ footer > div > menu a#chuiLogoLink {
 }
 #social-links > a {
 	margin-left: 20px;
-}
-#social-links {
-	/*float: right;*/
 }
 #social-links > a:hover {
 	border-color: transparent !important;
@@ -361,6 +345,7 @@ footer > div > menu a#chuiLogoLink {
 		border: solid 1px transparent;
 	}
 	#code img {
+		height: 100px;
 		margin-bottom: 20px;
 	}
 	#code h2,

@@ -190,8 +190,8 @@ var AppTitleView = $.View({
 AppTitleView.render('My Great App');</pre>
 
           <h3>Arrays of Objects</h3>
-          <p>So far we saw how to render simple strings and number, as well as objects with properties. However, many times we need to render an array of objects to create a list. Although other frameworks have special mechanisms to handle this, ChocolateChip-UI does not. That's because ChocolateChip-UI doesn't care whether you data is an object or an array. As long as the properties on the simple object and the array of objects are the same, ChocolateChip-UI will render them as a single item or a list. This means that you can turn a view rendering a single object into a list by renderin the same view with an array of similar objects. Or rendering a list view with a single object. The only requirement for this to work is that the object properties and the template variables match.</p>
-          <p>So, in the case of our person object, if we change or object to an array like this:</p>
+          <p>So far we saw how to render simple strings and number, as well as objects with properties. However, many times we need to render an array of objects to create a list. Although other frameworks have special mechanisms to handle this, ChocolateChip-UI does not. That's because ChocolateChip-UI doesn't care whether you data is an object or an array. As long as the properties on the simple object and the array of objects are the same, ChocolateChip-UI will render them as a single item or a list. This means that you can turn a view rendering a single object into a list by rendering the same view with an array of similar objects. Or rendering a list view with a single object. The only requirement for this to work is that the object properties and the template variables match.</p>
+          <p>So, in the case of our person object, we can change our object to an array like this:</p>
 
           <pre class='prettyprint linenums'>var persons = [
   {
@@ -212,9 +212,6 @@ AppTitleView.render('My Great App');</pre>
 <p data-height="265" data-theme-id="0" data-slug-hash="obRBOo" data-default-tab="html" data-user="rbiggs" data-embed-version="2" data-pen-title="obRBOo" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/obRBOo/">obRBOo</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-          <p>If we render AppTitleView with this, it will create a list of persons:</p>
-<pre class='prettyprint linenums'>// Render with "persons" array:
-personView.render(persons);</pre>
 
         <h3>Executor Delimiters</h3>
 

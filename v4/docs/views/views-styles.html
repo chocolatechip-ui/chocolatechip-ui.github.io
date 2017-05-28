@@ -94,7 +94,7 @@
           <h3>ChUI Style Notation</h3>
 
           <p>ChocolateChip-UI uses a special object notation to define the styles for a view. Because it is an object, hyphenated CSS properties must be either quoted or changed to camel case.</p>
-          <p>The sytax uses hierarchical relationships, like <strong>SASS</strong> and <strong>LESS</strong>. You indicate child elements based on the view's element. Let's look at a style example:</p>
+          <p>The syntax uses hierarchical relationships, like <strong>SASS</strong> and <strong>LESS</strong>. You indicate child elements based on the view's element. Let's look at a style example:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#list1',
@@ -150,7 +150,7 @@
 }
 </pre>
 
-        <p>In the above example, the list background color will be read. However, since the text is inside of H3 an H4, the color value will not affect them, instead we will need to add their styles as child elements of the list item. We do this by adding another child selector nested in the list item property definition:</p>
+        <p>In the above example, the list background color will be red. However, since the text is inside of an H3, the color value will not affect them, instead we will need to add their styles as child elements of the list item. We do this by adding another child selector nested in the list item property definition:</p>
 
           <pre class="prettyprint linenums">var myView = $.View({
   element: '#list1',

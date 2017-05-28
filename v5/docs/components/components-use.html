@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChocolateChip-UI - Documentation</title>
+  <link rel="apple-touch-icon" sizes="76x76" href="../../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="../../images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../../images/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="../../images/manifest.json">
+  <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#333333">
+  <link rel="shortcut icon" href="../../images/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="ChocolateChip-UI">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles-docs.css">
+  <link rel="stylesheet" href="../../prettify/obsidian.css">
+  <script type='text/javascript' src='../../prettify/prettify.js'></script>
+  <script type='text/javascript' src='../../prettify/lang-css.js'></script>
+</head>
+<body>
+  <article>
+    <nav>
+      <div>
+        <h1>
+          <a title='ChocolateChip-UI' href="../../../index.html">
+            <svg width="275px" height="40px" viewBox="0 0 275 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="ChocolateChip-Title2">
+                  <g id="Page-1">
+                    <g id="Logo2">
+                      <ellipse id="Oval" fill="#FFFFFF" cx="21.1482971" cy="19.9753366" rx="21.1071582" ry="19.9364793"></ellipse>
+                      <ellipse id="Oval" fill="#333333" cx="21.2609338" cy="19.7971974" rx="3.72110348" ry="3.51471771"></ellipse>
+                      <path d="M32.9492436,25.9738802 C32.553916,27.2768221 29.372685,32.3289523 21.6069843,32.6205746 C14.0371622,32.9048199 7.81439043,26.9505492 7.81439043,19.794928 C7.81439043,12.6393067 13.9675403,6.64397789 21.5407989,6.82983546 C25.4818907,6.92653701 28.6558024,11.0128739 32.6500032,13.2573705 C34.536668,14.3175891 31.8277058,15.9543074 30.3324857,15.4507763 C27.8411812,14.6117827 25.3699154,10.2552799 21.5265621,9.6657966 C15.8021226,8.78781044 11.0187394,14.1130572 11.0187394,19.5908177 C11.0187394,25.0685781 15.7273683,29.4657596 21.5265621,29.5158387 C25.3581332,29.5488875 28.761708,26.8877395 30.0290055,24.6679874 C30.5193939,23.8091392 33.4077664,24.4626968 32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 L32.9492436,25.9738802 Z" id="Shape" stroke="#333333" stroke-width="5" fill="#333333"></path>
+                    </g>
+                    <path d="M61.8605125,31.1541761 L57.0867787,31.1541761 L57.0867787,21.5005551 C57.0867787,19.115473 56.147693,17.9229498 54.2694932,17.9229498 C52.9338847,17.9229498 51.9687132,18.3516668 51.3739499,19.2091138 C50.7791865,20.0665606 50.4818095,21.4561951 50.4818095,23.3780587 L50.4818095,31.1541761 L45.7080757,31.1541761 L45.7080757,8.15106099 L50.4818095,8.15106099 L50.4818095,12.8374283 C50.4818095,13.2020896 50.4452893,14.0595236 50.3722484,15.409756 L50.2626872,16.7402704 L50.5131128,16.7402704 C51.5774259,15.1239337 53.2677801,14.3157776 55.5842264,14.3157776 C57.6398118,14.3157776 59.1997378,14.8381224 60.2640509,15.8828278 C61.3283641,16.9275332 61.8605125,18.4255789 61.8605125,20.3770097 L61.8605125,31.1541761 L61.8605125,31.1541761 Z M69.042504,22.8606365 C69.042504,24.4966846 69.3268382,25.7335578 69.8955157,26.5712933 C70.4641927,27.4090287 71.3902355,27.8278901 72.6736719,27.8278901 C73.9466739,27.8278901 74.8622828,27.4114926 75.4205254,26.578685 C75.978768,25.7458774 76.2578851,24.5065403 76.2578851,22.8606365 C76.2578851,21.2245884 75.9761595,19.9975708 75.4126995,19.1795467 C74.8492399,18.3615227 73.9258051,17.9525168 72.6423687,17.9525168 C71.3693667,17.9525168 70.4511498,18.3590588 69.8876897,19.172155 C69.3242297,19.9852512 69.042504,21.2147327 69.042504,22.8606365 L69.042504,22.8606365 L69.042504,22.8606365 Z M81.1411802,22.8606365 C81.1411802,25.5512457 80.3899117,27.6554085 78.8873515,29.173188 C77.3847918,30.6909675 75.2927173,31.4498459 72.6110659,31.4498459 C70.9311206,31.4498459 69.4494515,31.1024373 68.1660151,30.4076097 C66.8825787,29.712782 65.8965388,28.7149062 65.2078652,27.4139523 C64.5191921,26.1129984 64.1748609,24.5952417 64.1748609,22.8606365 C64.1748609,20.1601716 64.9209124,18.0609366 66.4130377,16.5628685 C67.905163,15.0648004 70.0024544,14.3157776 72.7049752,14.3157776 C74.3849205,14.3157776 75.8665891,14.6607223 77.1500255,15.3506221 C78.4334619,16.0405218 79.4195023,17.031006 80.1081754,18.3221042 C80.7968485,19.6132023 81.1411802,21.1260313 81.1411802,22.8606365 L81.1411802,22.8606365 L81.1411802,22.8606365 Z M90.6552578,31.4498459 C85.2084785,31.4498459 82.4851298,28.626227 82.4851298,22.9789044 C82.4851298,20.1700267 83.2259643,18.0239778 84.7076552,16.5406932 C86.1893461,15.0574087 88.3127233,14.3157776 91.0778506,14.3157776 C93.1021327,14.3157776 94.9176985,14.690289 96.5246024,15.439323 L95.1159599,18.9282273 C94.3646798,18.6424117 93.665583,18.4083421 93.0186471,18.2260114 C92.3717117,18.0436808 91.724786,17.9525168 91.0778506,17.9525168 C88.5944531,17.9525168 87.352773,19.618107 87.352773,22.9493374 C87.352773,26.1820108 88.5944531,27.7983232 91.0778506,27.7983232 C91.9960814,27.7983232 92.8464762,27.6825203 93.6290591,27.4509111 C94.4116424,27.2193019 95.1942141,26.8571099 95.976797,26.3643243 L95.976797,30.222816 C95.2046486,30.6860344 94.4246853,31.0063402 93.636885,31.183743 C92.8490847,31.3611458 91.8552188,31.4498459 90.6552578,31.4498459 L90.6552578,31.4498459 L90.6552578,31.4498459 Z M102.297951,22.8606365 C102.297951,24.4966846 102.582286,25.7335578 103.150963,26.5712933 C103.71964,27.4090287 104.645683,27.8278901 105.929119,27.8278901 C107.202121,27.8278901 108.11773,27.4114926 108.675973,26.578685 C109.234215,25.7458774 109.513333,24.5065403 109.513333,22.8606365 C109.513333,21.2245884 109.231607,19.9975708 108.668147,19.1795467 C108.104687,18.3615227 107.181252,17.9525168 105.897816,17.9525168 C104.624814,17.9525168 103.706597,18.3590588 103.143137,19.172155 C102.579677,19.9852512 102.297951,21.2147327 102.297951,22.8606365 L102.297951,22.8606365 L102.297951,22.8606365 Z M114.396628,22.8606365 C114.396628,25.5512457 113.645359,27.6554085 112.142799,29.173188 C110.640239,30.6909675 108.548165,31.4498459 105.866513,31.4498459 C104.186567,31.4498459 102.704899,31.1024373 101.421463,30.4076097 C100.138026,29.712782 99.1519857,28.7149062 98.4633126,27.4139523 C97.7746395,26.1129984 97.4303078,24.5952417 97.4303078,22.8606365 C97.4303078,20.1601716 98.1763593,18.0609366 99.6684846,16.5628685 C101.16061,15.0648004 103.257902,14.3157776 105.960423,14.3157776 C107.640368,14.3157776 109.122036,14.6607223 110.405473,15.3506221 C111.688909,16.0405218 112.67495,17.031006 113.363623,18.3221042 C114.052296,19.6132023 114.396628,21.1260313 114.396628,22.8606365 L114.396628,22.8606365 L114.396628,22.8606365 Z M121.578619,31.1541761 L116.804885,31.1541761 L116.804885,8.15106099 L121.578619,8.15106099 L121.578619,31.1541761 L121.578619,31.1541761 Z M136.16381,31.1541761 L135.240367,28.9070851 L135.115154,28.9070851 C134.311702,29.8630891 133.484785,30.5258758 132.634378,30.8954649 C131.78397,31.2650541 130.675328,31.4498459 129.308416,31.4498459 C127.62847,31.4498459 126.305925,30.99649 125.340739,30.0897646 C124.375553,29.1830391 123.892967,27.8919603 123.892967,26.2164894 C123.892967,24.4621728 124.542501,23.1686301 125.841589,22.3358225 C127.140677,21.5030149 129.099715,21.0422673 131.71876,20.9535659 L134.755168,20.8648649 L134.755168,20.1404738 C134.755168,18.4650029 133.847385,17.62728 132.031792,17.62728 C130.633576,17.62728 128.990176,18.0264303 127.101542,18.8247429 L125.520732,15.7793434 C127.534579,14.7839165 129.767517,14.2862106 132.219611,14.2862106 C134.56736,14.2862106 136.367275,14.7691332 137.619408,15.7349929 C138.871541,16.7008526 139.497598,18.1693315 139.497598,20.1404738 L139.497598,31.1541761 L136.16381,31.1541761 L136.16381,31.1541761 Z M134.755168,23.4963267 L132.908281,23.5554607 C131.5205,23.5948835 130.487505,23.831417 129.809266,24.2650683 C129.131028,24.6987196 128.791913,25.3590424 128.791913,26.2460564 C128.791913,27.5174431 129.564051,28.153127 131.108348,28.153127 C132.214399,28.153127 133.098705,27.8525323 133.761292,27.2513339 C134.423879,26.6501355 134.755168,25.8518349 134.755168,24.856408 L134.755168,23.4963267 L134.755168,23.4963267 Z M150.248151,27.8574571 C151.082907,27.8574571 152.084598,27.6849848 153.253256,27.3400349 L153.253256,30.6958878 C152.063729,31.198529 150.602929,31.4498459 148.870812,31.4498459 C146.961309,31.4498459 145.57094,30.9940261 144.699664,30.0823728 C143.828388,29.1707195 143.392756,27.8032601 143.392756,25.9799535 L143.392756,18.0116508 L141.107625,18.0116508 L141.107625,16.1045802 L143.737091,14.5966639 L145.114431,11.1077596 L148.16649,11.1077596 L148.16649,14.6262309 L153.065437,14.6262309 L153.065437,18.0116508 L148.16649,18.0116508 L148.16649,25.9799535 C148.16649,26.6205747 148.356916,27.0936418 148.737773,27.3991688 C149.118631,27.7046959 149.622085,27.8574571 150.248151,27.8574571 L150.248151,27.8574571 L150.248151,27.8574571 Z M162.501256,17.5237955 C161.489115,17.5237955 160.69611,17.8268541 160.122215,18.4329803 C159.548321,19.0391066 159.219641,19.8990045 159.136166,21.0126999 L165.835044,21.0126999 C165.814176,19.8990045 165.506364,19.0391066 164.911601,18.4329803 C164.316838,17.8268541 163.513397,17.5237955 162.501256,17.5237955 L162.501256,17.5237955 L162.501256,17.5237955 Z M163.174275,31.4498459 C160.356975,31.4498459 158.155341,30.7156064 156.569305,29.2471055 C154.98327,27.7786045 154.190264,25.6990806 154.190264,23.0084714 C154.190264,20.2390166 154.923273,18.0978954 156.389312,16.5850437 C157.855352,15.072192 159.882211,14.3157776 162.469953,14.3157776 C164.942916,14.3157776 166.868042,14.9810281 168.245389,16.3115491 C169.622735,17.6420701 170.311398,19.4801327 170.311398,21.825792 L170.311398,24.013749 L159.026604,24.013749 C159.078776,25.2949914 159.480497,26.2953311 160.231776,27.014798 C160.983056,27.734265 162.036919,28.093993 163.393397,28.093993 C164.447275,28.093993 165.44375,27.9905096 166.38285,27.7835397 C167.32195,27.5765697 168.302772,27.2464083 169.325348,26.7930457 L169.325348,30.28195 C168.490592,30.6761784 167.598461,30.9693814 166.648927,31.1615678 C165.699392,31.3537542 164.541187,31.4498459 163.174275,31.4498459 L163.174275,31.4498459 L163.174275,31.4498459 Z M182.752322,13.0443971 C180.926295,13.0443971 179.512449,13.6924004 178.510742,14.9884265 C177.509036,16.2844525 177.00819,18.0904845 177.00819,20.4065767 C177.00819,25.2260195 178.922882,27.6357047 182.752322,27.6357047 C184.359227,27.6357047 186.305221,27.2562656 188.590364,26.4973758 L188.590364,30.341084 C186.712164,31.0802623 184.614873,31.4498459 182.298426,31.4498459 C178.969839,31.4498459 176.423873,30.4963202 174.660452,28.58924 C172.897032,26.6821599 172.015334,23.9447772 172.015334,20.3770097 C172.015334,18.1299075 172.448357,16.1612587 173.314416,14.4710042 C174.180475,12.7807497 175.424763,11.4847432 177.047319,10.5829456 C178.669875,9.68114797 180.571524,9.23025595 182.752322,9.23025595 C184.974859,9.23025595 187.207796,9.73781746 189.451201,10.7529558 L187.886042,14.478396 C187.030418,14.0940232 186.169589,13.7589341 185.303531,13.4731184 C184.437472,13.1873028 183.587078,13.0443971 182.752322,13.0443971 L182.752322,13.0443971 L182.752322,13.0443971 Z M207.698864,31.1541761 L202.92513,31.1541761 L202.92513,21.5005551 C202.92513,19.115473 201.986045,17.9229498 200.107845,17.9229498 C198.772236,17.9229498 197.807064,18.3516668 197.212301,19.2091138 C196.617538,20.0665606 196.320161,21.4561951 196.320161,23.3780587 L196.320161,31.1541761 L191.546427,31.1541761 L191.546427,8.15106099 L196.320161,8.15106099 L196.320161,12.8374283 C196.320161,13.2020896 196.283641,14.0595236 196.2106,15.409756 L196.101039,16.7402704 L196.351464,16.7402704 C197.415777,15.1239337 199.106132,14.3157776 201.422578,14.3157776 C203.478163,14.3157776 205.038089,14.8381224 206.102402,15.8828278 C207.166715,16.9275332 207.698864,18.4255789 207.698864,20.3770097 L207.698864,31.1541761 L207.698864,31.1541761 Z M210.87405,10.3538014 C210.87405,8.88530046 211.740095,8.15106099 213.472213,8.15106099 C215.20433,8.15106099 216.070376,8.88530046 216.070376,10.3538014 C216.070376,11.0535569 215.853865,11.5980768 215.420835,11.9873774 C214.987806,12.376678 214.338271,12.5713254 213.472213,12.5713254 C211.740095,12.5713254 210.87405,11.8321581 210.87405,10.3538014 L210.87405,10.3538014 L210.87405,10.3538014 Z M215.851254,31.1541761 L211.07752,31.1541761 L211.07752,14.6262309 L215.851254,14.6262309 L215.851254,31.1541761 L215.851254,31.1541761 Z M228.933893,31.4498459 C226.878308,31.4498459 225.266211,30.7451732 224.097553,29.3358064 L223.847127,29.3358064 C224.014079,30.715606 224.097553,31.5139066 224.097553,31.7307323 L224.097553,38.4276546 L219.323819,38.4276546 L219.323819,14.6262309 L223.205413,14.6262309 L223.878431,16.7698374 L224.097553,16.7698374 C225.214038,15.1337893 226.867873,14.3157776 229.059106,14.3157776 C231.125126,14.3157776 232.74244,15.0697281 233.911098,16.577652 C235.079755,18.0855758 235.664075,20.179883 235.664075,22.8606365 C235.664075,24.6248088 235.390175,26.1573489 234.842367,27.4583028 C234.294558,28.7592567 233.514596,29.7497408 232.502455,30.4297849 C231.490314,31.109829 230.300805,31.4498459 228.933893,31.4498459 L228.933893,31.4498459 L228.933893,31.4498459 Z M227.52525,17.9229498 C226.346158,17.9229498 225.48533,18.2654307 224.942739,18.9504026 C224.400147,19.6353745 224.118422,20.7663004 224.097553,22.3432143 L224.097553,22.8310695 C224.097553,24.6050975 224.37667,25.8764652 224.934913,26.6452107 C225.493155,27.4139562 226.377461,27.7983232 227.587857,27.7983232 C229.726918,27.7983232 230.796432,26.1327329 230.796432,22.8015025 C230.796432,21.1753102 230.532966,19.9556842 230.006027,19.142588 C229.479087,18.3294918 228.65217,17.9229498 227.52525,17.9229498 L227.52525,17.9229498 L227.52525,17.9229498 Z M236.522826,24.8859751 L236.522826,21.1901018 L244.927728,21.1901018 L244.927728,24.8859751 L236.522826,24.8859751 L236.522826,24.8859751 Z M265.851811,9.54070933 L265.851811,23.5258937 C265.851811,25.1225189 265.473568,26.5220089 264.717071,27.7244057 C263.960574,28.9268025 262.867583,29.8482977 261.438064,30.4889189 C260.008546,31.1295401 258.318191,31.4498459 256.36695,31.4498459 C253.424437,31.4498459 251.139329,30.7377815 249.511555,29.3136312 C247.883782,27.8894809 247.069908,25.9405433 247.069908,23.4667597 L247.069908,9.54070933 L251.906248,9.54070933 L251.906248,22.7719356 C251.906248,24.4375508 252.261014,25.6596406 252.970556,26.4382418 C253.680098,27.216843 254.853955,27.6061377 256.492163,27.6061377 C258.078198,27.6061377 259.228578,27.2143791 259.943338,26.4308501 C260.658097,25.647321 261.015472,24.4178395 261.015472,22.7423685 L261.015472,9.54070933 L265.851811,9.54070933 L265.851811,9.54070933 Z M269.919137,31.1541761 L269.919137,9.54070933 L274.771129,9.54070933 L274.771129,31.1541761 L269.919137,31.1541761 L269.919137,31.1541761 Z" id="hocolateChip-UI" fill="#FFFFFF"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+        </h1>
+        <menu>
+          <a href="../../quickstart.html">Quick Start</a>
+          <a href="../../features.html">Features</a>
+          <a class='selected' href="#">Docs</a>
+          <a href="../../install.html">Install</a>
+        </menu>
+        <svg id='hamburgerButton' width="30px" height="28px" viewBox="0 0 30 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Artboard-1" stroke="#fff" stroke-width="4" stroke-linecap="square">
+              <path d="M2,2 L28,2" id="Line"></path>
+              <path d="M2,26 L28,26" id="Line-Copy"></path>
+              <path d="M2,14 L28,14" id="Line-Copy-2"></path>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </nav>
+    <header>
+      <div>
+        <h2>Docs</h2>
+        <h3>Everything You Need to Know</h3>
+      </div>
+    </header>
+    
+    <section>
+      <div>
+        <div>
+          <h2>Components</h2>
+          <h3>Use</h3>
+          
+          <h3>Setup</h3>
+          <p>When initializing a component, you can make it empty, or provide a number of options to give it various types of functionality. If you want a component, but aren't ready to have it associate with someting in the DOM quite yet, you can make an empty one like so:</p>
+          <pre class="prettyprint linenums">
+const myComponent = new Component(options)
+          </pre>
+          <p>To be useful a component needs at least an element to associate it with, otherwise you can't do anything with it. You basically anchor the component to that elemnet. That element becomes the component's container in which it renders itself. Each component needs an element in the document to attach itself to. If you create a component with only and element, you can always attach a template to a component later. Now, let's create a component with an associated DOM element:</p>
+          <pre class="prettyprint linenums">
+const simpleComponent = new Component({
+  element: '#special'
+})</pre>
+          <p>The above component presupposes the existence of an element called <code>#special</code>. To make the component complete we need to provide a template to render. The template is a function that returns an ES6 template literal.</p>
+
+          <h3>Template for a Component</h3>
+          <p>Usually you'll want to define a template function for a component. The template is defined as the return value of the component's render function. In the template's function you provide a parameter with the name you want to use in the template. We recommend you use our tagged template literal &mdash; <code>html``</code> &mdash; because it automatically escapes the data before rendering. This protects you from malicious script injection, etc.</p>
+
+          <pre class="prettyprint linenums">
+// Markup:
+&lt;div id='someTag'&gt;&lt;/div&gt;
+
+...
+
+// Script:
+const stuff = 'This is my stuff.'
+const simpleComponent = new Component({
+  element: '#someTag',
+  render: (data) => html`${ data }`
+})
+simpleComponent.render(stuff)</pre>
+
+          <p>The above component would render "This is my stuff." inside the div. We could just as easily have used a number instead.</p>
+
+          <h3>Templates with Complex Data</h3>
+
+          <p>So far we've only rendered simple data. If you have an object and want to render it, you'll need to change how you use the data variable. Suppose we have an object like this:</p>
+
+          <pre class="prettyprint linenums">// Object:
+const person = {
+  name: 'Joe',
+  job: 'Mechanic'
+}</pre>
+          <p>Because of the nature of this object, simply using <code>data</code> in the template won't work. We need to tell the template which object properties it should render. We do that using normal object dot notation:</p>
+          <pre class="prettyprint linenums">
+// Define component with string template:
+const simpleComponent = new Component({
+  element: '#special',
+  render: (data) => html`
+    &lt;li&gt;
+      &lt;h3&gt;${ data.name }&lt;/h3&gt;
+      &lt;h4&gt;${ data.job }&lt;/h4&gt;
+    &lt;/li&gt;`
+})
+// Render component with the person object:
+simpleComponent.render(person)</pre>
+
+
+          
+
+          <p>To learn more about templates please visit the documentation for <a href="../templates/templates-intro.html">templates</a>.</p>
+
+          <pre class='prettyprint linenums'>
+// Define component with string template:
+const simpleComponent = new Component({
+  element: '#special',
+  variable: 'fruit',
+  render: '&lt;li&gt;${ fruit }&lt;/li&gt;'
+})
+// Render component:
+simpleComponent.render()</pre>
+
+          <h3>Binding a Component to State</h3>
+          <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's components. However, in many cases you might prefer to create an State object and use that with a component. State objects offer you functionality that plain JavaScript objects do not. However, the most important reason for binding your component to a State object is that whenever the state changes, the component will render automatically. No need for you to call the component's render function. For more information about State, read its <a href="../state/state-intro.html">documentation</a>.</p>
+
+          <p>To use state with a component, assign the <code>state</code> to the component's state property property:</p>
+
+          <pre class="prettyprint linenums">
+const boundComponent = new Component({
+  element: '#peopleList',
+  state: peopleState
+})</pre>
+
+          <h3>Make a Component Interactive</h3>
+          <p>You can make a component interactive by defining actions. For this you use the component's <code>actions</code> property, which takes an array of event objects. Actions are for capturing user interaction. They therefore are objects have three possible properties: the event you want to capture an element to that will capture the event, and a callback. Instead of an element you can use the string <code>"self"</code> to target the component's anchor element. For events you can use any of the ones that ChocolateChip-UI supports: mouse events, touch events or gestures. Remember that ChocolateChip-UI's gestures work the same on desktop and mobile, iOS and Android. In the callback, <code>this</code> will refer to the element the user is interacting with:</p>
+
+          <pre class="prettyprint linenums">
+const interactiveComponent = new Component({
+  element: '#items',
+  state: itemsState,
+  // Define an event delegated to the list items:
+  actions: [{
+    element: 'li',
+    event: 'tap',
+    callback: function() {
+      console.log($(this).text());
+    }
+  }]
+})</pre>
+
+          <h3>Callbacks with Arrow Functions</h3>
+          <p>ES6 is all about arrow functions. We love using them. However, when you use an arrow function for an event callback, the "this" keyword will not refer to the event target. Instead, "this" will refer to the scope of the callback. To get the element that captures the event, use the event argument in the callback. Here is the previous component with an arrow function. Notice how we use <code>e.target</code> to get the elment that was tapped:</p>
+
+          <pre class="prettyprint linenums">
+const interactiveComponent = new Component({
+  element: '#items',
+  state: itemsState,
+  // Define an event delegated to the list items:
+  actions: [{
+    element: 'li',
+    event: 'tap',
+    // Get tapped element from event:
+    callback: (e) => {
+      console.log($(e.target).text());
+    }
+  }]
+})</pre>
+
+
+          <p>Here's an example of a component with events bound to its items. Click on an item and it will alert the content:</p>
+
+          <p data-height="350" data-theme-id="6688" data-slug-hash="eWLqYV" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Component Example V5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/eWLqYV/">Component Example V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+          <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <h3>Changing a Component's Template</h3>
+          <p>As we mentioned previously, you can change the template that a component is using. If you wanted to render different data in the same component depending on what the user chooses, you can change the component's template. To do so, you assign the template using the <code>setTemplate()</code> method. After changing the template, you will need to render the template again, as illustrated below:</p>
+
+          <pre class="prettyprint linenums">// Define new template:
+const template2 = (data) => html`&lt;li&ft;${data)&lt;/li&gt;`
+// Assign new template to component:
+peopleComponent.setTemplate(template2)
+// Rerender component with new template:
+peopleComponent.render(data)</pre>
+
+          <p>If you want to change a component's state and template, change the template first, then the state. That way, the new state will render the component with the new template. Please see <a href="../templates/templates-intro.html">templates</a> for more details.</p>
+
+          <h3>Sequential Numbering</h3>
+          <p>Sometimes you want to output sequential numbering in your component's template. You do this by providing a second parameter to the component's render function. By default all sequential numbering starts from <code>o</code>, so you may want to add 1 to it to get normal numbers.</p>
+
+        <p>And here's a template using it:</p>
+         <pre class="prettyprint linenums">// We'll use "idx" to capture
+// the loop index:
+const personComponent = new Component({
+  element: '#list',
+  render: (data, idx) => html`
+    &lt;ul class="list" id="arrayTemplate1"&gt;
+      &lt;li&gt;
+        &lt;h3&gt;
+          ${ idx + 1 }: ${ data.firstName } ${ data.lastName }
+        &lt;/h3&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;`
+})
+</pre>
+
+          <h3>Formatting Output</h3>
+          <p>You may need to format the data you are rendering in a component's template. ChocolateChip-UI provides a number of formatters to help you. These go right in the template where you want the data formated. ChocolateChip-UI has the following formatters:</p>
+          <ul>
+            <li>formatNumber</li>
+            <li>sum</li>
+            <li>currency</li>
+            <li>formatTime</li>
+            <li>sortDate</li>
+            <li>sortNumbers</li>
+            <li>sortNumbersDescending</li>
+          </ul>
+
+          <a name='template_helpers'></a>
+          <p>Please see temlates for more information about data formatters.</p>
+
+
+          <h3>Using Template Helpers</h3>
+          <p>Depending on your data, you may have the need to do some specialized formating of the data before outputing it. You can do this by definine a function that accepts the data and returns it transformed. Say you wanted a helper to make a name uppercase, you could write a helper function:</p>
+
+          <pre class="prettyprint linenums">
+const upperCase = (data) => data.lastName.toUpperCase()</pre>
+
+          <p>You could then use it like so:</p>
+
+          <pre class="prettyprint linenums">
+const myComp = new Component({
+  element: '#name',
+  render: (data) => html`&lt;li&gt;${ upperCase(data) }&lt;/li&gt;`
+})
+</pre>
+        <p>The above example is very simplified, but it is the technique that is important. You could write any type of function to transform data as needed.</p>
+
+          <h3>Nested Templates</h3>
+          <p>Rendering a data object that has a child element that is a collection is tricky. ChocolateChip-UI allows you to cover this by running JavaScript directly in your template. In fact, when the component is processed, your template gets converted into a JavaScript function. This means that you can use any JavaScript inside a template. You do need to escape the JavaScript code from the template. This is done using doube curly braces.</p>
+
+          <p>Let's say we want to output a list like in our above examples. But each list item might have a sub list. Using JavaScript in our template, we can have our component render the sub items. So let's use this data and see how to render the sub-lists of data:</p>
+
+          <pre class="prettyprint linenums">const people = [
+  {
+    name: 'Joe',
+    friends: [
+      {
+        name: "Sam"
+      },
+      {
+        name: "Jack"
+      }
+    ]
+  },,
+  {
+    name: 'Brad'
+  }
+  {
+    name: 'Ellen',
+    friends: [
+      {
+        name: 'Sherry'
+      },
+      {
+        name: 'Jill'
+      },
+      {
+        name: 'Bill'
+      }
+    ]
+  },
+  {
+    name: 'Tom',
+    friends: [
+      {
+        name: 'Joe'
+      },
+      {
+        name: 'Mary'
+      },
+      {
+        name: 'Kevin'
+      }
+    ]
+  }
+]</pre>
+
+          <p>In the above data set, Brad has no friends. Therefore we want to check if each person has friends before create the friends list. Below is the code to make that happen. Notice that we check the <code>person</code> object to see it if has friends:</p>
+
+<pre class='prettyprint linenums'>const peopleComponent = new Component({
+  element: '#peopleList',
+  render (somebody) => html`
+    &lt;li&gt;
+      &lt;aside&gt;
+        &lt;img width='80' src='${ somebody.image }'&gt;
+      &lt;/aside&gt;
+      &lt;div&gt;
+        &lt;h3&gt;${ somebody.name }&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+    !${somebody.friends && somebody.friends.length ? html`
+      &lt;li&gt;
+        &lt;div class='no-flex' style='max-width: 100px;'&gt;
+          &lt;h3&gt;Friends:&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;ol&gt;
+            ${
+              somebody.friends.map((friend) => `&lt;li&gt;${friend.name}: ${friend.job}&lt;/li&gt;`
+              })
+            }
+          &lt;/ol&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;`
+    : ''}`
+  })
+  peopleComponent.render(people)
+  </pre>  
+
+          <p>And here's a working example:</p>
+
+          <p data-height="600" data-theme-id="6688" data-slug-hash="dWqEeR" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Nested Template Example V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/dWqEeR/">Nested Template Example V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+          <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <h3>Styles in Components</h3>
+          <p>Since version 4.1.0, you can use the <code>styles</code> property to define styles for a component. This creates a virtual stylesheet for the component. This makes the component's style portable so you can reuse the component in other projects. If you are following the default patterns provided by ChocolateChip-UI you may not need to provide styles in a component. However, if you are creating a unique layout or customizing an existing one, you can use the <code>styles</code> property to make the component's layout look the way you want.</p>
+
+          <p>ChocolateChip-UI uses a special style object notation to define the styles for a component. Selectors must be quoted. These recevie a style object consisting of a property and value. Values must be quoted. Simple properties do not need to be quoted. However, if they are hyphenated, then they need to be quoted, otherwise you can use the camel case version of the property without quotes. The base of the stylesheet is the selector provided as the anchor of the component. In the example below, that will be the element <code>#list</code>. You can nest child elements in their parent selectors, similar to SASS and LESS. <strong>Note:</strong> Because this is object notation, CSS definitions do not end with a semi-colon but with a comma. Putting a semi-colon after your CSS value will throw an error.</p>
+
+          <pre class="prettyprint linenums">// Component with style object:
+const myComponent = new Component({
+  element: '#list',
+  render: (person) => html`
+    &lt;li&gt;
+      &lt;h3&gt;${ person.name }&lt;/h3&gt;
+      &lt;h4&gt;${ person.age }&lt;/h4&gt;
+    &lt;li&gt;`,
+  // Define a style object for the component:
+  styles: {
+    // Style the partent list:
+    border: 'solid  2px green',
+    margin: '10px 20px',
+    // Style the list's child elements:
+    '> li': {
+      '> h3': {
+        color: 'red'
+      },
+      '> h4': {
+        color: 'blue'
+      }
+
+    }
+  }
+})</pre>
+
+          <p>And here's the stylesheet that gets created:</p>
+          <pre class="prettyprint linenums">#list: {
+  border: solid  2px green;
+  margin: 10px 20px;
+}
+#list > li > h3 {
+  color: red;
+}
+#list > li > h4 {
+  color: blue;
+}</pre>
+
+        <p>And here are two examples of styled components:</p>
+
+        <p data-height="700" data-theme-id="6688" data-slug-hash="jmeOyP" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Styled Component V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/jmeOyP/">Styled Component V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+        <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+          <p>To learn more about using a component's style property, please go to <a target='_blank' href="./components-styles.html">the page dedicated to it</a>.</p> 
+
+        </div>
+        
+        <div id="menu">
+          <ul>
+            <svg id='closeMark' width="30px" height="28px" viewBox="0 0 30 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Artboard-1" stroke="#070707" stroke-width="4" stroke-linecap="square">
+                  <path d="M3,25 L27,3" id="Line-Copy"></path>
+                  <path d="M3,3 L27,25" id="Line-Copy-2"></path>
+                </g>
+              </g>
+            </svg>
+            <li><a href="../components/components-intro.html">Components</a>
+              <ul>
+                <li><a href="components-intro.html">Intro</a></li>
+                <li><a href="components-use.html" class='selected'>Use</a></li>
+                <li><a href="components-templates.html">Templates</a></li>
+                <li><a href="components-styles.html">Styles</a></li>
+                <li><a href="components-api.html">API</a></li>
+              </ul></li>
+            </li>
+            <li><a href='../state/state-intro.html'>State</a></li>
+            <li><a href="../widgets/widgets-intro.html">Widgets</a></li>
+            <li><a href="../pubsub/pubsub-intro.html">Pubsub</a></li>
+            <li><a href="../router/router-intro.html">Router</a></li>
+            <li><a href="../gestures/gestures-intro.html">Gestures</a></li>
+            <li><a href="../dom/dom-intro.html">DOM</a></li>
+            <li><a href="../utilities/utilities-intro.html">Utilities</a></li>
+            <li><a href="../layouts/layouts-intro.html">Layouts</a></li>
+            <li><a href="../themes/themes-intro.html">Themes</a></li>
+            <li><a href="../forms/forms-intro.html">Forms</a></li>
+            <li><a href="../formatting/formatting-intro.html">Formatting</a></li>
+            <li><a href="../hybrids/hybrids-intro.html">Hybrid Apps</a></li>
+            <li><a href="../tutorials/tutorials-getting-started.html">Tutorials</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <menu id='social-links'>
+					<a id='facebook' target='_blank'  href="https://www.facebook.com/ChocolateChipUI/">
+						<svg width="28px" height="51px" viewBox="0 0 28 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<path d="M18.3219966,50.3709297 L9.16242219,50.1467848 L8.75711934,29.0798512 L1,29.0798512 L1,19.2027117 L8.75711934,19.0832577 C8.75711934,19.0832577 8.75711934,10.273933 8.75711941,7.96862405 C9.96354627,5.29155113 10.8762356,2.73276067 15.2916202,1 C18.5541732,1.05771395 27.2399998,1.05771395 27.2399998,1.05771395 L27.2399998,9.26383249 L20.4174299,9.29391641 C20.4174299,9.29391641 19.1321725,9.52297403 19.0198689,9.74165032 C18.8770068,10.0198299 18.5541732,11.1701097 18.5541732,11.1701097 L17.8710637,19.0832573 L26.3287395,19.0832573 L26.3287403,29.0798512 L18.5541733,29.0798505 L18.3219966,50.3709297 Z" id="Path" stroke="#FFFFFF" fill="#FFFFFF"></path>
+							</g>
+						</svg>
+					</a>
+					<a id='twitter' target='_blank'  href="https://twitter.com/@chocolatechipui">
+						<svg width="51px" height="42px" viewBox="0 0 51 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<path d="M16.0391151,41.4481058 C35.2856864,41.4481058 45.8101486,25.5033099 45.8101486,11.6770757 C45.8101486,11.224189 45.8009241,10.7733456 45.7806097,10.3245406 C47.8236881,8.84756721 49.5995266,7.00440876 51,4.90624693 C49.1252216,5.73959532 47.1076431,6.30060205 44.9911213,6.55356543 C47.1515031,5.25815028 48.8100382,3.20895187 49.5923866,0.766026691 C47.5707265,1.96453843 45.3318047,2.83562852 42.9480412,3.30585185 C41.0385827,1.27195172 38.3202559,0 35.3102074,0 C29.5318504,0 24.8459234,4.68592698 24.8459234,10.4622423 C24.8459234,11.283349 24.9377234,12.0820191 25.1172468,12.8480441 C16.420643,12.4104607 8.70936409,8.24678049 3.54913549,1.91557844 C2.65050541,3.46191353 2.13234209,5.25815028 2.13234209,7.17474872 C2.13234209,10.8049656 3.97957883,14.0098375 6.78868565,15.884616 C5.07201059,15.831576 3.4593738,15.3603292 2.04971868,14.5759425 C2.04817841,14.6198436 2.04817841,14.6626442 2.04817841,14.7095642 C2.04817841,19.7769728 5.65493534,24.0079748 10.4428623,24.9667831 C9.56361391,25.2064865 8.63846383,25.3350065 7.68373547,25.3350065 C7.01052876,25.3350065 6.35466204,25.2687476 5.71715704,25.1463065 C7.04928875,29.3038668 10.9120656,32.3292152 15.4919126,32.4138786 C11.9106557,35.2209437 7.3991521,36.8927422 2.49596517,36.8927422 C1.65241507,36.8927422 0.819068392,36.8447612 0,36.7478988 C4.63084699,39.7161308 10.1297206,41.4481058 16.0396559,41.4481058" id="path3611" fill="#FFFFFF"></path>
+							</g>
+						</svg>
+					</a>
+          <a href='https://groups.google.com/forum/#!forum/chocolatechipui' target='_blank' id='google'>
+            <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Google" transform="translate(-2.000000, -2.000000)" fill="#FFFFFF">
+                  <path d="M21.3998421,7.64356123 L23.8775611,5.36647665 C23.8775611,5.36647665 21.8478661,2.92934683 18.7011242,2.36336592 C15.5543824,1.79738502 10.689183,1.42759489 6.62254558,4.9661304 C2.55590815,8.50466591 -0.248679437,14.854406 4.45031545,22.1967008 C9.14931034,29.5389956 20.2298325,28.2615731 23.5819137,24.8976543 C27.6398887,20.8253488 27.1737871,13.8055726 27.1737871,13.8055726 L14.9269628,13.8055726 L15.0611803,17.1005882 L23.5819137,17.1005882 C23.5819137,17.1005882 22.9076683,20.1919271 20.8043963,22.1967008 C18.7011242,24.2014744 12.2679267,25.7907509 7.74655918,20.3582444 C5.33571836,17.1005882 4.23578222,12.5016516 9.05229677,7.25566815 C16.7372308,2.47009346 21.3998421,7.64356123 21.3998421,7.64356123 Z" id="Path"></path>
+                </g>
+              </g>
+            </svg>
+          </a>
+				</menu>
+      </div>
+    </footer>
+  </article>
+  
+<script>
+  prettyPrint();
+</script>
+  <script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70245106-2', 'auto');
+  ga('send', 'pageview');
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var button = document.getElementById('hamburgerButton');
+    var closeBtn = document.getElementById('closeMark');
+    var menu = document.getElementById('menu');
+    button.addEventListener('click', function() {
+      menu.className = 'opened'
+    });
+    closeBtn.addEventListener('click', function() {
+      menu.className = '';
+    })
+  })
+</script>
+</body>
+</html>
