@@ -85,7 +85,7 @@ const simpleComponent = new Component({
           <p>The above component presupposes the existence of an element called <code>#special</code>. To make the component complete we need to provide a template to render. The template is a function that returns an ES6 template literal.</p>
 
           <h3>Template for a Component</h3>
-          <p>Usually you'll want to define a template function for a component. The template is defined as the return value of the component's render function. In the template's function you provide a parameter with the name you want to use in the template. We recommend you use our tagged template literal &mdash; <code>html``</code> &mdash; because it automatically escapes the data before rendering. This protects you from malicious script injection, etc.</p>
+          <p>Usually you'll want to define a template function for a component. The template is defined as the return value of the component's render function. In the component's render function you provide a parameter with the name you want to use in the template. We recommend you use our tagged template literal &mdash; <code>html``</code> &mdash; because it automatically escapes the data before rendering. This protects you from malicious script injection, etc.</p>
 
           <pre class="prettyprint linenums">
 // Markup:
@@ -99,7 +99,11 @@ const simpleComponent = new Component({
   element: '#someTag',
   render: (data) => html`${ data }`
 })
-simpleComponent.render(stuff)</pre>
+simpleComponent.render(stuff)
+
+// Result:
+
+&lt;div id='someTag'&gt;This is my stuff.&lt;/div&gt;</pre>
 
           <p>The above component would render "This is my stuff." inside the div. We could just as easily have used a number instead.</p>
 
