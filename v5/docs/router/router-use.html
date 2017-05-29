@@ -126,39 +126,37 @@ routes.addRoute({
 
         <p>If you have a single destination and you want to render it differently based on the route parameter, you probably want to use a switch state to do so. In the following example, based on whether the id is 'music', 'pictures', etc., we use a different template and data set to render in the container '#myList' when the user navigates to the 'choice' screen:</p>
 
-        <pre class='prettyprint linenums'>routes.addRoute([
-  {
-    // The route:
-    route: 'choice', 
-    // Callback to handle passed param:
-    callback: (param) => {
-      // Method to rener templates in switch statement:
-      const renderChosenTemplate = (element, template, item) => {
-        listView.setTemplate(template);
-        listView.setElement(element);
-        listView.render(item);
-      };
-      // Handle passed param:
-      switch (param) {
-        case 'music':
-          renderChosenTemplate('#myList', templates[0], music)
-          break
-        case 'pictures':
-          renderChosenTemplate('#gridOfImages', templates[1], imageCollection)
-          break
-        case 'documents':
-          renderChosenTemplate('#myList', templates[2], docs)
-          break
-        case 'recipes':
-          renderChosenTemplate('#myList', templates[3], recipes)
-          break
-        case 'favorites':
-          renderChosenTemplate('#myList', templates[4], favorites)
-          break
-      }
+        <pre class='prettyprint linenums'>routes.addRoute({
+  // The route:
+  route: 'choice', 
+  // Callback to handle passed param:
+  callback: (param) => {
+    // Method to rener templates in switch statement:
+    const renderChosenTemplate = (element, template, item) => {
+      listView.setTemplate(template);
+      listView.setElement(element);
+      listView.render(item);
+    };
+    // Handle passed param:
+    switch (param) {
+      case 'music':
+        renderChosenTemplate('#myList', templates[0], music)
+        break
+      case 'pictures':
+        renderChosenTemplate('#gridOfImages', templates[1], imageCollection)
+        break
+      case 'documents':
+        renderChosenTemplate('#myList', templates[2], docs)
+        break
+      case 'recipes':
+        renderChosenTemplate('#myList', templates[3], recipes)
+        break
+      case 'favorites':
+        renderChosenTemplate('#myList', templates[4], favorites)
+        break
     }
   }
-])</pre>
+})</pre>
 
         <p>Take a look at the example source code for <code>slide-out-menu-routes.html</code> in the ChocolateChip-UI examples. Read <a href="../../install.html" target='_blank'> for how to get the examples</a>.</p>
 
