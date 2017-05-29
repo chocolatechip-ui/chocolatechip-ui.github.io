@@ -84,13 +84,13 @@
           <p>This method adds a route to your router object. It expects an array as an argument, even if you are only adding one route. A route is an object with two properties: a route and a callback.</p>
           <p>ChocolateChip-UI's routes are the ids of screens that you will be navigating to. You do not use the `#` but purely the id value of the screen:</p>
 <pre class="prettyprint"><code>const router = new Router();
-router.addRoute([
+router.addRoute({
   route: 'detailScreen',
   callback: () => {
     $.GoTo('detailScreen');
     detailView.render(detailData)
   }
-])
+})
 </code></pre>
 <p>When handling a route, you have the option of also receiving and parameter with the route. The parameter is a unique value represeting a object in a collection. A route parameter is indicated by a colon after the route:</p>
 
