@@ -105,7 +105,7 @@ router.addRoute({
   route: 'detailScreen',
   callback: (param) => {
     // Get the item represented by the route's param:
-    const item = myModel.filter((obj) => obj.id = param);
+    const item = myModel.filter((obj) => obj.id == param);
     // Render the view with the returned object:
     detailView.render(item);
   }
