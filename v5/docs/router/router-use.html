@@ -78,21 +78,13 @@
           <p>To use routes you first need to initialize a router:</p>
           <pre class='prettyprint linenums'>var routes = new Router();</pre>
           
-          <p>You can then add routes to handle each route separately:</p>
-          <pre class='prettyprint linenums'>routes.addRoute([
-  {
-    route: 'main',
-    callback: () => {
-      // Do stuff when entering "main"
-    }
-  },
-  {
-    route: 'detailScreen',
-    callback: () => {
-      // Do stuff when entering "detailScreen"
-    }
+          <p>You can then add a route to handle:</p>
+          <pre class='prettyprint linenums'>routes.addRoute({
+  route: 'detailScreen',
+  callback: () => {
+    // Do stuff when entering "detailScreen"
   }
-])</pre>
+})</pre>
         
         <h3>Passing a Parameter to a Route</h3>
 
@@ -104,22 +96,33 @@
         <p>The semi-colon tells the router that what follows is a route parameter. When the user taps such a list item, the router separates the parameter from the route and lets you capture it in your route's callback.</p>
         
         <h3>addRoute</h3>
-        <p>There are two ways to add a route. If you have a single route, pass it as a single object. If you want to handle multiple routes, pass them as an array of objects.</p>
+        <p>If you have a single route, pass it as a single object. If you have more than one route, pass them as additional arguments, separated by commas:</p>
+        <pre class='prettyprint linenums'>routes.addRoute({
+  route: 'main',
+  callback: () => {
+    // Do stuff when entering "main"
+  }
+},
+{
+  route: 'detailScreen',
+  callback: () => {
+    // Do stuff when entering "detailScreen"
+  }
+})</pre>
+
         <p>Below is an example of how to capture a route parameter in the callback. Notice the <code>id</code> parameter in the callback's <code>function</code>. That will be the parameter captured from the route value. In this examle we're passing a single object inside an array as the argument for <code>addRoute</code>. Because it's single, you could pass it as a plain object without the enclosing array. However, if you want to pass in multiple routes to handle, they do need to be enclosed in an array.</p>
 
         <pre class='prettyprint linenums'>const routes = new Router();
-routes.addRoute([
-  {
-    route: 'detail',
-    callback: (param) => {
-      // Filter model with param passed in route.
-      // We use "[0]" at the end to extract the object from the array:
-      const whichPerson = peopleState.filter((person) => person.uuid === param)[0];
-      // Output peron's name:
-      $('#chosenPerson').text('Welcome, ' + whichPerson.firstName + '.');
-    }
+routes.addRoute({
+  route: 'detail',
+  callback: (param) => {
+    // Filter model with param passed in route.
+    // We use "[0]" at the end to extract the object from the array:
+    const whichPerson = peopleState.filter((person) => person.uuid === param)[0];
+    // Output peron's name:
+    $('#chosenPerson').text('Welcome, ' + whichPerson.firstName + '.');
   }
-]);</pre>
+});</pre>
 
         <p>If you have a single destination and you want to render it differently based on the route parameter, you probably want to use a switch state to do so. In the following example, based on whether the id is 'music', 'pictures', etc., we use a different template and data set to render in the container '#myList' when the user navigates to the 'choice' screen:</p>
 
