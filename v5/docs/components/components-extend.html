@@ -70,223 +70,61 @@
       <div>
         <div>
           <h2>Components</h2>
-          <h3>Styles</h3>
-          <p>Since <strong>version 4.1.0</strong>, you can style your component with a style object. Most of the time you probably won't need anything more than a tiny snippet of CSS in your document. However, if you want to override the default styles for some serious customization, using the component's styles object is the way to go. Similarly, if you are creating a totally new layout for a component, you can use the styles object to provide the component's styles. When you define your component with a styles property, ChocolateChip-UI creates a virtual stylesheet with a selector based on the component's element selector. Any child elements will be styled as descendants of that selector.</p>
+          <h3>Extending</h3>
+          <p>Because components are ES6 classes, you can extend them. You do this just as you would with any other ES6 class, using <code>extends</code>:</p>
+          <pre class="prettyprint linenums">
+const SpecialComponent extends Component {
+  // Stuff goes here.
+}</pre>
+          <p>In general, you shouldn't need to extend the Component class. However, there is one situation where you would want to: to reuse the same component in multiple places but with different data. For example, say you need to show three or more lists with the exact say internal layout for data, but with different data. You would need to definie a different component with the exact same template for each list -- wasteful. </p>
+          <p>By extending the Component class, you can create a class that always returns the same template, but uses different data for each instance.</p>
 
-          <p>When you have a highly customized or specialized layout for a component, it makes sense to include styles in the component itself. The advantage to this is that if you intended to reuse the component in other projects, the styles will accompany the component automatically. No need to dig around for styles in other places.</p>
+          <h3>How to Extend Component</h3>
+          <p>To make this work, you need to modify the constructor of the original Component class when you create its extension. You want any options to get passed to the original constructor, but you want to add one new thing. Let's step back a bit and explain how a Component gets set up internally. When you create a new component, the options get assigned to properties on the class constructor. Now, when you define your component, you probably will give it a render function like this:</p>
+          <pre class="prettyprint linenums">const comp = new Component({
+  element: '#list',
+  render: (data) => html`&lt;li>${ data }&lt;/li>`
+})</pre>
+          <p>Internally, ChocolateChip-UI takes that function and applies it to component's constructor as the method <code>renderFnc:</code></p>
+          <pre class="prettyprint linenums">this.renderFnc = options.render</pre>
+          <p>What this means is that when we extend Component, we need to directly provide a value for this method to create a cookie cutter template for our components. And here is how you might do that:</p>
 
-          <p>To add a style to a component, you use the <code>styles</code> property and assign it an object of styles. <strong>Note:</strong> Because this is object notation, CSS definitions do not end with a semi-colon but with a comma. Putting a semi-colon after your CSS value will throw an error.</p>
-          
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (data) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ data.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // your styles here
-  } 
-});
-</pre>
+          <pre class="prettyprint linenums">class List extends Component {
+  constructor(options) {
+    super(options)
+    this.renderFnc = (data) => html`
+      &lt;li>
+        &lt;h3>${data}&lt;/h3>
+      &lt;/li>`
+  }
+}</pre>
+          <p>By assign the template directly to the <code>this.renderFnc</code>, every instance of the class will have access to the exact same template. To use it, we can then do the following:</p>
 
-          <h3>ChUI Style Notation</h3>
+          <pre class="prettyprint linenums">// No need to give these components a render function.
+// They will use the default of the class:
+const peopleList = new List({
+  element: '#peopleList',
+  state: peopleState
+})
+peopleList.render()
+const fruitList = new List({
+  element: '#fruitList',
+  state: fruitState
+})
+fruitList.render()
+const petList = new List({
+  element: '#petList',
+  state: petState
+})
+petList.render()
+          </pre>
 
-          <p>ChocolateChip-UI uses a special object notation to define the styles for a component. Because it is an object, hyphenated CSS properties must be either quoted or changed to camel case.</p>
-          <p>The syntax uses hierarchical relationships, like <strong>SASS</strong> and <strong>LESS</strong>. You indicate child elements based on the component's element. Let's look at a style example:</p>
+          <p>In the above example, all three components will use the same template for their data. Of course, if you are going to do this, the data you use needs to match what the template expects. If the data will not match the template, you'll need to create a separate component with its own render function/template.</p>
 
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Add border to list:
-    border: 'solid 1px red'
-  } 
-});
-</pre>
-        <p>In the above example, ChocolateChip-UI will create the following style definition:</p>
+          <p>Below is a working Codepen example of extending Component:</p>
 
-        <pre class="prettyprint linenums lang-css">
-#list {
-  border: solid 1px red;
-}
-</pre>
-
-        <h3>Child Selectors</h3>
-        <p>In the above example, the style <code>border: 'solid 1px red'</code> will get applied to the CSS selector <code>#list1</code>, because that is the root of the component. If we want to style the list items, we will need to use a CSS child selector and nest it inside the list definition. Remember that when providing style selectors, they need to be quoted, and that they are style with their own object of properties and values:</p>
-
-        <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Add border to list:
-    border: 'solid 1px red',
-    // Add child selector for list items:
-    li: {
-      backgroundColor: 'red',
-      color: '#fff'
-    }
-  } 
-});
-</pre>
-        <p>The above component style object will result in the following stylesheet definition:</p>
-
-        <pre class="prettyprint linenums lang-css">
-#list {
-  border: solid 1px red;
-}
-#list li {
-  background-color: red;
-  color: #fff;
-}
-</pre>
-
-        <p>In the above example, the list background color will be red. However, since the text is inside of an H3, the color value will not affect them, instead we will need to add their styles as child elements of the list item. We do this by adding another child selector nested in the list item property definition:</p>
-
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Add border to list:
-    border: 'solid 1px red',
-    // Add child selector for list items:
-    li: {
-      'background-color': 'red',
-      h3: {
-        color: '#fff'
-      }
-    }
-  } 
-});
-</pre>
-        
-        <p>The above component style object will result in the following stylesheet definition:</p>
-        
-        <pre class="prettyprint linenums lang-css">
-#list {
-  border: solid 1px red;
-}
-#list li {
-  background-color: red;
-  color: #fff;
-}
-#list li h3 {
-  color: #fff;
-}
-</pre>
-        
-        <h3>Pseudo Elements</h3>
-
-        <p>You can define pseudo selectors using the ":" or "::" directly on a selector's root level:</p>
-
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Add child selector for list items:
-    li: {
-      backgroundColor: 'red',
-      // Add a pseudo element:
-      '::after': {
-        content: 'This is a pseudo element!',
-        display: 'block',
-        position: 'relative',
-        top: '100%'
-      }
-      // Add a hover state to list item:
-      ':hover': {
-        'background-color': 'red'
-        // color for h3 with hover:
-        '> h3': {
-          color: '#fff'
-        }
-      }
-    }
-  } 
-});
-</pre>
-        
-        <p>The above style object will result in the following stylesheet definition:</p>
-        
-        <pre class="prettyprint linenums lang-css">
-#list li::after {
-  content: 'This is a pseudo element!';
-  display: block;
-  position: relative;
-  top: 100%;
-}
-#list li:hover {
-  background-color: red;
-}
-#list li:hover > h3 {
-  color: #fff;
-}
-</pre>
-
-        <h3>Automatic Pixel Values</h3>
-        <p>If you're defining a simple numeric pixel value, you can simply provide the value as a number:</p>
-
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Give list margin of 20px on all sides:
-    margin: 10,
-    // Give list a width of 200px:
-    width: 200
-  } 
-});
-</pre>
-
-        <p>If you need to provide different values for compound values, you'll need to provide the pixel length and quote the value:</p>
-
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Give list margin of  5px 20px:
-    margin: '5px 20px'
-  } 
-});
-</pre>
-
-        <p>Similarly, if you want a value other than pixels, you'll need to provide the desired length identifier and quote the value:</p>
-
-          <pre class="prettyprint linenums">const myComponent = new Component({
-  element: '#list1',
-  render: (person) => html`
-    &lt;li&gt; 
-      &lt;h3&gt;${ person.name }&lt;/h3&gt;
-    &lt;/li&gt;`,
-  styles: {
-    // Give list margin of  1em:
-    margin: '1em'
-  } 
-});
-</pre>
-
-
-        <p>And here are two examples of styled components:</p>
-
-        <p data-height="700" data-theme-id="6688" data-slug-hash="jmeOyP" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Styled Component V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/jmeOyP/">Styled Component V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-        <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="ZyJNqJ" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Extended Component Example V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/ZyJNqJ/">Extended Component Example V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 
         </div>
@@ -306,9 +144,9 @@
                 <li><a href="components-intro.html">Intro</a></li>
                 <li><a href="components-use.html">Use</a></li>
                 <li><a href="components-templates.html">Templates</a></li>
-                <li><a href="components-styles.html" class='selected'>Styles</a></li>
+                <li><a href="components-styles.html">Styles</a></li>
                 <li><a href="components-api.html">API</a></li>
-                <li><a href="components-extend.html">Extending</a></li>
+                <li><a href="components-extend.html" class='selected'>Extending</a></li>
               </ul></li>
             </li>
             <li><a href='../state/state-intro.html'>State</a></li>
