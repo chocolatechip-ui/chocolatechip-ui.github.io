@@ -240,6 +240,28 @@ const joe = new Component({
 
         <p>In the above template we're doing two things with JavaScript -- we're testing the value of the <code>data.name</code> to see if it equals Joe, if it does we uppercase it. Otherwise we don't output anything.</p>
 
+        <h4>Do Computation Before Return</h4>
+        <p>One option to do complex JavaScript computation for a template is to do it before returning the template. In fact, using this tactic you could create logic that would return a different rendered template based on certain criteria. This gives you the ability to use whatever JavaScript you might need. You will need to use curly braces:</p>
+        <pre class='prettyprint linenums'>// JavaScript before returning template:
+const joe = new Component({
+  element: '#joeList',
+  render: (data) => {
+    if (data.name !== 'Joe') {
+      // Return first template:
+      return html`
+        &lt;li id='personsList'&gt;
+          ${ data.name.toUpperCase() }
+        &lt;/li&gt;`
+    } else {
+      // Return second template:
+      return html`
+        &lt;li id='personsList'&gt;
+         Cannot show that name!
+        &lt;/li&gt;`
+    }
+  }
+})</pre>
+
         <p>Another option for JavaScript if to simply process your data before passing it to a component to render.</p>
 
         <h3>Data Binding</h3>
