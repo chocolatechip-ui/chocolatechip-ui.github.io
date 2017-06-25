@@ -244,13 +244,29 @@ myComponent.render(data)
           <h3>setState</h3>
           <p><code>setState(myState)</code></p>
           <p>If you have initialized your component with raw JavaScript data and want to switch to using a component, you use this method. It takes one argument, the state you want the component to use. After binding the component to the state, any changes to the state will trigger a refresh of the component with the state changes.</p>
-          <p>You can also use this method to dynamically change what state a component is currently using. This method automatically unbinds any previously bound state before binding the new one. After changing the bound state, you would need to execute <code>renderComponents()</code> on the State instance to render the component with the new state.</p>
+          <p>You can also use this method to dynamically change what state a component is currently using. This method automatically unbinds any previously bound state before binding the new one. After changing the bound state, you can immediate update the component using its render method:</p>
+
+          <pre class='prettyprint linenums'>import {defaultState} from './data/defaultState'
+import {newState} from './data/newState'
+// Define component:
+const listComponent = new Component({
+  element: '#list',
+  render: (data) => html`
+    &lt;li>${ data }&lt;/li>`,
+  state: defaultState
+})
+// Render component with default state object:
+listComponent.render()
+
+// Change component's state object and render:
+listComponent.setState(newState)
+listComponent.render()
+          </pre>
 
           <h3>mount</h3>
           <p><code>mount()</code></p>
           <p>This method is for use with ES6 modules. If you have your components defined in separate files and import them into your app to use, you'll need to mount them before rendering. When you import a component from an external file, because this happens before the DOM is thoroughly loaded, ChocolateChip-UI is not able to find the component's element or bind any events that it has. To get around this problem, after importing a component you need to mount it. Mounting should always be done inside a DOM load function. Mounting a component tells it to look for its element and bind any events that it has. After mounting, a component will function as expected.</p>
           <pre class='prettyprint linenums'>import {myComponent} from '../components/myComponent';
-
 $(function() {
   // Mount the component and render it:
   myComponent.mount();
