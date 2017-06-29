@@ -74,6 +74,14 @@
           
           <p>Sheets are panels that slide down from the top of the app, or up from the bottom. They completely cover the screen but are semi-transparent so the user can see what is behind. On Android and iOS the content behind the sheet gets blurred.</p>
 
+
+          <h3>Importing UISheet Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UISheet class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UISheet} from './src/widgets/ui-sheet'
+          </pre>
+          <p>After importing UISheet, you are ready to create a sheet.</p>
+
           <p>We can initialize a sheet with three options: an id, whether to show the default handle or not, and whether it slides down or up. By default, sheets have a handle along the top and they slide up from the bottom:</p>
 
           <pre class="prettyprint linenums">

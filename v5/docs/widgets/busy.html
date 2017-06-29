@@ -74,6 +74,15 @@
           
           <p>Every platform has a different look for their activity indicators. ChocolateChip-UI offers a busy control that you can use in your app when you begin some task that may take an undeterminable time to complete so the user knows to wait. You can provide a color and a size for the activity indicator. On Android this is a spinning semi-circle, on iOS it is a spinning pronged star.</p>
           <img class='layout' src="../../images/widgets/busy.png" alt="Simple Layout">
+
+
+      <h3>Importing UIBusy Into Your Project</h3>
+      <p>In order to use UIBusy, you need to import it into your project. So that means you have to have a project created with the <code>chui</code> command line tool. To learn how to create a project, read <a href='../../install.html' target="_blank">the documentation</a>. After creating a project, open your project and go the the dev folder. Inside it you will find your project's main JavaScript file: <code>app.js</code>. At the top of that you need to import the UIBusy widget:</p>
+      <pre class="prettyprint linenums">
+import {UIBusy} from './src/widgets/ui-busy'
+      </pre>
+      <p>After importing UIBusy, you can use it as described below.</p>
+
           <p>A busy indicator is injected into another element, its conainer. So, you can show a busy indicator on a screen, a navigation bar, or even in an empty popup. It takes just three arguments: element, color and size. The defaults are 40 pixels by 40 pixels and #666666. You can also run the method <code>center()</code> on the instance to center it. Here are some possible initializations for busy indicators:</p>
 
           <pre class="prettyprint linenums">

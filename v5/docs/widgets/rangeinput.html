@@ -79,6 +79,14 @@
           
           <p>If you are on Windows and view the range control in IE11 or MS Edge, they will not appear correctly, as these are very different structurally form range inputs on iOS and Android/Safari and Chrome.</p>
 
+
+          <h3>Importing UIRange Into Your Project</h3>
+          <p>In order to initialize your range inputs, you'll need to import the UIRange class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UIRange} from './src/widgets/ui-range'
+          </pre>
+          <p>After importing UIRange, you are ready to initialize your range inputs.</p>
+
           <h4>Initializing Range Inputs</h4>
           <p>After putting range inputs into the document, you can initialize all of them with one line. You can put this anywhere in your <code>app.js</code> file in the <code>dev</code> folder:</p>
 

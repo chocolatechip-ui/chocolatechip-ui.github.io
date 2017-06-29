@@ -73,6 +73,17 @@
           <h3>Tab Bar</h3>
           
           <p>When your app has three to five main screens, a tab bar is a perfect way to structure your app. Having more than five tabs is too cramped for narrower mobile devices, and there are still a lot of those around. Tab bars look very different on Android and iOS. On iOS the tabs always have icons and the bar is on the bottom, where as on Android they do not have icons and the bar is on the top. You set up your tab bar and ChocolateChip-UI will take care of making it look properly for each platform. If you are targetting iOS, you will need to provide images for the tabs.</p>
+
+
+
+          <h3>Importing UITabbar Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UITabbar class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UITabbar} from './src/widgets/ui-tabbar'
+          </pre>
+          <p>After importing UITabbar, you are ready to create a tabbar control.</p>
+
+
           <p>Below is how you would set up a tab bar:</p>
           <pre class="prettyprint linenums">
 // Options for Tab Bar:

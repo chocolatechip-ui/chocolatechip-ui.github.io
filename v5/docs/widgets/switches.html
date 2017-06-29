@@ -72,7 +72,17 @@
           <h2>Widgets</h2>
           <h3>Switches</h3>
           
-          <p>ChocolateChip-UI has switches. These are controls for turning things on or off, or for other either/or situations in an interface. Internally they are simply checkboxes with a checked or unchecked state. To create a switch, you first need to have a ui-switch tag in the document:</p>
+          <p>ChocolateChip-UI has switches. These are controls for turning things on or off, or for other either/or situations in an interface. Internally they are simply checkboxes with a checked or unchecked state.</p>
+          
+
+          <h3>Importing UISwitch Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UISwitch class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UISwitch} from './src/widgets/ui-switch'
+          </pre>
+          <p>After importing UISwitch, you are ready to create a switch control.</p>
+
+          <p>To create a switch, you first need to have a ui-switch tag in the document:</p>
 
           <pre class="prettyprint linenums">
 &lt;ui-switch id='sleep-switch'&gt;&lt;/ui-switch&gt;</pre>

@@ -74,6 +74,13 @@
           
           <p>Slide out menus offer a convenient way to provide the user access to a number of otherwise unrelated screens. If you have more screens than can fit in a tab bar, but you don't want to use a navigation list in it, a slide out menu is a better option.</p>
 
+          <h3>Importing UISlideOut Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UISlideOut class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UISlideOut} from './src/widgets/ui-slideout'
+          </pre>
+          <p>After importing UISlideOut, you are ready to create a slideout menu.</p>
+
           <p>To create a slide out menu, you need to provide it with the screens you want to show when the menu items are tapped. First we create the slide out menu using the <code>new UISlideOut</code> class. Then we populate the menu by passing it some options. These are an array of key/value pairs. The key is the id of the screens to use, and the value is the label that will be displayed in the slide out menu:</p>
 
           <pre class="prettyprint linenums">

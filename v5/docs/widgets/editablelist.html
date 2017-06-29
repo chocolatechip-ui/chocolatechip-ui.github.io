@@ -74,6 +74,14 @@
           
           <p>You may have a list that you want your users to be able to modify in some way, such as change the order or deleting some items. You can provide that functionality with ChocolateChip-UI's editable list. This allows you to make a list's items movable, or deletable, or both. You set this up when you initialize the list. Basically, an editable list is just a Component list with the ability to reorder and delete items.</p>
 
+
+      <h3>Importing UIEditList Into Your Project</h3>
+      <p>In order to make an editable list, you'll need to import the UIEditList class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+      <pre class="prettyprint linenums">
+import {UIEditList} from './src/widgets/ui-editable'
+      </pre>
+      <p>After importing UIEditList, you are ready to ccreate an editable list.</p>
+
           <p>You need to bind an editable list to state for it to work. That way, when the user is done modifying the list, its changes will to synched to the State object.</p>
 
           <div class="layout">

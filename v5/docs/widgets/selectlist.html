@@ -73,6 +73,16 @@
           <h3>Select List</h3>
           
           <p>When you need to provide the user the ability to pick one of several options, use ChocolateChip-UI's select list. Internally this is a radio button group, but visually it looks like a list of selectable items. Only one item can be selected at a time. If you need multi-select, use ChocolateChip-UI's <a href="./multiselectlist.html">Multi-Select List</a>.</p>
+
+
+
+          <h3>Importing UISelectList Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UISelectList class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UISelectList} from './src/widgets/ui-select-list'
+          </pre>
+          <p>After importing UISelectList, you are ready to create a select button.</p>
+
           <p>A select list needs an unordered list with the class <code>list</code> as its base:</p>
           <pre class="prettyprint linenums">
 &lt;ul class="list" id="selectList"&gt;&lt;/ul&gt;</pre>

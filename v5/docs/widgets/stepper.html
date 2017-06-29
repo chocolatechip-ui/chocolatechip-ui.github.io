@@ -74,6 +74,14 @@
           
           <p>A stepper is a small control that allows the user to increase or decrease a value between predetermined values. It's not a picker. It's for when the difference between choices is not great. The user decreases or increase the value by tapping on either side of the stepper.</p>
 
+
+          <h3>Importing UIStepper Into Your Project</h3>
+          <p>In order to make a segmented button, you'll need to import the UIStepper class class into your project. You do that by by including the following at the top of your <code>app.js</code> file in your project's <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">
+    import {UIStepper} from './src/widgets/ui-stepper'
+          </pre>
+          <p>After importing UIStepper, you are ready to create a stepper.</p>
+
           <p>To create a stepper, use a stepper tag. Prior to verion 4.2.11, you had to  use a span with the class "stepper":</p>
 
           <pre class="prettyprint linenums">
