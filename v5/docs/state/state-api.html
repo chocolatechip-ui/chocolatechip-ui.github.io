@@ -407,7 +407,18 @@ const number = cartState.size()
 alert('You have ' + number + ' items in your cart.')
 </pre>
 
+
+        <h2>dataStore</h2>
+        <p>Rather than using <code>get()</code> on a State object, you can access the object's data directly from its <code>dataStore</code> property. You could also directly manipulate the object's data there, bypassing any reactive methods. However, it's best to use reactive State methods so that bound components get updated. It's also safer to set paused property of a State instance to true, use its reactive methods, set its paused false and invoke the instance <code>renderComponents</code> method. This is just a safer way to manipulate state.</p>
+        <p>That said, using <code>dataStore is a quick and easy way to get data out of a State object:</code></p>
+
+        <pre class='prettyprint linenums'>// Create State object:
+const fruitState = new State(['Apples','Oranges','Bananas'])
+console.log(fruitState.dataStore)
+// Returns: ['Apples','Oranges','Bananas']</pre>
+
         <h3>Medhods Shared by Objects and Arrays</h3>
+
         <p><strong>The following methods are shared by State objects of objects and arrays.</strong></p>
 
         <h3>purge</h3>
