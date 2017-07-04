@@ -120,7 +120,48 @@ const fruits = [
 const fruitModel = new State(fruits)
 const orange = fruits.getItemProp(2, 'name') // returns "Orange"</pre>
 
-<p>Because this State object holds an array, we need to provide an index to indicate where in the array we want to get the property from. Theis is, of course, zero-based.</p>
+<p>Because this State object holds an array, we need to provide an index to indicate where in the array we want to get the property from. This is, of course, zero-based.</p>
+
+        <h2>Extending State</h2>
+        <p>You can extend the State class to add custom functionality. You would do this when you need some state functionality not provided by the default methods. Because State is and ES6 class, you can extend it just like any other class.</p>
+        <p>The following example is rather trivial, but shows how you can extend State to get a State object with custom features:</p>
+
+        <pre class="prettyprint linenums">class SpecialState extends State {
+  constructor(data) {
+    if (data) {
+      if (Array.isArray(data)) {
+        data.map((item, idx) => data[idx] = item.toUpperCase())
+      } else {
+        data = data.toUpperCase()
+      }
+    }
+    // Pass modified data to super
+    super(data)
+  }
+  pushUpperCase(data) {
+    // Add data to State object's "dataStore" property.
+    data = data.toUpperCase()
+    this.dataStore.push(data)
+    // Update any bound components.
+    this.renderComponents()
+  }
+}
+const fruitState = new SpecialState(['Apples', 'Oranges', 'Bananas'])
+
+// After creating a custom State object,
+// we can use it in a component,
+// just like a normal State object:
+const fruitList = new Component({
+  element: '#fruitList',
+  state: fruitState,
+  render: (fruit) => html`
+    &lt;li>
+      &lt;h3>${ fruit }&lt;/h3>  
+    &lt;/li>`
+})
+// Render the component with its custom State object:
+fruitList.render()</pre>
+        <p>With the above custom State class, whatever data you provide during initialization, or pass with the <code>pushUpperCase</code> method will all be upper case.</p>
         
         <h3>When Not To Use</h3>
 
