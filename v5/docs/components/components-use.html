@@ -397,8 +397,90 @@ const myComponent = new Component({
 
           <p>To learn more about using a component's style property, please go to <a target='_blank' href="./components-styles.html">the page dedicated to it</a>.</p> 
 
+        <h3>"This" in Actions</h3>
+        <p>When you define an action for a component, you need to bear in mind that <code>this</code> will refer to what it would in a normal DOM event: the element the user interacted with. In the example below, <code>this</code> will be the <code>h3</code> that the user taps.</p>
+
+        <pre class="prettyprint linenums">// Create component:
+const list = new Component({
+  element: '#list',
+  render: (data) => html`
+  &lt;li>
+    &lt;h3>${ data }&lt;/h3>
+  &lt;/li>`,
+  actions: [{
+    event: 'tap',
+    element: 'h3',
+    callback: function() {
+      // "this" is the h3 that was tapped
+      console.log(this.textContent)
+      console.log(this) // outputs the h3 node
+    }
+  }]
+})</pre>
+          <p>However, if we change our callback to use an ES6 arrow function, <code>this</code> will instead be the global context of where the component is instantiated. In most cases this will be the window object, in some cases this may actually return undefined. In such a case, the only way to get the element that was tapped is to do so through the event object's target property:</p>
+
+        <pre class="prettyprint linenums">// Create component:
+const list = new Component({
+  element: '#list',
+  render: (data) => html`
+  &lt;li>
+    &lt;h3>${ data }&lt;/h3>
+  &lt;/li>`,
+  actions: [{
+    event: 'tap',
+    element: 'h3',
+    callback: (e) => {
+      // Get the h3 that was tapped 
+      // through the event object:
+      alert(e.target.textContent)
+      console.log(this) // outputs window or undefined
+    }
+  }]
+})</pre>
+          <p>The fact that DOM events have a different context than the component that holds and uses them can be a problem if you want to use component methods in a callback. This is especially so if you've created a custom component by extending the Component class. The only way to get access to the component from inside an action callback is to use the component instance directly. The following example is trivial, but it show how to extend the Component class, add special methods, and access them from within a DOM event in a component's action callback:</p>
+
+<pre class="prettyprint linenums">
+// Extend Component class:
+class List extends Component {
+  constructor(options) {
+    super(options)
+    this.renderFnc = (data, idx) => html`
+      &lt;li>
+        &lt;h3>${ data.name }&lt;/h3>
+      &lt;/li>`
+  }
+  // Define methods that will be accessed 
+  // in the instance action below:
+  getTextFromElement(el) {
+    return el.textContent.trim()
+  }
+  makeUpperCase(el) {
+    // We can access the other method thru "this":
+    return this.getTextFromElement(el)
+  }
+}
+const list = new List({
+  element: '#list',
+  actions: [{
+    event: 'tap',
+    element: 'h3',
+    callback: (e) => {
+      const text = e.target.textContent.trim()
+      // Access the method defined on the class.
+      // Since "this" is not the component,
+      // we need to access the componet instance directly:
+      alert(list.makeUpperCase(e.target))
+    }
+  }]
+})
+</pre>
+
+        <p>Here's a Codepen example:</p>
+
+        <p data-height="600" data-theme-id="6688" data-slug-hash="GEBWyw" data-default-tab="js,result" data-user="rbiggs" data-embed-version="2" data-pen-title="Component Methods & This V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/GEBWyw/">Component Methods & This V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
         </div>
-        
         <div id="menu">
           <ul>
             <svg id='closeMark' width="30px" height="28px" viewBox="0 0 30 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
