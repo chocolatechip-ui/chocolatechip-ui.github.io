@@ -75,7 +75,7 @@
 
           <p>A component's data binding is one-directional, making it easy to reason about. After modifying your data, just render the component. If you define your component to use a State object, whenever you modify the state, the component will re-render automatically.</p>
 
-          <p>When you create a component, you can define its template using an ES6 template literal or our special tagged template literal: <code>html``</code>. If you need to, you can even change the component's template later using the <code>.setTemplate(template)</code> method. Here's a component with its <code>render</code> method returning a template literal:</p>
+          <p>When you create a component, you can define its template using an ES6 template literal or our special tagged template literal: <code>html``</code>. As of version 5.2.0, you can also <a target='_blank' href='./components-jsx.html'>use JSX</a>. If you need to, you can even change the component's template later using the <code>.setTemplate(template)</code> method. Here's a component with its <code>render</code> method returning a template literal:</p>
 
           <pre class="prettyprint linenums">const myComp = new Component({
   element: '#list',
@@ -138,10 +138,11 @@ const luminariesComponent = new Component({
               <ul>
                 <li><a href="components-intro.html" class='selected'>Intro</a></li>
                 <li><a href="components-use.html">Use</a></li>
-                <li><a href="components-templates.html">Templates</a></li>
+                <li><a href="components-templates.html">Template Literals</a></li>
+                <li><a href="components-jsx.html">JSX</a></li>
                 <li><a href="components-styles.html">Styles</a></li>
-                <li><a href="components-api.html">API</a></li>
                 <li><a href="components-extend.html">Extending</a></li>
+                <li><a href="components-api.html">API</a></li>
               </ul></li>
             </li>
             <li><a href='../state/state-intro.html'>State</a></li>

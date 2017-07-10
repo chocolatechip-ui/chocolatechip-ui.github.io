@@ -71,7 +71,24 @@
         <div>
           <h2>Components</h2>
           <h3>Use</h3>
-          
+          <ul>
+            <li><a href="#Setup">Setup</a></li>
+            <li><a href="#Template_for_Component">Template for a Component</a></li>
+            <li><a href="#Using_JSX_for_Templates">Using JSX for Templates</a></li>
+            <li><a href="#Templates_with_Complex_Data">Templates with Complex Data</a></li>
+            <li><a href="#Binding_a_Component_to_State">Binding a Component to State</a></li>
+            <li><a href="#Make_a_Component_Interactive">Make a Component Interactive</a></li>
+            <li><a href="#Callbacks_with_Arrow_Functions">Callbacks with Arrow Functions</a></li>
+            <li><a href="#Changing_a_Component_Template">Changing a Component's Template</a></li>
+            <li><a href="#Sequential_Numbering">Sequential Numbering</a></li>
+            <li><a href="#Formatting_Output">Formatting Output</a></li>
+            <li><a href="#template_helpers">Using Template Helpers</a></li>
+            <li><a href="#Nested_Templates">Nested Templates</a></li>
+            <li><a href="#Styles_in_Components">Styles in Components</a></li>
+            <li><a href="#usingThis">"This" in Actions</a></li>
+            <li><a href="#Lifecycle_Methods">Lifecycle Methods</a></li>
+          </ul>
+          <a name='Setup'></a>
           <h3>Setup</h3>
           <p>When initializing a component, you can make it empty, or provide a number of options to give it various types of functionality. If you want a component, but aren't ready to have it associate with someting in the DOM quite yet, you can make an empty one like so:</p>
           <pre class="prettyprint linenums">
@@ -82,6 +99,8 @@ const myComponent = new Component(options)
 const simpleComponent = new Component({
   element: '#special'
 })</pre>
+
+          <a name='Template_for_Component'></a>
           <p>The above component presupposes the existence of an element called <code>#special</code>. To make the component complete we need to provide a template to render. The template is a function that returns an ES6 template literal.</p>
 
           <h3>Template for a Component</h3>
@@ -105,7 +124,12 @@ simpleComponent.render(stuff)
 
 &lt;div id='someTag'&gt;This is my stuff.&lt;/div&gt;</pre>
 
+          <a name='Using_JSX_for_Templates'></a>
           <p>The above component would render "This is my stuff." inside the div. We could just as easily have used a number instead.</p>
+
+          <a name='Templates_with_Complex_Data'></a>
+          <h3>Using JSX for Templates</h3>
+          <p>The default format for component templates is ES6 template literals. However, as of version 5.2.0 you can create projects that use JSX. Many developers prefer to use JSX for templating. You can learn more about how to use JSX with ChocolateChip-UI in the <a target='_blank' href='./components-jsx.html'>documentation</a>.</p>
 
           <h3>Templates with Complex Data</h3>
 
@@ -135,6 +159,7 @@ simpleComponent.render(person)</pre>
 
           <p>To learn more about templates please visit the documentation for <a href="../templates/templates-intro.html">templates</a>.</p>
 
+          <a name='Binding_a_Component_to_State'></a>
           <pre class='prettyprint linenums'>
 // Define component with string template:
 const simpleComponent = new Component({
@@ -146,10 +171,11 @@ const simpleComponent = new Component({
 simpleComponent.render()</pre>
 
           <h3>Binding a Component to State</h3>
-          <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's components. However, in many cases you might prefer to create an State object and use that with a component. State objects offer you functionality that plain JavaScript objects do not. However, the most important reason for binding your component to a State object is that whenever the state changes, the component will render automatically. No need for you to call the component's render function. For more information about State, read its <a href="../state/state-intro.html">documentation</a>.</p>
+          <p>As we saw above, you can use plain JavaScript objects with ChocolateChip-UI's components. However, in many cases you might prefer to create an State object and use that with a component. State objects offer you functionality that plain JavaScript objects do not. However, the most important reason for binding your component to a State object is that whenever the state changes, the component will render automatically. No need for you to call the component's render function. For more information about State, read its <a target="_blank" href="../state/state-intro.html">documentation</a>.</p>
 
           <p>To use state with a component, assign the <code>state</code> to the component's state property property:</p>
 
+          <a name='Make_a_Component_Interactive'></a>
           <pre class="prettyprint linenums">
 const boundComponent = new Component({
   element: '#peopleList',
@@ -159,6 +185,7 @@ const boundComponent = new Component({
           <h3>Make a Component Interactive</h3>
           <p>You can make a component interactive by defining actions. For this you use the component's <code>actions</code> property, which takes an array of event objects. Actions are for capturing user interaction. They therefore are objects have three possible properties: the event you want to capture an element to that will capture the event, and a callback. Instead of an element you can use the string <code>"self"</code> to target the component's anchor element. For events you can use any of the ones that ChocolateChip-UI supports: mouse events, touch events or gestures. Remember that ChocolateChip-UI's gestures work the same on desktop and mobile, iOS and Android. In the callback, <code>this</code> will refer to the element the user is interacting with:</p>
 
+          <a name='Callbacks_with_Arrow_Functions'></a>
           <pre class="prettyprint linenums">
 const interactiveComponent = new Component({
   element: '#items',
@@ -194,6 +221,7 @@ const interactiveComponent = new Component({
 
           <p>Here's an example of a component with events bound to its items. Click on an item and it will alert the content:</p>
 
+          <a name='Changing_a_Component_Template'></a>
           <p data-height="350" data-theme-id="6688" data-slug-hash="eWLqYV" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Component Example V5" class="codepen">See the Pen <a href="http://codepen.io/rbiggs/pen/eWLqYV/">Component Example V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
           <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
@@ -207,12 +235,15 @@ peopleComponent.setTemplate(template2)
 // Rerender component with new template:
 peopleComponent.render(data)</pre>
 
+          <a name='Sequential_Numbering'></a>
           <p>If you want to change a component's state and template, change the template first, then the state. That way, the new state will render the component with the new template. Please see <a href="../templates/templates-intro.html">templates</a> for more details.</p>
 
           <h3>Sequential Numbering</h3>
           <p>Sometimes you want to output sequential numbering in your component's template. You do this by providing a second parameter to the component's render function. By default all sequential numbering starts from <code>o</code>, so you may want to add 1 to it to get normal numbers.</p>
 
         <p>And here's a template using it:</p>
+
+          <a name='Formatting_Output'></a>
          <pre class="prettyprint linenums">// We'll use "idx" to capture
 // the loop index:
 const personComponent = new Component({
@@ -230,6 +261,7 @@ const personComponent = new Component({
 
           <h3>Formatting Output</h3>
           <p>You may need to format the data you are rendering in a component's template. ChocolateChip-UI provides a number of formatters to help you. These go right in the template where you want the data formated. ChocolateChip-UI has the following formatters:</p>
+          <a name='template_helpers'></a>
           <ul>
             <li>formatNumber</li>
             <li>sum</li>
@@ -240,7 +272,6 @@ const personComponent = new Component({
             <li>sortNumbersDescending</li>
           </ul>
 
-          <a name='template_helpers'></a>
           <p>Please see temlates for more information about data formatters.</p>
 
 
@@ -258,6 +289,7 @@ const myComp = new Component({
   render: (data) => html`&lt;li&gt;${ upperCase(data) }&lt;/li&gt;`
 })
 </pre>
+          <a name='Nested_Templates'></a>
         <p>The above example is very simplified, but it is the technique that is important. You could write any type of function to transform data as needed.</p>
 
           <h3>Nested Templates</h3>
@@ -344,7 +376,8 @@ const myComp = new Component({
 
           <p>And here's a working example:</p>
 
-          <p data-height="600" data-theme-id="6688" data-slug-hash="dWqEeR" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Nested Template Example V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/dWqEeR/">Nested Template Example V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+          <a name='Styles_in_Components'></a></p>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="dWqEeR" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Nested Template Example V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/dWqEeR/">Nested Template Example V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.
           <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
           <h3>Styles in Components</h3>
@@ -395,6 +428,7 @@ const myComponent = new Component({
         <p data-height="700" data-theme-id="6688" data-slug-hash="jmeOyP" data-default-tab="result" data-user="rbiggs" data-embed-version="2" data-pen-title="Styled Component V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/jmeOyP/">Styled Component V5</a> by Robert Biggs (<a href="http://codepen.io/rbiggs">@rbiggs</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+          <a name='usingThis'></a>
           <p>To learn more about using a component's style property, please go to <a target='_blank' href="./components-styles.html">the page dedicated to it</a>.</p> 
 
         <h3>"This" in Actions</h3>
@@ -477,9 +511,39 @@ const list = new List({
 
         <p>Here's a Codepen example:</p>
 
+        <a name='Lifecycle_Methods'></a>
         <p data-height="600" data-theme-id="6688" data-slug-hash="GEBWyw" data-default-tab="js,result" data-user="rbiggs" data-embed-version="2" data-pen-title="Component Methods & This V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/GEBWyw/">Component Methods & This V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+        <h3>Lifecycle Methods</h3>
+        <p>As of version 5.2.0, components offer lifecyle methods to allow you to accomplish tasks at different times:</p>
+
+        <ol>
+          <h4 style='margin: 0'>Mounting:</h4>
+          <li>componentWillMount - Use this when importing and mounting a component with <code>mount()</code>. It will execute before the component is mounted.</li>
+          <li>componentDidMount - use this when importing and mounting a component with <code>mount()</code>. It will execute after the component is mounted.</li>
+          <h4 style='margin: 0'>Unmounting:</h4>
+          <li>componentWillUnmount - use this when running <code>unmount()</code> on a component. It will execute before the component is unmounted.</li>
+          <li>componentDidUnmount - use this when running <code>unmout()</code> on a component. It will execute after the component is unmounted.</li>
+          <h4 style='margin: 0'>Rendering:</h4>
+          <li>componentWillUpdate - use this when running <code>render()</code> on a component. It will execute before the component is rendered.</li>
+          <li>componentDidUpdate - use this when running <code>render()</code> on a component. It will execute after the component is rendered.</li>
+        </ol>
+        <p>To use these, assign a method to them when initalizing your component:</p>
+        <pre class='prettyprint linenums'>// file /components/list.js
+export const list = new Component({
+  element: '#list',
+  render: (fruit) => html`
+    &lt;li>
+      &lt;h3>${fruit.name}&lt;/h3>
+    &lt;/li>`,
+
+  componentDidMount: () => console.log('The component was imported and mounted. That means you can render it.'),
+
+  componentDidUpdate: () => {
+    document.querySelector('#list').insertAdjacentHTML('afterend', '&lt;p>This is a footer for a recently rendered list component.&lt;/p>')
+  }
+})</pre>
         </div>
         <div id="menu">
           <ul>
@@ -495,10 +559,11 @@ const list = new List({
               <ul>
                 <li><a href="components-intro.html">Intro</a></li>
                 <li><a href="components-use.html" class='selected'>Use</a></li>
-                <li><a href="components-templates.html">Templates</a></li>
+                <li><a href="components-templates.html">Template Literals</a></li>
+                <li><a href="components-jsx.html">JSX</a></li>
                 <li><a href="components-styles.html">Styles</a></li>
-                <li><a href="components-api.html">API</a></li>
                 <li><a href="components-extend.html">Extending</a></li>
+                <li><a href="components-api.html">API</a></li>
               </ul></li>
             </li>
             <li><a href='../state/state-intro.html'>State</a></li>

@@ -70,10 +70,14 @@
       <div>
         <div>
           <h2>Components</h2>
-          <h3>Templates</h3>
+          <h3>Template Literals</h3>
           
           <p>When you create a component, you usual will give it a render function to create content in your app. In order to do this, it needs a template. These are ES6 template literals. You can use a plain template literal (enclosed in back ticks) or a tagged template literal provided by ChocolateChip-UI: <code>html``</code>. The advantage of <code>html``</code> is that it automatically escapes all data before rendering. This protects you from malicious script injection. It also handles <code>map</code> functions so you don't have to end them with <code>join('')</code> to prevent "," insertion.</p>
 
+          <h4>Using JSX Instead of Template Literals</h4>
+          <p>As of version 5.2.0 you can use JSX for templates instead of template literals. It's entirely up to your preference. Both are good choices.  Read the <a href='./components-jsx.html' target='_blank'>documentation</a> to learn more.</p>
+
+          <h4>Passing Arguments to a Template</h4>
           <p>A template function expects an argument for the data that will be used in the template. Of course you can define a template that simply returns static markup as well. To interpolate any data, you use <code>${data}</code>. Here we're expecting that the return method will have a parameter named <code>data</code>. You can use whatever parameter you want for your template:</p>
 
           <pre class='prettyprint linenums'>// Define template function:
@@ -255,10 +259,11 @@ const myComp = new Component({
               <ul>
                 <li><a href="components-intro.html">Intro</a></li>
                 <li><a href="components-use.html">Use</a></li>
-                <li><a href="components-templates.html" class='selected'>Templates</a></li>
+                <li><a href="components-templates.html" class='selected'>Template Literals</a></li>
+                <li><a href="components-jsx.html">JSX</a></li>
                 <li><a href="components-styles.html">Styles</a></li>
-                <li><a href="components-api.html">API</a></li>
                 <li><a href="components-extend.html">Extending</a></li>
+                <li><a href="components-api.html">API</a></li>
               </ul></li>
             </li>
             <li><a href='../state/state-intro.html'>State</a></li>

@@ -70,330 +70,229 @@
       <div>
         <div>
           <h2>Components</h2>
-          <h3>API</h3>
-          <h3>Component</h3>
-          <p>The following diagram illustrates the lifecycle of a component from instantiation to rendering. After instantiation, a component can be rendered by a change to the state it is bound to or by the render function on the component instance.</p>
+          <h3>JSX</h3>
 
-          <p><img id='view-lifecycle' style='display: block; margin: 0 auto;' src="../../images/component-lifecycle.png" alt="component life cycle"></p>
+          <ul>
+            <li><a href="#Self_Closing_Tags">Self-Closing Tags</a></li>
+            <li><a href="#Creating_a_Project_with_JSX">Creating a Project with JSX</a></li>
+            <li><a href="#JSX_in_Components">JSX in Components</a></li>
+            <li><a href="#Capturing_the_Loop_Index">Capturing the Loop Index</a></li>
+            <li><a href="#Partials_in_JSX">Partials in JSX</a></li>
+            <li><a href="#JSX_Attributes">JSX Attributes</a></li>
+            <li><a href="#Limitations_of_JSX_Markup">Limitations of JSX Markup</a></li>
+            <li><a href="#About_the_Codepen_Examples">About the Codepen Examples</a></li>
+            <li><a href="#Performance">Performance</a></li>
+          </ul>
+          
+          <p>JSX is a popular way of defining markup in JavaScript for templating purposes in many libraries and frameworks. Most developers like JSX because it is a clearer representation of what will be produced. Others dislike it because they think it is mixing HTML into JavaScript. As of version 5.2.0, you can use JSX to define the template of a component's render function. Internally, this gets converted into a string template that the component render function expects. If you are one of those who do not like JSX, you can continue using template literals in your component as always. If you would prefer to use JSX, continue reading.</p>
 
-          <h3><code>new Component(options)</code></h3>
+          <a name='Self_Closing_Tags'></a>
+          <p>JSX provides better syntax highlighting than template literals, which are just strings. JSX also allows you to define partials and use them as custom tags in your component. This allows you to break a complex render function down into smaller, more manageable pieces.</p>
 
-          <p>Components can be initialized with the following options:</p>
+          <h3>Self-Closing Tags</h3>
+          <p>Using JSX means you have a number of issues to be aware of. JSX is a dialect of XML. This means that your markup must follow many XML rules. HTML5 does not follow those rules. Note the following:</p>
+          <p>Self-closing tags must be terminated with a forward slash: <code>&lt;img src='myImg.png'></code> must be: <code>&lt;img src='myImg.png' /></code>. This is true for all self-closing tags: img, br, hr, etc. Failure to properly terminate self-closing tags will result in an error at build time. Note that you can also give a self-closing tag a closing tag: <code>&lt;img src='myImg.png'>&lt;/img></code>. Regardless of which method you choose to terminate a self-closing tag, the result will be a normal HTML5 self-closing tag.</p>
 
-          <ol>
-            <li><strong>element</strong>: The element that the component will use as a temlate parent. The template will be rendered inside of this element.</li>
+          <a name='Creating_a_Project_with_JSX'></a>
+          <h3>Creating a Project with JSX</h3>
+          <p>It's easy to create a project with support for JSX. When creating your project with the <code>chui</code> command line tool, just provide the flag <code>-x</code> as one of the arguments:</p>
 
-            <li><strong>render</strong>: A function that returns a template literal defining the component's template.
-<pre class='prettyprint linenums'>const myComponent = new Component({
-  element: '#arrayTemplate1', 
-  render: (stuff) => html`
-    &lt;li&gt;
-      ${stuff}
-    &lt;/li&gt;`
-});</pre>
-And here's the same render function using JSX:
-<pre class='prettyprint linenums'>const myComponent = new Component({
-  element: '#arrayTemplate1', 
-  render: (stuff) => (
-    &lt;li&gt;
-      {stuff}
-    &lt;/li&gt;
-  )
-});</pre></li>
+          <pre class="prettyprint linenums"># Create project that supports JSX:
+chui -n "JSX Project" -x -t navigation
+          </pre>
+          <p>Doing this will add everything needed to convert JSX into string templates for ChocolateChip-UI components. After creating your project, open its <code>dev</code> folder, then its component or template file. You'll notice that at the top there's a line:</p>
+          <pre class="prettyprint linenums">import {h} from '../src/utils/h'</pre>
+          <p>Wherever you define a component that uses JSX, you'll need to also import ChocolateChip-UI's <code>h</code> method. When you create a project for JSX with the <code>-x</code> flag, the <code>chui</code> CLI puts a modified <code>.babelrc</code> file in your project that tells Babel to use that imported <code>h</code> method to process the JSX.</p>
 
-            <li><strong>state</strong>: A State object. This will bind the component to the designated State object. Binding a component to a State object means that when the state changes, the component will get updated automatically.</li>
+          <a name='JSX_in_Components'></a>
+          <h3>JSX in Components</h3>
+          <p>So, we have a project that supports JSX. Now lets create a new component that uses it. We'll pretend that we create a file called "list.js" in our project's <code>dev</code> folder. At the top of the file we put (the path needs to match wherever you've put the file in relation of the <code>dev</code> folder's <code>src</code> folder:</p>
 
-            <li><strong>actions</strong>: This is an array of objects defining user interaction. Each object consists of an event, and element and a callback. If you want to target the parent element, leave out the `element` property or using `self` as its value. Otherwise, any element will have its event delegated by the component element. The <code>callback</code> defines what should happen when the event occurs:
-<pre class='prettyprint linenums'>const myComponent = new Component({
-  element: '#arrayTemplate1', 
-  state: MyState,
-  render: (stuff) => html`
-    &lt;li&gt;
-      ${stuff}
-    &lt;/li&gt;`,
-  actions: {
-    element: 'li',
-    event: 'tap',
-    callback: function() {
-      console.log($(this).text())
-    }
-  }
-});</pre>
+          <pre class="prettyprint linenums">import {h} from '../src/utils/h'</pre>
 
-            <h4>Handing <code>this</code></h4>
+          <p>Now that we have imported the <code>h</code> method, we can write JSX in our component. Generally you want to enclose the JSX inside parens:</p>
 
-            <p>There can hardly be a discussion of JavaScript with understand its implementation of <code>this</code>. An action's callback will handle this differently depending on how you implement the callback. If you write the callback using normal function conventions, <code>this</code> will refer to the element that received the event. But if you write the callback using an ES6 arrow function, this will refer to the scope of the callback. If you want to access the interacted element in an arrow function, you can do so through the event target. Below are two action callbacks doing the same thing, one written with a default function and one with an arrow function:</p>
-
-            <pre class='prettyprint linenums'>const myComponent = new Component({
-  element: '#arrayTemplate1', 
-  ...
-  // Callback with normal function.
-  // "this" is the element tapped:
-  actions: {
-    element: 'li',
-    event: 'tap',
-    callback: function() {
-      console.log($(this).text())
-    }
-  }
-
-  ...
-
-  // Instead of the function used above, we can
-  // define the callback with an arrow function.
-  // Notice how we access the element thorough
-  // the event target:
-  actions: {
-    element: 'li',
-    event: 'tap',
-    callback: (e) => console.log($(e.target).text())
-  }
-});</pre>
-
-            <h4>Event Bubbling in Components</h4>
-
-            <p>You can use the <code>bubble</code> property with its value set to <code>true</code> in an event object to designate that the event should bubble. Most of the time you should not need to do this. By default this value is always false. The bubble value is only required when you want the event to pass through and be captured by the event target parent elements.</p>
-
-            <h4>Unbinding an Action Event</h4>
-            <p>If you need to unbind an event created by a component's action, you can use the <code>$(selector).off()</code> method to do so. Provide the component's <code>element</code> as the selector, then the event type and callback if you used a named one. Read more about how to <a target='_blank' href='../dom/dom-api.html#event_off'>unbind events</a>.</p>
-            </li>
-            
-            <li><strong>styles</strong>: This property takes an object defining styles for your component. In most cases you won't need to use it since the default styles will work fine. However, if you want to customize the look of your component, you can use this propertly to create a vitual stylesheet for it. The styles will be defined off of the element selector you anchor your component to using the <code>element</code> property. The style object looks like this:
-<pre class='prettyprint linenums'>const myComponent = new Component({
-  element: '#itemsList', 
-  styles: {
-    // Style the list itself:
-    border: 'solid 1px red',
-    // Style the component's child elements:
-    '> li': {
-      'background-color': 'red'
-    }
-  }
-});</pre>
-          <p>This will create a stylesheet like this:</p>
-<pre class='prettyprint linenums'>#itemsList {
-  border: solid 1px red;
-}
-#itemsList > li {
-  background-color: red;
-}</pre>
-        <p>To learn more about defining styles for a component, please read the <a target='_blank' href="./components-styles.html">documentation</a>.</p>
-            </li>
-            <li>
-              <strong>methods</strong>: As of version 5.2.0, this property takes an array of named functions and attaches them to the component instance as static methods. Because these are added when the component is instantiated, you can only call them on the component instance itself. You can use this property to bundle up helper functions for your component's actions. To add a method, use a named function. Arrow methods will not work. You can provide multiple named functions separated by commas:
-              <pre class='prettyprint linenums'>const fruits = ['Apples', 'Oranges', 'Bananas', 'Cherries', 'Mangos']
-const fruitState = new State(fruits)
+          <pre class="prettyprint linenums">// list.js
+import {h} from '../src/utils/h'
 
 const list = new Component({
   element: '#list',
-  state: fruitState,
-  render: (data) => html`
+  render: (fruit) => (
     &lt;li>
-      &lt;h3>${ data }&lt;/h3>
-    &lt;/li>`,
-  actions: [
-    {
-      event: 'tap',
-      element: 'h3',
-      callback: (e) => {
-        // Must use class instance to access method:
-        alert('You chose: ' + list.getTextFromElement(e.target))
-      }
-    }
-  ],
-  methods: [
-    function getTextFromElement(el) {
-      return el.textContent.trim()
-    },
-    function makeUpperCase(el) {
-    // Use "this" to get getTextFromElement method:
-    return this.getTextFromElement(el)
-  }
- ]
+      &lt;h3>{fruit.name}&lt;/h3>
+      &lt;aside>
+        &lt;span class='price'>{fruit.price}&lt;/span>
+      &lt;/aside>
+    &lt;/li>
+  )
+})</pre>
+
+          <a name='Capturing_the_Loop_Index'></a>
+          <h3>Capturing the Loop Index</h3>
+          <p>Just like with template literals, you can capture the loop index value and output it by using a second parameter in the component's render function:</p>
+
+          <pre class="prettyprint linenums">const list = new Component({
+  element: '#fruits',
+  state: new State(['Apples', 'Oranges', 'Bananas']),
+  // Capture loop index for output:
+  render: (fruit, idx) => (
+    &lt;li>
+        &lt;h3>{idx + 1}: {fruit}&lt;/h3>
+    &lt;/li>
+  )
 })
 list.render()</pre>
 
-            <h4>Using "this" Properly</h4>
-            <p>Using the keyword <code>this</code> is important when writing component methods and using them in component actions. Please read this <a target='_blank' href='./components-use.html'>documentation for more details</a>.</p>
+          <a name='Partials_in_JSX'></a>
+          <h3>Partials in JSX</h3>
+          <p>Sometimes, as you're looping over an array of data, the loop instance object may have children that are arrays that you also need to loop over. This is fairly common. For instance, when outputting a list of recipes, each recipe could have its own list of ingredients and instructions. With template literals you can handle this in two ways: by using <code>map</code> on the child array, or by writing a helper function (partial) and passing the data to it. You can also do this with JSX. However, with the helper function JSX offers a twist. You can use the partial as a custom tag inside the parent's markup. OK, so lets look at how to do this. We'll start with <code>map</code>:</p>
 
-            <p>Here's a working Codepen example. Tap on a list item to see the component methods in actions.</p>
+          <pre class="prettyprint linenums">const list = new Component({
+  element: '#recipes',
+  render: (recipe) => (
+    &lt;li>
+      &lt;div>
+        &lt;h3>{recipe.name}&lt;/h3>
+        &lt;h4>Ingredients&lt;/h4>
+        &lt;ul>
+          {recipe.ingredients.map(ingredient => &lt;li>{ingredient}&lt;/li>)}
+        &lt;/ul>
+        &lt;h4>Directions&lt;/h4>
+        &lt;ol>
+          { recipe.directions.map(direction => &lt;li>{ direction }&lt;/li>)}
+        &lt;/ol>
+      &lt;/div>
+    &lt;/li>
+  )
+})
+list.render(recipeData)</pre>
 
-            <p data-height="350" data-theme-id="6688" data-slug-hash="qjyGqy" data-default-tab="js,result" data-user="rbiggs" data-embed-version="2" data-pen-title="Component with Methods Property V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/qjyGqy/">Component with Methods Property V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+          <p>And here's a Codepen example:</p>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="LLBJRL" data-default-tab="js,result" data-user="rbiggs" data-embed-version="2" data-pen-title="JSX-1 with Custom Tags V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/LLBJRL/">JSX-1 with Custom Tags V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-            </li>
+          <p>The above JSX template works fine, printing out a list of ingredients and directions for each recipe. However, it is not easy to read. Using partials we can make this much cleaner. To create partials with JSX, you define a function that returns the markup you need. You can then use the name of that function as a custom tag in your JSX. Because of JSX syntax rules, custom tags must have the first letter capitalized. That means your partial's function name must be capitalized as well, as if it were a class.</p>
+          <p>So, because we want to output a list with the partial, we pass the recipe object to our partial's function. This leads us to a problem with representing that function as a custom tag: the function is represented as a tag and has no parens for passing arguments. To get around this, you need to pass you function's arguments as props on the custom tag. You do this in two ways:</p>
+          <ol>
+            <li>The data you pass to the partial must be enclosed in curly braces.</li>
+            <li>You use curly braces with a spread operator on the custom tag to pass it the function arguments: <code>{...{recipe}}</code>.</li>
           </ol>
 
-          <h3>Data Binding with State</h3>
-          <p>When you designate a State object for your component, as we did above, the component is bound to it. This means that whenever you use the state's methods to change its data, the component will automatically refresh to show those changes. Read the <a href='../state/state-intro.html' target='_blank'>documentation for State</a> to learn more about create a State object.</p>
-
-          <h3>State Methods that Trigger Component Refresh</h3>
-          <p>The following state methods will trigger a fresh of a bound component:</p>
-
-          <p><strong>Object State</strong></p>
-          <ul>
-            <li>set</li>
-            <li>merge</li>
-            <li>mixin</li>
-            <li>remove</li>
-          </ul>
-
-          <p><strong>Array State</strong></p>
-          <ul>
-            <li>push</li>
-            <li>pop</li>
-            <li>unshift</li>
-            <li>shift</li>
-            <li>setPropAt</li>
-            <li>splice</li>
-            <li>insert</li>
-            <li>reverse</li>
-            <li>sort</li>
-            <li>orderBy</li>
-            <li>concat</li>
-            <li>mixin</li>
-            <li>unique</li>
-          </ul>
-
-          <p>If you want to perform one of these state methods but don't want the component to update at that time, you can pause the State object and have it update the component later. <a href='../state/state-api.html#pausedState' target='_blank'>Read more about that here<a>.</p>
-
-          <h3>Component Methods</h3>
-          <h3>render</h3>
-          <p><code>render(data, append)</code></p>
-          <p>The render method will render a template. If it is bound to a state, it will render the component's template with that state:</p>
-<pre class='prettyprint linenums'>// Render a component:
-myComponent.render();
-</pre>
-          <p>Or you can render a component with raw JavaScript data:</p>
-<pre class='prettyprint linenums'>// Render a component:
-myComponent.render(myData);
-</pre>
-          <p>When rendering a component, the current content is replaced with the data available at render time. You can choose to have the render append the its content to the current content of the component. If you wish to append content to a component that uses a collection, make sure the content you're rendering is new, otherwise you'll have unnecessary duplicates.</p>
-          <p>To append content to a rendered component, add the keyword true as the last argument:</p>
-<pre class='prettyprint linenums'>// Append to a component:
-myComponent.render(myData, true);
-</pre>
-
-          <h3>empty</h3>
-          <p><code>empty()</code></p>
-          <p>Running this method on a component will remove all rendered content from the parent element.</p>
-<pre class='prettyprint linenums'>// Empty a component:
-myComponent.empty();
-</pre>
-
-          <h3>setTemplate</h3>
-          <p><code>setTemplate(template)</code></p>
-          <p>You can use this method to change the template that a component's render function is using. It expects a template literal or tagged template literal.</p>
-          <p>This method allows you to totally change how the component is rendering.</p>
-<pre class='prettyprint linenums'>// Set a component's template:
-const newTemplate = (data) => html`
-  &lt;li&gt;
-    &lt;h3&gt;${data}&lt;/h3&gt;
-  &lt;/li&gt;`;
-
-myComponent.setTemplate(newTemplate);
-
-// Render component to update it:
-myComponent.render(data)
-</pre>
-          <p>After changing the render function template that a component uses, you'll need to render the function to update. Be aware that the new template should work with whatever data the component is using.</p>
-
-          <h3>setState</h3>
-          <p><code>setState(myState)</code></p>
-          <p>If you have initialized your component with raw JavaScript data and want to switch to using a component, you use this method. It takes one argument, the state you want the component to use. After binding the component to the state, any changes to the state will trigger a refresh of the component with the state changes.</p>
-          <p>You can also use this method to dynamically change what state a component is currently using. This method automatically unbinds any previously bound state before binding the new one. After changing the bound state, you can immediate update the component using its render method:</p>
-
-          <pre class='prettyprint linenums'>import {defaultState} from './data/defaultState'
-import {newState} from './data/newState'
-// Define component:
-const listComponent = new Component({
-  element: '#list',
-  render: (data) => html`
-    &lt;li>${ data }&lt;/li>`,
-  state: defaultState
-})
-// Render component with default state object:
-listComponent.render()
-
-// Change component's state object and render:
-listComponent.setState(newState)
-listComponent.render()</pre>
-
-          <h3>mount</h3>
-          <p><code>mount()</code></p>
-          <p>This method is for use with ES6 modules. If you have your components defined in separate files and import them into your app to use, you'll need to mount them before rendering. When you import a component from an external file, because this happens before the DOM is thoroughly loaded, ChocolateChip-UI is not able to find the component's element or bind any events that it has. To get around this problem, after importing a component you need to mount it. Mounting should always be done inside a DOM load function. Mounting a component tells it to look for its element and bind any events that it has. After mounting, a component will function as expected.</p>
-          <pre class='prettyprint linenums'>import {myComponent} from '../components/myComponent';
-app(() => {
-  // Mount the component and render it:
-  myComponent.mount();
-  myComponent.render();
-});</pre>
-
-        <h3>unmount</h3>
-          <p><code>unmount()</code></p>
-          <p>This method is used to empty a component and remove any actions (events) that might be registered. You want to unmount a component before removing its root element from the DOM. The following example show how to do that:</p>
-          
-          <pre class='prettyprint linenums'>app(() => {
-  // unmount component:
-  myComponent.unmount();
-  // Delete component root element:
-  myComponent.root.remove();
-});</pre>
-
-        <h3>styles</h3>
-          <p><code>styles: {styleObject}</code></p>
-        <p>You can define styles on your component that create a virtual stylesheet. You would do this to override existing styles, style some custom layout in your component or create a styled component that you can re-use in different projects. The styles are based off of the selector you provide when you create the component. When you use <code>setElement</code> to change which element your component is anchored to, ChocolateChip-UI will re-create the virtual stylesheet using the new element selector.</p>
-
-        <p>Please note that if you define styles for your component and then want to change templates, your styles may not work with the new template. If you need to be able to change a component's templates dynamically, then don't bother defining its styles with this property. But the styles in your app's stylesheet instead.</p>
-        <p>To learn more about defining styles for a component, please read the <a target='_blank' href="./components-styles.html">documentation</a>.</p>
-        
-        <h3>Lifecycle Methods</h3>
-        <p>As of version 5.2.0, while defining a component, you can take advatage of the following lifecycle methods. There are three pairs. Two for when mounting an imported component. Two for when unmounted a component. And two for when rendering a component.</p>
-        <ol>
-          <h4 style='margin: 0'>Mounting:</h4>
-          <li>componentWillMount - Use this when importing and mounting a component with <code>mount()</code>. It will execute before the component is mounted.</li>
-          <li>componentDidMount - use this when importing and mounting a component with <code>mount()</code>. It will execute after the component is mounted.</li>
-          <h4 style='margin: 0'>Unmounting:</h4>
-          <li>componentWillUnmount - use this when running <code>unmount()</code> on a component. It will execute before the component is unmounted.</li>
-          <li>componentDidUnmount - use this when running <code>unmounted()</code> on a component. It will execute after the component is unmounted.</li>
-          <h4 style='margin: 0'>Rendering:</h4>
-          <li>componentWillUpdate - use this when running <code>render()</code> on a component. It will execute before the component is rendered.</li>
-          <li>componentDidUpdate - use this when running <code>render()</code> on a component. It will execute after the component is rendered.</li>
-        </ol>
+          <p>Let's start with the partials. Notice how there arguments are enclosed in curly braces:</p>
+<pre class="prettyprint linenums">const Ingredients = ({recipe}) => (
+  &lt;ul>
+    {recipe.ingredients.map(ingredient => &lt;li>{ingredient}&lt;/li>)}
+  &lt;/ul>
+)
+const Directions = ({recipe}) => (
+  &lt;ol>
+    { recipe.directions.map(direction => &lt;li>{ direction }&lt;/li>)}
+  &lt;/ol>
+)</pre>
+        <p>The above two methods -- Ingredients and Directions -- retrun a list of their data. To use these in our JSX template, we write them as tags with a forward slash. To pass the arguments to them, we  use curly braces with a spread operator. This is identical to passing props to a React component.</p>
 
 
-        <p>These methods allow you to perform tasks at different times during the lifecycle of a component. You set them up during the initialization of a component:</p>
-
-        <pre class='prettyprint linenums'>// file /components/list.js
-export const list = new Component({
-  element: '#list',
-  render: (fruit) => (
+          <pre class="prettyprint linenums">const list = new Component({
+  element: '#recipes',
+  render: (recipe) => (
     &lt;li>
-      &lt;h3>${fruit.name}&lt;/h3>
+      &lt;div>
+        &lt;h3>{recipe.name}&lt;/h3>
+        &lt;h4>Ingredients&lt;/h4>
+        &lt;Ingredients {...{recipe}} />
+        &lt;h4>Directions&lt;/h4>
+        &lt;Directions {...{recipe}} />
+      &lt;/div>
     &lt;/li>
-  ),
+  )
+})
+list.render(recipeData)</pre>
 
-  componentDidMount: () => console.log('The component was imported and mounted. That means you can render it.'),
+          <p>In the above example we terminated the custom tags with a forward slash. We could also have used an end tag. Both work the same Most people seem to prefer the sorter format:</p>
+          <pre class="prettyprint linenums">&lt;Ingredients {...{recipe}} />
+// Or:
+&lt;Ingredients {...{recipe}}>&lt;/Ingredients>
+          </pre>
 
-  componentDidUpdate: () => announcement.render('This is a footer for a recently rendered list component')
-  }
-})</pre>
+          <p>Using partials as custom tags makes the template easier to read. You could store your template partials in external files and import them into your components. This makes it easy for you to reuse partials in multiple components and in other projects.</p>
 
-<pre class='prettyprint linenums'>
-// file /app.js
-import {list} from './components/list'
-import {fruits} from './data/fruits'
+          <p>And here's a Codepen example of the above code:</p>
+          <p data-height="600" data-theme-id="6688" data-slug-hash="LLBJRL" data-default-tab="js,result" data-user="rbiggs" data-embed-version="2" data-pen-title="JSX-1 with Custom Tags V5" class="codepen">See the Pen <a href="https://codepen.io/rbiggs/pen/LLBJRL/">JSX-1 with Custom Tags V5</a> by Robert Biggs (<a href="https://codepen.io/rbiggs">@rbiggs</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-app(() => {
-  // Mounting causes the componentDidMount method to execute:
-  list.mount()
-  // Rendering casues the componentDidUpdate method to execute:
-  list.render(fruits)
-})</pre>
+          <a name='JSX_Attributes'></a>
+          <h3>JSX Attributes</h3>
+          <p>This is the part that may trip you up. With template literals, dealing with attribute values is simple, just create the attribute/value pair as normal and add a dollar sign and curly braces for the part that needs to be dynamic: </p>
+
+          <pre class="prettyprint linenums">&lt;li data-goto='detail:${ data.guid }'></pre>
+
+          <p>In JSX you have to replace the entire attribute value. Also, and this is very important, you do not use quote around the property value. Doing so will prevent the code from being interpreted:</p>
+
+          <pre class="prettyprint linenums">&lt;li data-goto={`detail:${ data.guid }`}></pre>
+
+          <h4>Default Attribute Names</h4>
+          <p>In JSX there are certain properties that you have to modify to use. These are <code>class</code> as <code>className</code>, <code>for</code> as <code>htmlFor</code> and inline events needing to be camel cased:</p>
+
+          <pre class="prettyprint linenums">&lt;li className='special' onClick={doSomething()}>{data}&lt;li></pre>
+          
+          <p>Our <code>h</code> function bypasses this limitation so that you can use them in their normal html format:</p>
+
+          <pre class="prettyprint linenums">&lt;li class='special' onclick={doSomething()}>{data}&lt;li></pre>
+
+          <p>Regarding inline events, we recommend you define your events using the component's <code>actions</code> property. This keeps your component markup leaner and gives you one place to deal with all user interactions in a component. Markup cluttered with styles and inline events is just messy. Don't do it. Use the <code>actions</code> and <code>styles</code> properties to organize your code into clearly separated areas of responsibility. Let your component's template be about rendering data exclusively. That way when you look at it, it will be easy to understand what it is outputting.</p>
+
+          <a name='Limitations_of_JSX_Markup'></a>
+          <h3>Limitations of JSX Markup</h3>
+          <p>With template literals, you can create sibling components that get injected into the component's parent element:</p>
+          <pre class="prettyprint linenums">// HTML:
+&lt;ul class='list' id='list'>&lt;/ul>
+// JavaScript:
+const list = new Component({
+  element: '#list',
+  state: fruitStore,
+  render: (fruit) => html`
+    &lt;li>
+      &lt;h3>${ fruit.name }&lt;/h3>
+    &lt;/li>
+      &lt;h3>${ fruit.price }&lt;/h3>
+    &lt;li>`
+})
+list.render()</pre>
+          
+          <p>With template literals the above code is valid and would output two sibling list items for each loop. This is not possible with JSX due to the XML syntax rules that it follows. Instead there must be a single root tag that owns all other tags as its children.</p>
+
+          <a name='About_the_Codepen_Examples'></a>
+          <p>If you find you need to output a group of siblings, wrap them in a div or aside tag. Or see if you can solve your needs with a custom JSX tag.</p>
+         
+
+          <h3>About the Codepen Examples</h3> 
+          
+          <p>You will notice that we use the Babel pragma: <code>/** @jsx h */</code> before the JSX components in our pens. This is to let the Codepen Babel transpiler know to use the ChocolateChip-UI <code>h</code> function to process the JSX. When you create a project with the <code>chui</code> command line tool, it creates a <code>.babelrc</code> file configured to do this automatically for you, so you do not need to use the pragma in your code. Just make sure you always import the <code>h</code> method into whatever file is defining a template with JSX. The path to <code>h</code> will depend on the position of the file in your <code>dev</code> folder:</p>
+          <pre class="prettyprint linenums">import {h} from '../src/utils/h'</pre>
+
+          <p>If you get a JSX component doesn't render in the browser, open the console and look for errors. If you find <code>ReferenceError: Can't find variable: h</code>, this means that Babel couldn't find the <code>h</code> function in that file to transpile the JSX. Import the <code>h</code> function at the top of the file will solve this.</p>
+
+          <a name='Performance'></a>
+          <h3>Performance</h3>
+          <p>Using JSX introduces an extra step in converting a component's render template into DOM nodes. This means a very slight performance penalty when compared to using template literals. We ran a performance test 100 times to create 1,000 and then 10,000 list items. The results were:</p>
+          <pre>
+Create Table Rows:   1,000      10,000
+_______________________________________
+Template Literals    55.4 0     730.79
+JSX                  83.46      854.05
+</pre>
+
+          <p>The difference in milliseconds is fairly minimal and surely not perceptible to a human user. The JSX version is still much faster than the same test with Angularjs and React:</p>
+
+          <pre>
+Create Table Rows:   1,000      10,000
+_______________________________________
+Angular v4.1.2       156.75     1256.52
+React v15.5.4        183.93     1026.02
+</pre>
 
 
         </div>
-        
         <div id="menu">
           <ul>
             <svg id='closeMark' width="30px" height="28px" viewBox="0 0 30 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -408,11 +307,11 @@ app(() => {
               <ul>
                 <li><a href="components-intro.html">Intro</a></li>
                 <li><a href="components-use.html">Use</a></li>
-                <li><a href="components-templates.html">Template Listerals</a></li>
-                <li><a href="components-jsx.html">JSX</a></li>
+                <li><a href="components-templates.html">Templates</a></li>
                 <li><a href="components-styles.html">Styles</a></li>
                 <li><a href="components-extend.html">Extending</a></li>
-                <li><a href="components-api.html" class='selected'>API</a></li>
+                <li><a href="components-jsx.html" class='selected'>JSX</a></li>
+                <li><a href="components-api.html">API</a></li>
               </ul></li>
             </li>
             <li><a href='../state/state-intro.html'>State</a></li>
@@ -432,7 +331,6 @@ app(() => {
         </div>
       </div>
     </section>
-
 
     <footer>
       <div>
