@@ -179,39 +179,6 @@ And here's the same render function using JSX:
 }</pre>
         <p>To learn more about defining styles for a component, please read the <a target='_blank' href="./components-styles.html">documentation</a>.</p>
             </li>
-            <li>
-              <strong>methods</strong>: As of version 5.2.0, this property takes an array of named functions and attaches them to the component instance as static methods. Because these are added when the component is instantiated, you can only call them on the component instance itself. You can use this property to bundle up helper functions for your component's actions. To add a method, use a named function. Arrow methods will not work. You can provide multiple named functions separated by commas:
-              <pre class='prettyprint linenums'>const fruits = ['Apples', 'Oranges', 'Bananas', 'Cherries', 'Mangos']
-const fruitState = new State(fruits)
-
-const list = new Component({
-  element: '#list',
-  state: fruitState,
-  render: (data) => html`
-    &lt;li>
-      &lt;h3>${ data }&lt;/h3>
-    &lt;/li>`,
-  actions: [
-    {
-      event: 'tap',
-      element: 'h3',
-      callback: (e) => {
-        // Must use class instance to access method:
-        alert('You chose: ' + list.getTextFromElement(e.target))
-      }
-    }
-  ],
-  methods: [
-    function getTextFromElement(el) {
-      return el.textContent.trim()
-    },
-    function makeUpperCase(el) {
-    // Use "this" to get getTextFromElement method:
-    return this.getTextFromElement(el)
-  }
- ]
-})
-list.render()</pre>
 
             <h4>Using "this" Properly</h4>
             <p>Using the keyword <code>this</code> is important when writing component methods and using them in component actions. Please read this <a target='_blank' href='./components-use.html'>documentation for more details</a>.</p>
