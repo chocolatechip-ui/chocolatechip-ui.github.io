@@ -92,6 +92,27 @@
           <h3>Self-Closing Tags</h3>
           <p>Using JSX means you have a number of issues to be aware of. JSX is a dialect of XML. This means that your markup must follow many XML rules. HTML5 does not follow those rules. Note the following:</p>
           <p>Self-closing tags must be terminated with a forward slash: <code>&lt;img src='myImg.png'></code> must be: <code>&lt;img src='myImg.png' /></code>. This is true for all self-closing tags: img, br, hr, etc. Failure to properly terminate self-closing tags will result in an error at build time. Note that you can also give a self-closing tag a closing tag: <code>&lt;img src='myImg.png'>&lt;/img></code>. Regardless of which method you choose to terminate a self-closing tag, the result will be a normal HTML5 self-closing tag.</p>
+          <pre class="prettyprint linenums">// Template Literal
+// No need to close img tag:
+const listComponent = new Component({
+  element: '#list',
+  render: (data) => html`
+    &lt;li&gt;
+      &lt;img src='${ data.img.src }'&gt;
+    &lt;/li&gt;
+  `
+})
+
+// JSX
+// img tag must be closed with forward slash:
+const listComponent = new Component({
+  element: '#list',
+  render: (data) => (
+    &lt;li&gt;
+      &lt;img src={ data.img.src } /&gt;
+    &lt;/li&gt;
+  )
+})</pre>
 
           <a name='Creating_a_Project_with_JSX'></a>
           <h3>Creating a Project with JSX</h3>
